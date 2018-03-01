@@ -1,11 +1,13 @@
 import { connect }from "react-redux";
 import AppContainer from "./presenter";
-import {actionCreators as photoActions } from "../../redux/modules/photos"
+import {actionCreators as photoActions } from "../../redux/modules/photos";
+import {actionCreators as userActions} from "../../redux/modules/user";
 
 const mapStateProps = (state, ownProps) => {
     const { user} =state;
     return {
-        isLoggedIn: user.isLoggedIn
+        isLoggedIn: user.isLoggedIn,
+        isTrainer: user.isTrainer,
     };
 }
 
@@ -15,7 +17,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             //dispatch(photoActions.getFeed());
             //getSearch
             //getNotifications
-            //getProfile
+            dispatch(userActions.getOwnProfile());
         }
     }
 }

@@ -21,6 +21,8 @@ function setLogIn(token) {
 }
  
 function setUser(user) {
+  console.log("in setUser");
+  console.log(user);
   return {
     type: SET_USER,
     user
@@ -160,18 +162,14 @@ function getNotifications() {
 function getOwnProfile() {
   return (dispatch, getState) => {
     const { user: { token, profile: { username } } } = getState();
-    fetch(`${API_URL}/users/${username}/`, {
-      headers: {
-        Authorization: `JWT ${token}`
-      }
+    fetch(`${API_URL}/tokens/${token}/user`, {
     })
       .then(response => {
-        if (response.status === 401) {
+        if (response.status != 200) {
           dispatch(logOut());
         } else {
           return response.json();
-        }
-      })
+        }})
       .then(json => dispatch(setUser(json)));
   };
 }
@@ -179,12 +177,16 @@ function getOwnProfile() {
 // Initial State
   
 const initialState = {
- isLoggedIn: false
+ isLoggedIn: false,
+ isTrainer : false,
+
 };
  
  // Reducer
  
 function reducer(state = initialState, action) {
+  console.log("in reducer");
+  console.log(action.type);
   switch (action.type) {
     case LOG_IN:
       return applyLogIn(state, action);
@@ -203,6 +205,7 @@ function reducer(state = initialState, action) {
  
 function applyLogIn(state, action) {
   const { token } = action;
+  console.log("is in applyLogin");
   return {
     ...state,
     isLoggedIn: true,
@@ -221,9 +224,15 @@ function applyLogOut(state, action) {
  
 function applySetUser(state, action) {
   const { user } = action;
+  console.log(user.user.gym_uid);
+  if(user.user.gym_uid)
+    flag = true;
+  else
+    flag= false;
   return {
     ...state,
-    profile: user
+    profile: user,
+    isTrainer:flag,
   };
 }
  
