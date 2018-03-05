@@ -161,7 +161,7 @@ function getNotifications() {
 
 function getOwnProfile() {
   return (dispatch, getState) => {
-    const { user: { token, profile: { username } } } = getState();
+    const { user: { token} } = getState();
     fetch(`${API_URL}/tokens/${token}/user`, {
     })
       .then(response => {
@@ -225,13 +225,13 @@ function applyLogOut(state, action) {
 function applySetUser(state, action) {
   const { user } = action;
   console.log(user.user.gym_uid);
-  if(user.user.gym_uid)
+  if(user.user.gym_uid != null)
     flag = true;
   else
     flag= false;
   return {
     ...state,
-    profile: user,
+    profile: user.user,
     isTrainer:flag,
   };
 }

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { View, Text, StatusBar, StyleSheet } from "react-native";
 import LoggedOutNavigation from "../../navigation/LoggedOutNavigation";
 import RootNavigation from "../../navigation/RootNavigation";
+import TrainingManagementScreen from "../../screens/TrainingManagementScreen";
 
 
 
@@ -26,7 +27,7 @@ class AppContainer extends Component {
         <StatusBar hidden={true} />
         {isLoggedIn ? 
           ( isTrainer ?
-            <Text>Trainer!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!s</Text>
+            <TrainingManagementScreen/>
             :
             <RootNavigation/> 
             )
