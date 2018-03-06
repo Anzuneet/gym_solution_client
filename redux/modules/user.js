@@ -24,6 +24,8 @@ function setLogIn(token) {
 }
  
 function setUser(user) {
+  console.log("in setUser");
+  console.log(user);
   return {
     type: SET_USER,
     user
@@ -162,17 +164,21 @@ function getNotifications() {
 
 function getOwnProfile() {
   return (dispatch, getState) => {
+<<<<<<< HEAD
     const { user: { token, profile: { username } } } = getState();
     fetch(`${API_URL}/tokens/${token}/user`, {
     
+=======
+    const { user: { token} } = getState();
+    fetch(`${API_URL}/tokens/${token}/user`, {
+>>>>>>> 7a178a47a0c3bd443e1cd618fe6191796c36f94b
     })
       .then(response => {
-        if (response.status === 401) {
+        if (response.status != 200) {
           dispatch(logOut());
         } else {
           return response.json();
-        }
-      })
+        }})
       .then(json => dispatch(setUser(json)));
   };
 }
@@ -205,6 +211,11 @@ function getGroups(uid) {
   
 const initialState = {
  isLoggedIn: false,
+<<<<<<< HEAD
+=======
+ isTrainer : false,
+
+>>>>>>> 7a178a47a0c3bd443e1cd618fe6191796c36f94b
 };
  
 
@@ -213,6 +224,8 @@ tokenKey = '';
  // Reducer
  
 function reducer(state = initialState, action) {
+  console.log("in reducer");
+  console.log(action.type);
   switch (action.type) {
     case LOG_IN:
       return applyLogIn(state, action);
@@ -231,6 +244,7 @@ function reducer(state = initialState, action) {
  
 function applyLogIn(state, action) {
   const { token } = action;
+  console.log("is in applyLogin");
   return {
     ...state,
     isLoggedIn: true,
@@ -249,9 +263,15 @@ function applyLogOut(state, action) {
  
 function applySetUser(state, action) {
   const { user } = action;
+  console.log(user.user.gym_uid);
+  if(user.user.gym_uid != null)
+    flag = true;
+  else
+    flag= false;
   return {
     ...state,
-    profile: user
+    profile: user.user,
+    isTrainer:flag,
   };
 }
  
