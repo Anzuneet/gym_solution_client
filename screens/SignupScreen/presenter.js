@@ -37,7 +37,7 @@ const SignupScreens = props => (
       <StatusBar hidden = {true}/>
       <View style={styles.header}>  
         <Image
-        source={require("../../assets/images/logo-white.png")}
+        source={require("../../assets/images/logo-gym.png")}
         resizeMode="stretch"
         style={styles.logo}
         />
@@ -193,14 +193,14 @@ const styles = StyleSheet.create({
     },
     header: {
       flex: 1,
-      backgroundColor: "pink",
+      backgroundColor: "#FFBB00",
       alignItems: "center",
       justifyContent: "center",
-      width
+      height:100
     },
     logo: {
       width: 180,
-      height: 45,
+      height: 65,
       marginTop: 20
     },
     loginForm: {
@@ -354,7 +354,7 @@ const styles = StyleSheet.create({
     submit : {
       width,
       height : 50,
-      backgroundColor :'pink',
+      backgroundColor :'#FFBB00',
       alignItems : 'center',
       justifyContent : 'center'
 

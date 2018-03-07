@@ -37,16 +37,12 @@ class AppContainer extends Component {
       <View style={styles.container}>
         <StatusBar hidden={true} />
         {isLoggedIn ? 
-<<<<<<< HEAD
-        <RootNavigation/> :
-=======
           ( isTrainer ?
             <TrainingManagementScreen/>
             :
             <RootNavigation/> 
             )
           :
->>>>>>> 7a178a47a0c3bd443e1cd618fe6191796c36f94b
           <LoggedOutNavigation />}
       </View>
     );
