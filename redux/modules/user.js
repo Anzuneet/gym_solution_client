@@ -185,8 +185,6 @@ const initialState = {
  // Reducer
  
 function reducer(state = initialState, action) {
-  console.log("in reducer");
-  console.log(action.type);
   switch (action.type) {
     case LOG_IN:
       return applyLogIn(state, action);
@@ -205,7 +203,6 @@ function reducer(state = initialState, action) {
  
 function applyLogIn(state, action) {
   const { token } = action;
-  console.log("is in applyLogin");
   return {
     ...state,
     isLoggedIn: true,
@@ -224,7 +221,6 @@ function applyLogOut(state, action) {
  
 function applySetUser(state, action) {
   const { user } = action;
-  console.log(user.user.gym_uid);
   if(user.user.gym_uid != null)
     flag = true;
   else
