@@ -2,6 +2,7 @@
  
 import { API_URL, FB_APP_ID } from "../../constants";
 import { AsyncStorage, Alert } from "react-native";
+import { getStoredState } from "redux-persist";
 
  
  // Actions
@@ -14,6 +15,8 @@ const SET_NOTIFICATIONS = "SET_NOTIFICATIONS";
  // Action Creators
   
 function setLogIn(token) {
+  // 토큰 값을 tokenKey 변수에 저장한다.
+  tokenKey = token
    return {
      type: LOG_IN,
      token
@@ -161,8 +164,14 @@ function getNotifications() {
 
 function getOwnProfile() {
   return (dispatch, getState) => {
+<<<<<<< HEAD
+    const { user: { token, profile: { username } } } = getState();
+    fetch(`${API_URL}/tokens/${token}/user`, {
+    
+=======
     const { user: { token} } = getState();
     fetch(`${API_URL}/tokens/${token}/user`, {
+>>>>>>> 7a178a47a0c3bd443e1cd618fe6191796c36f94b
     })
       .then(response => {
         if (response.status != 200) {
@@ -174,14 +183,44 @@ function getOwnProfile() {
   };
 }
 
+function getGroups(uid) {
+  //console.log(tokenKey)
+  //console.log(uid);
+  return (dispatch) => {
+   return fetch(`${API_URL}/gyms/${uid}/groups`, { 
+    method: "GET",
+    headers: {
+      "x-gs-token": tokenKey
+    }
+     })
+     .then(response =>response.json() )
+     .then(json=>{
+       console.log(json)
+      if (json.token) {
+         dispatch(setGroupToken(json.token));
+         return true;
+       } else {
+        Alert.alert(json.msg);
+         return false;
+       }
+    })
+ };
+}
+
 // Initial State
   
 const initialState = {
  isLoggedIn: false,
+<<<<<<< HEAD
+=======
  isTrainer : false,
 
+>>>>>>> 7a178a47a0c3bd443e1cd618fe6191796c36f94b
 };
  
+
+tokenKey = '';
+
  // Reducer
  
 function reducer(state = initialState, action) {
@@ -240,6 +279,7 @@ function applySetNotifications(state, action) {
   };
 }
 
+
 // Exports
 
 const actionCreators = {
@@ -247,7 +287,8 @@ const actionCreators = {
   logOut,
   getNotifications,
   getOwnProfile,
-  signup
+  signup,
+  getGroups
 };
   
 export { actionCreators };

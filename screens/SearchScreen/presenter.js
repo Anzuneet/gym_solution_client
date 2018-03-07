@@ -14,6 +14,7 @@ import {
     } from "react-native";
 import { Ionicons,Feather } from "@expo/vector-icons";
 import {MapView} from 'expo';
+import { actionCreators as userActions } from "../../redux/modules/user";
 
 const { width, height } = Dimensions.get("window");
 
@@ -22,22 +23,24 @@ const SearchScreens = props => (
         <View style = {styles.mapContainer}>
         <MapView
             style={{ alignSelf: 'stretch', height: 500 }}
-//            region={props.mapRegion}
+            //region={props.mapRegion}
             initialRegion = {props.mapRegion}
-            onRegionChange={props.handleMapRegionChange}
+            onRegionChange={props.handleMapRegionChange}   
           >
-            {props.markers.map(marker => (
-                <MapView.Marker
+            {props.gyms.map((marker, index) => (
+                <MapView.Marker 
+                key = {index}
                 coordinate={{latitude:marker.latitude,longitude:marker.longitude}}
                 title={marker.name}
                 description={marker.address}
-                />
-            ))}
+                onPress = {userActions.getGroups(marker.uid)}
+                /> 
+            ))}       
         </MapView>
         </View>
         <TouchableOpacity style = {styles.filterContainer} onPressOut = {props.searchFilter}>
             <Text style = {styles.filterText}>
-                {props.markers.length}
+                {props.gyms.lengths}
             </Text>
         </TouchableOpacity>
     </View>

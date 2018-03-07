@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import {View, Text, StyleSheet} from 'react-native';
 import SearchScreen from "./presenter";
 import {Constants, Location, MapView} from 'expo';
+import { actionCreators as userActions } from "../../redux/modules/user";
 
 class Container extends Component {
   map = null;
@@ -9,13 +10,16 @@ class Container extends Component {
     mapRegion:null,       
     markers:
       [
+        {
+
+        }
       ]
     ,
     gyms:[
       {
         name:"가라",
         address:"asd",
-        uid:0,
+        uid:1,
         latitude: 37.2926241,
         longitude: 126.8544851}
     ]
@@ -24,7 +28,6 @@ class Container extends Component {
   componentDidMount(){
     this._getLocationAsync();
     this._getGyms();
-    
   };
   _getGyms = async()=>{
     let response = await fetch("https://gym.hehehee.net/gyms");
@@ -71,9 +74,10 @@ class Container extends Component {
     this.setState({markers:arrayMarkers})
 }
   _handleMapRegionChange = mapRegion => {
-    this.setState({ mapRegion });
-    console.log(mapRegion);
-    console.log(this.state.mapRegion);
+    // this.setState({ mapRegion });
+    // console.log(mapRegion);
+    // console.log(this.state.mapRegion);
+  
     let markers = this.state.gyms.filter((gym)=>{
       let lat = gym.latitude - mapRegion.latitude;
       let lon = gym.longitude - mapRegion.longitude;
@@ -85,29 +89,20 @@ class Container extends Component {
       lonD = lonD * lonD;
       return (lat < latD) && (lon< lonD) 
     });
+    
     this.setState({markers});
+
+    // console.log(markers);
   };
 
-  /*renderMarkers(){
-   this.markers=[];
-   for (marker of this.markers){
-       markers.push(
-           <MapView.Marker key={marker.longitude} title={'우리동네 헬스장'+ marker.latitude}
-                       description={'하하'}
-                       coordinate={marker}
-           />
-       )
-   }
-   return this.markers;
-  }*/
 
 
   render() {
     return <SearchScreen
-        {...this.state}
+        mapRegion = {this.state.mapRegion}
+        gyms = {this.state.gyms}
         handleMapRegionChange = {this._handleMapRegionChange}
         searchFilter = {this._searchFilter}
-        //renderMarkers = {this.renderMarkers}
     />;
   }
 
