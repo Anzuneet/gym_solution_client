@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { View, Text, FlatList, ActivityIndicator, TouchableOpacity, Alert } from "react-native";
+import { ScrollView ,View, Text, FlatList, ActivityIndicator, TouchableOpacity, Alert } from "react-native";
 import { List, SearchBar } from "react-native-elements";
 import GroupsItem from "../../components/GroupsItem";
-
+import FAB from 'react-native-fab';
 class Container extends Component {
   constructor(props) {
     super(props);
@@ -24,6 +24,102 @@ class Container extends Component {
         },
         {
           uid : 101,
+          capacity : 4,
+          opened: false,
+          opener : "Trainer park",
+          gym: 1004,
+          start_date : "2018-03-06",
+          charge : 20000,
+          time : "10:30",
+          period : 30,
+          days : ["MON","TUE"]
+        },
+        {
+          uid : 102,
+          capacity : 4,
+          opened: false,
+          opener : "Trainer park",
+          gym: 1004,
+          start_date : "2018-03-06",
+          charge : 20000,
+          time : "10:30",
+          period : 30,
+          days : ["MON","TUE"]
+        },
+        {
+          uid : 103,
+          capacity : 4,
+          opened: false,
+          opener : "Trainer park",
+          gym: 1004,
+          start_date : "2018-03-06",
+          charge : 20000,
+          time : "10:30",
+          period : 30,
+          days : ["MON","TUE"]
+        },
+        {
+          uid : 104,
+          capacity : 4,
+          opened: false,
+          opener : "Trainer park",
+          gym: 1004,
+          start_date : "2018-03-06",
+          charge : 20000,
+          time : "10:30",
+          period : 30,
+          days : ["MON","TUE"]
+        },
+        {
+          uid : 105,
+          capacity : 4,
+          opened: false,
+          opener : "Trainer park",
+          gym: 1004,
+          start_date : "2018-03-06",
+          charge : 20000,
+          time : "10:30",
+          period : 30,
+          days : ["MON","TUE"]
+        },
+        {
+          uid : 106,
+          capacity : 4,
+          opened: false,
+          opener : "Trainer park",
+          gym: 1004,
+          start_date : "2018-03-06",
+          charge : 20000,
+          time : "10:30",
+          period : 30,
+          days : ["MON","TUE"]
+        },
+        {
+          uid : 107,
+          capacity : 4,
+          opened: false,
+          opener : "Trainer park",
+          gym: 1004,
+          start_date : "2018-03-06",
+          charge : 20000,
+          time : "10:30",
+          period : 30,
+          days : ["MON","TUE"]
+        },
+        {
+          uid : 108,
+          capacity : 4,
+          opened: false,
+          opener : "Trainer park",
+          gym: 1004,
+          start_date : "2018-03-06",
+          charge : 20000,
+          time : "10:30",
+          period : 30,
+          days : ["MON","TUE"]
+        },
+        {
+          uid : 109,
           capacity : 4,
           opened: false,
           opener : "Trainer park",
@@ -92,9 +188,10 @@ class Container extends Component {
     return (
       <View
         style={{
+          marginVertical : 6,
           height: 1,
           width: "86%",
-          backgroundColor: "#CED0CE",
+          backgroundColor: "#ffbb00",
           marginLeft: "14%"
         }}
       />
@@ -102,7 +199,22 @@ class Container extends Component {
   };
 
   renderHeader = () => { // 헤더
-    return <Text> This is header </Text>;
+    return (
+      <View style = {{
+        backgroundColor : "#ffbb00",
+        height : 70,
+        justifyContent : 'center',
+        alignItems : 'center',
+      }}>
+        <Text style = {{
+          fontSize : 30,
+          fontWeight :"500",
+        }}>
+          GYM_SOLUTION
+        </Text>
+        <FAB buttonColor="red" iconTextColor="#FFFFFF" onClickAction={() => {console.log("FAB pressed")}} visible={true}/>
+      </View>
+    );
   };
 
   renderFooter = () => {
@@ -111,12 +223,19 @@ class Container extends Component {
     return (
       <View
         style={{
-          paddingVertical: 20,
+          height: 100,
           borderTopWidth: 1,
-          borderColor: "#CED0CE"
+          borderColor: "#CED0CE",
+          justifyContent:'center',
+          alignItems : 'center',
+
         }}
       >
-        <ActivityIndicator animating size="large" />
+        <Text style = {{
+          fontSize: 40,
+        }}>
+        Training 추가하기!
+        </Text>
       </View>
     );
   };
@@ -124,6 +243,7 @@ class Container extends Component {
   render() {
 
     return (
+      <ScrollView>
       <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
         <FlatList
           data={this.state.groups}
@@ -144,6 +264,7 @@ class Container extends Component {
           //onEndReachedThreshold={50}
         />
       </List>
+      </ScrollView>
     );
   }
 }
