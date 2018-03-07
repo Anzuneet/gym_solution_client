@@ -10,18 +10,10 @@ class Container extends Component {
   };
 
   render() {
-    //const textColor = this.props.selected ? "red" : "black";
     console.log("GroupsItem Container~~");
     return (
       <GroupsItem
       data = {this.props.data}/>
-      /*<TouchableOpacity onPress={this._onPress}>
-        <View>
-          <Text style={{ color: textColor }}>
-            {this.props.title}
-          </Text>
-        </View>
-      </TouchableOpacity>*/
     );
   }
 } 

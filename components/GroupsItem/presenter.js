@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Dimensions,
+  Image,
 } from "react-native";
 
 const { width, height } = Dimensions.get("window");
@@ -16,7 +17,18 @@ const { width, height } = Dimensions.get("window");
   <TouchableOpacity>
     <View style = {styles.Container}>
       <View style = {styles.profileContainer}>
-        <Image/>
+        <Image
+            source={
+              require("../../assets/images/noPhoto.jpg")
+            }
+            style={styles.avatar}
+            //defaultSource={require("../../assets/images/noPhoto.jpg")}
+        />
+        <View style ={styles.trainernameContainer}>
+          <Text style = {styles.trainernameText}>
+              박종휘
+          </Text>
+        </View>
       </View>
       <View style = {styles.titleContainer}>
       </View>
@@ -31,16 +43,36 @@ const { width, height } = Dimensions.get("window");
 const styles = StyleSheet.create({
   Container:{
     flex:1,
+    flexDirection : 'row'
   },
   profileContainer :{
-back
+    flex:0.4,
+    backgroundColor : "#eeeeee",
+    alignItems : 'center',
+    paddingVertical : 5,
   },
   titleContainer : {
-back
+    flex:1,
+    backgroundColor : "red"
   },
   detailContainer : {
-    back
+    flex:1,
+    backgroundColor : "yellow"
   },
+  trainernameContainer :{
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical : 1,
+  },
+  avatar: {
+    width: 50,
+    height: 50,
+    borderRadius: 50
+  }, 
+  trainernameText : {
+    fontSize : 10,
+    fontWeight:'500',
+  }
 
 });
 

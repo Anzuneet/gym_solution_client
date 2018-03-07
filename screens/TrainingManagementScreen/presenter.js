@@ -1,4 +1,4 @@
-import React from "react";
+/*import React from "react";
 import PropTypes from 'prop-types';
 import {
       View,
@@ -33,4 +33,4 @@ const styles = StyleSheet.create({
     },
 });
     
-export default TrainingManagementScreen;
+export default TrainingManagementScreen;*/

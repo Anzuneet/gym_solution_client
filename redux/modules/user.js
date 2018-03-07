@@ -164,14 +164,8 @@ function getNotifications() {
 
 function getOwnProfile() {
   return (dispatch, getState) => {
-<<<<<<< HEAD
-    const { user: { token, profile: { username } } } = getState();
-    fetch(`${API_URL}/tokens/${token}/user`, {
-    
-=======
     const { user: { token} } = getState();
     fetch(`${API_URL}/tokens/${token}/user`, {
->>>>>>> 7a178a47a0c3bd443e1cd618fe6191796c36f94b
     })
       .then(response => {
         if (response.status != 200) {
@@ -211,11 +205,7 @@ function getGroups(uid) {
   
 const initialState = {
  isLoggedIn: false,
-<<<<<<< HEAD
-=======
  isTrainer : false,
-
->>>>>>> 7a178a47a0c3bd443e1cd618fe6191796c36f94b
 };
  
 
