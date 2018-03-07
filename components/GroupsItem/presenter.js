@@ -31,6 +31,12 @@ const { width, height } = Dimensions.get("window");
         </View>
       </View>
       <View style = {styles.titleContainer}>
+        <Text style = {styles.titleText}>
+            "가라 트레이닝"
+        </Text>
+        <Text style = {styles.commentText}>
+            "코멘트입니다."
+        </Text>
       </View>
       <View style = {styles.detailContainer}>
       </View>
