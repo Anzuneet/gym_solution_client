@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import { ScrollView ,View, Text, FlatList, ActivityIndicator, TouchableOpacity, Alert } from "react-native";
+import { ScrollView ,View, Text, FlatList, ActivityIndicator, TouchableOpacity, Alert, StyleSheet } from "react-native";
 import { List, SearchBar } from "react-native-elements";
 import GroupsItem from "../../components/GroupsItem";
-import FAB from 'react-native-fab';
+import ActionButton from 'react-native-action-button';
+import Icon from 'react-native-vector-icons/Ionicons'
+
 class Container extends Component {
   constructor(props) {
     super(props);
@@ -212,7 +214,6 @@ class Container extends Component {
         }}>
           GYM_SOLUTION
         </Text>
-        <FAB buttonColor="red" iconTextColor="#FFFFFF" onClickAction={() => {console.log("FAB pressed")}} visible={true}/>
       </View>
     );
   };
@@ -241,9 +242,9 @@ class Container extends Component {
   };
 
   render() {
-
+    console.log("TrainingManagementScreen");
+    console.log(this.props);
     return (
-      <ScrollView>
       <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
         <FlatList
           data={this.state.groups}
@@ -263,10 +264,29 @@ class Container extends Component {
           //onEndReached={this.handleLoadMore} // 끝에 도달했을때 
           //onEndReachedThreshold={50}
         />
+        <ActionButton buttonColor="rgba(231,76,60,1)">
+          <ActionButton.Item buttonColor='#9b59b6' title="New Task" onPress={() => this.props.navigation.navigate('create')}>
+            <Icon name="md-create" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+          <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
+            <Icon name="md-notifications-off" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+          <ActionButton.Item buttonColor='#1abc9c' title="All Tasks" onPress={() => {}}>
+            <Icon name="md-done-all" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+      </ActionButton>
       </List>
-      </ScrollView>
+    
     );
   }
 }
+
+const styles = StyleSheet.create({
+  actionButtonIcon: {
+    fontSize: 20,
+    height: 22,
+    color: 'white',
+  },
+});
 
 export default Container;

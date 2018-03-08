@@ -14,7 +14,7 @@ import {
 } from "react-native";
 import LoggedOutNavigation from "../../navigation/LoggedOutNavigation";
 import RootNavigation from "../../navigation/RootNavigation";
-import TrainingManagementScreen from "../../screens/TrainingManagementScreen";
+import TrainerNavigation from "../../navigation/TrainerNavigation";
 
 
 
@@ -38,7 +38,7 @@ class AppContainer extends Component {
         <StatusBar/>
         {isLoggedIn ? 
           ( isTrainer ?
-            <TrainingManagementScreen/>
+            <TrainerNavigation/>
             :
             <RootNavigation/> 
             )
