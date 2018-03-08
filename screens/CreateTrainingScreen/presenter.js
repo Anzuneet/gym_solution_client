@@ -11,6 +11,7 @@ import {
       Button,
     } from "react-native";
 import PopupDialog from 'react-native-popup-dialog';
+import CalenderPicker from '../../components/CalenderPicker';
 
 const { width, height } = Dimensions.get("window");
 
@@ -25,9 +26,12 @@ const CreateTrainingScreen = props => (
         <PopupDialog
             ref={(popupDialog) => { this.popupDialog = popupDialog; }}
         >
-            <View>
-            <Text>Hello</Text>
-            </View>
+            <CalenderPicker 
+                Date = {props.start_date}
+                changeDate = {props.changeStartDate}
+            />
+            <Text> {props.start_date} </Text>
+
         </PopupDialog>
     </View>
 );
