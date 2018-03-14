@@ -10,6 +10,7 @@
     "react-native-action-button": "^2.8.4",
     "react-native-android-back-button": "^0.3.0",
     "react-native-calendar-picker": "^5.14.0",
+    "react-native-check-box": "^2.1.0",
     "react-native-elements": "^0.19.0",
     "react-native-popup-dialog": "^0.10.46",
     "react-native-simple-radio-button": "^2.7.1",
