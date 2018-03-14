@@ -33,6 +33,7 @@ class Container extends Component {
     let response = await fetch("https://gym.hehehee.net/gyms");
     let gyms = await response.json();
     gyms = gyms.result;
+    console.log(gyms);
     this.setState({gyms});
   }
 
