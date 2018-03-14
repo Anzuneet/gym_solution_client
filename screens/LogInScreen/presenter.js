@@ -62,7 +62,7 @@ const LogInScreen = props => (
         </View>
         <TouchableOpacity style={styles.fbContainer}>
         <View style={styles.fbView}>
-            <Ionicons name="logo-facebook" size={22} color="#3E99EE" />
+            <Ionicons name="logo-facebook" size={22} color="#ffbb00" />
             <Text style={styles.fbText}>Log in with Facebook</Text>
         </View>
         </TouchableOpacity>
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
     },
     fbText: {
-    color: "#3E99EE",
+    color: "#ffbb00",
     marginLeft: 10,
     fontWeight: "600",
     fontSize: 14
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     },
     signupText :{
         fontSize: 16,
-        color : "#3E99EE",
+        color : "#ffbb00",
         fontWeight : "500"
     }
 });

@@ -6,19 +6,21 @@ import CalendarPicker from 'react-native-calendar-picker';
 class Container extends Component {
    
     render() {
-      const { selectedStartDate } = this.props.Date;
-      const startDate = selectedStartDate ? selectedStartDate.toString() : '';
+      const  selectDate  = this.props.Date;
       return (
         <View>
           <CalendarPicker
             onDateChange={this.props.changeDate}
+            selectedDayColor = {this.props.selectedDayColor}
           />
    
           <View>
-            <Text>SELECTED DATE:{ startDate }</Text>
+            <Text>SELECTED DATE:{ this.props.Date }</Text>
           </View>
         </View>
       );
     }
 } 
+
+
 export default Container;
