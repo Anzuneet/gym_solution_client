@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { View, Text, FlatList, ActivityIndicator, TouchableOpacity, Alert } from "react-native";
+import { ScrollView ,View, Text, FlatList, ActivityIndicator, TouchableOpacity, Alert, StyleSheet } from "react-native";
 import { List, SearchBar } from "react-native-elements";
 import GroupsItem from "../../components/GroupsItem";
+import ActionButton from 'react-native-action-button';
+import Icon from 'react-native-vector-icons/Ionicons'
 
 class Container extends Component {
   constructor(props) {
@@ -24,6 +26,102 @@ class Container extends Component {
         },
         {
           uid : 101,
+          capacity : 4,
+          opened: false,
+          opener : "Trainer park",
+          gym: 1004,
+          start_date : "2018-03-06",
+          charge : 20000,
+          time : "10:30",
+          period : 30,
+          days : ["MON","TUE"]
+        },
+        {
+          uid : 102,
+          capacity : 4,
+          opened: false,
+          opener : "Trainer park",
+          gym: 1004,
+          start_date : "2018-03-06",
+          charge : 20000,
+          time : "10:30",
+          period : 30,
+          days : ["MON","TUE"]
+        },
+        {
+          uid : 103,
+          capacity : 4,
+          opened: false,
+          opener : "Trainer park",
+          gym: 1004,
+          start_date : "2018-03-06",
+          charge : 20000,
+          time : "10:30",
+          period : 30,
+          days : ["MON","TUE"]
+        },
+        {
+          uid : 104,
+          capacity : 4,
+          opened: false,
+          opener : "Trainer park",
+          gym: 1004,
+          start_date : "2018-03-06",
+          charge : 20000,
+          time : "10:30",
+          period : 30,
+          days : ["MON","TUE"]
+        },
+        {
+          uid : 105,
+          capacity : 4,
+          opened: false,
+          opener : "Trainer park",
+          gym: 1004,
+          start_date : "2018-03-06",
+          charge : 20000,
+          time : "10:30",
+          period : 30,
+          days : ["MON","TUE"]
+        },
+        {
+          uid : 106,
+          capacity : 4,
+          opened: false,
+          opener : "Trainer park",
+          gym: 1004,
+          start_date : "2018-03-06",
+          charge : 20000,
+          time : "10:30",
+          period : 30,
+          days : ["MON","TUE"]
+        },
+        {
+          uid : 107,
+          capacity : 4,
+          opened: false,
+          opener : "Trainer park",
+          gym: 1004,
+          start_date : "2018-03-06",
+          charge : 20000,
+          time : "10:30",
+          period : 30,
+          days : ["MON","TUE"]
+        },
+        {
+          uid : 108,
+          capacity : 4,
+          opened: false,
+          opener : "Trainer park",
+          gym: 1004,
+          start_date : "2018-03-06",
+          charge : 20000,
+          time : "10:30",
+          period : 30,
+          days : ["MON","TUE"]
+        },
+        {
+          uid : 109,
           capacity : 4,
           opened: false,
           opener : "Trainer park",
@@ -92,9 +190,10 @@ class Container extends Component {
     return (
       <View
         style={{
+          marginVertical : 6,
           height: 1,
           width: "86%",
-          backgroundColor: "#CED0CE",
+          backgroundColor: "#ffbb00",
           marginLeft: "14%"
         }}
       />
@@ -102,7 +201,21 @@ class Container extends Component {
   };
 
   renderHeader = () => { // 헤더
-    return <Text> This is header </Text>;
+    return (
+      <View style = {{
+        backgroundColor : "#ffbb00",
+        height : 70,
+        justifyContent : 'center',
+        alignItems : 'center',
+      }}>
+        <Text style = {{
+          fontSize : 30,
+          fontWeight :"500",
+        }}>
+          GYM_SOLUTION
+        </Text>
+      </View>
+    );
   };
 
   renderFooter = () => {
@@ -111,18 +224,26 @@ class Container extends Component {
     return (
       <View
         style={{
-          paddingVertical: 20,
+          height: 100,
           borderTopWidth: 1,
-          borderColor: "#CED0CE"
+          borderColor: "#CED0CE",
+          justifyContent:'center',
+          alignItems : 'center',
+
         }}
       >
-        <ActivityIndicator animating size="large" />
+        <Text style = {{
+          fontSize: 40,
+        }}>
+        Training 추가하기!
+        </Text>
       </View>
     );
   };
 
   render() {
-
+    console.log("TrainingManagementScreen");
+    console.log(this.props);
     return (
       <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
         <FlatList
@@ -143,9 +264,29 @@ class Container extends Component {
           //onEndReached={this.handleLoadMore} // 끝에 도달했을때 
           //onEndReachedThreshold={50}
         />
+        <ActionButton buttonColor="rgba(231,76,60,1)">
+          <ActionButton.Item buttonColor='#9b59b6' title="New Task" onPress={() => this.props.navigation.navigate('create')}>
+            <Icon name="md-create" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+          <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
+            <Icon name="md-notifications-off" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+          <ActionButton.Item buttonColor='#1abc9c' title="All Tasks" onPress={() => {}}>
+            <Icon name="md-done-all" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+      </ActionButton>
       </List>
+    
     );
   }
 }
+
+const styles = StyleSheet.create({
+  actionButtonIcon: {
+    fontSize: 20,
+    height: 22,
+    color: 'white',
+  },
+});
 
 export default Container;
