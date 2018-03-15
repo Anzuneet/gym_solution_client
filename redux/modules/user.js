@@ -24,8 +24,7 @@ function setLogIn(token) {
 }
  
 function setUser(user) {
-  console.log("in setUser");
-  console.log(user);
+
   return {
     type: SET_USER,
     user
@@ -45,8 +44,6 @@ function setNotifications(notifications) {
 
 // API Actions
 function login(username, password) {
-  console.log(username);
-  console.log(password);
   return dispatch => {
    return fetch(`${API_URL}/token`, {
      method: "GET",
@@ -57,7 +54,6 @@ function login(username, password) {
    })
      .then(response => response.json())
      .then(json => {
-       console.log(json);
        if (json.token) {
          dispatch(setLogIn(json.token));
          return true;
@@ -71,7 +67,6 @@ function login(username, password) {
 }
 
 function signup(personInfo) {
-  console.log(personInfo);
   const name = personInfo.username;
   const password = personInfo.password;
   const phonenumber = personInfo.phonenumber;
@@ -99,7 +94,6 @@ function signup(personInfo) {
    })
      .then(response => response.json())
      .then(json => {
-       console.log(json);
        if (json.msg) {
         Alert.alert(json.msg);
          return true;
@@ -178,8 +172,6 @@ function getOwnProfile() {
 }
 
 function getGroups(uid) {
-  //console.log(tokenKey)
-  //console.log(uid);
   return (dispatch) => {
    return fetch(`${API_URL}/gyms/${uid}/groups`, { 
     method: "GET",
@@ -189,7 +181,6 @@ function getGroups(uid) {
      })
      .then(response =>response.json() )
      .then(json=>{
-       console.log(json)
       if (json.token) {
          dispatch(setGroupToken(json.token));
          return true;

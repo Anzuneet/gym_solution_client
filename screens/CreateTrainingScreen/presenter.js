@@ -15,6 +15,7 @@ import {
     } from "react-native";
 import PopupDialog , { SlideAnimation } from 'react-native-popup-dialog';
 import CalenderPicker  from '../../components/CalenderPicker';
+import DaysCheckBox from "../../components/DaysCheckBox";
 
 const { width, height } = Dimensions.get("window");
 
@@ -90,7 +91,22 @@ const CreateTrainingScreen = props => (
             </View>
 
             <Text style ={styles.titleText}>어느 요일에 진행하실 건가요?</Text>
-
+                <DaysCheckBox 
+                 monday = {props.monday}
+                 tuesday = {props.tuesday}
+                 wednesday = {props.wednesday}
+                 thursday = {props.thursday}
+                 friday = {props.friday}
+                 saturday = {props.saturday}
+                 sunday = {props.sunday}
+                 changeMonday = {props.changeMonday}
+                 changeTuesday = {props.changeTuesday}
+                 changeWednesday = {props.changeWednesday}
+                 changeThursday = {props.changeThursday}
+                 changeFriday = {props.changeFriday}
+                 changeSaturday = {props.changeSaturday}
+                 changeSunday = {props.changeSunday}
+                />
 
         </View>
         <Text style ={styles.titleText}> 비용을 정해주세요 ! </Text>

@@ -6,6 +6,7 @@ import CalendarPicker from 'react-native-calendar-picker';
 class Container extends Component {
    
     render() {
+      console.log(this.props);
       const  selectDate  = this.props.Date;
       return (
         <View>

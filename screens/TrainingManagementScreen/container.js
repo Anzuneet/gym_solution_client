@@ -242,8 +242,6 @@ class Container extends Component {
   };
 
   render() {
-    console.log("TrainingManagementScreen");
-    console.log(this.props);
     return (
       <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
         <FlatList
