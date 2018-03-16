@@ -11,17 +11,38 @@ const LOG_IN = "LOG_IN";
 const LOG_OUT = "LOG_OUT";
 const SET_USER = "SET_USER";
 const SET_NOTIFICATIONS = "SET_NOTIFICATIONS";
+// const SET_GROUPS = "SET_GROUPS";
   
  // Action Creators
   
 function setLogIn(token) {
   // 토큰 값을 tokenKey 변수에 저장한다.
-  tokenKey = token
+  initialState.tokenKey = token
    return {
      type: LOG_IN,
      token
    };
 }
+
+/*
+function setAllGroups(groups) {
+  // 모든 그룹목록을 groups[] 배열에 저장한다. getAllGroups()
+  console.log("in setAllGroups");
+  console.log(groups);
+  if (groups)
+  {
+    console.log("setAllGroups True");
+    allGroups = groups;
+    console.log(allGroups);
+    return allGroups;
+  }
+  else
+  {
+    console.log("setAllGroups False");
+    return false;
+  }
+}
+*/
  
 function setUser(user) {
   console.log("in setUser");
@@ -177,14 +198,15 @@ function getOwnProfile() {
   };
 }
 
+// 맵의 마커에서 선택한 헬스장의 그룹 목록을 가져오는 함수
 function getGroups(uid) {
-  //console.log(tokenKey)
+  //console.log(initialState.tokenKey)
   //console.log(uid);
   return (dispatch) => {
    return fetch(`${API_URL}/gyms/${uid}/groups`, { 
     method: "GET",
     headers: {
-      "x-gs-token": tokenKey
+      "x-gs-token": initialState.tokenKey
     }
      })
      .then(response =>response.json() )
@@ -201,18 +223,49 @@ function getGroups(uid) {
  };
 }
 
+// 전체 헬스장의 모든 그룹목록을 가져오는 함수
+function getAllGroups() {
+  //console.log(initialState.tokenKey)
+  //console.log(uid);
+
+  /*
+  return (dispatch) => {
+   return fetch(`${API_URL}/groups`, { 
+    method: "GET",
+    headers: {
+      "x-gs-token": initialState.tokenKey
+    }
+     })
+     .then(response =>response.json() )
+     .then(json => dispatch(setAllGroups(json.groups)));
+ };
+ */
+/*
+let res = fetch(`${API_URL}/groups`, { 
+  method: "GET",
+  headers: {
+    "x-gs-token": initialState.tokenKey
+  }
+   })
+let groups = res.json();
+ return groups.groups;
+ */
+}
+
+
+// 특정 반경 안 헬스장의 모든 그룹목록을 가져오는 함수
+
 // Initial State
-  
 const initialState = {
  isLoggedIn: false,
  isTrainer : false,
+ tokenKey : '',
 };
+
+allGroups:[{ 
+}]
  
-
-tokenKey = '';
-
  // Reducer
- 
 function reducer(state = initialState, action) {
   switch (action.type) {
     case LOG_IN:
@@ -223,6 +276,8 @@ function reducer(state = initialState, action) {
        return applySetUser(state, action);
     case SET_NOTIFICATIONS:
       return applySetNotifications(state, action);
+   // case SET_GROUPS:
+    //  return applySetAllGroups(state, action);
     default:
        return state;
    }
@@ -269,6 +324,15 @@ function applySetNotifications(state, action) {
   };
 }
 
+/*
+function applySetAllGroups(state, action) {
+  const { groups } = action;
+  return {
+    ...state,
+    allGroups : groups
+  };
+}
+*/
 
 // Exports
 
@@ -278,9 +342,21 @@ const actionCreators = {
   getNotifications,
   getOwnProfile,
   signup,
-  getGroups
+  getGroups,
+  getToken
+  // getAllGroups
 };
   
+
+function getToken() {
+  return initialState.tokenKey;
+}
+
+
+const getModulesState ={
+  getToken
+};
+
 export { actionCreators };
  // Default Reducer Export
  

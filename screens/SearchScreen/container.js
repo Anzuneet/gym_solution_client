@@ -22,19 +22,37 @@ class Container extends Component {
         uid:1,
         latitude: 37.2926241,
         longitude: 126.8544851}
-    ]
+    ],
+    groups:[{
+
+    }],
   };
 
   componentDidMount(){
     this._getLocationAsync();
     this._getGyms();
+    this._getAllGroups();
   };
+
   _getGyms = async()=>{
     let response = await fetch("https://gym.hehehee.net/gyms");
     let gyms = await response.json();
     gyms = gyms.result;
     console.log(gyms);
     this.setState({gyms});
+  }
+
+  _getAllGroups = async()=> {
+    let response = await fetch(`https://gym.hehehee.net/groups`, { 
+      method: "GET",
+      headers: {
+        "x-gs-token": userActions.getToken()
+      }
+       });
+    let groups = await response.json();
+    groups = groups.groups;
+    console.log(groups);
+    this.setState({groups});
   }
 
   _getLocationAsync = async () => {

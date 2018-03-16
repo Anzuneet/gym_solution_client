@@ -44,7 +44,7 @@ const SearchScreens = props => (
             </Text>
         </TouchableOpacity>
     </View>
-);
+); 
 
 const styles = StyleSheet.create({
     container: {
