@@ -23,17 +23,17 @@ const { width, height } = Dimensions.get("window");
 
 
  const ProfileChart = props => (
-  <View>
+  <View style = {styles.container}>
     <View style = {styles.chartContainer}>
       <View style = {styles.chartTitleContainer}>
-        <Text style = {styles.title}> Weight </Text>
+        <Text style = {styles.title}> {props.name} </Text>
       </View>
       <VictoryChart height={200} width={width}
             domainPadding={{ y: 10 }}
             containerComponent={
               <VictoryVoronoiContainer
                 voronoiDimension="x"
-                labels={(d) => `weight: ${d.y}`}
+                labels={(d) => `${props.name} : ${d.y}`}
                 labelComponent={
                   <VictoryTooltip
                   flyoutStyle={{ fill: "transparent", stroke : 'transparent' }}
@@ -44,7 +44,7 @@ const { width, height } = Dimensions.get("window");
               />}
       >
             <VictoryLine
-              interpolation={"linear"} data={props.Weight}
+              interpolation={"linear"} data={props.data}
               style={{
                 data: {
                   stroke: "tomato",
@@ -56,73 +56,15 @@ const { width, height } = Dimensions.get("window");
       </VictoryChart>
 
     </View>
-    <View style = {styles.chartContainer}>
-      <View style = {styles.chartTitleContainer}>
-        <Text style = {styles.title}> Muscle </Text>
-      </View>
-      <VictoryChart height={200} width={width}
-          domainPadding={{ y: 10 }}
-          containerComponent={
-            <VictoryVoronoiContainer
-              voronoiDimension="x"
-              labels={(d) => `Muscle: ${d.y}`}
-              labelComponent={
-                <VictoryTooltip
-                flyoutStyle={{ fill: "transparent", stroke : 'transparent' }}
-                orientation = "top"
-                pointerLength = {30}
-                />}
-            />}
-        >
-          <VictoryLine
-          
-            data={props.Muscle}
-            style={{
-              data: {
-                stroke: "blue",
-                strokeWidth: (d, active) => {return active ? 4 : 2;}
-              },
-              labels: { fill: "black" }
-            }}
-          />
-      </VictoryChart>
-    </View>
-    <View style = {styles.chartContainer}>
-      <View style = {styles.chartTitleContainer}>
-          <Text style = {styles.title}> Fat </Text>
-      </View>
-      <VictoryChart height={200} width={width}
-        domainPadding={{ y: 10 }}
-        containerComponent={
-          <VictoryVoronoiContainer
-            voronoiDimension="x"
-            labels={(d) => `Fat: ${d.y}`}
-            labelComponent={
-              <VictoryTooltip
-              flyoutStyle={{ fill: "transparent", stroke : 'transparent' }}
-              orientation = "top"
-              pointerLength = {30}
-              />}
-        />}
-      >
-        <VictoryLine
-          data={props.Fat}
-          style={{
-            data: {
-              stroke: "green",
-              strokeWidth: (d, active) => {return active ? 4 : 2;}
-            },
-            labels: { fill: "black" }
-          }}
-        />
-      </VictoryChart>
-    </View>
   </View>
   
 
 );
 
 const styles = StyleSheet.create({
+  container : {
+    height : 300,
+  },
   TooltipEx: {
     justifyContent : 'center',
     alignItems: 'center',

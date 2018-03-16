@@ -64,7 +64,43 @@ const { width, height } = Dimensions.get("window");
     </View>
     </View>
     <View style = {styles.graphContainer}>
-    <ProfileChart/>
+          <View style = {styles.grapheTitleContainer}>
+            <TouchableOpacity style = {props.chartIndex == 1 ? styles.clickedTextContainer : styles.unClickedTextContainer} 
+            onPressOut ={props.clickWeight}>
+              <Text  style = {props.chartIndex == 1 ? styles.clickedText : styles.unClickedText}> 
+              Weight </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style = {props.chartIndex == 2 ? styles.clickedTextContainer : styles.unClickedTextContainer} 
+            onPressOut ={props.clickMuscle}>
+            <Text  style = {props.chartIndex == 2 ? styles.clickedText : styles.unClickedText}>  
+              Muscle </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style = {props.chartIndex == 3 ? styles.clickedTextContainer : styles.unClickedTextContainer}
+            onPressOut ={props.clickFat}>
+              <Text  style = {props.chartIndex == 3 ? styles.clickedText : styles.unClickedText}> 
+              Fat </Text>
+            </TouchableOpacity>
+          </View>
+          <ProfileChart
+            data = {props.chartIndex == 1 ?
+              (
+                props.Weight
+              ):
+              (
+                props.chartIndex == 2 ? props.Muscle : props.Fat
+              )
+            }
+            name = {props.chartIndex == 1 ?
+              (
+                "Weight"
+              ):
+              (
+                props.chartIndex == 2 ? "Muscle" : "Fat"
+              )
+            }
+          />
     </View>
 
     
@@ -135,6 +171,32 @@ const styles = StyleSheet.create({
   weightNameText :{
     fontSize : 20,
   },
+  grapheTitleContainer : {
+    flexDirection : 'row',
+    width : width,
+    height : 50,
+    borderRadius : 20,
+  },
+  clickedTextContainer : {
+    flex:1,
+    backgroundColor : "#ffbb00",
+    justifyContent : 'center',
+    alignItems : 'center',
+  },
+  unClickedTextContainer : {
+    flex:1,
+    backgroundColor : "#ffffff",
+    justifyContent : 'center',
+    alignItems : 'center',
+  },
+  clickedText : {
+    color : "#ffffff",
+    fontSize : 20,
+  },
+  unClickedText : {
+    color : "#ffbb00",
+    fontSize : 20,
+  }
 });
 
 FeedScreen.propTypes = {

@@ -11,8 +11,38 @@ class Container extends Component {
    getFeed: PropTypes.func.isRequired
 };
  state = {
-  isFetching: false
+  chartIndex : 1,
+  isFetching: false,
+  Fat : [
+      { x: "3/1", y: 13.8, l: "one" },
+      { x: "3/5", y: 14.0, l: "one point five" },
+      { x: "3/9", y: 12.9, l: "two" },
+      { x: "3/14", y: 12.7, l: "three" }
+  ],
+  Muscle : [
+    { x: "3/1", y: 34.1, l: "one" },
+    { x: "3/5", y: 34.5, l: "one point five" },
+    { x: "3/9", y: 34.6, l: "two" },
+    { x: "3/14", y: 35.2, l: "three" }
+  ],
+  Weight : [
+    { x: "3/1", y: 85.4, l: "one" },
+    { x: "3/5", y: 85.6, l: "one point five" },
+    { x: "3/9", y: 84.7, l: "two" },
+    { x: "3/14", y: 84.6, l: "three" }
+  ],
  };
+ 
+  _clickWeight = () =>{
+    this.setState({chartIndex: 1});
+  };
+  _clickMuscle = () =>{
+    this.setState({chartIndex: 2});
+  };
+  _clickFat = () =>{
+    this.setState({chartIndex: 3});
+  };
+
  componentWillReceiveProps = nextProps => {
    if (nextProps.feed) {
      this.setState({
@@ -23,7 +53,11 @@ class Container extends Component {
 
   render() {
    return (
-     <FeedScreen {...this.props} {...this.state} refresh={this._refresh} />
+     <FeedScreen {...this.props} {...this.state} refresh={this._refresh}
+     clickWeight = {this._clickWeight}
+     clickMuscle = {this._clickMuscle}
+     clickFat = {this._clickFat}
+     />
    );
  }
  _refresh = () => {
