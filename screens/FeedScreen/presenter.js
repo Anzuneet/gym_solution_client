@@ -101,10 +101,14 @@ const { width, height } = Dimensions.get("window");
               )
             }
           />
+          <TouchableOpacity onPressOut ={ props.logOut }>
+            <Text> LOGOUT </Text>
+          </TouchableOpacity>
     </View>
-
+            
     
     <View style = {styles.bodyPictureContainer}>
+
     </View>
   </ScrollView>
 );

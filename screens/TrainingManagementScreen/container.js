@@ -142,6 +142,7 @@ class Container extends Component {
     //this.makeRemoteRequest();
   }
 
+
   makeRemoteRequest = () => {
     const { page, seed } = this.state;
     const url = `https://randomuser.me/api/?seed=${seed}&page=${page}&results=20`;
@@ -263,10 +264,10 @@ class Container extends Component {
           //onEndReachedThreshold={50}
         />
         <ActionButton buttonColor="rgba(231,76,60,1)">
-          <ActionButton.Item buttonColor='#9b59b6' title="New Task" onPress={() => this.props.navigation.navigate('create')}>
+          <ActionButton.Item buttonColor='#9b59b6' title="New Training" onPress={() => this.props.navigation.navigate('create')}>
             <Icon name="md-create" style={styles.actionButtonIcon} />
           </ActionButton.Item>
-          <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
+          <ActionButton.Item buttonColor='#3498db' title="logout" onPress={() => this.props.logout()}>
             <Icon name="md-notifications-off" style={styles.actionButtonIcon} />
           </ActionButton.Item>
           <ActionButton.Item buttonColor='#1abc9c' title="All Tasks" onPress={() => {}}>

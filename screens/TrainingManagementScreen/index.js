@@ -1,16 +1,24 @@
 import { connect } from "react-redux";
 import Container from "./container";
-import { actionCreators as userActions } from "../../redux/modules/user";
-/*
+import { actionCreators as photoActions } from "../../redux/modules/photos";
+import { actionCreators as userActions} from "../../redux/modules/user";
+ 
+const mapStateToProps = (state, ownProps) => {
+  const { photos: { feed } } = state;
+  return {
+    feed
+  };
+};
+
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    login: (username, password) => {
-      return dispatch(userActions.login(username, password));
+    getFeed: () => {
+      dispatch(photoActions.getFeed());
     },
-    getOwnProfile: () => {
-      return dispatch(userActions.getOwnProfile());
+    logout: () => {
+      dispatch(userActions.logOut());
     }
   };
-};*/
+};
 
-export default connect()(Container);
+export default connect(mapStateToProps, mapDispatchToProps)(Container);

@@ -24,7 +24,6 @@ function setLogIn(token) {
 }
  
 function setUser(user) {
-
   return {
     type: SET_USER,
     user
@@ -32,6 +31,7 @@ function setUser(user) {
 }
  
 function logOut() {
+   console.log("I am in function LogOut");
    return { type: LOG_OUT };
 }
   

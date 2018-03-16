@@ -14,7 +14,7 @@ const sharedRoutes = {
 
 const sharedOptions = { // 공유옵션이므로 전체에 줌
     navigationOptions:{
-        header:null,
+        title : "hello because of me, Header can't be showen up.",
     }
 };
 

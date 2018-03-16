@@ -42,7 +42,10 @@ class Container extends Component {
   _clickFat = () =>{
     this.setState({chartIndex: 3});
   };
-
+  _logOut = () =>{
+    const { logout } = this.props;
+    logout();
+  }
  componentWillReceiveProps = nextProps => {
    if (nextProps.feed) {
      this.setState({
@@ -57,6 +60,7 @@ class Container extends Component {
      clickWeight = {this._clickWeight}
      clickMuscle = {this._clickMuscle}
      clickFat = {this._clickFat}
+     logOut = {this._logOut}
      />
    );
  }
