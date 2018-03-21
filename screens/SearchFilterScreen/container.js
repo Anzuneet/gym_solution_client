@@ -45,7 +45,8 @@ class Container extends Component {
 
   render() {
     return (
-      <SearchFilterScreen {...this.state} 
+      <SearchFilterScreen {...this.state}
+      container={this}
       />
     );
   }
