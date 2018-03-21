@@ -23,19 +23,23 @@ class Container extends Component {
     super(props);
     this.state = {
         // 요일 조건
-        monCheck: false,
-        tueCheck: false,
-        wedCheck: false,
-        thuCheck: false,
-        friCheck: false,
-        satCheck: false,
-        sunCheck: false,
-        // 시간 조건
-        startTime: "",
-        endTime: "",
-        // 가격 조건
-        minCharge: "",
-        maxCharge: "",
+        daysOfWeek:{
+          MON: false,
+          TUE: false,
+          WED: false,
+          THU: false,
+          FRI: false,
+          SAT: false,
+          SUN: false
+        },
+        time:{// 시간 조건
+          start:null,
+          end:null
+        },
+        charge:{// 가격 조건
+          min: null,
+          max: null
+        }
     };
   }
 

@@ -21,60 +21,60 @@ const SearchFilterScreen = props => (
       <View style = {styles.weightContainer}>
       <CheckBox
         title='월'
-        checked={props.monCheck} 
+        checked={props.daysOfWeek.MON} 
         checkedIcon='dot-circle-o'
         uncheckedIcon='circle-o'
-        onPress={()=>props.container.setState({monCheck:!props.monCheck})}
+        onPress={()=>props.container.setState({daysOfWeek:{...props.daysOfWeek, MON:!props.daysOfWeek.MON}})}
         containerStyle={styles.checkBoxContainer}
         textStyle={styles.textStyle}
         size={15}
         />
         <CheckBox
         title='화'
-        checked={props.tueCheck} 
+        checked={props.daysOfWeek.TUE} 
         checkedIcon='dot-circle-o'
         uncheckedIcon='circle-o'
-        onPress={()=>props.container.setState({tueCheck:!props.tueCheck})}
+        onPress={()=>props.container.setState({daysOfWeek:{...props.daysOfWeek,TUE:!props.daysOfWeek.TUE}})}
         containerStyle={styles.checkBoxContainer}
         textStyle={styles.textStyle}
         size={15}
         />
         <CheckBox
         title='수'
-        checked={props.wedCheck} 
+        checked={props.daysOfWeek.WED} 
         checkedIcon='dot-circle-o'
         uncheckedIcon='circle-o'
-        onPress={()=>props.container.setState({wedCheck:!props.wedCheck})}
+        onPress={()=>props.container.setState({daysOfWeek:{...props.daysOfWeek,WED:!props.daysOfWeek.WED}})}
         containerStyle={styles.checkBoxContainer}
         textStyle={styles.textStyle}
         size={15}
         />
         <CheckBox
         title='목'
-        checked={props.thuCheck} 
+        checked={props.daysOfWeek.THU} 
         checkedIcon='dot-circle-o'
         uncheckedIcon='circle-o'
-        onPress={()=>props.container.setState({thuCheck:!props.thuCheck})}
+        onPress={()=>props.container.setState({daysOfWeek:{...props.daysOfWeek,THU:!props.daysOfWeek.THU}})}
         containerStyle={styles.checkBoxContainer}
         textStyle={styles.textStyle}
         size={15}
         />
         <CheckBox
         title='금'
-        checked={props.friCheck} 
+        checked={props.daysOfWeek.FRI} 
         checkedIcon='dot-circle-o'
         uncheckedIcon='circle-o'
-        onPress={()=>props.container.setState({friCheck:!props.friCheck})}
+        onPress={()=>props.container.setState({daysOfWeek:{...props.daysOfWeek,FRI:!props.daysOfWeek.FRI}})}
         containerStyle={styles.checkBoxContainer}
         textStyle={styles.textStyle}
         size={15}
         />
         <CheckBox
         title='토'
-        checked={props.satCheck} 
+        checked={props.daysOfWeek.SAT} 
         checkedIcon='dot-circle-o'
         uncheckedIcon='circle-o'
-        onPress={()=>props.container.setState({satCheck:!props.satCheck})}
+        onPress={()=>props.container.setState({daysOfWeek:{...props.daysOfWeek,SAT:!props.daysOfWeek.SAT}})}
         containerStyle={styles.checkBoxContainer}
         textStyle={styles.textStyle}
         size={15}
@@ -82,25 +82,17 @@ const SearchFilterScreen = props => (
 
         <CheckBox
         title='일'
-        checked={props.sunCheck} 
+        checked={props.daysOfWeek.SUN} 
         checkedIcon='dot-circle-o'
         uncheckedIcon='circle-o'
-        onPress={()=>props.container.setState({sunCheck:!props.sunCheck})}
+        onPress={()=>props.container.setState({daysOfWeek:{...props.daysOfWeek,SUN:!props.daysOfWeek.SUN}})}
         containerStyle={styles.checkBoxContainer}
         textStyle={styles.textStyle}
         size={15}
         />
         
       </View>
-      <Text>
-        {props.monCheck?"MON ":""}
-        {props.tueCheck?"TUE ":""}
-        {props.wedCheck?"WED ":""}
-        {props.thuCheck?"THU ":""}
-        {props.friCheck?"FRI ":""}
-        {props.satCheck?"SAT ":""}
-        {props.sunCheck?"SUN ":""}
-      </Text>
+      <Button>검색하기</Button>
     </View>
 )
 
