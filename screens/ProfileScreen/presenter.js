@@ -36,7 +36,7 @@ const { width, height } = Dimensions.get("window");
         </TouchableOpacity>
       </View>
     </View>
-    <TouchableOpacity style = {styles.lowerContainer}>
+    <TouchableOpacity onPressOut = {props.submit} style = {styles.lowerContainer}>
       <Text style = {styles.submitText}> SUBMIT </Text>
     </TouchableOpacity>
     

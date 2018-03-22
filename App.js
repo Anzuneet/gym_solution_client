@@ -69,7 +69,5 @@ class App extends React.Component
     });
   };
 }
-
-
+global.HOST_NAME ="https://gym.hehehee.net"; 
 export default App;
-
