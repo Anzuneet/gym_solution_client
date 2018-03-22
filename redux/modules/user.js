@@ -194,11 +194,7 @@ function getOwnProfile() {
 
 // 맵의 마커에서 선택한 헬스장의 그룹 목록을 가져오는 함수
 function getGroups(uid) {
-<<<<<<< HEAD
-=======
-  //console.log(initialState.tokenKey)
   //console.log(uid);
->>>>>>> damezuma_filter_screen_presenter
   return (dispatch) => {
    return fetch(`${API_URL}/gyms/${uid}/groups`, { 
     method: "GET",
@@ -357,3 +353,5 @@ export { actionCreators };
  // Default Reducer Export
  
 export default reducer;
+
+
