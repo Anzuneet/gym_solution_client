@@ -31,7 +31,6 @@ function setUser(user) {
 }
  
 function logOut() {
-   console.log("I am in function LogOut");
    return { type: LOG_OUT };
 }
   
@@ -65,6 +64,37 @@ function login(username, password) {
 
  };
 }
+function enrollGroup() {
+  return dispatch => {
+    return fetch(`${API_URL}/groups`, {
+      method: "POST",
+      headers : {
+       "Content-Type": "application/json",
+       "x-gs-token" : tokenKey,
+      },
+      body: JSON.stringify({
+ 
+        name : name,
+        password : password,
+        phonenumber : phonenumber,
+        type : type,
+        fitness_club_idx : fitness_club_idx,
+        gender : gender,
+        birthday : birthday,
+      })
+    })
+      .then(response => response.json())
+      .then(json => {
+        if (json.msg) {
+         Alert.alert(json.msg);
+          return true;
+        } else {
+          return false;
+        }
+      })
+ 
+  };
+};
 
 function signup(personInfo) {
   const name = personInfo.username;
