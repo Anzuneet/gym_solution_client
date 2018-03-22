@@ -1,5 +1,15 @@
 import React, { Component } from "react";
-import { ScrollView ,View, Text, FlatList, ActivityIndicator, TouchableOpacity, Alert, StyleSheet } from "react-native";
+import { ScrollView ,
+  View, 
+  Text, 
+  FlatList, 
+  ActivityIndicator, 
+  TouchableOpacity, 
+  Alert, 
+  StyleSheet,
+  StatusBar,
+  Image,
+ } from "react-native";
 import { List, SearchBar } from "react-native-elements";
 import GroupsItem from "../../components/GroupsItem";
 import ActionButton from 'react-native-action-button';
@@ -208,13 +218,14 @@ class Container extends Component {
         height : 70,
         justifyContent : 'center',
         alignItems : 'center',
+        flex : 1
       }}>
-        <Text style = {{
-          fontSize : 30,
-          fontWeight :"500",
-        }}>
-          GYM_SOLUTION
-        </Text>
+
+        <Image
+        source={require("../../assets/images/logo-gym.png")}
+        resizeMode="stretch"
+        style={styles.logo}
+        />
       </View>
     );
   };
@@ -244,8 +255,10 @@ class Container extends Component {
 
   render() {
     return (
-      <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
+      <List containerStyle={{borderTopWidth: 0, borderBottomWidth: 0  }}>
+      <StatusBar barStyle={"light-content"} />
         <FlatList
+
           data={this.state.groups}
           renderItem={({ item }) => (
             <GroupsItem
@@ -254,9 +267,11 @@ class Container extends Component {
               //onPressItem={Alert.alert(item.email)}
             />
           )}
+          
+          ListHeaderComponent={this.renderHeader}
           keyExtractor={item => item.uid}
           ItemSeparatorComponent={this.renderSeparator}
-          ListHeaderComponent={this.renderHeader}
+          
           //ListFooterComponent={this.renderFooter}
           //onRefresh={this.handleRefresh}
           //refreshing={this.state.refreshing} // refreshingrlsmd
@@ -286,6 +301,11 @@ const styles = StyleSheet.create({
     height: 22,
     color: 'white',
   },
+  logo: {
+    width: 180,
+    height: 65,
+    marginTop: 20
+    },
 });
 
 export default Container;

@@ -40,11 +40,11 @@ const SearchScreens = props => (
         </View>
         <TouchableOpacity style = {styles.filterContainer} onPressOut = {props.searchFilter}>
             <Text style = {styles.filterText}>
-                {props.gyms.lengths}
+                검색 조건 설정하기!
             </Text>
         </TouchableOpacity>
     </View>
-);
+); 
 
 const styles = StyleSheet.create({
     container: {

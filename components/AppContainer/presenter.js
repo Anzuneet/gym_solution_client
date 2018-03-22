@@ -35,7 +35,7 @@ class AppContainer extends Component {
     const { isLoggedIn, profile, isTrainer } = this.props;
     return (
       <View style={styles.container}>
-        <StatusBar/>
+        <StatusBar hidden = {true}/>
         {isLoggedIn ? 
           ( isTrainer ?
             <TrainerNavigation/>

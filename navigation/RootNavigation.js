@@ -15,7 +15,7 @@ const RootNavigation = StackNavigator(
     searchFilter:{
         screen : SearchFilterScreen,
         navigationOptions :{
-            title : "filter"
+            title : "검색 조건을 설정해주세요!"
         }
     },
  },
