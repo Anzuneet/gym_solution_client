@@ -12,7 +12,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    getFeed: () => {
+    getGroups: () => {
       dispatch(photoActions.getFeed());
     },
     logout: () => {

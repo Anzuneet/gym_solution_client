@@ -38,7 +38,7 @@ class Container extends Component {
     let response = await fetch("https://gym.hehehee.net/gyms");
     let gyms = await response.json();
     gyms = gyms.result;
-    console.log(gyms);
+    //console.log(gyms);
     this.setState({gyms});
   }
 
@@ -58,7 +58,7 @@ class Container extends Component {
   _getLocationAsync = async () => {
     const location = await Location.getCurrentPositionAsync({});
 
-    console.log(location);
+    //console.log(location);
     this.setState({
       mapRegion: {
         latitude: location.coords.latitude,

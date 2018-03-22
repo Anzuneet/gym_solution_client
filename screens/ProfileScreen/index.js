@@ -1,6 +1,22 @@
-import React from "react";
-import {View, Text }from "react-native";
+import { connect } from "react-redux";
+import Container from "./container";
 
-const ProfileScreen = props =><Text> show profile</Text>;
+const mapStateToProps = (state, ownProps) => {
+  const { photos: { feed } } = state;
+  return {
+    feed
+  };
+};
 
-export default ProfileScreen;
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    getFeed: () => {
+      dispatch(photoActions.getFeed());
+    },
+    logout: () => {
+      dispatch(userActions.logOut());
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Container);
