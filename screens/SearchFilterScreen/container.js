@@ -43,9 +43,44 @@ class Container extends Component {
     //this.makeRemoteRequest();
   }
 
+  _setMonCheck = (monCheck) => {
+    this.setState({monCheck:!this.state.monCheck});
+  };
+
+  _setTueCheck = (tueCheck) => {
+    this.setState({tueCheck:!this.state.tueCheck});
+  };
+
+  _setWedCheck = (wedCheck) => {
+    this.setState({wedCheck:!this.state.wedCheck});
+  };
+
+  _setThuCheck = (thuCheck) => {
+    this.setState({thuCheck:!this.state.thuCheck});
+  };
+
+  _setFriCheck = (friCheck) => {
+    this.setState({friCheck:!this.state.friCheck});
+  };
+
+  _setSatCheck = (satCheck) => {
+    this.setState({satCheck:!this.state.satCheck});
+  };
+
+  _setSunCheck = (sunCheck) => {
+    this.setState({sunCheck:!this.state.sunCheck});
+  };
+
   render() {
     return (
       <SearchFilterScreen {...this.state} 
+      setMonCheck = {this._setMonCheck}
+      setTueCheck = {this._setTueCheck}
+      setWedCheck = {this._setWedCheck}
+      setThuCheck = {this._setThuCheck}
+      setFriCheck = {this._setFriCheck}
+      setSatCheck = {this._setSatCheck}
+      setSunCheck = {this._setSunCheck}
       />
     );
   }

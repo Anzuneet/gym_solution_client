@@ -9,21 +9,24 @@ import { ScrollView ,
   StyleSheet,
   StatusBar,
   Image,
+  Button,
  } from "react-native";
-import { List, SearchBar, Divider, Button, ButtonGroup } from "react-native-elements";
+import { List, SearchBar, Divider,} from "react-native-elements";
 import GroupsItem from "../../components/GroupsItem";
 import ActionButton from 'react-native-action-button';
-import Icon from 'react-native-vector-icons/Ionicons'
-import { CheckBox } from 'react-native-elements'
+import Icon from 'react-native-vector-icons/Ionicons';
+import { CheckBox } from 'react-native-elements';
 
 const SearchFilterScreen = props => (
+  
+  <View>
     <View style = {styles.weightContainer}>
-    <CheckBox
+      <CheckBox
       title='월'
       checked={props.monCheck} 
       checkedIcon='dot-circle-o'
       uncheckedIcon='circle-o'
-      onPress={()=>this.setState({monCheck:!props.monCheck})}
+      onPress={()=>props.setMonCheck()}
       containerStyle={styles.checkBoxContainer}
       textStyle={styles.textStyle}
       size={15}
@@ -33,7 +36,7 @@ const SearchFilterScreen = props => (
       checked={props.tueCheck} 
       checkedIcon='dot-circle-o'
       uncheckedIcon='circle-o'
-      onPress={()=>this.setState({tueCheck:!props.tueCheck})}
+      onPress={()=>props.setTueCheck()}
       containerStyle={styles.checkBoxContainer}
       textStyle={styles.textStyle}
       size={15}
@@ -43,7 +46,7 @@ const SearchFilterScreen = props => (
       checked={props.wedCheck} 
       checkedIcon='dot-circle-o'
       uncheckedIcon='circle-o'
-      onPress={()=>this.setState({wedCheck:!props.wedCheck})}
+      onPress={()=>props.setWedCheck()}
       containerStyle={styles.checkBoxContainer}
       textStyle={styles.textStyle}
       size={15}
@@ -53,7 +56,7 @@ const SearchFilterScreen = props => (
       checked={props.thuCheck} 
       checkedIcon='dot-circle-o'
       uncheckedIcon='circle-o'
-      onPress={()=>this.setState({thuCheck:!props.thuCheck})}
+      onPress={()=>props.setThuCheck()}
       containerStyle={styles.checkBoxContainer}
       textStyle={styles.textStyle}
       size={15}
@@ -63,7 +66,7 @@ const SearchFilterScreen = props => (
       checked={props.friCheck} 
       checkedIcon='dot-circle-o'
       uncheckedIcon='circle-o'
-      onPress={()=>this.setState({friCheck:!props.friCheck})}
+      onPress={()=>props.setFriCheck()}
       containerStyle={styles.checkBoxContainer}
       textStyle={styles.textStyle}
       size={15}
@@ -73,7 +76,7 @@ const SearchFilterScreen = props => (
       checked={props.satCheck} 
       checkedIcon='dot-circle-o'
       uncheckedIcon='circle-o'
-      onPress={()=>this.setState({satCheck:!props.satCheck})}
+      onPress={()=>props.setSatCheck()}
       containerStyle={styles.checkBoxContainer}
       textStyle={styles.textStyle}
       size={15}
@@ -84,12 +87,22 @@ const SearchFilterScreen = props => (
       checked={props.sunCheck} 
       checkedIcon='dot-circle-o'
       uncheckedIcon='circle-o'
-      onPress={()=>this.setState({sunCheck:!props.sunCheck})}
+      onPress={()=>props.setSunCheck()}
       containerStyle={styles.checkBoxContainer}
       textStyle={styles.textStyle}
       size={15}
       />
     </View>
+
+  <View style = {styles.ButtonContainer}>
+      <Button 
+      color = "#ffbb00"
+      title="설정 완료"
+      onPress={() => { }}
+      />
+  </View>
+  
+  </View>
 )
 
 const styles = StyleSheet.create({
@@ -109,7 +122,7 @@ const styles = StyleSheet.create({
     marginTop: 20
     },
   weightContainer :{
-      flex:1,
+      //flex:1,
       flexDirection : 'row',
      // justifyContent : 'space-between',
       backgroundColor : '#f2f2f2',
@@ -117,7 +130,7 @@ const styles = StyleSheet.create({
     },
   checkBoxContainer :{
     //flex:2,
-   // flexDirection : 'column',
+    //flexDirection : 'column',
     height:30,
     width:47,
     marginLeft: -6,
@@ -126,7 +139,12 @@ const styles = StyleSheet.create({
   },
   textStyle:{
     fontSize:12,
-  }
+  },
+  ButtonContainer :{
+    width : 100,
+    justifyContent : 'center',
+    alignItems : 'center',
+  },
 });
 
 export default SearchFilterScreen;
