@@ -13,10 +13,23 @@ class Container extends Component {
       base64:null
     },
     flag: false,
+    weight : 1,
+    muscle : 1,
+    fat : 1,
   };
   componentDidMount(){
     
   }
+  _changeWeight = (text) => {
+    this.setState({weight : text});
+  };
+  _changeMuscle = (text) => {
+    this.setState({muscle : text});
+  };
+  _changeFat = (text) => {
+    this.setState({fat : text});
+  };
+
   _pickImage = async () => {
     const {navigate} = this.props.navigation;
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -78,6 +91,9 @@ class Container extends Component {
       pickImage = {this._pickImage}
       takeImage = {this._takeImage}
       submit = {this._submit}
+      changeWeight={this._changeWeight}
+      changeMuscle={this._changeMuscle}
+      changeFat={this._changeFat}
      />
    );
  }

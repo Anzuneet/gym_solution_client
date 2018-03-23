@@ -7,33 +7,106 @@ import {
   TouchableOpacity,
   Image,
   Dimensions,
+  TextInput,
 } from "react-native";
+import PopupDialog , { SlideAnimation, DialogTitle} from 'react-native-popup-dialog';
+import {Feather,MaterialIcons} from "@expo/vector-icons"
 
 
 const { width, height } = Dimensions.get("window");
 
+const slideAnimation = new SlideAnimation({
+  slideFrom: 'bottom',
+});
+
  const ProfileScreen = props => (
   <View style = {styles.container}>
-    <View style = {styles.upperContainer}>
-      <View style = {styles.imageContainer}>
-      {props.flag ?  
-            (<Image source={{uri:props.image.uri} } style = {{width: width*0.75, height: height*0.75}}/>)
-            :
-            (<Image
-              source={require("../../assets/images/logo-gym.png")}
-              resizeMode="stretch"/>) }  
+     <PopupDialog
+        dialogTitle={<DialogTitle title="이미지를 넣을 방식을 골라주세요!" />}
+        ref={(popupDialog) => { this.imagePickDialog = popupDialog; }}
+        dialogAnimation={slideAnimation}
+        dismissOnTouchOutside = {true}
+        height = {150}
+      >
+      <View style = {styles.imagePickContainer}>
+        <TouchableOpacity style ={styles.cameraTab} onPressOut = {props.takeImage}>
+          <Feather name="camera" size={50} color="white" style = {styles.iconContainer}/>
+          <Text style = {styles.cameraTabText}> CAMERA </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style ={styles.gallaryTab} onPressOut = {props.pickImage}> 
+          <MaterialIcons name="photo-album" size={50} color="white" style = {styles.iconContainer}/> 
+          <Text style = {styles.gallaryTabText}> GALLARY </Text>
+        </TouchableOpacity>
       </View>
-      <View style = {styles.buttonContainer}>
-        <TouchableOpacity onPressOut = {props.pickImage} style = {styles.pickImageTab}>
-          <Text style = {styles.pickImageText}>
-            GALLARY
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPressOut = {props.takeImage} style = {styles.takeImageTab}>
-          <Text style = {styles.takeImageText}>
-            CAMERA
-          </Text>
-        </TouchableOpacity>
+    </PopupDialog>
+    <View style = {styles.upperContainer}>
+      <TouchableOpacity style = {styles.imageContainer} onPressOut ={ () => {
+        this.imagePickDialog.show()
+      }} >
+      {props.flag ?  
+            (<Image source={{uri:props.image.uri} } style = {{width: width, height: height*0.63}}/>)
+            :( 
+            <Image
+              source={require("../../assets/images/photoPlaceholder.png")}
+              style = {{width: width, height: height *0.63}}
+            />
+            )}  
+      </TouchableOpacity>
+      
+
+      <View style = {styles.tableContainer}>
+            <View style = {styles.upperRow}>
+              <View style = {styles.column}>
+              </View>
+              <View style = {styles.column}>
+                <Text style = {styles.tableAttribute}> Weight </Text>
+              </View>
+              <View style = {styles.column}>
+                <Text style = {styles.tableAttribute}> Muscle </Text>
+              </View>
+              <View style = {styles.column}>
+                <Text style = {styles.tableAttribute}> Fat </Text>
+              </View>
+            </View>
+            <View style = {styles.lowerRow}>
+              <View style = {styles.column}>
+                <Text style = {styles.tableAttribute}> data </Text>
+              </View>
+              <View style = {styles.column}>
+              <TextInput 
+                style = {styles.textInput} 
+                underlineColorAndroid = 'rgba(0,0,0,0)' 
+                placeholder="Weight" 
+                autoCorrecto = {false}
+                value = {props.weight}
+                keyboardType='numeric'
+                onChangeText={props.changeWeight}
+              />
+              </View>
+              <View style = {styles.column}>
+              <TextInput 
+                style = {styles.textInput} 
+                underlineColorAndroid = 'rgba(0,0,0,0)' 
+                placeholder="Muscle" 
+                autoCorrecto = {false}
+                value = {props.muscle}
+                keyboardType='numeric'
+                onChangeText={props.changeWeight}
+              />
+              </View>
+              <View style = {styles.column}>
+              <TextInput 
+                style = {styles.textInput} 
+                underlineColorAndroid = 'rgba(0,0,0,0)' 
+                placeholder="Fat" 
+                autoCorrecto = {false}
+                value = {props.fat}
+                keyboardType='numeric'
+                onChangeText={props.changeWeight}
+              />
+              </View>
+            </View> 
       </View>
     </View>
     <TouchableOpacity onPressOut = {props.submit} style = {styles.lowerContainer}>
@@ -49,52 +122,93 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor : 'white',
-    
   },
   upperContainer : {
-    flex:3,
-    flexDirection  : 'row',
-    backgroundColor : "yellow",
+    flex:4,
+    backgroundColor : "pink",
   },
   lowerContainer :{
-    flex :1,
+    flex :0.5,
     backgroundColor:"pink",
     justifyContent : 'center',
     alignItems : 'center',
   },
 
   imageContainer : {
-    flex : 3,
-    backgroundColor : "blue",
+    flex : 4,
   },
   buttonContainer : {
     flex : 1,
-    
-  },
-  pickImageTab : {
-    flex : 1,
-    backgroundColor : "pink",
-    justifyContent : 'center',
-    alignItems : 'center',
-
-  },
-  takeImageTab :{
-    flex : 1,
-    backgroundColor : "#ffbb00",
-    justifyContent : 'center',
-    alignItems : 'center',
-  },
-  pickImageText :{
-    fontSize : 20,
-  },
-
-  takeImageText :{
-    fontSize : 20
+  
   },
   submitText : {
     fontSize : 30,
     color : "white",
-  }
+  },
+  tableContainer  : {
+    flex :1,
+  },
+  upperRow  : {
+    height : 50,
+    flexDirection : 'row',
+    backgroundColor : "#rgba(255,10,10,0.5)"
+  },
+  lowerRow  : {
+    height : 50,
+    flexDirection : 'row',
+    backgroundColor : '#rgba(0,0,0,0.2)',
+  },
+  column  : {
+    flex : 1,
+    backgroundColor : 'transparent',
+    justifyContent : 'center',
+    alignItems : 'center',
+    borderColor : "white",
+    borderWidth : StyleSheet.hairlineWidth,
+  },
+  textInput : {
+    width : width/4 -10,
+    borderColor: "#bbb",
+    borderWidth: StyleSheet.hairlineWidth,
+    borderRadius: 5,
+    paddingHorizontal: 15,
+    backgroundColor: "#fafafa",
+    alignItems : 'center'
+  },
+  tableAttribute : {
+    fontSize : 20,
+    fontWeight : "500",
+  },
+  imagePickContainer  : {
+    width : width,
+    height : height,
+    backgroundColor : "white",
+    flexDirection :'row',
+  },
+
+  cameraTab : {
+    paddingTop : 10,
+    flex : 1,
+    backgroundColor : 'rgba(255,187,0,0.5)',
+    alignItems : 'center'
+  },
+  cameraTabText : {
+    paddingTop : 10,
+    fontSize : 20,
+    fontWeight : "500",
+  },
+  gallaryTab : {
+    paddingTop : 10,
+    flex : 1,
+    backgroundColor : 'rgba(255,230,0,0.5)',
+    alignItems : 'center'
+  },
+  gallaryTabText : {
+    paddingTop : 10,
+    fontSize : 20,
+    fontWeight : "500",
+  },
+
 });
 
 export default ProfileScreen;
