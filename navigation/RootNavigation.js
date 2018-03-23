@@ -1,9 +1,16 @@
-import {StackNavigator} from "react-navigation";
+import React from "react";
+import {Text} from 'react-native';
+import {StackNavigator, DrawerNavigator} from "react-navigation";
 import SearchFilterScreen from "../screens/SearchFilterScreen";
 import TabsNavigation from "./TabsNavigation";
-import upLoadImageScreen from "../screens/upLoadImage";
+import FeedScreen from "../screens/FeedScreen";
+import SearchScreen from "../screens/SearchScreen";
+import NotificationsScreen from "../screens/NotificationsScreen";;
+import ProfileScreen from "../screens/ProfileScreen";
+import OwnGroupScreen from "../screens/OwnGroupScreen";
 
-
+//import OwnGroupRoute from "../routes/OwnGroupRoute"
+/*
 const RootNavigation = StackNavigator(
  {
     Tabs:{
@@ -18,17 +25,41 @@ const RootNavigation = StackNavigator(
             title : "검색 조건을 설정해주세요!"
         }
     },
-    upLoadImage : {
-        screen : upLoadImageScreen,
-        navigationOptions : {
-            title: "매번 새로운 사진을 올려주세요!!"
-        }
-    }
  },
+);*/
+
+const DrawerStack = DrawerNavigator({
+    SearcScreen: { screen: SearchScreen },
+    OwnGroupScreen: { screen : OwnGroupScreen},
+    FeedScreen: { screen: FeedScreen },
+    NotificationsScreen: { screen: NotificationsScreen },
+    ProfileScreen : { screen : ProfileScreen },
+    
+})
+
+const DrawerNavigation = StackNavigator({
+    DrawerStack: { screen: DrawerStack }
+}, {
+headerMode: 'float',
+navigationOptions: ({navigation}) => ({
+    headerStyle: {backgroundColor: '#ffbb00'},
+    title: 'Logged In to your app!',
+    headerLeft: <Text onPress={() => navigation.navigate('DrawerOpen')}>Menu</Text>
+})
+})
+
+
+const RootNavigation = StackNavigator(
  {
-     mode:"modal",
-     
- } 
-);
+    drawerStack: { screen: DrawerNavigation }
+ }
+ , {
+    // Default config for all screens
+    headerMode: 'none',
+    title: 'Main',
+    initialRouteName: 'drawerStack'
+  }
+)
+
 
 export default RootNavigation;

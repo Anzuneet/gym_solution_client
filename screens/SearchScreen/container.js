@@ -5,6 +5,7 @@ import {Constants, Location, MapView} from 'expo';
 import { actionCreators as userActions } from "../../redux/modules/user";
 
 class Container extends Component {
+  dialog = null;
   map = null;
   state = {
     mapRegion:null,       
@@ -115,20 +116,17 @@ class Container extends Component {
   };
 
 
-
+  //_changeGroups {this.dialog.dismiss();}
   render() {
     return <SearchScreen
         mapRegion = {this.state.mapRegion}
         gyms = {this.state.gyms}
         handleMapRegionChange = {this._handleMapRegionChange}
-        searchFilter = {this._searchFilter}
+        parent = {this}
     />;
   }
 
-  _searchFilter = () =>{
-    const {navigate} = this.props.navigation;
-      navigate("searchFilter");
-  }
+
 
   
 }

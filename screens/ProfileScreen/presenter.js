@@ -23,7 +23,7 @@ const slideAnimation = new SlideAnimation({
   <View style = {styles.container}>
      <PopupDialog
         dialogTitle={<DialogTitle title="이미지를 넣을 방식을 골라주세요!" />}
-        ref={(popupDialog) => { this.imagePickDialog = popupDialog; }}
+        ref={(popupDialog) => { props.parent.dialog = popupDialog; }}
         dialogAnimation={slideAnimation}
         dismissOnTouchOutside = {true}
         height = {150}
@@ -42,7 +42,7 @@ const slideAnimation = new SlideAnimation({
     </PopupDialog>
     <View style = {styles.upperContainer}>
       <TouchableOpacity style = {styles.imageContainer} onPressOut ={ () => {
-        this.imagePickDialog.show()
+        props.parent.dialog.show()
       }} >
       {props.flag ?  
             (<Image source={{uri:props.image.uri} } style = {{width: width, height: height*0.63}}/>)

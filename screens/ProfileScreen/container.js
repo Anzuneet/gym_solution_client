@@ -7,6 +7,7 @@ import { Dimensions} from "react-native"
 import { actionCreators as userActions } from "../../redux/modules/user";
 
 class Container extends Component {
+  dialog = null;
   state = {
     image: {
       uri:null,
@@ -42,6 +43,7 @@ class Container extends Component {
     if (!result.cancelled) {
       
       this.setState({ image:{uri:result.uri, base64:result.base64 },flag : true  });
+      this.dialog.dismiss();
     }
     //navigate("upLoadImage", {image:this.state.image});
   };
@@ -58,6 +60,7 @@ class Container extends Component {
     if (!result.cancelled) {
       
       this.setState({ image:{uri:result.uri, base64:result.base64 },flag : true   });
+      this.dialog.dismiss();
     }
     //navigate("upLoadImage", {image:this.state.image});
   }
@@ -94,6 +97,7 @@ class Container extends Component {
       changeWeight={this._changeWeight}
       changeMuscle={this._changeMuscle}
       changeFat={this._changeFat}
+      parent = {this}
      />
    );
  }
