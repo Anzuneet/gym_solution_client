@@ -19,26 +19,23 @@ import SearchFilterScreen from "./presenter";
 */
 
 class Container extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        // 요일 조건
-        monCheck: false,
-        tueCheck: false,
-        wedCheck: false,
-        thuCheck: false,
-        friCheck: false,
-        satCheck: false,
-        sunCheck: false,
-        // 시간 조건
-        startTime: "",
-        endTime: "",
-        // 가격 조건
-        minCharge: "",
-        maxCharge: "",
-    };
-  }
-
+  state = {
+    // 요일 조건
+    monCheck: false,
+    tueCheck: false,
+    wedCheck: false,
+    thuCheck: false,
+    friCheck: false,
+    satCheck: false,
+    sunCheck: false,
+    // 시간 조건
+    startTime: "",
+    endTime: "",
+    // 가격 조건
+    minCharge: "",
+    maxCharge: "",
+  };
+  
   componentDidMount() {
     //this.makeRemoteRequest();
   }
@@ -71,6 +68,11 @@ class Container extends Component {
     this.setState({sunCheck:!this.state.sunCheck});
   };
 
+  _searchScreen = () =>{
+    const {navigate} = this.props.navigation;
+      navigate("searchScreen");
+  };
+
   render() {
     return (
       <SearchFilterScreen {...this.state} 
@@ -81,6 +83,7 @@ class Container extends Component {
       setFriCheck = {this._setFriCheck}
       setSatCheck = {this._setSatCheck}
       setSunCheck = {this._setSunCheck}
+      searchScreen = {this._searchScreen}
       />
     );
   }

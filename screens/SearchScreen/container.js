@@ -3,6 +3,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import SearchScreen from "./presenter";
 import {Constants, Location, MapView} from 'expo';
 import { actionCreators as userActions } from "../../redux/modules/user";
+import SearchFilterScreen from "../SearchFilterScreen/container";
 
 class Container extends Component {
   map = null;
@@ -26,12 +27,27 @@ class Container extends Component {
     groups:[{
 
     }],
+    // 요일 조건
+    monChecks: false,
+    tueCheck: false,
+    wedCheck: false,
+    thuCheck: false,
+    friCheck: false,
+    satCheck: false,
+    sunCheck: false,
+    // 시간 조건
+    startTime: "",
+    endTime: "",
+    // 가격 조건
+    minCharge: "",
+    maxCharge: "",
   };
 
   componentDidMount(){
     this._getLocationAsync();
     this._getGyms();
     this._getAllGroups();
+    this._getStates();
   };
 
   _getGyms = async()=>{
@@ -81,6 +97,12 @@ class Container extends Component {
       this.setState({markers});
     });    
   };
+
+  _getStates = async()=>{
+      console.log("SearchFilterScreen State Test");
+      console.log(SearchFilterScreen.state.sunCheck);
+      // 여기 하던중~
+  }
 
   _onPress(data){
     let latitude=data.nativeEvent.coordinate.latitude;

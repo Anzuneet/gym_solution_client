@@ -98,9 +98,11 @@ const SearchFilterScreen = props => (
       <Button 
       color = "#ffbb00"
       title="설정 완료"
-      onPress={() => { }}
+      onPress={() => {props.searchScreen()}}
       />
   </View>
+
+          
   
   </View>
 )
@@ -145,6 +147,17 @@ const styles = StyleSheet.create({
     justifyContent : 'center',
     alignItems : 'center',
   },
+  filterContainer: {
+    flex : 1,
+    backgroundColor : "#fefefe",
+    justifyContent: "center",
+    alignItems: "center",
+
+},
+filterText : {
+    fontSize : 30,
+    color : "rgba(0,0,0,0.5)"
+    },
 });
 
 export default SearchFilterScreen;
