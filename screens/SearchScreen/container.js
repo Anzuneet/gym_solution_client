@@ -100,7 +100,8 @@ class Container extends Component {
 
   _getStates = async()=>{
       console.log("SearchFilterScreen State Test");
-      console.log(SearchFilterScreen.state.sunCheck);
+      sScreen = new SearchFilterScreen;
+      console.log(sScreen.state.sunCheck);
       // 여기 하던중~
   }
 
@@ -115,10 +116,7 @@ class Container extends Component {
     this.setState({markers:arrayMarkers})
 }
   _handleMapRegionChange = mapRegion => {
-    // this.setState({ mapRegion });
-    // console.log(mapRegion);
-    // console.log(this.state.mapRegion);
-  
+
     let markers = this.state.gyms.filter((gym)=>{
       let lat = gym.latitude - mapRegion.latitude;
       let lon = gym.longitude - mapRegion.longitude;
@@ -132,8 +130,6 @@ class Container extends Component {
     });
     
     this.setState({markers});
-
-    // console.log(markers);
   };
 
 
