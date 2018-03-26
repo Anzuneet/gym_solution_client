@@ -11,6 +11,7 @@ import { ScrollView ,
   Image,
  } from "react-native";
 import SearchFilterScreen from "./presenter";
+import SearchScreen from "../SearchScreen/container"
 
 /*
 여기서 체크박스, 라디오버튼을 이용하여 state를 바꿔주고
@@ -19,7 +20,7 @@ import SearchFilterScreen from "./presenter";
 */
 
 class Container extends Component {
-  state = {
+    state = {
     // 요일 조건
     monCheck: false,
     tueCheck: false,
@@ -69,6 +70,7 @@ class Container extends Component {
   };
 
   _searchScreen = () =>{
+    SearchScreen._getStates(this.state.monCheck, this.state.tueCheck, this.state.wedCheck, this.state.thuCheck, this.state.friCheck, this.state.satCheck, this.state.sunCheck);
     const {navigate} = this.props.navigation;
       navigate("searchScreen");
   };

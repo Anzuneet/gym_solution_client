@@ -28,7 +28,7 @@ class Container extends Component {
 
     }],
     // 요일 조건
-    monChecks: false,
+    monCheck: false,
     tueCheck: false,
     wedCheck: false,
     thuCheck: false,
@@ -47,7 +47,6 @@ class Container extends Component {
     this._getLocationAsync();
     this._getGyms();
     this._getAllGroups();
-    this._getStates();
   };
 
   _getGyms = async()=>{
@@ -98,11 +97,18 @@ class Container extends Component {
     });    
   };
 
-  _getStates = async()=>{
+  _getStates(MON, TUE, WED, THU, FRI, SAT, SUN) {
       console.log("SearchFilterScreen State Test");
-      sScreen = new SearchFilterScreen;
-      console.log(sScreen.state.sunCheck);
-      // 여기 하던중~
+      this.setState({
+        monCheck:MON,
+        tueCheck:TUE,
+        wedCheck:WED,
+        thuCheck:THU,
+        friCheck:FRI,
+        satCheck:SAT,
+        sunCheck:SUN,
+      })
+      console.log(this.state.sunCheck);
   }
 
   _onPress(data){

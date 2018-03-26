@@ -102,8 +102,6 @@ const SearchFilterScreen = props => (
       />
   </View>
 
-          
-  
   </View>
 )
 
