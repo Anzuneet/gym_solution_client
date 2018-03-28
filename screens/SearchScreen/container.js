@@ -6,6 +6,7 @@ import { actionCreators as userActions } from "../../redux/modules/user";
 import SearchFilterScreen from "../SearchFilterScreen/container";
 
 class Container extends Component {
+  dialog = null;
   map = null;
   state = {
     mapRegion:null,       
@@ -27,20 +28,23 @@ class Container extends Component {
     groups:[{
 
     }],
-    // 요일 조건
-    monCheck: false,
-    tueCheck: false,
-    wedCheck: false,
-    thuCheck: false,
-    friCheck: false,
-    satCheck: false,
-    sunCheck: false,
-    // 시간 조건
-    startTime: "",
-    endTime: "",
-    // 가격 조건
-    minCharge: "",
-    maxCharge: "",
+    daysOfWeek:{// 요일 조건
+      MON: false,
+      TUE: false,
+      WED: false,
+      THU: false,
+      FRI: false,
+      SAT: false,
+      SUN: false
+    },
+    time:{// 시간 조건
+      start:null,
+      end:null
+    },
+    charge:{// 가격 조건
+      min: null,
+      max: null
+    }
   };
 
   componentDidMount(){
@@ -53,7 +57,7 @@ class Container extends Component {
     let response = await fetch("https://gym.hehehee.net/gyms");
     let gyms = await response.json();
     gyms = gyms.result;
-    console.log(gyms);
+    //console.log(gyms);
     this.setState({gyms});
   }
 
@@ -73,7 +77,7 @@ class Container extends Component {
   _getLocationAsync = async () => {
     const location = await Location.getCurrentPositionAsync({});
 
-    console.log(location);
+    //console.log(location);
     this.setState({
       mapRegion: {
         latitude: location.coords.latitude,
@@ -97,7 +101,7 @@ class Container extends Component {
     });    
   };
 
-  _getStates(MON, TUE, WED, THU, FRI, SAT, SUN) {
+  _setStates(MON, TUE, WED, THU, FRI, SAT, SUN) {
       console.log("SearchFilterScreen State Test");
       this.setState({
         monCheck:MON,
@@ -139,20 +143,24 @@ class Container extends Component {
   };
 
 
-
+  //_changeGroups {this.dialog.dismiss();}
   render() {
-    return <SearchScreen
+    return <SearchScreen 
+        mon = {this.state.daysOfWeek.MON}
+        tue = {this.state.daysOfWeek.TUE}
+        wed = {this.state.daysOfWeek.WED}
+        thu = {this.state.daysOfWeek.THU}
+        fri = {this.state.daysOfWeek.FRI}
+        sat = {this.state.daysOfWeek.SAT}
+        sun = {this.state.daysOfWeek.SUN}
         mapRegion = {this.state.mapRegion}
         gyms = {this.state.gyms}
         handleMapRegionChange = {this._handleMapRegionChange}
-        searchFilter = {this._searchFilter}
+        parent = {this}
     />;
   }
 
-  _searchFilter = () =>{
-    const {navigate} = this.props.navigation;
-      navigate("searchFilter");
-  }
+
 
   
 }

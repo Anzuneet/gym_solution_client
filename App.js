@@ -25,7 +25,7 @@ class App extends React.Component
     isLoadingComplete : false
   }
   render() {
-    store.dispatch({type: "LOG_OUT"});
+    //store.dispatch({type: "LOG_OUT"});
     const {isLoadingComplete} =this.state;
     if(!isLoadingComplete){
       return(
@@ -69,7 +69,5 @@ class App extends React.Component
     });
   };
 }
-
-
+global.HOST_NAME ="https://gym.hehehee.net"; 
 export default App;
-

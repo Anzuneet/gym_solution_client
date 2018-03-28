@@ -45,8 +45,6 @@ function setAllGroups(groups) {
 */
  
 function setUser(user) {
-  console.log("in setUser");
-  console.log(user);
   return {
     type: SET_USER,
     user
@@ -66,8 +64,6 @@ function setNotifications(notifications) {
 
 // API Actions
 function login(username, password) {
-  console.log(username);
-  console.log(password);
   return dispatch => {
    return fetch(`${API_URL}/token`, {
      method: "GET",
@@ -78,7 +74,6 @@ function login(username, password) {
    })
      .then(response => response.json())
      .then(json => {
-       console.log(json);
        if (json.token) {
          dispatch(setLogIn(json.token));
          return true;
@@ -90,9 +85,39 @@ function login(username, password) {
 
  };
 }
+function enrollGroup() {
+  return dispatch => {
+    return fetch(`${API_URL}/groups`, {
+      method: "POST",
+      headers : {
+       "Content-Type": "application/json",
+       "x-gs-token" : tokenKey,
+      },
+      body: JSON.stringify({
+ 
+        name : name,
+        password : password,
+        phonenumber : phonenumber,
+        type : type,
+        fitness_club_idx : fitness_club_idx,
+        gender : gender,
+        birthday : birthday,
+      })
+    })
+      .then(response => response.json())
+      .then(json => {
+        if (json.msg) {
+         Alert.alert(json.msg);
+          return true;
+        } else {
+          return false;
+        }
+      })
+ 
+  };
+};
 
 function signup(personInfo) {
-  console.log(personInfo);
   const name = personInfo.username;
   const password = personInfo.password;
   const phonenumber = personInfo.phonenumber;
@@ -120,7 +145,6 @@ function signup(personInfo) {
    })
      .then(response => response.json())
      .then(json => {
-       console.log(json);
        if (json.msg) {
         Alert.alert(json.msg);
          return true;
@@ -200,7 +224,6 @@ function getOwnProfile() {
 
 // 맵의 마커에서 선택한 헬스장의 그룹 목록을 가져오는 함수
 function getGroups(uid) {
-  //console.log(initialState.tokenKey)
   //console.log(uid);
   return (dispatch) => {
    return fetch(`${API_URL}/gyms/${uid}/groups`, { 
@@ -211,7 +234,6 @@ function getGroups(uid) {
      })
      .then(response =>response.json() )
      .then(json=>{
-       console.log(json)
       if (json.token) {
          dispatch(setGroupToken(json.token));
          return true;
@@ -361,3 +383,5 @@ export { actionCreators };
  // Default Reducer Export
  
 export default reducer;
+
+

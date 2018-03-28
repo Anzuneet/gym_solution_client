@@ -16,93 +16,92 @@ import GroupsItem from "../../components/GroupsItem";
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { CheckBox } from 'react-native-elements';
+import PopupDialog , { SlideAnimation, DialogTitle} from 'react-native-popup-dialog';
 
 const SearchFilterScreen = props => (
-  
-  <View>
-    <View style = {styles.weightContainer}>
+    <View style = {styles.rowContainer}>
+      <View style = {styles.weightContainer}>
       <CheckBox
-      title='월'
-      checked={props.monCheck} 
-      checkedIcon='dot-circle-o'
-      uncheckedIcon='circle-o'
-      onPress={()=>props.setMonCheck()}
-      containerStyle={styles.checkBoxContainer}
-      textStyle={styles.textStyle}
-      size={15}
-      />
-      <CheckBox
-      title='화'
-      checked={props.tueCheck} 
-      checkedIcon='dot-circle-o'
-      uncheckedIcon='circle-o'
-      onPress={()=>props.setTueCheck()}
-      containerStyle={styles.checkBoxContainer}
-      textStyle={styles.textStyle}
-      size={15}
-      />
-      <CheckBox
-      title='수'
-      checked={props.wedCheck} 
-      checkedIcon='dot-circle-o'
-      uncheckedIcon='circle-o'
-      onPress={()=>props.setWedCheck()}
-      containerStyle={styles.checkBoxContainer}
-      textStyle={styles.textStyle}
-      size={15}
-      />
-      <CheckBox
-      title='목'
-      checked={props.thuCheck} 
-      checkedIcon='dot-circle-o'
-      uncheckedIcon='circle-o'
-      onPress={()=>props.setThuCheck()}
-      containerStyle={styles.checkBoxContainer}
-      textStyle={styles.textStyle}
-      size={15}
-      />
-      <CheckBox
-      title='금'
-      checked={props.friCheck} 
-      checkedIcon='dot-circle-o'
-      uncheckedIcon='circle-o'
-      onPress={()=>props.setFriCheck()}
-      containerStyle={styles.checkBoxContainer}
-      textStyle={styles.textStyle}
-      size={15}
-      />
-      <CheckBox
-      title='토'
-      checked={props.satCheck} 
-      checkedIcon='dot-circle-o'
-      uncheckedIcon='circle-o'
-      onPress={()=>props.setSatCheck()}
-      containerStyle={styles.checkBoxContainer}
-      textStyle={styles.textStyle}
-      size={15}
-      />
+        title='월'
+        checked={props.daysOfWeek.MON} 
+        checkedIcon='dot-circle-o'
+        uncheckedIcon='circle-o'
+        onPress={()=>props.container.setState({daysOfWeek:{...props.daysOfWeek, MON:!props.daysOfWeek.MON}})}
+        containerStyle={styles.checkBoxContainer}
+        textStyle={styles.textStyle}
+        size={15}
+        />
+        <CheckBox
+        title='화'
+        checked={props.daysOfWeek.TUE} 
+        checkedIcon='dot-circle-o'
+        uncheckedIcon='circle-o'
+        onPress={()=>props.container.setState({daysOfWeek:{...props.daysOfWeek,TUE:!props.daysOfWeek.TUE}})}
+        containerStyle={styles.checkBoxContainer}
+        textStyle={styles.textStyle}
+        size={15}
+        />
+        <CheckBox
+        title='수'
+        checked={props.daysOfWeek.WED} 
+        checkedIcon='dot-circle-o'
+        uncheckedIcon='circle-o'
+        onPress={()=>props.container.setState({daysOfWeek:{...props.daysOfWeek,WED:!props.daysOfWeek.WED}})}
+        containerStyle={styles.checkBoxContainer}
+        textStyle={styles.textStyle}
+        size={15}
+        />
+        <CheckBox
+        title='목'
+        checked={props.daysOfWeek.THU} 
+        checkedIcon='dot-circle-o'
+        uncheckedIcon='circle-o'
+        onPress={()=>props.container.setState({daysOfWeek:{...props.daysOfWeek,THU:!props.daysOfWeek.THU}})}
+        containerStyle={styles.checkBoxContainer}
+        textStyle={styles.textStyle}
+        size={15}
+        />
+        <CheckBox
+        title='금'
+        checked={props.daysOfWeek.FRI} 
+        checkedIcon='dot-circle-o'
+        uncheckedIcon='circle-o'
+        onPress={()=>props.container.setState({daysOfWeek:{...props.daysOfWeek,FRI:!props.daysOfWeek.FRI}})}
+        containerStyle={styles.checkBoxContainer}
+        textStyle={styles.textStyle}
+        size={15}
+        />
+        <CheckBox
+        title='토'
+        checked={props.daysOfWeek.SAT} 
+        checkedIcon='dot-circle-o'
+        uncheckedIcon='circle-o'
+        onPress={()=>props.container.setState({daysOfWeek:{...props.daysOfWeek,SAT:!props.daysOfWeek.SAT}})}
+        containerStyle={styles.checkBoxContainer}
+        textStyle={styles.textStyle}
+        size={15}
+        />
 
-      <CheckBox
-      title='일'
-      checked={props.sunCheck} 
-      checkedIcon='dot-circle-o'
-      uncheckedIcon='circle-o'
-      onPress={()=>props.setSunCheck()}
-      containerStyle={styles.checkBoxContainer}
-      textStyle={styles.textStyle}
-      size={15}
-      />
-    </View>
-
-  <View style = {styles.ButtonContainer}>
+        <CheckBox
+        title='일'
+        checked={props.daysOfWeek.SUN} 
+        checkedIcon='dot-circle-o'
+        uncheckedIcon='circle-o'
+        onPress={()=>props.container.setState({daysOfWeek:{...props.daysOfWeek,SUN:!props.daysOfWeek.SUN}})}
+        containerStyle={styles.checkBoxContainer}
+        textStyle={styles.textStyle}
+        size={15}
+        />
+        
+      </View>
+      <View style = {styles.ButtonContainer}>
       <Button 
       color = "#ffbb00"
       title="설정 완료"
       onPress={() => {props.searchScreen()}}
       />
-  </View>
-
-  </View>
+      </View>
+    </View>
 )
 
 const styles = StyleSheet.create({
@@ -121,6 +120,9 @@ const styles = StyleSheet.create({
     height: 65,
     marginTop: 20
     },
+  rowContainer :{
+    flex:1
+  },
   weightContainer :{
       //flex:1,
       flexDirection : 'row',

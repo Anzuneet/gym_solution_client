@@ -15,11 +15,35 @@ import {
 import { Ionicons,Feather } from "@expo/vector-icons";
 import {MapView} from 'expo';
 import { actionCreators as userActions } from "../../redux/modules/user";
-
+import PopupDialog , { SlideAnimation, DialogTitle} from 'react-native-popup-dialog';
+import SearchFilterScreen from "../SearchFilterScreen";
 const { width, height } = Dimensions.get("window");
+
+const slideAnimation = new SlideAnimation({
+    slideFrom: 'bottom',
+});
 
 const SearchScreens = props => (
     <View style = {styles.container}>
+        <PopupDialog
+            dialogTitle={<DialogTitle title="찾고자하는 training의 조건을 입력해주세요" />}
+            ref={(popupDialog) => { props.parent.dialog = popupDialog; }}
+            dialogAnimation={slideAnimation}
+            dismissOnTouchOutside = {true}
+            height = {300}
+        >
+        <SearchFilterScreen
+        MON = {props.mon}
+        TUE = {props.tue}
+        WED = {props.wed}
+        THU = {props.thu}
+        FRI = {props.fri}
+        SAT = {props.sat}
+        SUN = {props.sun}
+        container = {props.parent}
+        />
+
+        </PopupDialog>
         <View style = {styles.mapContainer}>
         <MapView
             style={{ alignSelf: 'stretch', height: 500 }}
@@ -38,7 +62,9 @@ const SearchScreens = props => (
             ))}       
         </MapView>
         </View>
-        <TouchableOpacity style = {styles.filterContainer} onPressOut = {props.searchFilter}>
+        <TouchableOpacity style = {styles.filterContainer} onPressOut ={ () => {
+            props.parent.dialog.show()
+        }} >
             <Text style = {styles.filterText}>
                 검색 조건 설정하기!
             </Text>

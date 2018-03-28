@@ -81,7 +81,7 @@ const TabsNavigation = TabNavigator(
             
         />
     ),*/
-    tabBarPosition: "Top",
+    tabBarPosition: "bottom",
     tabBarOptions: {
       showIcon : true,
       showLabel: false,
