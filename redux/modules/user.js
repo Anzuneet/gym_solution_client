@@ -47,7 +47,7 @@ function setAllGroups(groups) {
 function setUser(user) {
   return {
     type: SET_USER,
-    user
+    user,
   };
 }
  
@@ -64,6 +64,7 @@ function setNotifications(notifications) {
 
 // API Actions
 function login(username, password) {
+  console.log("login!!")
   return dispatch => {
    return fetch(`${API_URL}/token`, {
      method: "GET",
@@ -85,6 +86,7 @@ function login(username, password) {
 
  };
 }
+
 function enrollGroup() {
   return dispatch => {
     return fetch(`${API_URL}/groups`, {
@@ -224,12 +226,13 @@ function getOwnProfile() {
 
 // 맵의 마커에서 선택한 헬스장의 그룹 목록을 가져오는 함수
 function getGroups(uid) {
-  //console.log(uid);
-  return (dispatch) => {
-   return fetch(`${API_URL}/gyms/${uid}/groups`, { 
+ 
+  return (dispatch,getState) => {
+    const { user: { token} } = getState();
+    fetch(`${API_URL}/gyms/${uid}/groups`, { 
     method: "GET",
     headers: {
-      "x-gs-token": initialState.tokenKey
+      "x-gs-token": token,
     }
      })
      .then(response =>response.json() )
@@ -243,6 +246,36 @@ function getGroups(uid) {
        }
     })
  };
+}
+
+function postBodyMeasurements(Img,Fat,Weight,Muscle) {
+  const img = Img;
+  const fat = Fat;
+  const weight = Weight;
+  const muscle = Muscle;
+
+  return (dispatch,getState) => {
+    const { user: { token} } = getState();
+    fetch(`${API_URL}/user/bodymeasurements`, { 
+    method: "post",
+    headers: {
+      "x-gs-token": token,
+    },
+    body: JSON.stringify({
+      img : img,
+      fat : fat,
+      weight : weight,
+      muscle : muscle,
+    })
+    })
+    .then(response => response.json())
+    .then(json => {
+      if (json.msg) {
+       Alert.alert(json.msg);
+       return true;
+      }
+    })
+  };
 }
 
 // 전체 헬스장의 모든 그룹목록을 가져오는 함수
@@ -281,7 +314,7 @@ let groups = res.json();
 const initialState = {
  isLoggedIn: false,
  isTrainer : false,
- tokenKey : '',
+ profile: null,
 };
 
 allGroups:[{ 
@@ -309,6 +342,8 @@ function reducer(state = initialState, action) {
  
 function applyLogIn(state, action) {
   const { token } = action;
+  //console.log("applyLogin");
+  //console.log(action);
   return {
     ...state,
     isLoggedIn: true,
@@ -321,19 +356,21 @@ function applyLogOut(state, action) {
   return {
     ...state,
     isLoggedIn: false,
-    token: ""
+    token: "",
+    user: null,
   };
 }
  
 function applySetUser(state, action) {
-  const { user } = action;
+  const { user  } = action;
+  console.log("in applySetUser");
+  console.log(user);
   if(user.user.gym_uid != null)
     flag = true;
   else
     flag= false;
   return {
     ...state,
-    profile: user.user,
     isTrainer:flag,
   };
 }
@@ -365,7 +402,8 @@ const actionCreators = {
   getOwnProfile,
   signup,
   getGroups,
-  getToken
+  getToken,
+  postBodyMeasurements,
   // getAllGroups
 };
   

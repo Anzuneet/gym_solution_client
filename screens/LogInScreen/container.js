@@ -34,7 +34,6 @@ class Container extends Component {
   _submit = async () =>{
     const { username, password, isSubmitting } = this.state;
     const { login, getOwnProfile } = this.props;
-    console.log(this.props);
     if(!isSubmitting){
       if(username  && password){
         this.setState({
@@ -45,8 +44,6 @@ class Container extends Component {
         if(!loginResult){
           this.setState({isSubmitting : false});
         }
-        console.log(loginResult)
-        //submit
         
       }else{
         Alert.alert('All fields are required!');

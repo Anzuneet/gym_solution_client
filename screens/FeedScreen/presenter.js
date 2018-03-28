@@ -48,7 +48,7 @@ const { width, height } = Dimensions.get("window");
       </TouchableOpacity>
       <View style = {styles.personContainer}>
           <View style = {styles.nameContainer}>
-            <Text style ={styles.nameText}> 박종휘 </Text>
+            <Text style ={styles.nameText}> {props.profile.name} </Text>
           </View>
           <View style ={styles.weightContainer}>
             <Text style ={styles.weightNameText}>

@@ -32,6 +32,7 @@ class AppContainer extends Component {
       }
   }
   render() {
+    console.log(this.props);
     const { isLoggedIn, profile, isTrainer } = this.props;
     return (
       <View style={styles.container}>

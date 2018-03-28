@@ -13,43 +13,11 @@ const { width, height } = Dimensions.get("window");
 
 
 
- const GroupsItem = props => (
-  <TouchableOpacity onPress = {props.onPress}>
-    <View style = {styles.Container}>
-      <View style = {styles.profileContainer}>
-        <Image
-            source={
-              require("../../assets/images/noPhoto.jpg")
-            }
-            style={styles.avatar}
-            //defaultSource={require("../../assets/images/noPhoto.jpg")}
-        />
-        <View style ={styles.trainernameContainer}>
-          <Text style = {styles.trainernameText}>
-              {props.opener}
-          </Text>
-        </View>
-      </View>
-      <View style = {styles.titleContainer}>
-        <Text style = {styles.titleText}>
-            {props.days}
-        </Text>
-        <Text style = {styles.commentText}>
-            "코멘트입니다. 20자이내로 적으세요...."
-        </Text>
-      </View>
-      <View style = {styles.detailContainer}>
-          <Text style ={styles.dateText}>
-          {props.startDate} ~ {props.endDate}
-          </Text>
-          <Text style ={styles.capacityText}>
-          현재 : {props.capacity} / {props.capacity}
-          </Text>
-          <Text style ={styles.costText}>
-          비용 : {props.charge}
-          </Text>
-      </View>
-    </View>
+ const TrainerListItem = props => (
+  <TouchableOpacity style = {styles.Container} onPress  = {props.onPress}>
+    <Text>
+      {props.Trainer_Id}
+    </Text>
   </TouchableOpacity>
   
 
@@ -58,14 +26,14 @@ const { width, height } = Dimensions.get("window");
 const styles = StyleSheet.create({
   Container:{
     flex:1,
-    height: 100,
-    flexDirection : 'row'
+    paddingVertical : 48,
+    alignItems : 'center',
+    justifyContent : 'center',
   },
   profileContainer :{
     flex:0.4,
     backgroundColor : "#eeeeee",
-    alignItems : 'center',
-    justifyContent : 'center',
+
     paddingVertical : 5,
   },
   titleContainer : {
@@ -125,4 +93,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default GroupsItem;
+export default TrainerListItem;

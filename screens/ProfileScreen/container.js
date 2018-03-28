@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ProfileScreen from "./presenter";
 import { ImagePicker } from 'expo';
-import { Dimensions} from "react-native"
+import { Dimensions, Alert} from "react-native"
 import { actionCreators as userActions } from "../../redux/modules/user";
 
 class Container extends Component {
@@ -14,9 +14,10 @@ class Container extends Component {
       base64:null
     },
     flag: false,
-    weight : 1,
-    muscle : 1,
-    fat : 1,
+    weight : null,
+    muscle : null,
+    fat : null,
+    isSubmitting : false,
   };
   componentDidMount(){
     
@@ -42,7 +43,7 @@ class Container extends Component {
     
     if (!result.cancelled) {
       
-      this.setState({ image:{uri:result.uri, base64:result.base64 },flag : true  });
+      this.setState({ image:{uri:result.uri, data:result.base64 },flag : true  });
       this.dialog.dismiss();
     }
     //navigate("upLoadImage", {image:this.state.image});
@@ -64,30 +65,35 @@ class Container extends Component {
     }
     //navigate("upLoadImage", {image:this.state.image});
   }
-  _submit = async ()=>{
-    
-    const uri = this.state.image.uri;
-    const base64 = this.state.image.base64;
-    
-    let img_type = uri.split(".");
-    img_type = img_type[img_type.length - 1];
-    let response =
-    await fetch(`${HOST_NAME}/user/images`,{
-      method:"POST",
-      headers:{
-        "Content-Type":`image/${img_type};base64`,
-        "x-gs-token": userActions.getToken()
-      },
-      body:base64
-    });
-    if(response.status == 500){
-      return;
+  _submit = async () =>{
+    const { image, weight, muscle, fat ,isSubmitting,flag } = this.state;
+    const { postBodyMeasurements } = this.props;
+    //type알아내기
+    let img_type;
+    let img;
+    if(!flag){
+      img = null;
+    }else{
+      img_type = image.uri.split(".");
+      img_type = img_type[img_type.length - 1];
+      img = {data : image, type : img_type}
     }
-    let result = await response.json();
-    alert(result.msg);
+    if(!isSubmitting){
+      if(weight  && muscle && fat){
+        this.setState({
+          isSubmitting : true
+        });
+        await postBodyMeasurements(img,weight,muscle,fat);
+        this.setState({
+          isSubmitting : false
+        });
+      }else{
+        Alert.alert('All fields are required!');
+      }
+    }
   }
   render() {
-    console.log(this.state.image);
+    console.log(this.state.isSubmitting);
    return (
      <ProfileScreen
       {...this.state}

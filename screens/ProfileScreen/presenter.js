@@ -8,6 +8,7 @@ import {
   Image,
   Dimensions,
   TextInput,
+  ActivityIndicator,
 } from "react-native";
 import PopupDialog , { SlideAnimation, DialogTitle} from 'react-native-popup-dialog';
 import {Feather,MaterialIcons} from "@expo/vector-icons"
@@ -92,7 +93,7 @@ const slideAnimation = new SlideAnimation({
                 autoCorrecto = {false}
                 value = {props.muscle}
                 keyboardType='numeric'
-                onChangeText={props.changeWeight}
+                onChangeText={props.changeMuscle}
               />
               </View>
               <View style = {styles.column}>
@@ -103,14 +104,20 @@ const slideAnimation = new SlideAnimation({
                 autoCorrecto = {false}
                 value = {props.fat}
                 keyboardType='numeric'
-                onChangeText={props.changeWeight}
+                onChangeText={props.changeFat}
               />
               </View>
             </View> 
       </View>
     </View>
     <TouchableOpacity onPressOut = {props.submit} style = {styles.lowerContainer}>
-      <Text style = {styles.submitText}> SUBMIT </Text>
+        <View style={styles.button}>
+            {props.isSubmitting ? 
+            (<ActivityIndicator size = "large" color="white"/>)
+            :
+            (<Text style = {styles.submitText}> SUBMIT </Text>)
+            }
+        </View>
     </TouchableOpacity>
     
 

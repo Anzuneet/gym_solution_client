@@ -13,7 +13,7 @@ import { ScrollView ,
 import { List } from "react-native-elements";
 import GroupsItem from "../../components/GroupsItem";
 import Icon from 'react-native-vector-icons/Ionicons'
-
+import ActionButton from 'react-native-action-button';
 class Container extends Component {
   constructor(props) {
     super(props);
@@ -263,7 +263,6 @@ class Container extends Component {
             <GroupsItem
               data = {item}
               containerStyle={{ borderBottomWidth: 0 }}
-              //onPressItem={Alert.alert(item.email)}
             />
           )}
           
@@ -277,6 +276,17 @@ class Container extends Component {
           //onEndReached={this.handleLoadMore} // 끝에 도달했을때 
           //onEndReachedThreshold={50}
         />
+         <ActionButton buttonColor="rgba(231,76,60,1)">
+          <ActionButton.Item buttonColor='#9b59b6' title="New Training" onPress={() => this.props.navigation.navigate('create')}>
+             <Icon name="md-create" style={styles.actionButtonIcon} />
+           </ActionButton.Item>
+          <ActionButton.Item buttonColor='#3498db' title="logout" onPress={() => this.props.logout()}>
+             <Icon name="md-notifications-off" style={styles.actionButtonIcon} />
+           </ActionButton.Item>
+           <ActionButton.Item buttonColor='#1abc9c' title="All Tasks" onPress={() => {}}>
+             <Icon name="md-done-all" style={styles.actionButtonIcon} />
+           </ActionButton.Item>
+       </ActionButton>
       </List>
     
     );

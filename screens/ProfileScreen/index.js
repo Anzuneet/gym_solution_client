@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { actionCreators as userActions } from "../../redux/modules/user";
 import Container from "./container";
 
 const mapStateToProps = (state, ownProps) => {
@@ -10,12 +11,13 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    getFeed: () => {
-      dispatch(photoActions.getFeed());
-    },
     logout: () => {
       dispatch(userActions.logOut());
+    },
+    postBodyMeasurements : (img,fat,weight,muscle) => {
+      dispatch(userActions.postBodyMeasurements(img,fat,weight,muscle));
     }
+    
   };
 };
 

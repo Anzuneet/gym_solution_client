@@ -1,10 +1,8 @@
 import React from "react";
 import {Text} from 'react-native';
 import {StackNavigator, DrawerNavigator} from "react-navigation";
-import SearchFilterScreen from "../screens/SearchFilterScreen";
-import TabsNavigation from "./TabsNavigation";
 import FeedScreen from "../screens/FeedScreen";
-import SearchScreen from "../screens/SearchScreen";
+import HomeScreen from "../screens/HomeScreen";
 import NotificationsScreen from "../screens/NotificationsScreen";;
 import ProfileScreen from "../screens/ProfileScreen";
 import OwnGroupScreen from "../screens/OwnGroupScreen";
@@ -29,7 +27,7 @@ const RootNavigation = StackNavigator(
 );*/
 
 const DrawerStack = DrawerNavigator({
-    SearcScreen: { screen: SearchScreen },
+    HomeScreen: { screen: HomeScreen },
     OwnGroupScreen: { screen : OwnGroupScreen},
     FeedScreen: { screen: FeedScreen },
     NotificationsScreen: { screen: NotificationsScreen },

@@ -5,7 +5,8 @@ import {Constants, Location, MapView} from 'expo';
 import { actionCreators as userActions } from "../../redux/modules/user";
 
 class Container extends Component {
-  dialog = null;
+  filterDialog = null;
+  infoDialog = null;
   map = null;
   state = {
     mapRegion:null,       
@@ -52,7 +53,7 @@ class Container extends Component {
        });
     let groups = await response.json();
     groups = groups.groups;
-    console.log(groups);
+    //console.log(groups);
     this.setState({groups});
   }
 
@@ -118,7 +119,9 @@ class Container extends Component {
 
   //_changeGroups {this.dialog.dismiss();}
   render() {
+    const {navigate} = this.props.navigation;
     return <SearchScreen
+        navigate = {navigate}
         mapRegion = {this.state.mapRegion}
         gyms = {this.state.gyms}
         handleMapRegionChange = {this._handleMapRegionChange}
