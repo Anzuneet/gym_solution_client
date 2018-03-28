@@ -7,6 +7,9 @@ const ProfileRoute = StackNavigator(
     {
         Profile:{
             screen: ProfileScreen,
+            navigationOptions: {
+                header : null,
+            }
         }
         ,
         ...sharedRoutes

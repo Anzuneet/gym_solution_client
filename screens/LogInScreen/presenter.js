@@ -33,6 +33,7 @@ const LogInScreen = props => (
             placeholder="PhoneNumber" 
             autoCorrecto = {false}
             value = {props.username}
+            keyboardType='numeric'
             onChangeText={props.changeUsername}
             />
         <TextInput 

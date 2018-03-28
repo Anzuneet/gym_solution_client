@@ -1,21 +1,31 @@
 import React from "react";
-import { Image } from "react-native";
+import { Image,TouchableOpacity,Text} from "react-native";
 import { StackNavigator } from "react-navigation";
-import FeedScreen from "../screens/FeedScreen";
+import SearchScreen from "../screens/SearchScreen";
 import sharedRoutes, { sharedOptions } from "./sharedRoutes";
-import NavButton from "../components/NavButton";
+import { actionCreators as userActions} from "../redux/modules/user";
+import SearchFilterScreen from "../screens/SearchFilterScreen"
 
 const HomeRoute = StackNavigator(
   {
     Home: {
-      screen: FeedScreen,
-    
+      screen: SearchScreen,
+      navigationOptions: {
+        header : null,
+      }  
+    },
+    searchFilter:{
+      screen : SearchFilterScreen,
+      navigationOptions :{
+          title : "검색 조건을 설정해주세요!"
+      }
     },
     ...sharedRoutes
   },
- {
-   ...sharedOptions
- }
+  
+  {
+    ...sharedOptions
+  }
 );
  
  export default HomeRoute;

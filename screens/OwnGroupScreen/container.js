@@ -10,8 +10,9 @@ import { ScrollView ,
   StatusBar,
   Image,
  } from "react-native";
-import { List } from "react-native-elements";
+import { List, SearchBar } from "react-native-elements";
 import GroupsItem from "../../components/GroupsItem";
+import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons'
 
 class Container extends Component {
@@ -267,7 +268,7 @@ class Container extends Component {
             />
           )}
           
-          ListHeaderComponent={this.renderHeader}
+          //ListHeaderComponent={this.renderHeader}
           keyExtractor={item => item.uid}
           ItemSeparatorComponent={this.renderSeparator}
           
@@ -277,6 +278,17 @@ class Container extends Component {
           //onEndReached={this.handleLoadMore} // 끝에 도달했을때 
           //onEndReachedThreshold={50}
         />
+        <ActionButton buttonColor="rgba(231,76,60,1)">
+          <ActionButton.Item buttonColor='#9b59b6' title="New Training" onPress={() => this.props.navigation.navigate('create')}>
+            <Icon name="md-create" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+          <ActionButton.Item buttonColor='#3498db' title="logout" onPress={() => this.props.logout()}>
+            <Icon name="md-notifications-off" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+          <ActionButton.Item buttonColor='#1abc9c' title="All Tasks" onPress={() => {}}>
+            <Icon name="md-done-all" style={styles.actionButtonIcon} />
+          </ActionButton.Item>
+      </ActionButton>
       </List>
     
     );
