@@ -210,7 +210,6 @@ function getNotifications() {
 }
 
 function getOwnProfile() {
-  
   return (dispatch, getState) => {
     const { user: { token} } = getState();
     fetch(`${API_URL}/tokens/${token}/user`, {
@@ -227,7 +226,6 @@ function getOwnProfile() {
 
 // 맵의 마커에서 선택한 헬스장의 그룹 목록을 가져오는 함수
 function getGroups(uid) {
- 
   return (dispatch,getState) => {
     const { user: { token} } = getState();
     fetch(`${API_URL}/gyms/${uid}/groups`, { 

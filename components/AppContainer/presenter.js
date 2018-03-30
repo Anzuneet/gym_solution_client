@@ -27,6 +27,9 @@ class AppContainer extends Component {
 
   componentDidMount() {
       const { isLoggedIn, initApp, isTrainer } = this.props;
+      console.log(
+        "it is first"
+      )
       if (isLoggedIn) {
         initApp();
       }

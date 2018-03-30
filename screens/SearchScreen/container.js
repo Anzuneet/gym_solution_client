@@ -1,65 +1,92 @@
 import React, { Component } from "react";
 import {View, Text, StyleSheet} from 'react-native';
 import SearchScreen from "./presenter";
-import {Constants, Location, MapView} from 'expo';
+import {Constants, Location, MapView, Permissions} from 'expo';
 import { actionCreators as userActions } from "../../redux/modules/user";
+import SearchFilterScreen from "../SearchFilterScreen/container";
 
 class Container extends Component {
   filterDialog = null;
   infoDialog = null;
   map = null;
   state = {
-    mapRegion:null,       
-    markers:
-      [
-        {
-
-        }
-      ]
-    ,
-    gyms:[
-      {
-        name:"가라",
-        address:"asd",
-        uid:1,
-        latitude: 37.2926241,
-        longitude: 126.8544851}
-    ],
-    groups:[{
-
-    }],
+    mapRegion:{
+      latitude: 0,
+      longitude: 0,
+      latitudeDelta: 180,
+      longitudeDelta: 180,
+    },       
+    markers:[],
+    gyms:[],
+    filteredGyms:[],
+    groups:[],
+    filteredGroups:[],
+    daysOfWeek:{// 요일 조건
+      MON: false,
+      TUE: false,
+      WED: false,
+      THU: false,
+      FRI: false,
+      SAT: false,
+      SUN: false
+    },
+    time:{// 시간 조건
+      start:null,
+      end:null
+    },
+    charge:{// 가격 조건
+      min: null,
+      max: null
+    }
   };
-
+  
   componentDidMount(){
-    this._getLocationAsync();
-    this._getGyms();
-    this._getAllGroups();
+    this._loadGyms();
+    this._loadAllGroups();
+    this._loadLocationAsync();
+    console.log("componentDIdMoun have to started early");
+    console.log(this.state);
+    
   };
 
-  _getGyms = async()=>{
+  _loadGyms = async()=>{
     let response = await fetch("https://gym.hehehee.net/gyms");
     let gyms = await response.json();
     gyms = gyms.result;
+   // console.log(response.status);
     //console.log(gyms);
-    this.setState({gyms});
+    this.setState({filteredGyms:gyms.map(it=>it)});
+    this.setState({gyms : gyms});
   }
 
-  _getAllGroups = async()=> {
+  _loadAllGroups = async()=> {
     let response = await fetch(`https://gym.hehehee.net/groups`, { 
       method: "GET",
       headers: {
         "x-gs-token": userActions.getToken()
       }
        });
+    //console.log(response.status);
     let groups = await response.json();
     groups = groups.groups;
     //console.log(groups);
     this.setState({groups});
   }
 
-  _getLocationAsync = async () => {
+  _loadLocationAsync = async () => {
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== 'granted') {
+      return;
+    }
     const location = await Location.getCurrentPositionAsync({});
-
+    this.map.animateToRegion(
+      {
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      }
+    );
     //console.log(location);
     this.setState({
       mapRegion: {
@@ -68,38 +95,14 @@ class Container extends Component {
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
       },
-    },()=>{
-      let markers = this.state.gyms.filter((gym)=>{
-        let lat = gym.latitude - this.state.mapRegion.latitude;
-        let lon = gym.longitude - this.state.mapRegion.longitude;
-        lat = lat * lat;
-        lon = lon * lon;
-        let latD = this.state.mapRegion.latitudeDelta;
-        let lonD = this.state.mapRegion.longitudeDelta;
-        latD = latD * latD;
-        lonD = lonD * lonD;
-        return (lat < latD) && (lon< lonD) 
-      });
-      this.setState({markers});
-    });    
+    },()=>{this._updateMarkers()});    
   };
+  _updateMarkers = (mapRegion)=>{
+    if(mapRegion == undefined) mapRegion = this.state.mapRegion;
 
-  _onPress(data){
-    let latitude=data.nativeEvent.coordinate.latitude;
-    let longitude=data.nativeEvent.coordinate.longitude;
-    arrayMarkers.push({
-        latitude:latitude,
-        longitude:longitude,
-    });
-
-    this.setState({markers:arrayMarkers})
-}
-  _handleMapRegionChange = mapRegion => {
-    // this.setState({ mapRegion });
-    // console.log(mapRegion);
-    // console.log(this.state.mapRegion);
-  
-    let markers = this.state.gyms.filter((gym)=>{
+    let markers = this.state.filteredGyms.filter((gym)=>{
+      if(mapRegion == null) return true;
+      //console.log("update markers!");
       let lat = gym.latitude - mapRegion.latitude;
       let lon = gym.longitude - mapRegion.longitude;
       lat = lat * lat;
@@ -110,28 +113,60 @@ class Container extends Component {
       lonD = lonD * lonD;
       return (lat < latD) && (lon< lonD) 
     });
-    
+    //console.log(`마커 갯수 ${markers.length}`);
     this.setState({markers});
-
-    // console.log(markers);
-  };
-
-
+  }
+  _handleMapRegionChange = mapRegion => this.setState({mapRegion},()=>{this._updateMarkers()});
+  _onClickShowDialog = ()=>{
+    if(this.dialog != null){
+      this.dialog.show();
+    }
+    
+  }
+  _onSubmitFilterCondition = (condition)=>{
+    //console.log(this.state);
+    let filteredGroups = this.state.groups.filter(it=>{
+      //이건 요일로만 거름
+      let daysOfWeek = condition.daysOfWeek;
+      for(var key in daysOfWeek){
+        if(daysOfWeek[key] == false)continue;
+        if(it.daysOfWeek.includes(key) == false){
+          return false;
+        }
+      }
+      return true;
+    });
+    let filteredGyms = this.state.gyms.filter(gym=>filteredGroups.findIndex(group=>group.gym.uid == gym.uid) != -1)
+    this.setState({filteredGroups:filteredGroups});
+    this.setState({filteredGyms:filteredGyms},()=>this._updateMarkers());
+    this.setState({daysOfWeek:condition.daysOfWeek});
+    
+    this.dialog.dismiss();
+  }
+  _setDialog = (dialog)=>this.dialog = dialog;
+  _setMapView=(mapview)=>this.map = mapview;
   //_changeGroups {this.dialog.dismiss();}
+  
+  _onPressMarker = (uid)=>{
+    const {getGroups} = this.props;
+    //console.log(uid);
+    //console.log(this.state.gyms[1]);
+    //this.props.navigate("gymInfo",{gym : this.state.gyms[uid]});
+  }
   render() {
     const {navigate} = this.props.navigation;
-    return <SearchScreen
-        navigate = {navigate}
-        mapRegion = {this.state.mapRegion}
-        gyms = {this.state.gyms}
+    //console.log(this.state);
+    return <SearchScreen 
+        {...this.state}
         handleMapRegionChange = {this._handleMapRegionChange}
-        parent = {this}
+        onClickShowDialog={this._onClickShowDialog}
+        onSubmitFilterCondition={this._onSubmitFilterCondition}
+        setDialog={this._setDialog}
+        setMapView={this._setMapView}
+        navigate = {navigate}
+        onPressMarker ={this._onPressMarker}
     />;
   }
-
-
-
-  
 }
 
 export default Container;

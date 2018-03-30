@@ -28,40 +28,43 @@ const SearchScreen = props => (
     <View style = {styles.container}>
         <PopupDialog
             dialogTitle={<DialogTitle title="찾고자하는 training의 조건을 입력해주세요" />}
-            ref={(popupDialog) => { props.parent.filterDialog = popupDialog; }}
+            ref={props.setDialog}
             dialogAnimation={slideAnimation}
             dismissOnTouchOutside = {true}
             height = {300}
         >
-        <SearchFilterScreen 
+        <SearchFilterScreen
+        MON = {props.mon}
+        TUE = {props.tue}
+        WED = {props.wed}
+        THU = {props.thu}
+        FRI = {props.fri}
+        SAT = {props.sat}
+        SUN = {props.sun}
+        onSubmitFilterCondition={props.onSubmitFilterCondition}
         />
+
         </PopupDialog>
         <View style = {styles.mapContainer}>
-            <MapView
-                style={{ alignSelf: 'stretch', height: 500 }}
-                //region={props.mapRegion}
-                initialRegion = {props.mapRegion}
-                onRegionChange={props.handleMapRegionChange}   
-            >
-                {props.gyms.map((marker, index) => (
-                    <MapView.Marker 
-                    key = {index}
-                    coordinate={{latitude:marker.latitude,longitude:marker.longitude}}
-                    title={marker.name}
-                    description={marker.address}
-                    onPress = {userActions.getGroups(marker.uid)}
-                    /> 
-                ))}       
-            </MapView>
-        <TouchableOpacity style = {styles.filterContainer} onPressOut ={ () => props.navigate("gymInfo")}>
-            <Text style = {styles.filterText}>
-                임시로 gyminfo 표시
-            </Text>
-        </TouchableOpacity>
+        <MapView
+            ref={props.setMapView}
+            style={{ alignSelf: 'stretch', height: 500 }}
+            //region={props.mapRegion}
+            //initialRegion = {props.mapRegion}
+            onRegionChangeComplete={props.handleMapRegionChange}   
+          >
+            {props.gyms.map((marker, index) => (
+                <MapView.Marker 
+                key = {index}
+                coordinate={{latitude:marker.latitude,longitude:marker.longitude}}
+                title={marker.name}
+                description={marker.address}
+                onPress = {(index => console.log(index))}
+                /> 
+            ))}       
+        </MapView>
         </View>
-        <TouchableOpacity style = {styles.filterContainer} onPressOut ={ () => {
-            props.parent.filterDialog.show()
-        }} >
+        <TouchableOpacity style = {styles.filterContainer} onPressOut={props.onClickShowDialog}>
             <Text style = {styles.filterText}>
                 검색 조건 설정하기!
             </Text>
