@@ -15,6 +15,7 @@
     "react-native-popup-dialog": "^0.10.46",
     "react-native-simple-radio-button": "^2.7.1",
     "react-native-svg": "^5.5.1",
+    "react-native-timepicker": "^1.0.3",
     "react-navigation": "^1.0.3",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",

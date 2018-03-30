@@ -1,5 +1,5 @@
 import React from "react";
-import {Text} from 'react-native';
+import {Text, Image, StyleSheet, TouchableOpacity,} from 'react-native';
 import {StackNavigator, DrawerNavigator} from "react-navigation";
 import SearchFilterScreen from "../screens/SearchFilterScreen";
 import TabsNavigation from "./TabsNavigation";
@@ -25,6 +25,12 @@ const RootNavigation = StackNavigator(
             title : "검색 조건을 설정해주세요!"
         }
     },
+    searchScreen:{
+        screen : SearchScreen,
+        navigationOptions: {
+            header : null
+        }
+    }
  },
 );*/
 
@@ -44,7 +50,14 @@ headerMode: 'float',
 navigationOptions: ({navigation}) => ({
     headerStyle: {backgroundColor: '#ffbb00'},
     title: 'Logged In to your app!',
-    headerLeft: <Text onPress={() => navigation.navigate('DrawerOpen')}>Menu</Text>
+    headerLeft: 
+    <TouchableOpacity style ={styles.icon} onPressOut={() => navigation.navigate('DrawerOpen')}> 
+         <Image
+         source={require("../assets/images/icon-gym.png")}
+         resizeMode="stretch"
+         style ={styles.icon}
+         />
+    </TouchableOpacity>
 })
 })
 
@@ -61,5 +74,14 @@ const RootNavigation = StackNavigator(
   }
 )
 
+const styles = StyleSheet.create({
+    icon: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    width : 60,
+    height : 60,
+    },
+})
 
 export default RootNavigation;

@@ -32,7 +32,17 @@ const SearchScreens = props => (
             dismissOnTouchOutside = {true}
             height = {300}
         >
-        <SearchFilterScreen/>
+        <SearchFilterScreen
+        MON = {props.mon}
+        TUE = {props.tue}
+        WED = {props.wed}
+        THU = {props.thu}
+        FRI = {props.fri}
+        SAT = {props.sat}
+        SUN = {props.sun}
+        setStateInSearchFilterScreen = {props.setStates}
+        //container = {props.parent}
+        />
 
         </PopupDialog>
         <View style = {styles.mapContainer}>

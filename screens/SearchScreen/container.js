@@ -3,6 +3,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import SearchScreen from "./presenter";
 import {Constants, Location, MapView} from 'expo';
 import { actionCreators as userActions } from "../../redux/modules/user";
+import SearchFilterScreen from "../SearchFilterScreen/container";
 
 class Container extends Component {
   dialog = null;
@@ -27,6 +28,23 @@ class Container extends Component {
     groups:[{
 
     }],
+    daysOfWeek:{// 요일 조건
+      MON: false,
+      TUE: false,
+      WED: false,
+      THU: false,
+      FRI: false,
+      SAT: false,
+      SUN: false
+    },
+    time:{// 시간 조건
+      start:null,
+      end:null
+    },
+    charge:{// 가격 조건
+      min: null,
+      max: null
+    }
   };
 
   componentDidMount(){
@@ -83,6 +101,22 @@ class Container extends Component {
     });    
   };
 
+  _setState = (mon, tue, wed, thu, fri, sat, sun) => {
+      console.log("SearchFilterScreen State Test");
+      this.setState({
+        daysOfWeek:{
+          MON:mon,
+          TUE:tue,
+          WED:wed,
+          THU:thu,
+          FRI:fri,
+          SAT:sat,
+          SUN:sun,
+        } 
+      })
+      console.log(this.state.daysOfWeek);
+  }
+
   _onPress(data){
     let latitude=data.nativeEvent.coordinate.latitude;
     let longitude=data.nativeEvent.coordinate.longitude;
@@ -94,10 +128,7 @@ class Container extends Component {
     this.setState({markers:arrayMarkers})
 }
   _handleMapRegionChange = mapRegion => {
-    // this.setState({ mapRegion });
-    // console.log(mapRegion);
-    // console.log(this.state.mapRegion);
-  
+
     let markers = this.state.gyms.filter((gym)=>{
       let lat = gym.latitude - mapRegion.latitude;
       let lon = gym.longitude - mapRegion.longitude;
@@ -111,18 +142,25 @@ class Container extends Component {
     });
     
     this.setState({markers});
-
-    // console.log(markers);
   };
 
 
   //_changeGroups {this.dialog.dismiss();}
   render() {
-    return <SearchScreen
+    //console.log(this);
+    return <SearchScreen 
+        mon = {this.state.daysOfWeek.MON}
+        tue = {this.state.daysOfWeek.TUE}
+        wed = {this.state.daysOfWeek.WED}
+        thu = {this.state.daysOfWeek.THU}
+        fri = {this.state.daysOfWeek.FRI}
+        sat = {this.state.daysOfWeek.SAT}
+        sun = {this.state.daysOfWeek.SUN}
         mapRegion = {this.state.mapRegion}
         gyms = {this.state.gyms}
         handleMapRegionChange = {this._handleMapRegionChange}
         parent = {this}
+        setStates = {this._setState}
     />;
   }
 
