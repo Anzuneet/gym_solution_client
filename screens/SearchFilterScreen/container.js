@@ -40,8 +40,13 @@ class Container extends Component {
     //this.makeRemoteRequest();
   }
 
-  _searchScreen() {
-    this.props.container._setStates(this.state.monCheck, this.state.tueCheck, this.state.wedCheck, this.state.thuCheck, this.state.friCheck, this.state.satCheck, this.state.sunCheck);
+  _searchScreen =()=> {
+    //this.props.container._setStates(this.state.monCheck, this.state.tueCheck, this.state.wedCheck, this.state.thuCheck, this.state.friCheck, this.state.satCheck, this.state.sunCheck);
+    if(this.props.onSubmitFilterCondition != undefined){
+      this.props.onSubmitFilterCondition({
+        daysOfWeek:this.state.daysOfWeek
+      });
+    }
     //const {navigate} = this.props.navigation;
     //  navigate("searchScreen");
   };

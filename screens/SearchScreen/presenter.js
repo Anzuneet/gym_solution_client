@@ -27,7 +27,7 @@ const SearchScreens = props => (
     <View style = {styles.container}>
         <PopupDialog
             dialogTitle={<DialogTitle title="찾고자하는 training의 조건을 입력해주세요" />}
-            ref={(popupDialog) => { props.parent.dialog = popupDialog; }}
+            ref={props.setDialog}
             dialogAnimation={slideAnimation}
             dismissOnTouchOutside = {true}
             height = {300}
@@ -40,16 +40,17 @@ const SearchScreens = props => (
         FRI = {props.fri}
         SAT = {props.sat}
         SUN = {props.sun}
-        container = {props.parent}
+        onSubmitFilterCondition={props.onSubmitFilterCondition}
         />
 
         </PopupDialog>
         <View style = {styles.mapContainer}>
         <MapView
+            ref={props.setMapView}
             style={{ alignSelf: 'stretch', height: 500 }}
             //region={props.mapRegion}
-            initialRegion = {props.mapRegion}
-            onRegionChange={props.handleMapRegionChange}   
+            //initialRegion = {props.mapRegion}
+            onRegionChangeComplete={props.handleMapRegionChange}   
           >
             {props.gyms.map((marker, index) => (
                 <MapView.Marker 
@@ -62,9 +63,7 @@ const SearchScreens = props => (
             ))}       
         </MapView>
         </View>
-        <TouchableOpacity style = {styles.filterContainer} onPressOut ={ () => {
-            props.parent.dialog.show()
-        }} >
+        <TouchableOpacity style = {styles.filterContainer} onPressOut={props.onClickShowDialog}>
             <Text style = {styles.filterText}>
                 검색 조건 설정하기!
             </Text>
