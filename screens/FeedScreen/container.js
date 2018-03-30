@@ -55,6 +55,8 @@ class Container extends Component {
  };
 
   render() {
+    console.log("feedscreen container");
+    console.log(this.props);
    return (
      <FeedScreen {...this.props} {...this.state} refresh={this._refresh}
      clickWeight = {this._clickWeight}

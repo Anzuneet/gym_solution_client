@@ -44,10 +44,10 @@ function setAllGroups(groups) {
 }
 */
  
-function setUser(user) {
+function setUser(object) {
   return {
     type: SET_USER,
-    user,
+    profile : object.user,
   };
 }
  
@@ -210,6 +210,7 @@ function getNotifications() {
 }
 
 function getOwnProfile() {
+  
   return (dispatch, getState) => {
     const { user: { token} } = getState();
     fetch(`${API_URL}/tokens/${token}/user`, {
@@ -314,7 +315,7 @@ let groups = res.json();
 const initialState = {
  isLoggedIn: false,
  isTrainer : false,
- profile: null,
+ profile : null,
 };
 
 allGroups:[{ 
@@ -357,21 +358,22 @@ function applyLogOut(state, action) {
     ...state,
     isLoggedIn: false,
     token: "",
-    user: null,
+    profile: null,
   };
 }
  
 function applySetUser(state, action) {
-  const { user  } = action;
-  console.log("in applySetUser");
-  console.log(user);
-  if(user.user.gym_uid != null)
+  const { profile  } = action;
+  console.log(applySetUser);
+  console.log(profile);
+  if(profile.gym_uid != null)
     flag = true;
   else
     flag= false;
   return {
     ...state,
     isTrainer:flag,
+    profile,
   };
 }
  

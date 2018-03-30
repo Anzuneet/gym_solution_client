@@ -10,14 +10,32 @@ class Container extends Component {
   
 };
  state = {
+   item : [
+     {
+       title : 1,
+     },
+     {
+      title : 2,
+     },
+     {
+      title : 3,
+    }
+   ]
  };
- 
+  _renderItem ({item, index}) {
+    return (
+        <View>
+            <Text>{ item.title }</Text>
+        </View>
+    );
+  }
 
   render() {
     const {navigate} = this.props.navigation;
    return (
      <ShowTrainerInfoScreen {...this.props} {...this.state}
      navigate = {navigate}
+     renderItem = {this._renderItem}
      />
    );
  }

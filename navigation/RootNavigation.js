@@ -1,5 +1,5 @@
 import React from "react";
-import {Text} from 'react-native';
+import {Text, Image} from 'react-native';
 import {StackNavigator, DrawerNavigator} from "react-navigation";
 import FeedScreen from "../screens/FeedScreen";
 import HomeScreen from "../screens/HomeScreen";
@@ -41,8 +41,8 @@ const DrawerNavigation = StackNavigator({
 headerMode: 'float',
 navigationOptions: ({navigation}) => ({
     headerStyle: {backgroundColor: '#ffbb00'},
-    title: 'Logged In to your app!',
-    headerLeft: <Text onPress={() => navigation.navigate('DrawerOpen')}>Menu</Text>
+    title : <Text style = {{fontSize : 30, fontWeight : "800", color : "white"}}> GYM_SOLUTION </Text>,
+    headerLeft: <Text style = {{paddingLeft : 10}} onPress={() => navigation.navigate('DrawerOpen')}>Menu</Text>
 })
 })
 

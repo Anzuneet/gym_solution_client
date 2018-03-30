@@ -66,9 +66,7 @@ const styles = StyleSheet.create({
     justifyContent : 'center',
     alignItems : 'center',
     paddingVertical : 10,
-    backgroundColor : "#ffbb00",
-    
-    
+    backgroundColor : "pink",
   },
   headerContainer : {
     width: width,
@@ -99,7 +97,7 @@ const styles = StyleSheet.create({
     paddingVertical : 20,
     justifyContent : 'center',
     alignItems : 'center',
-    backgroundColor : '#ffbb00',
+    backgroundColor : 'pink',
   },
   font : {
     fontSize : 10,

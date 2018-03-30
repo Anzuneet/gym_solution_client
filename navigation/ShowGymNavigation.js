@@ -30,13 +30,13 @@ const ShowGymNavigation = StackNavigator({
   showOneGroup:{
     screen: showOneGroupScreen,
     navigationOptions: {
-      title : "showOneGroup"
+      header :null,
     }
   },
   showTrainerInfo:{
     screen: showTrainerInfoScreen,
     navigationOptions: {
-      title : "showTrainerInfo"
+      header:null,
     }
   },
 });
