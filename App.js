@@ -19,8 +19,6 @@ const {persistor, store} = configureStore();
 
 class App extends React.Component 
 {
-
-
   state ={
     isLoadingComplete : false
   }
