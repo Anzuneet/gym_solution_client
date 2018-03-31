@@ -33,12 +33,28 @@ class Container extends Component {
           SAT: props.SAT,
           SUN: props.SUN
         },
+        time:{// 시간 조건
+          start:null,
+          end: null,
+        },
+        charge:{// 가격 조건
+          min: null,
+          max: null,
+        },
     };
   }
 
   componentDidMount() {
     //this.makeRemoteRequest();
   }
+
+  _changechargeMin = (text) =>{
+    this.setState({charge:{min: text}});
+  };
+
+  _changechargeMax = (text) =>{
+    this.setState({charge:{max: text}});
+  };
 
   _searchScreen =()=> {
     //this.props.container._setStates(this.state.monCheck, this.state.tueCheck, this.state.wedCheck, this.state.thuCheck, this.state.friCheck, this.state.satCheck, this.state.sunCheck);
@@ -58,6 +74,9 @@ class Container extends Component {
       <SearchFilterScreen {...this.state}
       container={this}
       searchScreen = {this._searchScreen}
+      changechargeMin = {this._changechargeMin}
+      clickChargeMin = {this._clickChargeMin}
+      changechargeMax = {this._changechargeMax}
       />
     );
   }

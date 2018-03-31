@@ -10,6 +10,7 @@ import { ScrollView ,
   StatusBar,
   Image,
   Button,
+  TextInput,
  } from "react-native";
 import { List, SearchBar, Divider,} from "react-native-elements";
 import GroupsItem from "../../components/GroupsItem";
@@ -92,8 +93,64 @@ const SearchFilterScreen = props => (
         textStyle={styles.textStyle}
         size={15}
         />
+      </View>
+
+
+
+      <View style = {styles.TextInputcontainer}>
+     
+      <TouchableOpacity 
+      style = {styles.TouchableOpacityContainer}      >
+         <TextInput 
+            style = {styles.TouchableOpacityText} 
+            underlineColorAndroid = 'rgba(0,0,0,0)' 
+            placeholder="최소 가격" 
+            autoCorrecto = {false}
+            value = {props.charge.min}
+            keyboardType='numeric'
+            onChangeText={props.changechargeMin}
+         />
+      </TouchableOpacity>
+
+      <Text style ={styles.btnText}>~</Text>
+
+      <TouchableOpacity  
+      style = {styles.TouchableOpacityContainer}>
+          <TextInput 
+          style = {styles.TouchableOpacityText} 
+          underlineColorAndroid = 'rgba(0,0,0,0)' 
+          placeholder="최대 가격" 
+          autoCorrecto = {false}
+          value = {props.charge.max}
+          keyboardType='numeric'
+          onChangeText={props.changechargeMax}
+          />
+      </TouchableOpacity>   
         
       </View>
+
+            <View style = {styles.TextInputcontainer}>
+     
+     <TouchableOpacity style = {styles.TouchableOpacityContainer}
+     onPressOut={props.onClickShowDialog}>
+           <Text style = {styles.TouchableOpacityText}>
+               {props.time.start}
+           </Text>
+     </TouchableOpacity>
+
+     <Text style ={styles.btnText}>~</Text>
+
+     <TouchableOpacity style = {styles.TouchableOpacityContainer}
+     onPressOut={props.onClickShowDialog}>
+           <Text style = {styles.TouchableOpacityText}>
+               {props.time.end}
+           </Text>
+     </TouchableOpacity>   
+       
+     </View>
+
+  
+    
       <View style = {styles.ButtonContainer}>
       <Button 
       color = "#ffbb00"
@@ -101,6 +158,7 @@ const SearchFilterScreen = props => (
       onPress={() => {props.searchScreen()}}
       />
       </View>
+
     </View>
 )
 
@@ -142,6 +200,7 @@ const styles = StyleSheet.create({
   textStyle:{
     fontSize:12,
   },
+  
   ButtonContainer :{
     width : 100,
     justifyContent : 'center',
@@ -154,10 +213,34 @@ const styles = StyleSheet.create({
     alignItems: "center",
 
 },
+TouchableOpacityContainer : {
+   marginLeft: 6,
+    width : 160,
+    backgroundColor : "#ffffff",
+    height : 30,
+},
+TouchableOpacityText : {
+    fontSize : 25,
+    textAlign: "center",
+    color: "black",
+},
 filterText : {
     fontSize : 30,
     color : "rgba(0,0,0,0.5)"
     },
+TextInputcontainer: {
+      flexDirection : 'row',
+      //backgroundColor: '#fff',
+      height:35,
+      backgroundColor : '#f2f2f2',
+    },
+btnText:{
+      color: "black",
+      fontWeight : "600",
+      textAlign: "center",
+      fontSize :25,
+      marginLeft: 3,
+  },
 });
 
 export default SearchFilterScreen;
