@@ -16,6 +16,7 @@ import {
 import PopupDialog , { SlideAnimation } from 'react-native-popup-dialog';
 import CalenderPicker  from '../../components/CalenderPicker';
 import DaysCheckBox from "../../components/DaysCheckBox";
+import DateTimePicker from 'react-native-modal-datetime-picker';
 
 const { width, height } = Dimensions.get("window");
 
@@ -26,26 +27,28 @@ const slideAnimation = new SlideAnimation({
 
 const CreateTrainingScreen = props => (
     <ScrollView>
-        <PopupDialog
-            ref={(popupDialog) => { this.StartDateDialog = popupDialog; }}
-            dialogAnimation={slideAnimation}
-        >
-            <CalenderPicker 
-                Date = {props.start_date}
-                changeDate = {props.changeStartDate}
-            />
-
-        </PopupDialog>
-        <PopupDialog
-            ref={(popupDialog) => { this.EndDateDialog = popupDialog; }}
-            dialogAnimation={slideAnimation}
-        >
-            <CalenderPicker 
-                Date = {props.end_date}
-                changeDate = {props.changeEndDate}
-            />
-
-        </PopupDialog>
+       <DateTimePicker
+          isVisible={props.startTimePickerVisible}
+          onConfirm={props.changeStartDate}
+          onCancel={props.hideStartTimePicker}
+          mode = {'datetime'}
+          
+        />
+       <DateTimePicker
+          isVisible={props.endTimePickerVisible}
+          onConfirm={props.changeEndDate}
+          onCancel={props.hideEndTimePicker}
+          mode = {'date'}
+          
+        />
+        <DateTimePicker
+          isVisible={props.startClockPickerVisible}
+          onConfirm={props.changeStartTime}
+          onCancel={props.hideStartClockPicker}
+          mode = {'time'}
+          is24Hour = {false}
+          
+        />                
         <View style = {styles.titleContainer}>
         <Text style ={styles.titleText}> Training Title </Text>
         <TextInput 
@@ -71,9 +74,7 @@ const CreateTrainingScreen = props => (
                 <Text style = {props.start_date ? styles.dateText : styles.titleText}>
                     {props.start_date ? "시작 일 : " +  props.start_date : "traing의 시작일을 정해주세요!"}
                 </Text>
-                <TouchableOpacity style = {styles.callCalenderContainer} onPressOut={() => {
-                        this.StartDateDialog.show();
-                        }}>
+                <TouchableOpacity style = {styles.callCalenderContainer} onPressOut={props.showStartTimePicker}>
                     <Text style = {styles.callCalender}> click!</Text>
                 </TouchableOpacity>
             </View>
@@ -83,11 +84,34 @@ const CreateTrainingScreen = props => (
                     {props.end_date ? "종료 일 : " + props.end_date : "traing의 종료일을 정해주세요!"}
                 </Text>
 
-                <TouchableOpacity style = {styles.callCalenderContainer} onPressOut={() => {
-                        this.EndDateDialog.show();
-                        }}>
+                <TouchableOpacity style = {styles.callCalenderContainer} onPressOut={props.showEndTimePicker}>
                     <Text style = {styles.callCalender}> click!</Text>
                 </TouchableOpacity>
+            </View>
+
+             <View style ={styles.startTimeContainer}>
+                <Text style = {props.start_time ? styles.dateText : styles.titleText}>
+                    {props.start_time ? "시작 시간 : " + props.start_time : "trainig의 시작 clock을 정해주세요!!"}
+                </Text>
+                {props.start_time ? (
+                    <View style = {styles.durationContainer}>
+                    <Text style = {styles.chargeText}> 운동시간 : </Text>
+                    <TextInput 
+                      style = {styles.capacityInputComment} 
+                      underlineColorAndroid = 'rgba(0,0,0,0)'
+                      placeholder="운동시간입력" 
+                      value = {props.duration}
+                      keyboardType='numeric'
+                      onChangeText={props.changeDuration}
+                  />    
+                  </View>
+                )
+                :
+                ( <TouchableOpacity style = {styles.callCalenderContainer} onPressOut={props.showStartClockPicker}>
+                    <Text style = {styles.callCalender}> click!</Text>
+                </TouchableOpacity>)
+                }
+               
             </View>
 
             <Text style ={styles.titleText}>어느 요일에 진행하실 건가요?</Text>
@@ -110,15 +134,25 @@ const CreateTrainingScreen = props => (
 
         </View>
         <Text style ={styles.titleText}> 비용을 정해주세요 ! </Text>
-        <View style = {styles.chargeContainer}>
-            <Text style = {styles.chargeText}> 비용 : </Text>
+        <View style = {styles.rowContainer}>
+            <View style = {styles.chargeContainer}>
+                <Text style = {styles.chargeText}> 비용 : </Text>
+                <TextInput 
+                style = {styles.chargeInputComment} 
+                underlineColorAndroid = 'rgba(0,0,0,0)'
+                placeholder="비용입력하기" 
+                value = {props.charge}
+                onChangeText={props.changeCharge}
+                keyboardType='numeric'
+            />    
+            </View>
             <TextInput 
-              style = {styles.chargeInputComment} 
-              underlineColorAndroid = 'rgba(0,0,0,0)'
-              placeholder="비용입력하기" 
-              value = {props.charge}
-              onChangeText={props.changeCharge}
-          />    
+                style = {styles.capacityInputComment} 
+                underlineColorAndroid = 'rgba(0,0,0,0)'
+                placeholder="인원수" 
+                value = {props.capacity}
+                keyboardType='numeric'
+                onChangeText={props.changeCapacity}/>
         </View>
         
         <TouchableOpacity style = {styles.touchable} onPressOut={props.submit}>
@@ -142,6 +176,9 @@ const styles = StyleSheet.create({
         height: 100,
         justifyContent : 'center',
         },
+    rowContainer : {
+        flexDirection : 'row',
+    },
     textInputTitle: {
         width : width-150,
         height: 30,
@@ -154,14 +191,14 @@ const styles = StyleSheet.create({
         marginLeft : 20,
         },
     commentContainer: {
-        height: 100,
         justifyContent : 'center',
+        paddingVertical : 20,
         },
     chargeContainer : {
-        height : 200,
         justifyContent : 'flex-start',
         flexDirection : "row",
         marginLeft : 30,
+        marginBottom : 30,
         },
     textInputComment: {
         width : width-30,
@@ -183,15 +220,36 @@ const styles = StyleSheet.create({
         backgroundColor: "#fafafa",
         marginLeft : 20,
     },
+    capacityInputComment : {
+        width : 100,
+        height: 30,
+        borderColor: "#bbb",
+        borderWidth: StyleSheet.hairlineWidth,
+        borderRadius: 5,
+        paddingHorizontal: 15,
+        backgroundColor: "#fafafa",
+        marginLeft : 20,
+    },
+
     dateContainer: {
-        height: 200,
         justifyContent : 'center',
         },
     startDateContainer : {
         flexDirection : 'row',
+        paddingBottom : 10,
     },
     endDateContainer : {
         flexDirection : 'row',
+        paddingBottom : 10,
+    },
+    startTimeContainer : {
+        flexDirection : 'row',
+        paddingBottom : 20,
+    },
+    durationContainer : {
+        justifyContent : 'flex-start',
+        flexDirection : "row",
+        marginLeft : 30,
     },
     dateText: {
         fontSize : 20,
@@ -200,15 +258,16 @@ const styles = StyleSheet.create({
         },
     defaultText: {
         fontSize : 20,
-        fontWeight : "100",
+        fontWeight : "500",
         marginLeft : 30,
         },
     titleText: {
         fontSize : 20,
         marginLeft : 5,
         fontWeight : "500",
+        color : "#ffbb00"
         },
-    calenderButtonContainer :{
+    calenderButtontitleTextContainer :{
         width : 100,
         justifyContent : 'center',
         alignItems : 'center',

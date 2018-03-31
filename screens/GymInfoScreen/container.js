@@ -14,10 +14,12 @@ class Container extends Component {
 
   render() {
     const {navigate} = this.props.navigation;
-    console.log(this.props);
+    const { gym , groups} = this.props.navigation.state.params;
    return (
      <GymInfoScreen {...this.props} {...this.state}
      navigate = {navigate}
+     gymInfo = {gym}
+     groups = {groups}
      />
    );
  }

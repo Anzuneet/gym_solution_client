@@ -13,11 +13,11 @@ import {
       ScrollView,
     } from "react-native";
 import { Ionicons,Feather } from "@expo/vector-icons";
-import {MapView} from 'expo';
 import { actionCreators as userActions } from "../../redux/modules/user";
 import PopupDialog , { SlideAnimation, DialogTitle} from 'react-native-popup-dialog';
 import SearchFilterScreen from "../SearchFilterScreen";
 import ShowGymNavigation from "../../navigation/ShowGymNavigation";
+import MapView, { Marker, AnimatedRegion } from 'react-native-maps';
 const { width, height } = Dimensions.get("window");
 
 const slideAnimation = new SlideAnimation({
@@ -54,12 +54,12 @@ const SearchScreen = props => (
             onRegionChangeComplete={props.handleMapRegionChange}   
           >
             {props.gyms.map((marker, index) => (
-                <MapView.Marker 
+                <Marker
                 key = {index}
                 coordinate={{latitude:marker.latitude,longitude:marker.longitude}}
                 title={marker.name}
                 description={marker.address}
-                onPress = {(index => console.log(index))}
+                onPress = {()=>{ props.onPressMarker(marker)}}
                 /> 
             ))}       
         </MapView>

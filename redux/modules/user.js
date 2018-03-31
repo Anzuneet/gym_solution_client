@@ -45,6 +45,7 @@ function setAllGroups(groups) {
 */
  
 function setUser(object) {
+  console.log(object)
   return {
     type: SET_USER,
     profile : object.user,
@@ -88,25 +89,31 @@ function login(username, password) {
 }
 
 function enrollGroup() {
-  return dispatch => {
-    return fetch(`${API_URL}/groups`, {
-      method: "POST",
-      headers : {
-       "Content-Type": "application/json",
-       "x-gs-token" : tokenKey,
+  return (dispatch, getState) => {
+    const { user: { token} } = getState();
+    fetch(`${API_URL}/user`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "x-gs-token" : token
       },
       body: JSON.stringify({
- 
-        name : name,
-        password : password,
-        phonenumber : phonenumber,
-        type : type,
-        fitness_club_idx : fitness_club_idx,
-        gender : gender,
-        birthday : birthday,
+        capacity:10,
+        comment:"테스트용",
+        title:"타이틀 테스트",
+        period:30,
+        time:"15:30",
+        charge:10,
+        daysOfWeek:["WED","SUN"],
+        start_date:"2018-03-16"
       })
     })
-      .then(response => response.json())
+    then(response => {
+      if (response.status != 200) {
+        dispatch(logOut());
+      } else {
+        return response.json();
+      }})
       .then(json => {
         if (json.msg) {
          Alert.alert(json.msg);
@@ -117,7 +124,7 @@ function enrollGroup() {
       })
  
   };
-};
+ }
 
 function signup(personInfo) {
   const name = personInfo.username;
@@ -212,7 +219,13 @@ function getNotifications() {
 function getOwnProfile() {
   return (dispatch, getState) => {
     const { user: { token} } = getState();
-    fetch(`${API_URL}/tokens/${token}/user`, {
+    console.log(token);
+    fetch(`${API_URL}/user`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "x-gs-token" : token
+      }
     })
       .then(response => {
         if (response.status != 200) {

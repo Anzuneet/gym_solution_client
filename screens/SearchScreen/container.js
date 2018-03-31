@@ -147,11 +147,12 @@ class Container extends Component {
   _setMapView=(mapview)=>this.map = mapview;
   //_changeGroups {this.dialog.dismiss();}
   
-  _onPressMarker = (uid)=>{
+  _onPressMarker = (marker)=>{
     const {getGroups} = this.props;
-    //console.log(uid);
-    //console.log(this.state.gyms[1]);
-    //this.props.navigate("gymInfo",{gym : this.state.gyms[uid]});
+
+    const {navigate} = this.props.navigation;
+    let groups = this.state.filteredGroups.filter(it=>it.gym.uid == marker.uid);
+    navigate("gymInfo", {gym : marker, groups:groups});
   }
   render() {
     const {navigate} = this.props.navigation;

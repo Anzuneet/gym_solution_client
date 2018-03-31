@@ -11,18 +11,15 @@ class Container extends Component {
   
 };
  state = {
-   groups : [
-     {
-       guid :1,
-     },
-     {
-      guid :2,
-    },
-   ],
+  groups: [
+  ]
  };
 
  componentDidMount() {
   //이체육관에등록된 모든 group정보
+  const {groups} = this.props.navigation.state.params
+
+  this.setState({ groups});
 };
 
 makeRemoteRequest = () => {

@@ -26,10 +26,10 @@ const { width, height } = Dimensions.get("window");
     <View style = {styles.headerContainer}>
       <View style = {styles.titleContainer}>
         <Text style = {styles.titleText}>
-          {props.GYMName}
+          {props.gymInfo.name}
         </Text>
       </View>
-      <TouchableOpacity style = {styles.button} onPressOut = {()=> props.navigate('showGroups')}>
+      <TouchableOpacity style = {styles.button} onPressOut = {()=> props.navigate('showGroups' ,{ groups : props.groups})}>
         <Text style = {styles.font}> Groups </Text>
       </TouchableOpacity>
     </View>

@@ -13,8 +13,9 @@ class Container extends Component {
     gym : 1,// number
     start_date : null, //"#Y-#M-#D"형태
     end_date : null,
+    start_time : null, //"%H-%M-%S"
+    duraion : null,
     charge : 10000, //비용
-    time : "", //"%H-%M-%S"
     period : 30,
     groupsTitle : "",
     groupsComment : "",
@@ -26,7 +27,40 @@ class Container extends Component {
     friday : false,
     saturday : false,
     sunday : false,
+    startTimePickerVisible :false,
+    endTimePickerVisible :false,
+    startClockPickerVisible: false,
   }
+  _showStartTimePicker = () => this.setState({ startTimePickerVisible: true });
+
+  _hideStartTimePicker = () => this.setState({ startTimePickerVisible: false });
+
+  _showEndTimePicker = () => this.setState({ endTimePickerVisible: true });
+
+  _hideEndTimePicker = () => this.setState({ endTimePickerVisible: false });
+
+  _showStartClockPicker = () => this.setState({ startClockPickerVisible: true });
+
+  _hideStartClockPicker = () => this.setState({ startClockPickerVisible: false });
+
+
+  _handleStartDatePicked = (date) => {
+    var startdate = new Date(date)
+    oStartDate = (`${startdate.getFullYear()}-${startdate.getMonth()+1}-${startdate.getDate()}`);
+    this.setState({start_date: oStartDate, startTimePickerVisible: false});
+  };
+
+  _handleEndDatePicked = (date) => {
+    var enddate = new Date(date)
+    oEndDate = (`${enddate.getFullYear()}-${enddate.getMonth()+1}-${enddate.getDate()}`);
+    this.setState({end_date: oEndDate, endTimePickerVisible: false});
+  };
+
+  _handleStartClockPicked = (date) => {
+    var startTime = new Date(date)
+    oStartTime = (`${startTime.getHours()}-${startTime.getMinutes()}`);
+    this.setState({start_time: oStartTime, startClockPickerVisible: false});
+  };
 
   _changeMonday = () =>{
     this.state.monday ? this.setState({monday : false}) : this.setState({monday : true});
@@ -51,6 +85,7 @@ class Container extends Component {
   };
 
   _changeGroupsTitle = (title) => {
+    console.log("change In title");
     this.setState({groupsTitle: title});
   };
 
@@ -78,8 +113,16 @@ class Container extends Component {
     this.setState({charge : cost});
   };
 
+  _changeDuration = (duration) => {
+    this.setState({duration : duration});
+  };
+
+  _changeCapacity = (capacity) => {
+    this.setState({capacity : capacity});
+  };
+
   _submit = async () =>{
-    const { username, password, isSubmitting } = this.state;
+    const { username, password,isSubmitting } = this.state;
     const { login, getOwnProfile } = this.props;
     console.log(this.props);
     if(!isSubmitting){
@@ -106,10 +149,11 @@ class Container extends Component {
     return (
       <CreateTrainingScreen
         {...this.state}
-        changeStartDate = {this._changeStartDate}
-        changeEndDate = {this._changeEndDate}
-        changeGruopsTitle = {this._changeGroupsTitle}
-        changeGruopsComment = {this._changeGroupsComment}
+        changeStartDate = {this._handleStartDatePicked}
+        changeEndDate = {this._handleEndDatePicked}
+        changeStartTime = {this._handleStartClockPicked}
+        changeGroupsTitle = {this._changeGroupsTitle}
+        changeGroupsComment = {this._changeGroupsComment}
         changeDaysOfweek = {this._changeDaysOfWeek}
         changeCharge = {this._changeCharge}
         changeMonday = {this._changeMonday}
@@ -119,7 +163,15 @@ class Container extends Component {
         changeFriday = {this._changeFriday}
         changeSaturday = {this._changeSaturday}
         changeSunday = {this._changeSunday}
+        changeDuration = {this._changeDuration }
+        changeCapacity = {this._changeCapacity}
         submit = {this._submit}
+        showStartTimePicker = {this._showStartTimePicker}
+        hideStartTimePicker= {this._hideStartTimePicker}
+        showEndTimePicker = {this._showEndTimePicker}
+        hideEndTimePicker = {this._hideEndTimePicker}
+        showStartClockPicker = {this._showStartClockPicker}
+        hideStartClockPicker = {this._hideStartClockPicker}
       />
     );
   }
