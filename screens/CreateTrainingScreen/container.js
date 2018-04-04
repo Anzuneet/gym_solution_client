@@ -11,14 +11,13 @@ class Container extends Component {
     capacity : 4,
     opener : "",// 아마 token으로 판단할듯
     gym : 1,// number
-    start_date : null, //"#Y-#M-#D"형태
-    end_date : null,
-    start_time : null, //"%H-%M-%S"
-    duraion : null,
+    start_date : "2018-4-4", //"#Y-#M-#D"형태
+    end_date : "2018-04-25",
+    start_time : "18-0-0", //"%H-%M-%S"
     charge : 10000, //비용
     period : 30,
-    groupsTitle : "",
-    groupsComment : "",
+    groupsTitle : "박종휘의 바벨생각",
+    groupsComment : "무조건 20킬로",
     daysOfWeek : ["MON","TUE"],
     monday : false,
     tuesday : false,
@@ -35,7 +34,12 @@ class Container extends Component {
 
   _hideStartTimePicker = () => this.setState({ startTimePickerVisible: false });
 
-  _showEndTimePicker = () => this.setState({ endTimePickerVisible: true });
+  _showEndTimePicker = () => {
+    if(this.state.start_date)
+    this.setState({ endTimePickerVisible: true })
+    else
+    Alert.alert("input start day about your taining");
+  };
 
   _hideEndTimePicker = () => this.setState({ endTimePickerVisible: false });
 
@@ -51,9 +55,20 @@ class Container extends Component {
   };
 
   _handleEndDatePicked = (date) => {
+
     var enddate = new Date(date)
+    var {start_date} = this.state;
+    var s = this.state.start_date.split("-").map(it=>parseInt(it));
+    var startdate = new Date();
+    startdate.setFullYear(s[0]);
+    startdate.setDate(s[2]);
+    startdate.setMonth(s[1]-1);
+    startdate.setHours(0,0,0,0);
+    enddate.setHours(0,0,0,0);
+    var period = (enddate - startdate)/86400000;
+
     oEndDate = (`${enddate.getFullYear()}-${enddate.getMonth()+1}-${enddate.getDate()}`);
-    this.setState({end_date: oEndDate, endTimePickerVisible: false});
+    this.setState({end_date: oEndDate, endTimePickerVisible: false, period});
   };
 
   _handleStartClockPicked = (date) => {
@@ -85,28 +100,11 @@ class Container extends Component {
   };
 
   _changeGroupsTitle = (title) => {
-    console.log("change In title");
     this.setState({groupsTitle: title});
   };
 
   _changeGroupsComment = (comment) => {
     this.setState({groupsComment: comment});
-  };
-
-  _changeStartDate = (date) =>{
-    var startdate = new Date(date)
-    oStartDate = (`${startdate.getFullYear()}-${startdate.getMonth()+1}-${startdate.getDate()}`);
-    this.setState({start_date: oStartDate});
-  };
-
-  _changeEndDate = (date) =>{
-    var endDate = new Date(date)
-    oEndDate = (`${endDate.getFullYear()}-${endDate.getMonth()+1}-${endDate.getDate()}`);
-    this.setState({end_date: oEndDate});
-  };
-
-  _changeDaysOfWeek = (data) => {
-    this.setState({daysOfWeek : data});
   };
 
   _changeCharge = (cost) => {
@@ -120,23 +118,66 @@ class Container extends Component {
   _changeCapacity = (capacity) => {
     this.setState({capacity : capacity});
   };
-
+//t
   _submit = async () =>{
-    const { username, password,isSubmitting } = this.state;
-    const { login, getOwnProfile } = this.props;
-    console.log(this.props);
+    console.log("in submit");
+    var trainingInfo = new Object();
+    var daysOfWeek =new Array();
+    const {navigate} = this.props.navigation;
+    const {  
+      isSubmitting,
+      capacity,
+      start_date,
+      start_time,
+      charge,
+      period,
+      groupsTitle,
+      groupsComment,
+      monday,
+      tuesday,
+      wednesday,
+      thursday,
+      friday,
+      saturday,
+      sunday
+    } = this.state;
+
+    daysOfWeek[0] = monday;
+    daysOfWeek[1] = tuesday;
+    daysOfWeek[2] = wednesday;
+    daysOfWeek[3] = thursday;
+    daysOfWeek[4] = friday;
+    daysOfWeek[5] = saturday;
+    daysOfWeek[6] = sunday;
+    const {enrollGroup} = this.props;
     if(!isSubmitting){
-      if(username  && password){
-        this.setState({
-          isSubmitting : true
-        })
-        const loginResult = await login(username, password);
-        await getOwnProfile();
-        if(!loginResult){
+      if(capacity &&
+        start_date &&
+        start_time &&
+        charge &&
+        period &&
+        groupsTitle &&
+        groupsComment &&
+        daysOfWeek
+      ){
+      this.setState({
+        isSubmitting : true
+      })
+      trainingInfo.title = groupsTitle;
+      trainingInfo.comment = groupsComment;
+      trainingInfo.capacity = capacity;
+      trainingInfo.start_date = start_date;
+      trainingInfo.charge = charge;
+      trainingInfo.time = start_time;
+      trainingInfo.period = period;
+      trainingInfo.days = daysOfWeek;
+
+      result = await enrollGroup(trainingInfo);
+        if(!result){
           this.setState({isSubmitting : false});
+        }else{
+          navigate("management")
         }
-        console.log(loginResult)
-        //submit
         
       }else{
         Alert.alert('All fields are required!');

@@ -31,7 +31,7 @@ const CreateTrainingScreen = props => (
           isVisible={props.startTimePickerVisible}
           onConfirm={props.changeStartDate}
           onCancel={props.hideStartTimePicker}
-          mode = {'datetime'}
+          mode = {'date'}
           
         />
        <DateTimePicker
@@ -158,7 +158,7 @@ const CreateTrainingScreen = props => (
         <TouchableOpacity style = {styles.touchable} onPressOut={props.submit}>
                 <View style={styles.button}>
                     {props.isSubmitting ? 
-                    (<c size = "small" color="white"/>)
+                    (<ActivityIndicator size = "large" color="white"/>)
                     :
                     (<Text style ={styles.btnText}>Make it!</Text>)
                     }

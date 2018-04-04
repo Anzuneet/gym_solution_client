@@ -11,6 +11,9 @@ const LOG_IN = "LOG_IN";
 const LOG_OUT = "LOG_OUT";
 const SET_USER = "SET_USER";
 const SET_NOTIFICATIONS = "SET_NOTIFICATIONS";
+const SET_GROUP = "SET_GROUP";
+const SET_GYM = "SET_GYM";
+
 // const SET_GROUPS = "SET_GROUPS";
   
  // Action Creators
@@ -24,28 +27,7 @@ function setLogIn(token) {
    };
 }
 
-/*
-function setAllGroups(groups) {
-  // 모든 그룹목록을 groups[] 배열에 저장한다. getAllGroups()
-  console.log("in setAllGroups");
-  console.log(groups);
-  if (groups)
-  {
-    console.log("setAllGroups True");
-    allGroups = groups;
-    console.log(allGroups);
-    return allGroups;
-  }
-  else
-  {
-    console.log("setAllGroups False");
-    return false;
-  }
-}
-*/
- 
 function setUser(object) {
-  console.log(object)
   return {
     type: SET_USER,
     profile : object.user,
@@ -63,9 +45,19 @@ function setNotifications(notifications) {
   };
 }
 
+function setGroups(groups) {
+  return {
+    type: SET_GROUP,
+    groups
+  };
+}
+
+function setGyms(gyms) {
+  return { type: SET_GYM, gyms };
+}
+
 // API Actions
 function login(username, password) {
-  console.log("login!!")
   return dispatch => {
    return fetch(`${API_URL}/token`, {
      method: "GET",
@@ -88,30 +80,29 @@ function login(username, password) {
  };
 }
 
-function enrollGroup() {
+function enrollGroup(trainingInfo) {
   return (dispatch, getState) => {
     const { user: { token} } = getState();
-    fetch(`${API_URL}/user`, {
-      method: "GET",
+    fetch(`${API_URL}/groups`, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         "x-gs-token" : token
       },
       body: JSON.stringify({
-        capacity:10,
-        comment:"테스트용",
-        title:"타이틀 테스트",
-        period:30,
-        time:"15:30",
-        charge:10,
-        daysOfWeek:["WED","SUN"],
-        start_date:"2018-03-16"
+        capacity:trainingInfo.capacity,
+        comment:trainingInfo.comment,
+        title:trainingInfo.title,
+        period:trainingInfo.period,
+        time:trainingInfo.time,
+        charge:trainingInfo.charge,
+        daysOfWeek:trainingInfo.days,
+        start_date:trainingInfo.start_date,
       })
     })
-    then(response => {
-      if (response.status != 200) {
-        dispatch(logOut());
-      } else {
+    .then(response => {
+        //console.log(response);
+      }/*else {
         return response.json();
       }})
       .then(json => {
@@ -120,8 +111,8 @@ function enrollGroup() {
           return true;
         } else {
           return false;
-        }
-      })
+        }*/
+      )
  
   };
  }
@@ -219,7 +210,6 @@ function getNotifications() {
 function getOwnProfile() {
   return (dispatch, getState) => {
     const { user: { token} } = getState();
-    console.log(token);
     fetch(`${API_URL}/user`, {
       method: "GET",
       headers: {
@@ -237,28 +227,6 @@ function getOwnProfile() {
   };
 }
 
-// 맵의 마커에서 선택한 헬스장의 그룹 목록을 가져오는 함수
-function getGroups(uid) {
-  return (dispatch,getState) => {
-    const { user: { token} } = getState();
-    fetch(`${API_URL}/gyms/${uid}/groups`, { 
-    method: "GET",
-    headers: {
-      "x-gs-token": token,
-    }
-     })
-     .then(response =>response.json() )
-     .then(json=>{
-      if (json.token) {
-         dispatch(setGroupToken(json.token));
-         return true;
-       } else {
-        Alert.alert(json.msg);
-         return false;
-       }
-    })
- };
-}
 
 function postBodyMeasurements(Img,Fat,Weight,Muscle) {
   const img = Img;
@@ -289,35 +257,46 @@ function postBodyMeasurements(Img,Fat,Weight,Muscle) {
     })
   };
 }
-
-// 전체 헬스장의 모든 그룹목록을 가져오는 함수
-function getAllGroups() {
-  //console.log(initialState.tokenKey)
-  //console.log(uid);
-
-  /*
-  return (dispatch) => {
-   return fetch(`${API_URL}/groups`, { 
-    method: "GET",
-    headers: {
-      "x-gs-token": initialState.tokenKey
-    }
+function getGyms() {
+  return (dispatch, getState) => {
+     const { user: { token } } = getState();
+     fetch(`${API_URL}/gyms`, {
+       method : "GET",
+       headers: {
+            "x-gs-token": token
+       }
      })
-     .then(response =>response.json() )
-     .then(json => dispatch(setAllGroups(json.groups)));
- };
- */
-/*
-let res = fetch(`${API_URL}/groups`, { 
-  method: "GET",
-  headers: {
-    "x-gs-token": initialState.tokenKey
-  }
-   })
-let groups = res.json();
- return groups.groups;
- */
+       .then(response => {
+        if (response.status === 401) {
+          dispatch(userActions.logOut());
+        } else {
+          return response.json();
+        }
+      })
+      .then(json => dispatch(setGyms(json)));
+  };
 }
+
+function getGroups() {
+  return (dispatch, getState) => {
+     const { user: { token } } = getState();
+     fetch(`${API_URL}/groups`, {
+       headers: {
+            "x-gs-token" : token
+       }
+     })
+       .then(response => {
+        if (response.status === 401) {
+          dispatch(userActions.logOut());
+        } else {
+          return response.json();
+        }
+      })
+      .then(json => dispatch(setGroups(json)));
+      
+  };
+}
+
 
 
 // 특정 반경 안 헬스장의 모든 그룹목록을 가져오는 함수
@@ -329,8 +308,6 @@ const initialState = {
  profile : null,
 };
 
-allGroups:[{ 
-}]
  
  // Reducer
 function reducer(state = initialState, action) {
@@ -343,8 +320,10 @@ function reducer(state = initialState, action) {
        return applySetUser(state, action);
     case SET_NOTIFICATIONS:
       return applySetNotifications(state, action);
-   // case SET_GROUPS:
-    //  return applySetAllGroups(state, action);
+    case SET_GROUP:
+      return applySetGroups(state, action);
+    case SET_GYM:
+      return applySetGyms(state, action);
     default:
        return state;
    }
@@ -354,8 +333,6 @@ function reducer(state = initialState, action) {
  
 function applyLogIn(state, action) {
   const { token } = action;
-  //console.log("applyLogin");
-  //console.log(action);
   return {
     ...state,
     isLoggedIn: true,
@@ -375,8 +352,6 @@ function applyLogOut(state, action) {
  
 function applySetUser(state, action) {
   const { profile  } = action;
-  console.log(applySetUser);
-  console.log(profile);
   if(profile.gym_uid != null)
     flag = true;
   else
@@ -396,15 +371,22 @@ function applySetNotifications(state, action) {
   };
 }
 
-/*
-function applySetAllGroups(state, action) {
+function applySetGroups(state, action) {
   const { groups } = action;
   return {
     ...state,
-    allGroups : groups
+    groups
   };
 }
-*/
+
+function applySetGyms(state, action) {
+  const { gyms } = action;
+
+  return {
+    ...state,
+    gyms
+  };
+}
 
 // Exports
 
@@ -414,10 +396,12 @@ const actionCreators = {
   getNotifications,
   getOwnProfile,
   signup,
-  getGroups,
   getToken,
   postBodyMeasurements,
-  // getAllGroups
+  enrollGroup,
+  getGyms,
+  getGroups
+
 };
   
 

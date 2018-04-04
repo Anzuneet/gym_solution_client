@@ -41,11 +41,17 @@ class Container extends Component {
   };
   
   componentDidMount(){
-    this._loadGyms();
-    this._loadAllGroups();
+    this.props.getGroups();
+    this.props.getGyms();
+    //this._loadGyms();
+    //this._loadAllGroups();
     this._loadLocationAsync();
-    console.log("componentDIdMoun have to started early");
+    this.setState({
+      gyms: this.props.gyms.result,
+      groups: this.props.groups
+    })
     console.log(this.state);
+    
     
   };
 
@@ -145,7 +151,6 @@ class Container extends Component {
   }
   _setDialog = (dialog)=>this.dialog = dialog;
   _setMapView=(mapview)=>this.map = mapview;
-  //_changeGroups {this.dialog.dismiss();}
   
   _onPressMarker = (marker)=>{
     const {getGroups} = this.props;
