@@ -112,8 +112,6 @@ const SearchFilterScreen = props => (
         />
       </View>
 
-
-
       <View style = {styles.TextInputcontainer}>
      
       <TouchableOpacity 
@@ -169,8 +167,12 @@ const SearchFilterScreen = props => (
       <Button 
       color = "#ffbb00"
       title="설정 완료"
-      onPress={() => {props.searchScreen()}}
-      />
+      onPress={() => {props.searchScreen()}}/>
+      
+      <Button 
+      color = "#ffbb00"
+      title="조건 초기화"
+      onPress={() => {props.stateInitialization()}}/>
       </View>
     </View>
 )
@@ -218,6 +220,7 @@ const styles = StyleSheet.create({
     width : 100,
     justifyContent : 'center',
     alignItems : 'center',
+    flexDirection : 'row',
   },
   filterContainer: {
     flex : 1,

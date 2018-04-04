@@ -23,7 +23,7 @@ class App extends React.Component
     isLoadingComplete : false
   }
   render() {
-    //store.dispatch({type: "LOG_OUT"});
+    store.dispatch({type: "LOG_OUT"});
     const {isLoadingComplete} =this.state;
     if(!isLoadingComplete){
       return(

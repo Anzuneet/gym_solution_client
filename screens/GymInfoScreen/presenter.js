@@ -1,3 +1,5 @@
+// 어떻게 만들지...
+
 import React from "react";
 import PropTypes from "prop-types";
 import {
@@ -43,20 +45,28 @@ const { width, height } = Dimensions.get("window");
         />
       )}  
     </View>
-    <View style = {styles.commentContainer}>
-      <Text style = {styles.commentText}>
-      {props.GYMComment}
-      </Text>
-    </View>
-    <View style = {styles.trainerListContainer}>
-      <TrainerList
-      Trainer_Id_List = {props.GYMsTrainer}
-      navigate = {props.navigate}/>
-    </View>
-    
+  
+          <View style = {styles.TitleContainer}>
+            <TouchableOpacity style = {props.GymInfoIndex == 1 ? styles.clickedTextContainer : styles.unClickedTextContainer} 
+            onPressOut ={props.clickIntroduction}>
+              <Text  style = {props.GymInfoIndex == 1 ? styles.clickedText : styles.unClickedText}> 
+              소개 </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style = {props.GymInfoIndex == 2 ? styles.clickedTextContainer : styles.unClickedTextContainer} 
+            onPressOut ={props.clickTrainer}>
+            <Text  style = {props.GymInfoIndex == 2 ? styles.clickedText : styles.unClickedText}>  
+              트레이너 </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style = {props.GymInfoIndex == 3 ? styles.clickedTextContainer : styles.unClickedTextContainer}
+            onPressOut ={props.clickReview}>
+              <Text  style = {props.GymInfoIndex == 3 ? styles.clickedText : styles.unClickedText}> 
+              리뷰 </Text>
+            </TouchableOpacity>
+          </View>
   </View>
 );
- 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -101,6 +111,34 @@ const styles = StyleSheet.create({
   },
   font : {
     fontSize : 10,
+  },
+
+
+  TitleContainer : {
+    flexDirection : 'row',
+    width : width,
+    height : 50,
+    borderRadius : 20,
+  },
+  clickedTextContainer : {
+    flex:1,
+    backgroundColor : "#ffbb00",
+    justifyContent : 'center',
+    alignItems : 'center',
+  },
+  unClickedTextContainer : {
+    flex:1,
+    backgroundColor : "#ffffff",
+    justifyContent : 'center',
+    alignItems : 'center',
+  },
+  clickedText : {
+    color : "#ffffff",
+    fontSize : 20,
+  },
+  unClickedText : {
+    color : "#ffbb00",
+    fontSize : 20,
   }
 });
 
@@ -109,3 +147,21 @@ GymInfoScreen.propTypes = {
 };
 
 export default GymInfoScreen;
+
+
+
+/*
+
+  <View style = {styles.commentContainer}>
+      <Text style = {styles.commentText}>
+      {props.
+    </View>GYMComment}
+      </Text>
+    <View style = {styles.trainerListContainer}>
+      <TrainerList
+      Trainer_Id_List = {props.GYMsTrainer}
+      navigate = {props.navigate}/>
+    </View>
+
+
+*/

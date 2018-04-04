@@ -21,7 +21,7 @@ const LogInScreen = props => (
     <StatusBar barStyle={"light-content"} />
     <View style={styles.header}>
         <Image
-        source={require("../../assets/images/logo-gym.png")}
+        source={require("../../assets/images/logo-gym2.png")}
         resizeMode="stretch"
         style={styles.logo}
         />
@@ -99,8 +99,11 @@ const styles = StyleSheet.create({
     width
     },
     logo: {
-    width: 180,
-    height: 65,
+    flex:1, 
+    width: 330,
+    height : 70,
+    //width:180,
+    //height: 65,
     marginTop: 20
     },
     content: {

@@ -1,3 +1,8 @@
+// 180404
+// 스플래시 이미지, 앱 아이콘 만들기
+// 필터 함수에 시간조건이랑 가격 조건 추가
+// UI 다듬기
+
 import React, { Component } from "react";
 import { ScrollView ,
   View, 
@@ -34,12 +39,12 @@ class Container extends Component {
           SUN: props.SUN
         },
         time:{// 시간 조건
-          start:null,
-          end: null,
+          start:props.START,
+          end: props.END,
         },
         charge:{// 가격 조건
-          min: null,
-          max: null,
+          min: props.MIN,
+          max: props.MAX,
         },
         startClockPickerVisible: false,
         endClockPickerVisible: false,
@@ -53,24 +58,32 @@ class Container extends Component {
   }
 
   _changechargeMin = (text) =>{
-    this.setState({charge:{...this.state.charge, min: text}});
+    this.setState({charge:{...this.state.charge, min:text}});
   };
 
   _changechargeMax = (text) =>{
-    this.setState({charge:{...this.state.charge, max: text}});
+    this.setState({charge:{...this.state.charge, max:text}});
+   // this.setState({charge:{...this.props.charge, max:text}})
   };
 
   _searchScreen =()=> {
-    //this.props.container._setStates(this.state.monCheck, this.state.tueCheck, this.state.wedCheck, this.state.thuCheck, this.state.friCheck, this.state.satCheck, this.state.sunCheck);
     if(this.props.onSubmitFilterCondition != undefined){
       this.props.onSubmitFilterCondition({
-        daysOfWeek:this.state.daysOfWeek
+        daysOfWeek:this.state.daysOfWeek,
+        charge:this.state.charge,
+        time:this.state.time
       });
     }
-    //const {navigate} = this.props.navigation;
-    //  navigate("searchScreen");
   };
 
+  // state 초기화 함수
+  _stateInitialization = () => {
+     this.setState({daysOfWeek:{...this.state.daysOfWeek, MON:this.props.MON, TUE:this.props.TUE, WED:this.props.WED, THU:this.props.THU, FRI:this.props.FRI, SAT:this.props.SAT, SUN:this.props.SUN}});
+     this.setState({time:{...this.state.time, start:this.props.START, end:this.props.END}});
+     this.setState({charge:{...this.state.charge, min:this.props.MIN, max:this.props.MAX}});
+  };
+
+  // timePicker 관련 함수
   _showStartTimePicker = () => this.setState({ startTimePickerVisible: true });
   _hideStartTimePicker = () => this.setState({ startTimePickerVisible: false });
   _showEndTimePicker = () => this.setState({ endTimePickerVisible: true });
@@ -94,10 +107,10 @@ class Container extends Component {
   };
 
   render() {
-    console.log("SearchFilterScreen in");
-    console.log(this.state);
+    //console.log("SearchFilterScreen in");
+    //console.log(this.state);
     return (
-       <SearchFilterScreen {...this.state}
+      <SearchFilterScreen {...this.state}
       container={this}
       searchScreen = {this._searchScreen}
       changechargeMin = {this._changechargeMin}
@@ -108,6 +121,7 @@ class Container extends Component {
       hideEndClockPicker = {this._hideEndClockPicker}
       changeStartTime = {this._handleStartClockPicked}
       changeEndTime = {this._handleEndClockPicked}
+      stateInitialization = {this._stateInitialization}
       />
     );
   }
