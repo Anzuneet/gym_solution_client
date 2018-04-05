@@ -43,6 +43,7 @@ const SearchFilterScreen = props => (
         title='월'
         checked={props.daysOfWeek.MON} 
         checkedIcon='dot-circle-o'
+        checkedColor = "#ffbb00"
         uncheckedIcon='circle-o'
         onPress={()=>props.container.setState({daysOfWeek:{...props.daysOfWeek, MON:!props.daysOfWeek.MON}})}
         containerStyle={styles.checkBoxContainer}
@@ -53,6 +54,7 @@ const SearchFilterScreen = props => (
         title='화'
         checked={props.daysOfWeek.TUE} 
         checkedIcon='dot-circle-o'
+        checkedColor = "#ffbb00"
         uncheckedIcon='circle-o'
         onPress={()=>props.container.setState({daysOfWeek:{...props.daysOfWeek,TUE:!props.daysOfWeek.TUE}})}
         containerStyle={styles.checkBoxContainer}
@@ -63,6 +65,7 @@ const SearchFilterScreen = props => (
         title='수'
         checked={props.daysOfWeek.WED} 
         checkedIcon='dot-circle-o'
+        checkedColor = "#ffbb00"
         uncheckedIcon='circle-o'
         onPress={()=>props.container.setState({daysOfWeek:{...props.daysOfWeek,WED:!props.daysOfWeek.WED}})}
         containerStyle={styles.checkBoxContainer}
@@ -73,6 +76,7 @@ const SearchFilterScreen = props => (
         title='목'
         checked={props.daysOfWeek.THU} 
         checkedIcon='dot-circle-o'
+        checkedColor = "#ffbb00"
         uncheckedIcon='circle-o'
         onPress={()=>props.container.setState({daysOfWeek:{...props.daysOfWeek,THU:!props.daysOfWeek.THU}})}
         containerStyle={styles.checkBoxContainer}
@@ -83,6 +87,7 @@ const SearchFilterScreen = props => (
         title='금'
         checked={props.daysOfWeek.FRI} 
         checkedIcon='dot-circle-o'
+        checkedColor = "#ffbb00"
         uncheckedIcon='circle-o'
         onPress={()=>props.container.setState({daysOfWeek:{...props.daysOfWeek,FRI:!props.daysOfWeek.FRI}})}
         containerStyle={styles.checkBoxContainer}
@@ -93,6 +98,7 @@ const SearchFilterScreen = props => (
         title='토'
         checked={props.daysOfWeek.SAT} 
         checkedIcon='dot-circle-o'
+        checkedColor = "#ffbb00"
         uncheckedIcon='circle-o'
         onPress={()=>props.container.setState({daysOfWeek:{...props.daysOfWeek,SAT:!props.daysOfWeek.SAT}})}
         containerStyle={styles.checkBoxContainer}
@@ -104,6 +110,7 @@ const SearchFilterScreen = props => (
         title='일'
         checked={props.daysOfWeek.SUN} 
         checkedIcon='dot-circle-o'
+        checkedColor = "#ffbb00"
         uncheckedIcon='circle-o'
         onPress={()=>props.container.setState({daysOfWeek:{...props.daysOfWeek,SUN:!props.daysOfWeek.SUN}})}
         containerStyle={styles.checkBoxContainer}
@@ -111,7 +118,9 @@ const SearchFilterScreen = props => (
         size={15}
         />
       </View>
-
+      <View style = {styles.subTitleContainer}>
+        <Text  style = {styles.subTitleText} >가격대 </Text>
+      </View>
       <View style = {styles.TextInputcontainer}>
      
       <TouchableOpacity 
@@ -142,11 +151,13 @@ const SearchFilterScreen = props => (
           />
       </TouchableOpacity>   
       </View>
-
+      <View style = {styles.subTitleContainer}>
+        <Text  style = {styles.subTitleText}>운동 시간 </Text>
+      </View>
       <View style = {styles.TextInputcontainer}>
       <TouchableOpacity 
       onPressOut={props.showStartClockPicker}
-      style = {styles.TouchableOpacityContainer}      >
+      style = {styles.TouchableOpacityTimeContainer}      >
       <Text style = {props.time.start ? styles.dateText : styles.titleText}>
                     {props.time.start ? props.time.start : "시작 시간"}
                 </Text>
@@ -156,7 +167,7 @@ const SearchFilterScreen = props => (
 
       <TouchableOpacity  
       onPressOut={props.showEndClockPicker}
-      style = {styles.TouchableOpacityContainer}>
+      style = {styles.TouchableOpacityTimeContainer}>
       <Text style = {props.time.end ? styles.dateText : styles.titleText}>
                     {props.time.end ? props.time.end : "종료 시간"}
                 </Text>
@@ -178,7 +189,8 @@ const SearchFilterScreen = props => (
 )
 
 const styles = StyleSheet.create({
-    container: {
+
+   container: {
         flex :1,
         height:60,
         width:100,
@@ -194,33 +206,36 @@ const styles = StyleSheet.create({
     marginTop: 20
     },
   rowContainer :{
-    flex:1
+    flex:1,
+    backgroundColor : "#f2f2f2",
   },
   weightContainer :{
-      //flex:1,
+      
       flexDirection : 'row',
-     // justifyContent : 'space-between',
+      justifyContent : 'space-between',
       backgroundColor : '#f2f2f2',
-      paddingHorizontal : 7
+
     },
   checkBoxContainer :{
     //flex:2,
     //flexDirection : 'column',
     height:30,
     width:47,
-    marginLeft: -6,
     paddingVertical: 5,
-    paddingHorizontal: 3,
+    marginBottom : 10,
+    paddingHorizontal: 5,
   },
   textStyle:{
     fontSize:12,
   },
   
   ButtonContainer :{
-    width : 100,
-    justifyContent : 'center',
-    alignItems : 'center',
+
     flexDirection : 'row',
+    justifyContent : 'center',
+    borderTopWidth : StyleSheet.hairlineWidth,
+    borderColor : "#ffbb00",
+    paddingTop : 10,
   },
   filterContainer: {
     flex : 1,
@@ -230,10 +245,17 @@ const styles = StyleSheet.create({
 
 },
 TouchableOpacityContainer : {
-   marginLeft: 6,
     width : 160,
     backgroundColor : "#ffffff",
+    justifyContent : 'center',
     height : 30,
+},
+TouchableOpacityTimeContainer : {
+  width : 160,
+  backgroundColor : "#ffffff",
+  justifyContent : 'center',
+  alignItems : 'center',
+  height : 30,
 },
 TouchableOpacityText : {
     fontSize : 25,
@@ -247,8 +269,10 @@ filterText : {
 TextInputcontainer: {
       flexDirection : 'row',
       //backgroundColor: '#fff',
-      height:35,
+      paddingVertical : 10,
       backgroundColor : '#f2f2f2',
+      paddingLeft : 20,
+      
     },
 btnText:{
       color: "black",
@@ -258,16 +282,22 @@ btnText:{
       marginLeft: 3,
   },
   dateText: {
-    fontSize : 20,
+    fontSize : 25,
     fontWeight : "500",
-    marginLeft : 30,
-    },
-    titleText: {
-      fontSize : 20,
-      marginLeft : 5,
-      fontWeight : "500",
-      color : "#ffbb00"
-      },
+  },
+  titleText: {
+    fontSize : 25,
+    fontWeight : "500",
+    color : "#cccccc"
+  },
+  subTitleContainer : {
+    paddingLeft : 10,
+  },
+  subTitleText : {
+    fontSize : 15,
+    color : "#ffbb00",
+    fontWeight : "500",
+  },
 });
 
 export default SearchFilterScreen;

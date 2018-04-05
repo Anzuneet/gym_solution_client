@@ -32,7 +32,9 @@ class Container extends Component {
     { x: "3/14", y: 84.6, l: "three" }
   ],
  };
- 
+ componentDidMount() {
+   this.setState({feed : this.props.list})
+ }
   _clickWeight = () =>{
     this.setState({chartIndex: 1});
   };
@@ -55,8 +57,6 @@ class Container extends Component {
  };
 
   render() {
-    console.log("feedscreen container");
-    console.log(this.props);
    return (
      <FeedScreen {...this.props} {...this.state} refresh={this._refresh}
      clickWeight = {this._clickWeight}

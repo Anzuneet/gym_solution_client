@@ -32,36 +32,37 @@ const { width, height } = Dimensions.get("window");
     //contentContainerStyle={styles.container} 
   >
     <View style={styles.profileContainer}>
-      <TouchableOpacity style = {styles.avatarContainer}>
-        <Image
-          source={
-            /*props.profileObject.profile_image
-              ? {
-                  uri: props.profileObject.profile_image
-                }
-              :*/ 
-            require("../../assets/images/noPhoto.jpg")
-          }
-          style={styles.avatar}
-          //defaultSource={require("../../assets/images/noPhoto.jpg")}
-        />
-      </TouchableOpacity>
       <View style = {styles.personContainer}>
           <View style = {styles.nameContainer}>
             <Text style ={styles.nameText}> {props.profile.name} </Text>
           </View>
-          <View style ={styles.weightContainer}>
+          <View style ={styles.recordContainer}>
+            <TouchableOpacity style = {styles.trainingRecordContainer}>
             <Text style ={styles.weightNameText}>
-            시작
+            현재 Training
             </Text>
+            <Text style = {{paddingTop :10}}> 4 / 10
+            </Text>
+            </TouchableOpacity>
+            <TouchableOpacity style = {styles.newRecordContainer}>
             <Text style ={styles.weightNameText}>
-            현재
+            새로올라온 기록
             </Text>
-            <Text style ={styles.weightNameText}>
-            목표
+            <Text style = {{paddingTop :10, fontSize : 20,}}> 3
             </Text>
+            </TouchableOpacity>
           </View>
+      </View>
     </View>
+    <View style = {styles.commentsContainer}>
+      {props.newComment ?
+      (<Text style = {styles.commentText}>
+      {props.newCommnet}</Text>
+      ):
+      <Text style = {styles.commentText}>
+      현재 등록된 comment가 없네요....
+      
+      </Text>}
     </View>
     <View style = {styles.graphContainer}>
           <View style = {styles.grapheTitleContainer}>
@@ -112,11 +113,13 @@ const { width, height } = Dimensions.get("window");
     </View>
   </ScrollView>
 );
- 
+/* 
+{props.feed &&
+  props.feed.map(photo => <Photo {...photo} key={photo.id} />)}*/
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor : 'pink'
+    backgroundColor : '#rgba(255,176,0,0.6)'
   },
   profileContainer : {
     height : 150,
@@ -127,15 +130,20 @@ const styles = StyleSheet.create({
     marginBottom : 6,
   },
   commentsContainer : {
-    height : 40,
+    flexDirection : 'row',
+    backgroundColor : "#eeeeee",
+    backgroundColor : '#rgba(255,255,255,0.5)',
+    borderWidth: StyleSheet.hairlineWidth,
+    marginBottom : 6,
+    marginHorizontal : 6,
+    borderRadius : 10,
   },
   graphContainer : {
-    backgroundColor : 'pink',
     alignItems : "center",
+    
   }, 
   bodyPictureContainer:{
-    height : 1000,
-    backgroundColor : 'blue',
+    
   },
   avatarContainer : {
     width: 120,
@@ -162,15 +170,21 @@ const styles = StyleSheet.create({
   nameText :{
     fontSize: 30,
     fontWeight:'bold',
+    paddingBottom : 10,
   },
-  weightContainer :{
+  commentText : {
+    paddingLeft : 20,
+    paddingVertical : 10,
+    fontSize :20
+  },
+  recordContainer :{
     flex:2,
     flexDirection : 'row',
-    justifyContent : 'space-between',
+    //justifyContent : 'space-between',
     paddingHorizontal : 20,
     paddingTop : 10,
     borderRadius: 20,
-    backgroundColor : '#f2f2f2',
+    backgroundColor : '#rgba(255,255,255,0.5)',
   },
   weightNameText :{
     fontSize : 20,
@@ -200,7 +214,15 @@ const styles = StyleSheet.create({
   unClickedText : {
     color : "#ffbb00",
     fontSize : 20,
-  }
+  },
+  trainingRecordContainer : {
+    alignItems : 'center',
+    flex : 1,
+  },
+  newRecordContainer : {
+    alignItems : 'center',
+    flex : 1,
+  },
 });
 
 FeedScreen.propTypes = {

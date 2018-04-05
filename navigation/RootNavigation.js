@@ -46,23 +46,23 @@ const DrawerNavigation = StackNavigator({
 }, {
 headerMode: 'float',
 navigationOptions: ({navigation}) => ({
-    headerStyle: {backgroundColor: '#ffbb00'},
+    headerStyle: {backgroundColor: '#rgba(255,176,0,0.6)'},
     title : 
     // <Text style = {{fontSize : 30, fontWeight : "800", color : "white"}}> GYM_SOLUTION </Text>
     <Image
     source={require("../assets/images/logo-gym2.png")}
     resizeMode="stretch"
-    style ={styles.icon}
+    style ={{width : 700,height : 100}}
     />
     ,
     headerLeft: 
     <TouchableOpacity style ={styles.icon} onPressOut={() => navigation.navigate('DrawerOpen')}> 
          <Image
          source={require("../assets/images/icon-gym.png")}
-         resizeMode="stretch"
          style ={styles.icon}
          />
     </TouchableOpacity>
+    
 })
 })
 

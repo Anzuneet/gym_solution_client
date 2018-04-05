@@ -5,10 +5,12 @@ import { actionCreators as userActions } from "../../redux/modules/user";
 
 
 const mapStateToProps = (state, ownProps) => {
-  const { user: {groups, gyms}} = state;
+  const { user: {groups, gyms, profile}} = state;
+  console.log(profile);
   return {
     groups,
-    gyms
+    gyms,
+    profile,
   };
 };
 
@@ -19,6 +21,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     getGyms : () => {
       return dispatch(userActions.getGyms());
+    },
+    getOwnProfile: () =>
+    {
+      return dispatch(userActions.getOwnProfile());
     }
   };
 };

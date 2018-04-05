@@ -47,7 +47,7 @@ const { width, height } = Dimensions.get("window");
               interpolation={"linear"} data={props.data}
               style={{
                 data: {
-                  stroke: "tomato",
+                  stroke: "black",
                   strokeWidth: (d, active) => {return active ? 4 : 2;}
                 },
                 labels: { fill: "black" }

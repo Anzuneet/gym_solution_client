@@ -49,6 +49,10 @@ const SearchScreen = props => (
         />
 
         </PopupDialog>
+        <View style = {styles.titleContainer}>
+            <Text style = {styles.nameText}> {props.username}님 </Text>
+            <Text style = {styles.titleText}>Training 그룹을 찾아보세요!!</Text>
+        </View>
         <View style = {styles.mapContainer}>
         <MapView
             ref={props.setMapView}
@@ -81,9 +85,31 @@ const styles = StyleSheet.create({
         flex :1,
         backgroundColor: "white",
     },
+    titleContainer : {
+        backgroundColor : "transparent",
+        flexDirection : 'row',
+        justifyContent : "flex-end"
+    },
+    nameText : {
+        fontSize : 25,
+        paddingRight : 10,
+        paddingVertical : 10,
+        fontWeight : "500",
+        color : "rgba(0,0,0,0.5)"
+        
+    },
+    titleText : {
+        paddingVertical : 10,
+        fontSize : 20,
+        paddingRight : 20,
+        fontWeight : "300",
+        
+    },
     mapContainer:{
-        flex:10,
         backgroundColor : "#ebebeb",
+        borderWidth : 5,
+        borderColor : "#ffbb00",
+        borderRadius :5,
     },
     filterContainer: {
         flex : 1,
@@ -93,8 +119,8 @@ const styles = StyleSheet.create({
 
     },
     filterText : {
-        fontSize : 30,
-        color : "rgba(0,0,0,0.5)"
+        fontSize : 40,
+        color : "rgba(0,0,0,1)"
         },
 })
 

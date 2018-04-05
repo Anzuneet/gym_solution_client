@@ -14,7 +14,6 @@ import {
       CheckBox,
     } from "react-native";
 import PopupDialog , { SlideAnimation } from 'react-native-popup-dialog';
-import CalenderPicker  from '../../components/CalenderPicker';
 import DaysCheckBox from "../../components/DaysCheckBox";
 import DateTimePicker from 'react-native-modal-datetime-picker';
 

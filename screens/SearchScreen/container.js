@@ -10,6 +10,7 @@ class Container extends Component {
   infoDialog = null;
   map = null;
   state = {
+    username : null,
     mapRegion:{
       latitude: 0,
       longitude: 0,
@@ -43,12 +44,14 @@ class Container extends Component {
   componentDidMount(){
     this.props.getGroups();
     this.props.getGyms();
+    this.props.getOwnProfile();
     //this._loadGyms();
     //this._loadAllGroups();
     this._loadLocationAsync();
     this.setState({
       gyms: this.props.gyms.result,
-      groups: this.props.groups
+      groups: this.props.groups,
+      username: this.props.profile.name
     })
     
   };

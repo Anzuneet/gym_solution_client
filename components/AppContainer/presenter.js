@@ -15,7 +15,7 @@ import {
 import LoggedOutNavigation from "../../navigation/LoggedOutNavigation";
 import RootNavigation from "../../navigation/RootNavigation";
 import TrainerNavigation from "../../navigation/TrainerNavigation";
-
+import LoadingScreen from "../../screens/LoadingScreen"
 
 
 class AppContainer extends Component {
@@ -24,30 +24,38 @@ class AppContainer extends Component {
     initApp: PropTypes.func.isRequired,
     isTrainer:PropTypes.bool.isRequired,
   };
-
-  componentDidMount() {
-      const { isLoggedIn, initApp, isTrainer } = this.props;
-      console.log(
-        "it is first"
-      )
-      if (isLoggedIn) {
-        initApp();
-      }
+  state = {
+    isLoading : true
+  };
+  componentDidMount () {
+    const { isLoggedIn, initApp, isTrainer } = this.props;
+    
+    if (isLoggedIn) {
+      initApp();
+    }
+    
   }
+
   render() {
-    console.log(this.props);
     const { isLoggedIn, profile, isTrainer } = this.props;
+    const {isLoading} =this.state;
     return (
       <View style={styles.container}>
         <StatusBar hidden = {false}/>
+        
         {isLoggedIn ? 
-          ( isTrainer ?
-            <TrainerNavigation/>
-            :
-            <RootNavigation/> 
+          (
+            ( isTrainer ?
+              <TrainerNavigation
+              />
+              :
+              <RootNavigation
+              /> 
             )
+          )
           :
-          <LoggedOutNavigation />}
+            <LoggedOutNavigation />
+          }
       </View>
     );
   }

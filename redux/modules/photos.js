@@ -24,12 +24,13 @@ function setSearch(search) {
 function getFeed() {
   return (dispatch, getState) => {
      const { user: { token } } = getState();
-     fetch(`${API_URL}/images/`, {
+     fetch(`${API_URL}/user/bodymeasurements`, {
        headers: {
-            Authorization: `JWT ${token}`
+            'x-gs-token':token
        }
      })
        .then(response => {
+        
         if (response.status === 401) {
           dispatch(userActions.logOut());
         } else {
