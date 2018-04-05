@@ -142,13 +142,6 @@ class Container extends Component {
       sunday
     } = this.state;
 
-    daysOfWeek[0] = monday;
-    daysOfWeek[1] = tuesday;
-    daysOfWeek[2] = wednesday;
-    daysOfWeek[3] = thursday;
-    daysOfWeek[4] = friday;
-    daysOfWeek[5] = saturday;
-    daysOfWeek[6] = sunday;
     let week = {
       MON:monday,
       TUE:tuesday,
