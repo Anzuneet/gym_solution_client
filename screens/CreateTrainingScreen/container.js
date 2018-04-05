@@ -13,7 +13,7 @@ class Container extends Component {
     gym : 1,// number
     start_date : "2018-4-4", //"#Y-#M-#D"형태
     end_date : "2018-04-25",
-    start_time : "18-0-0", //"%H-%M-%S"
+    start_time : "18:00", //"%H-%M
     charge : 10000, //비용
     period : 30,
     groupsTitle : "박종휘의 바벨생각",
@@ -73,7 +73,7 @@ class Container extends Component {
 
   _handleStartClockPicked = (date) => {
     var startTime = new Date(date)
-    oStartTime = (`${startTime.getHours()}-${startTime.getMinutes()}`);
+    oStartTime = (`${startTime.getHours()}:${startTime.getMinutes()}`);
     this.setState({start_time: oStartTime, startClockPickerVisible: false});
   };
 

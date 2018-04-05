@@ -81,6 +81,8 @@ function login(username, password) {
 }
 
 function enrollGroup(trainingInfo) {
+  console.log("in enrollGroup");
+  console.log(trainingInfo);
   return (dispatch, getState) => {
     const { user: { token} } = getState();
     fetch(`${API_URL}/groups`, {
@@ -101,7 +103,7 @@ function enrollGroup(trainingInfo) {
       })
     })
     .then(response => {
-        //console.log(response);
+        console.log(response);
       }/*else {
         return response.json();
       }})

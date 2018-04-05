@@ -50,34 +50,8 @@ class Container extends Component {
       gyms: this.props.gyms.result,
       groups: this.props.groups
     })
-    console.log(this.state);
-    
     
   };
-
-  _loadGyms = async()=>{
-    let response = await fetch("https://gym.hehehee.net/gyms");
-    let gyms = await response.json();
-    gyms = gyms.result;
-   // console.log(response.status);
-    //console.log(gyms);
-    this.setState({filteredGyms:gyms.map(it=>it)});
-    this.setState({gyms : gyms});
-  }
-
-  _loadAllGroups = async()=> {
-    let response = await fetch(`https://gym.hehehee.net/groups`, { 
-      method: "GET",
-      headers: {
-        "x-gs-token": userActions.getToken()
-      }
-       });
-    //console.log(response.status);
-    let groups = await response.json();
-    groups = groups.groups;
-    //console.log(groups);
-    this.setState({groups});
-  }
 
   _loadLocationAsync = async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
