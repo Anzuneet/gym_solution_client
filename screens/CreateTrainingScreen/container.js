@@ -4,7 +4,7 @@ import CreateTrainingScreen from './presenter';
 
 class Container extends Component {
  
-  
+
   state={
     isSubmitting : false,
     uid : 1,//자동오름차순설정 어케함?

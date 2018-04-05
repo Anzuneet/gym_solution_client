@@ -10,6 +10,7 @@ import { ScrollView ,
   StatusBar,
   Image,
   Button,
+  TextInput,
  } from "react-native";
 import { List, SearchBar, Divider,} from "react-native-elements";
 import GroupsItem from "../../components/GroupsItem";
@@ -17,9 +18,26 @@ import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { CheckBox } from 'react-native-elements';
 import PopupDialog , { SlideAnimation, DialogTitle} from 'react-native-popup-dialog';
+import DateTimePicker from 'react-native-modal-datetime-picker';
 
 const SearchFilterScreen = props => (
+  
     <View style = {styles.rowContainer}>
+
+        <DateTimePicker
+          isVisible={props.startClockPickerVisible}
+          onConfirm={props.changeStartTime}
+          onCancel={props.hideStartClockPicker}
+          mode = {'time'}
+          is24Hour = {false} 
+        />   
+          <DateTimePicker
+          isVisible={props.endClockPickerVisible}
+          onConfirm={props.changeEndTime}
+          onCancel={props.hideEndClockPicker}
+          mode = {'time'}
+          is24Hour = {false} 
+        />  
       <View style = {styles.weightContainer}>
       <CheckBox
         title='월'
@@ -92,14 +110,69 @@ const SearchFilterScreen = props => (
         textStyle={styles.textStyle}
         size={15}
         />
-        
       </View>
+
+      <View style = {styles.TextInputcontainer}>
+     
+      <TouchableOpacity 
+      style = {styles.TouchableOpacityContainer}      >
+         <TextInput 
+            style = {styles.TouchableOpacityText} 
+            underlineColorAndroid = 'rgba(0,0,0,0)' 
+            placeholder="최소 가격" 
+            autoCorrecto = {false}
+            value = {props.charge.min}
+            keyboardType='numeric'
+            onChangeText={props.changechargeMin}
+         />
+      </TouchableOpacity>
+
+      <Text style ={styles.btnText}>~</Text>
+
+      <TouchableOpacity  
+      style = {styles.TouchableOpacityContainer}>
+          <TextInput 
+          style = {styles.TouchableOpacityText} 
+          underlineColorAndroid = 'rgba(0,0,0,0)' 
+          placeholder="최대 가격" 
+          autoCorrecto = {false}
+          value = {props.charge.max}
+          keyboardType='numeric'
+          onChangeText={props.changechargeMax}
+          />
+      </TouchableOpacity>   
+      </View>
+
+      <View style = {styles.TextInputcontainer}>
+      <TouchableOpacity 
+      onPressOut={props.showStartClockPicker}
+      style = {styles.TouchableOpacityContainer}      >
+      <Text style = {props.time.start ? styles.dateText : styles.titleText}>
+                    {props.time.start ? props.time.start : "시작 시간"}
+                </Text>
+      </TouchableOpacity>
+
+      <Text style ={styles.btnText}>~</Text>
+
+      <TouchableOpacity  
+      onPressOut={props.showEndClockPicker}
+      style = {styles.TouchableOpacityContainer}>
+      <Text style = {props.time.end ? styles.dateText : styles.titleText}>
+                    {props.time.end ? props.time.end : "종료 시간"}
+                </Text>
+      </TouchableOpacity>    
+      </View>
+    
       <View style = {styles.ButtonContainer}>
       <Button 
       color = "#ffbb00"
       title="설정 완료"
-      onPress={() => {props.searchScreen()}}
-      />
+      onPress={() => {props.searchScreen()}}/>
+      
+      <Button 
+      color = "#ffbb00"
+      title="조건 초기화"
+      onPress={() => {props.stateInitialization()}}/>
       </View>
     </View>
 )
@@ -142,10 +215,12 @@ const styles = StyleSheet.create({
   textStyle:{
     fontSize:12,
   },
+  
   ButtonContainer :{
     width : 100,
     justifyContent : 'center',
     alignItems : 'center',
+    flexDirection : 'row',
   },
   filterContainer: {
     flex : 1,
@@ -154,10 +229,45 @@ const styles = StyleSheet.create({
     alignItems: "center",
 
 },
+TouchableOpacityContainer : {
+   marginLeft: 6,
+    width : 160,
+    backgroundColor : "#ffffff",
+    height : 30,
+},
+TouchableOpacityText : {
+    fontSize : 25,
+    textAlign: "center",
+    color: "black",
+},
 filterText : {
     fontSize : 30,
     color : "rgba(0,0,0,0.5)"
     },
+TextInputcontainer: {
+      flexDirection : 'row',
+      //backgroundColor: '#fff',
+      height:35,
+      backgroundColor : '#f2f2f2',
+    },
+btnText:{
+      color: "black",
+      fontWeight : "600",
+      textAlign: "center",
+      fontSize :25,
+      marginLeft: 3,
+  },
+  dateText: {
+    fontSize : 20,
+    fontWeight : "500",
+    marginLeft : 30,
+    },
+    titleText: {
+      fontSize : 20,
+      marginLeft : 5,
+      fontWeight : "500",
+      color : "#ffbb00"
+      },
 });
 
 export default SearchFilterScreen;

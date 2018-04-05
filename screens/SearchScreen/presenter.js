@@ -34,13 +34,17 @@ const SearchScreen = props => (
             height = {300}
         >
         <SearchFilterScreen
-        MON = {props.mon}
-        TUE = {props.tue}
-        WED = {props.wed}
-        THU = {props.thu}
-        FRI = {props.fri}
-        SAT = {props.sat}
-        SUN = {props.sun}
+        MON = {props.MON}
+        TUE = {props.TUE}
+        WED = {props.WED}
+        THU = {props.THU}
+        FRI = {props.FRI}
+        SAT = {props.SAT}
+        SUN = {props.SUN}
+        START = {props.start}
+        END = {props.end}
+        MIN = {props.min}
+        MAX = {props.max}
         onSubmitFilterCondition={props.onSubmitFilterCondition}
         />
 

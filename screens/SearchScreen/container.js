@@ -105,24 +105,45 @@ class Container extends Component {
   }
   _onSubmitFilterCondition = (condition)=>{
     //console.log(this.state);
+
     let filteredGroups = this.state.groups.filter(it=>{
-      //이건 요일로만 거름
+
       let daysOfWeek = condition.daysOfWeek;
+      let charge = condition.charge;
+      let time = condigion.time;
+
+      // 요일 필터링
       for(var key in daysOfWeek){
         if(daysOfWeek[key] == false)continue;
         if(it.daysOfWeek.includes(key) == false){
           return false;
         }
       }
+
+      // 가격 필터링
+      if(charge.min == null) return false;
+      else if(charge.max == null) return false;
+      if (it.charge < charge.min || it.charge > charge.max){
+        return false;
+      }
+
+      // 시간 필터링
+
       return true;
     });
+
     let filteredGyms = this.state.gyms.filter(gym=>filteredGroups.findIndex(group=>group.gym.uid == gym.uid) != -1)
     this.setState({filteredGroups:filteredGroups});
     this.setState({filteredGyms:filteredGyms},()=>this._updateMarkers());
     this.setState({daysOfWeek:condition.daysOfWeek});
-    
+    this.setState({charge:condition.charge});
+    this.setState({time:condition.time});
+    console.log("on Filtering")
+    console.log(this.state.filteredGroups);
+    console.log(this.state.groups);
     this.dialog.dismiss();
   }
+
   _setDialog = (dialog)=>this.dialog = dialog;
   _setMapView=(mapview)=>this.map = mapview;
   
@@ -135,7 +156,8 @@ class Container extends Component {
   }
   render() {
     const {navigate} = this.props.navigation;
-    //console.log(this.state);
+    //console.log(this.state.groups);
+    //console.log(this.state.filteredGroups);
     return <SearchScreen 
         {...this.state}
         handleMapRegionChange = {this._handleMapRegionChange}
