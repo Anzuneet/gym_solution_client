@@ -149,6 +149,22 @@ class Container extends Component {
     daysOfWeek[4] = friday;
     daysOfWeek[5] = saturday;
     daysOfWeek[6] = sunday;
+    let week = {
+      MON:monday,
+      TUE:tuesday,
+      WED:wednesday,
+      THU:thursday,
+      FRI:friday,
+      SAT:saturday,
+      SUN:sunday
+    };
+    
+    for(let day in week){
+      if(week[day] == false)
+        continue;
+      daysOfWeek.push(day);
+    }
+
     const {enrollGroup} = this.props;
     if(!isSubmitting){
       if(capacity &&
