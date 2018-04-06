@@ -43,7 +43,7 @@ class Container extends Component {
     
     if (!result.cancelled) {
       
-      this.setState({ image:{uri:result.uri, data:result.base64 },flag : true  });
+      this.setState({ image:{uri:result.uri, base64:result.base64 },flag : true  });
       this.dialog.dismiss();
     }
     //navigate("upLoadImage", {image:this.state.image});

@@ -32,8 +32,34 @@ class Container extends Component {
     { x: "3/14", y: 84.6 }
   ],
  };
-  componentDidMount() {
-  }/*
+ componentWillMount(){
+  const list = this.props.list;
+  let front_ten_items = list.slice(0,10);
+  let fats = front_ten_items.map(it=>{
+    console.log(it.upload_datetime);
+    return {
+      x: it.upload_datetime,
+      y: it.fat
+    };
+  });
+  let muscle = front_ten_items.map(it=>{
+
+    return {
+      x: it.upload_datetime,
+      y: it.muscle
+    };
+  });
+  let weight = front_ten_items.map(it=>{
+    return {
+      x: it.upload_datetime,
+      y: it.weight
+    };
+  });
+  this.setState({
+    ...this.state, Muscle:muscle, Weight:weight, Fat:fats
+  });
+ }
+ /*
   _makeChart = () =>{
     if(this.props.list){
       this.props.list.map((data,index) => {tihs.setState({...Muscle , Mucsle})}
@@ -59,7 +85,6 @@ class Container extends Component {
      });
    }
  };
-
   render() {
    return (
      <FeedScreen {...this.props} {...this.state} refresh={this._refresh}
