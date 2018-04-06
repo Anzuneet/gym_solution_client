@@ -59,6 +59,7 @@ function setGyms(gyms) {
 
 // API Actions
 function login(username, password) {
+  console.log("log")
   return dispatch => {
    return fetch(`${API_URL}/token`, {
      method: "GET",
@@ -209,6 +210,7 @@ function getNotifications() {
 }
 
 function getOwnProfile() {
+  console.log("getOwnProfile");
   return (dispatch, getState) => {
     const { user: { token} } = getState();
     fetch(`${API_URL}/user`, {
@@ -259,6 +261,7 @@ function postBodyMeasurements(Img,Fat,Weight,Muscle) {
   };
 }
 function getGyms() {
+  console.log("getGyms")
   return (dispatch, getState) => {
      const { user: { token } } = getState();
      fetch(`${API_URL}/gyms`, {
@@ -279,6 +282,7 @@ function getGyms() {
 }
 
 function getGroups() {
+  console.log("getGroups")
   return (dispatch, getState) => {
      const { user: { token } } = getState();
      fetch(`${API_URL}/groups`, {
@@ -305,7 +309,7 @@ function getGroups() {
 // Initial State
 const initialState = {
  isLoggedIn: false,
- isTrainer : false,
+ isTrainer : null,
  profile : null,
 };
 
@@ -346,6 +350,7 @@ function applyLogOut(state, action) {
   return {
     ...state,
     isLoggedIn: false,
+    isTrainer:null,
     token: "",
     profile: null,
   };
@@ -353,7 +358,6 @@ function applyLogOut(state, action) {
  
 function applySetUser(state, action) {
   const { profile  } = action;
-  console.log(profile);
   if(profile.gym_uid != null)
     flag = true;
   else

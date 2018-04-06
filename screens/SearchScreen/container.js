@@ -42,17 +42,9 @@ class Container extends Component {
   };
   
   componentDidMount(){
-    this.props.getGroups();
-    this.props.getGyms();
-    this.props.getOwnProfile();
-    //this._loadGyms();
-    //this._loadAllGroups();
     this._loadLocationAsync();
-    this.setState({
-      gyms: this.props.gyms.result,
-      groups: this.props.groups,
-      username: this.props.profile.name
-    })
+    this.setState({gyms: this.props.gyms.result});
+    this.setState({groups : this.props.groups.groups});
     
   };
 
@@ -159,9 +151,8 @@ class Container extends Component {
   }
   render() {
     const {navigate} = this.props.navigation;
-    //console.log(this.state.groups);
-    //console.log(this.state.filteredGroups);
-    return <SearchScreen 
+    return <SearchScreen
+        {...this.props} 
         {...this.state}
         handleMapRegionChange = {this._handleMapRegionChange}
         onClickShowDialog={this._onClickShowDialog}

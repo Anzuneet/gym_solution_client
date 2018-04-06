@@ -22,10 +22,6 @@ class AppContainer extends Component {
   static propTypes = {
     isLoggedIn: PropTypes.bool.isRequired,
     initApp: PropTypes.func.isRequired,
-    isTrainer:PropTypes.bool.isRequired,
-  };
-  state = {
-    isLoading : true
   };
   componentDidMount () {
     const { isLoggedIn, initApp, isTrainer } = this.props;
@@ -34,24 +30,28 @@ class AppContainer extends Component {
       initApp();
     }
     
-  }
-
+  }/*
+  ( isTrainer ?
+    <TrainerNavigation
+    />
+    :
+    <RootNavigation
+    /> 
+  )*/
   render() {
     const { isLoggedIn, profile, isTrainer } = this.props;
-    const {isLoading} =this.state;
     return (
       <View style={styles.container}>
         <StatusBar hidden = {false}/>
         
         {isLoggedIn ? 
-          (
-            ( isTrainer ?
-              <TrainerNavigation
-              />
+          (isTrainer === null ?
+            <LoadingScreen/>
+            :
+            (isTrainer === true) ? 
+              <TrainerNavigation/> 
               :
-              <RootNavigation
-              /> 
-            )
+              <RootNavigation/>
           )
           :
             <LoggedOutNavigation />

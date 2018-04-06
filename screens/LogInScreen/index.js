@@ -9,6 +9,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     getOwnProfile: () => {
       return dispatch(userActions.getOwnProfile());
+    },
+    getGyms: () => {
+      return dispatch(userActions.getGyms());
+    },
+    getGroups: () => {
+      return dispatch(userActions.getGroups());
     }
   };
 };

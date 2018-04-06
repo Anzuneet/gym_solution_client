@@ -4,7 +4,6 @@ import {actionCreators as photoActions } from "../../redux/modules/photos";
 import {actionCreators as userActions} from "../../redux/modules/user";
 
 const mapStateProps = (state, ownProps) => {
-    //console.log(state);
     const { user} =state;
     return {
         isLoggedIn: user.isLoggedIn,
@@ -17,6 +16,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         initApp: () => {
             dispatch(photoActions.getFeed());
+            dispatch(userActions.getGroups());
+            dispatch(userActions.getGyms());
             //getSearch
             //getNotifications
             dispatch(userActions.getOwnProfile());

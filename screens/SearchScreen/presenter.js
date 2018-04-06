@@ -50,7 +50,9 @@ const SearchScreen = props => (
 
         </PopupDialog>
         <View style = {styles.titleContainer}>
-            <Text style = {styles.nameText}> {props.username}님 </Text>
+            {props.profile ? <Text style = {styles.nameText}> {props.profile.name}님 </Text> :
+        <Text></Text>}
+            
             <Text style = {styles.titleText}>Training 그룹을 찾아보세요!!</Text>
         </View>
         <View style = {styles.mapContainer}>
