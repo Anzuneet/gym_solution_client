@@ -4,10 +4,10 @@ import { actionCreators as photoActions } from "../../redux/modules/photos";
 import { actionCreators as userActions} from "../../redux/modules/user";
  
 const mapStateToProps = (state, ownProps) => {
-  const { photos: { feed } } = state;
   const { user : {profile}} =state;
+  const {list} = state.photos.feed;
   return {
-    feed,
+    list,
     profile
   };
 };

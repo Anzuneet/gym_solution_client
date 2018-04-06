@@ -7,34 +7,38 @@ import NavButton from "../../components/NavButton";
  
 class Container extends Component {
  static propTypes = {
-   feed: PropTypes.array,
+   list: PropTypes.array,
    getFeed: PropTypes.func.isRequired
 };
  state = {
   chartIndex : 1,
   isFetching: false,
   Fat : [
-      { x: "3/1", y: 13.8, l: "one" },
-      { x: "3/5", y: 14.0, l: "one point five" },
-      { x: "3/9", y: 12.9, l: "two" },
-      { x: "3/14", y: 12.7, l: "three" }
+      { x: "3/1", y: 13.8},
+      { x: "3/5", y: 14.0},
+      { x: "3/9", y: 12.9},
+      { x: "3/14", y: 12.7 }
   ],
   Muscle : [
-    { x: "3/1", y: 34.1, l: "one" },
-    { x: "3/5", y: 34.5, l: "one point five" },
-    { x: "3/9", y: 34.6, l: "two" },
-    { x: "3/14", y: 35.2, l: "three" }
+    { x: "3/1", y: 34.1 },
+    { x: "3/5", y: 34.5},
+    { x: "3/9", y: 34.6 },
+    { x: "3/14", y: 35.2}
   ],
   Weight : [
-    { x: "3/1", y: 85.4, l: "one" },
-    { x: "3/5", y: 85.6, l: "one point five" },
-    { x: "3/9", y: 84.7, l: "two" },
-    { x: "3/14", y: 84.6, l: "three" }
+    { x: "3/1", y: 85.4 },
+    { x: "3/5", y: 85.6},
+    { x: "3/9", y: 84.7},
+    { x: "3/14", y: 84.6 }
   ],
  };
- componentDidMount() {
-   this.setState({feed : this.props.list})
- }
+  componentDidMount() {
+  }/*
+  _makeChart = () =>{
+    if(this.props.list){
+      this.props.list.map((data,index) => {tihs.setState({...Muscle , Mucsle})}
+    }
+  }*/
   _clickWeight = () =>{
     this.setState({chartIndex: 1});
   };

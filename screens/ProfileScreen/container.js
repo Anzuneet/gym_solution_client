@@ -76,7 +76,7 @@ class Container extends Component {
     }else{
       img_type = image.uri.split(".");
       img_type = img_type[img_type.length - 1];
-      img = {data : image, type : img_type}
+      img = {data : image.base64, type : img_type}
     }
     if(!isSubmitting){
       if(weight  && muscle && fat){

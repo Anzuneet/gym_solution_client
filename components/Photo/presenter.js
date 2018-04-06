@@ -15,58 +15,69 @@ const { width, height } = Dimensions.get("window");
 
 const Photo = props => (
   <View style={styles.photo}>
-    <TouchableOpacity
-      onPressOut={}
-    >
       <View style={styles.header}>
-        <FadeIn>
-          <Image
-            source={
-              props.creator.profile_image
-                ? {
-                    uri: props.creator.profile_image
-                  }
-                : require("../../assets/images/noPhoto.jpg")
-            }
-            style={styles.avatar}
-          />
-        </FadeIn>
         <View>
-          <Text style={styles.author}>{props.creator.username}</Text>
-          {props.location && (
-            <Text style={styles.location}>{props.location}</Text>
-          )}
+          <Text style={styles.date}>{props.dateCasting(props.upload_datetime)}</Text>
         </View>
       </View>
-    </TouchableOpacity>
     <FadeIn>
-      <Image
-        source={{ uri: props.file }}
-        style={{ width, height: props.is_vertical ? 600 : 300 }}
-      />
+      {props.image ?  
+            (<Image source={{uri:props.image} } style = {{width: width, height: height*0.63}}/>)
+            :( 
+            <Image
+              source={require("../../assets/images/photoPlaceholder.png")}
+              style = {{width: width, height: height *0.63}}
+            />
+            )}  
     </FadeIn>
-    <View style={styles.photoMeta}>
-      <View style={styles.comment}>
-        <Text style={styles.commentAuthor}>
-          {props.creator.username}{" "}
-          <Text style={styles.message}>{props.caption}</Text>
-        </Text>
+    <View style = {styles.tableContainer}>
+        <View style = {styles.upperRow}>
+          <View style = {styles.column}>
+          </View>
+          <View style = {styles.column}>
+            <Text style = {styles.tableAttribute}> Weight </Text>
+          </View>
+          <View style = {styles.column}>
+            <Text style = {styles.tableAttribute}> Muscle </Text>
+          </View>
+          <View style = {styles.column}>
+            <Text style = {styles.tableAttribute}> Fat </Text>
+          </View>
+        </View>
+        <View style = {styles.lowerRow}>
+          <View style = {styles.column}>
+            <Text style = {styles.tableAttribute}> data </Text>
+          </View>
+          <View style = {styles.column}>
+          <Text style = {styles.tableData}> {props.weight} </Text>
+          </View>
+          <View style = {styles.column}>
+          <Text style = {styles.tableData}> {props.muscle} </Text>
+          </View>
+          <View style = {styles.column}>
+          <Text style = {styles.tableData}> {props.fat} </Text>
+          </View>
+        </View> 
       </View>
-      <Text style={styles.dateText}>{props.natural_time.toUpperCase()}</Text>
-    </View>
+      <View style = {styles.commentContainer}>
+        <View style = {styles.commentTrainerContainer}></View>
+        {props.comment ? <Text>props.cooment.trainer</Text> : <Text style = {styles.commentText}></Text>} 
+        <View style = {styles.commentTextContainer}></View>
+        {props.comment ? <Text>props.cooment.comment</Text> : <Text style = {styles.commentText}>현재 등록된 코멘트가 없어요...</Text>} 
+      </View>
   </View>
 );
 
 const styles = StyleSheet.create({
   photo: {
     width,
-    marginBottom: 10
+    marginBottom: 10,
+    backgroundColor: "#ffffff"
   },
   header: {
     paddingHorizontal: 15,
-    flexDirection: "row",
     paddingVertical: 15,
-    alignItems: "center",
+    alignItems: "flex-end",
     borderBottomColor: "#bbb",
     borderBottomWidth: StyleSheet.hairlineWidth,
     flex: 1
@@ -77,67 +88,58 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginRight: 10
   },
-  author: {
+  date: {
     fontWeight: "600",
     marginBottom: 3,
-    fontSize: 15
+    fontSize: 30,
+    color: "#rgba(0,0,0,0.5)"
   },
   location: {
     fontSize: 13
   },
-  photoMeta: {
-    paddingHorizontal: 15
+  tableContainer  : {
+    flex :1,
   },
-  comment: {
-    marginTop: 5
+  upperRow  : {
+    height : 50,
+    flexDirection : 'row',
+    backgroundColor : "#rgba(255,176,0,1)"
   },
-  commentAuthor: {
-    marginRight: 5,
-    fontWeight: "600",
-    fontSize: 14
+  lowerRow  : {
+    height : 50,
+    flexDirection : 'row',
+    backgroundColor : '#rgba(0,0,0,0.15)',
   },
-  message: {
-    fontWeight: "400",
-    fontSize: 15
+  column  : {
+    flex : 1,
+    backgroundColor : 'transparent',
+    justifyContent : 'center',
+    alignItems : 'center',
+    borderColor : "white",
+    borderWidth : StyleSheet.hairlineWidth,
   },
-  commentsLink: {
-    marginTop: 5
+  tableAttribute : {
+    fontSize : 25,
+    fontWeight : "500",
   },
-  linkText: {
-    fontSize: 15,
-    color: "#999"
+  tableData : {
+    fontSize : 20,
+    color: "#rgba(0,0,0,0.5)",
+    fontWeight : "300",
   },
-  dateText: {
-    fontSize: 12,
-    color: "#999",
-    marginTop: 10
+  commentContainer : {
+    flexDirection : 'row',
+    backgroundColor : 'rgba(255,230,0,0.5)',
+  },
+  commentText : {
+    paddingVertical : 10,
+    paddingLeft : 15,
+    fontSize : 20,
   }
 });
 
 Photo.propTypes = {
-  id: PropTypes.number.isRequired,
-  creator: PropTypes.shape({
-    profile_image: PropTypes.string,
-    username: PropTypes.string.isRequired
-  }).isRequired,
-  location: PropTypes.string.isRequired,
-  file: PropTypes.string.isRequired,
-  like_count: PropTypes.number.isRequired,
-  caption: PropTypes.string.isRequired,
-  comments: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      message: PropTypes.string.isRequired,
-      creator: PropTypes.shape({
-        profile_image: PropTypes.string,
-        username: PropTypes.string.isRequired
-      }).isRequired
-    })
-  ).isRequired,
-  natural_time: PropTypes.string.isRequired,
-  is_liked: PropTypes.bool.isRequired,
-  is_vertical: PropTypes.bool.isRequired,
-  handlePress: PropTypes.func.isRequired
+
 };
 
 export default withNavigation(Photo);

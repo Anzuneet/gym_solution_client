@@ -17,6 +17,8 @@ import {
   VictoryLine, 
 }from "victory-native";
 import ProfileChart from "../../components/ProfileChart";
+import Photo from "../../components/Photo"
+
 const { width, height } = Dimensions.get("window");
 
  const FeedScreen = props => (
@@ -102,20 +104,19 @@ const { width, height } = Dimensions.get("window");
               )
             }
           />
-          <TouchableOpacity onPressOut ={ props.logOut }>
-            <Text> LOGOUT </Text>
-          </TouchableOpacity>
     </View>
             
     
     <View style = {styles.bodyPictureContainer}>
-
+      {props.list && 
+      props.list.map((photo,index) => <Photo {...photo} key={index}/>)}
     </View>
+
   </ScrollView>
 );
 /* 
 {props.feed &&
-  props.feed.map(photo => <Photo {...photo} key={photo.id} />)}*/
+  props.feed.map((photo,index) => <Photo {...photo} key={index} />)}*/
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -133,7 +134,6 @@ const styles = StyleSheet.create({
     flexDirection : 'row',
     backgroundColor : "#eeeeee",
     backgroundColor : '#rgba(255,255,255,0.5)',
-    borderWidth: StyleSheet.hairlineWidth,
     marginBottom : 6,
     marginHorizontal : 6,
     borderRadius : 10,

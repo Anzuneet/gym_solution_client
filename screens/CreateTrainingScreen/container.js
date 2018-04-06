@@ -181,13 +181,9 @@ class Container extends Component {
       trainingInfo.period = period;
       trainingInfo.days = daysOfWeek;
 
-      result = await enrollGroup(trainingInfo);
-        if(!result){
-          this.setState({isSubmitting : false});
-        }else{
-          navigate("management")
-        }
-        
+        await enrollGroup(trainingInfo);
+        this.setState({isSubmitting : false});
+        navigate("management")
       }else{
         Alert.alert('All fields are required!');
       }

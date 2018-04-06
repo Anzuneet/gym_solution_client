@@ -57,57 +57,57 @@ const slideAnimation = new SlideAnimation({
       
 
       <View style = {styles.tableContainer}>
-            <View style = {styles.upperRow}>
-              <View style = {styles.column}>
-              </View>
-              <View style = {styles.column}>
-                <Text style = {styles.tableAttribute}> Weight </Text>
-              </View>
-              <View style = {styles.column}>
-                <Text style = {styles.tableAttribute}> Muscle </Text>
-              </View>
-              <View style = {styles.column}>
-                <Text style = {styles.tableAttribute}> Fat </Text>
-              </View>
+          <View style = {styles.upperRow}>
+            <View style = {styles.column}>
             </View>
-            <View style = {styles.lowerRow}>
-              <View style = {styles.column}>
-                <Text style = {styles.tableAttribute}> data </Text>
-              </View>
-              <View style = {styles.column}>
-              <TextInput 
-                style = {styles.textInput} 
-                underlineColorAndroid = 'rgba(0,0,0,0)' 
-                placeholder="Weight" 
-                autoCorrecto = {false}
-                value = {props.weight}
-                keyboardType='numeric'
-                onChangeText={props.changeWeight}
-              />
-              </View>
-              <View style = {styles.column}>
-              <TextInput 
-                style = {styles.textInput} 
-                underlineColorAndroid = 'rgba(0,0,0,0)' 
-                placeholder="Muscle" 
-                autoCorrecto = {false}
-                value = {props.muscle}
-                keyboardType='numeric'
-                onChangeText={props.changeMuscle}
-              />
-              </View>
-              <View style = {styles.column}>
-              <TextInput 
-                style = {styles.textInput} 
-                underlineColorAndroid = 'rgba(0,0,0,0)' 
-                placeholder="Fat" 
-                autoCorrecto = {false}
-                value = {props.fat}
-                keyboardType='numeric'
-                onChangeText={props.changeFat}
-              />
-              </View>
-            </View> 
+            <View style = {styles.column}>
+              <Text style = {styles.tableAttribute}> Weight </Text>
+            </View>
+            <View style = {styles.column}>
+              <Text style = {styles.tableAttribute}> Muscle </Text>
+            </View>
+            <View style = {styles.column}>
+              <Text style = {styles.tableAttribute}> Fat </Text>
+            </View>
+          </View>
+          <View style = {styles.lowerRow}>
+            <View style = {styles.column}>
+              <Text style = {styles.tableAttribute}> data </Text>
+            </View>
+            <View style = {styles.column}>
+            <TextInput 
+              style = {styles.textInput} 
+              underlineColorAndroid = 'rgba(0,0,0,0)' 
+              placeholder="Weight" 
+              autoCorrecto = {false}
+              value = {props.weight}
+              keyboardType='numeric'
+              onChangeText={props.changeWeight}
+            />
+            </View>
+            <View style = {styles.column}>
+            <TextInput 
+              style = {styles.textInput} 
+              underlineColorAndroid = 'rgba(0,0,0,0)' 
+              placeholder="Muscle" 
+              autoCorrecto = {false}
+              value = {props.muscle}
+              keyboardType='numeric'
+              onChangeText={props.changeMuscle}
+            />
+            </View>
+            <View style = {styles.column}>
+            <TextInput 
+              style = {styles.textInput} 
+              underlineColorAndroid = 'rgba(0,0,0,0)' 
+              placeholder="Fat" 
+              autoCorrecto = {false}
+              value = {props.fat}
+              keyboardType='numeric'
+              onChangeText={props.changeFat}
+            />
+            </View>
+          </View> 
       </View>
     </View>
     <TouchableOpacity onPressOut = {props.submit} style = {styles.lowerContainer}>

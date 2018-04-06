@@ -59,7 +59,7 @@ function setGyms(gyms) {
 
 // API Actions
 function login(username, password) {
-  console.log("log")
+
   return dispatch => {
    return fetch(`${API_URL}/token`, {
      method: "GET",
@@ -103,19 +103,17 @@ function enrollGroup(trainingInfo) {
       })
     })
     .then(response => {
-        //console.log(response);
-      }/*else {
+        if(response == 403)
+          dispatch(logOut());
+      else 
         return response.json();
-      }})
+      })
       .then(json => {
         if (json.msg) {
          Alert.alert(json.msg);
           return true;
-        } else {
-          return false;
-        }*/
-      )
- 
+        }
+      })
   };
  }
 
@@ -210,7 +208,6 @@ function getNotifications() {
 }
 
 function getOwnProfile() {
-  console.log("getOwnProfile");
   return (dispatch, getState) => {
     const { user: { token} } = getState();
     fetch(`${API_URL}/user`, {
@@ -261,7 +258,6 @@ function postBodyMeasurements(Img,Fat,Weight,Muscle) {
   };
 }
 function getGyms() {
-  console.log("getGyms")
   return (dispatch, getState) => {
      const { user: { token } } = getState();
      fetch(`${API_URL}/gyms`, {
@@ -282,7 +278,6 @@ function getGyms() {
 }
 
 function getGroups() {
-  console.log("getGroups")
   return (dispatch, getState) => {
      const { user: { token } } = getState();
      fetch(`${API_URL}/groups`, {
