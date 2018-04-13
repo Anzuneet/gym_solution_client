@@ -33,17 +33,17 @@ class Container extends Component {
 
   _submit = async () =>{
     const { username, password, isSubmitting } = this.state;
-    const { login, getOwnProfile,getGyms, getGroups } = this.props;
+    const { login, getOwnProfile,getGyms, getGroups, getFeed } = this.props;
     if(!isSubmitting){
       if(username  && password){
         this.setState({
           isSubmitting : true
         })
         const loginResult = await login(username, password);
-        await getOwnProfile();
         await getGyms();
         await getGroups();
-        
+        await getFeed();
+        await getOwnProfile();
         if(!loginResult){
           this.setState({isSubmitting : false});
         }

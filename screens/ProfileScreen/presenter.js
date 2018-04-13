@@ -132,11 +132,11 @@ const styles = StyleSheet.create({
   },
   upperContainer : {
     flex:4,
-    backgroundColor : "pink",
+    backgroundColor : "#ffbb00",
   },
   lowerContainer :{
     flex :0.5,
-    backgroundColor:"pink",
+    backgroundColor:"#ffbb00",
     justifyContent : 'center',
     alignItems : 'center',
   },

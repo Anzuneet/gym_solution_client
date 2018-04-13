@@ -11,7 +11,6 @@ _dateCasting(text){
   return outText;
 }
   render() {
-    console.log(this.props.weight);
     return (
       <Photo {...this.props} {...this.state}
       dateCasting = {this._dateCasting} />

@@ -14,7 +14,7 @@ import {
   VictoryChart,
   VictoryVoronoiContainer,
   VictoryTooltip,
-  VictoryLine,
+  VictoryTheme,
   VictoryScatter
 }from "victory-native";
 
@@ -29,7 +29,7 @@ const { width, height } = Dimensions.get("window");
         <Text style = {styles.title}> {props.name} </Text>
       </View>
       <VictoryChart height={200} width={width}
-            domainPadding={{ y: 10 }}
+            theme = {VictoryTheme.material}
             containerComponent={
               <VictoryVoronoiContainer
                 voronoiDimension="x"
@@ -43,8 +43,9 @@ const { width, height } = Dimensions.get("window");
                 }
               />}
       >
-            <VictoryLine
-              interpolation={"linear"} data={props.data}
+            <VictoryScatter
+              data={props.data}
+              size = {3}
               style={{
                 data: {
                   stroke: "black",

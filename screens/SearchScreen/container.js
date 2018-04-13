@@ -46,6 +46,7 @@ class Container extends Component {
     this.setState({gyms: this.props.gyms.result});
     this.setState({groups : this.props.groups.groups});
     
+    
   };
 
   _loadLocationAsync = async () => {
@@ -105,7 +106,7 @@ class Container extends Component {
 
       let daysOfWeek = condition.daysOfWeek;
       let charge = condition.charge;
-      let time = condigion.time;
+      let time = condition.time;
 
       // 요일 필터링
       for(var key in daysOfWeek){
@@ -135,7 +136,7 @@ class Container extends Component {
     this.setState({time:condition.time});
     console.log("on Filtering")
     console.log(this.state.filteredGroups);
-    console.log(this.state.groups);
+    //console.log(this.state.groups);
     this.dialog.dismiss();
   }
 
