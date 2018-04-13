@@ -17,31 +17,8 @@ import Icon from 'react-native-vector-icons/Ionicons'
 class Container extends Component {
 
 
-  componentDidMount() {
-    //this.makeRemoteRequest();
-    //gym에 소속되어있는 Trainer api_call
-  }
 
 
-  makeRemoteRequest = () => {
-    const { page, seed } = this.state;
-    const url = `https://randomuser.me/api/?seed=${seed}&page=${page}&results=20`;
-    this.setState({ loading: true });
-
-    fetch(url)
-      .then(res => res.json())
-      .then(res => {
-        this.setState({
-          data: page === 1 ? res.results : [...this.state.data, ...res.results],
-          error: res.error || null,
-          loading: false,
-          refreshing: false
-        });
-      })
-      .catch(error => {
-        this.setState({ error, loading: false });
-      });
-  };
 
   
 
@@ -69,7 +46,7 @@ class Container extends Component {
       <StatusBar barStyle={"light-content"} />
         <FlatList
 
-          data={this.props.Trainer_Id_List}
+          data={this.props.trainers}
           renderItem={({ item }) => (
             <TrainerListItem
               navigate =  {this.props.navigate}
@@ -78,7 +55,7 @@ class Container extends Component {
             />
           )}
           
-          keyExtractor={item => item.trainer_id}
+          keyExtractor={item => item.uid}
           ItemSeparatorComponent={this.renderSeparator}
           
         />

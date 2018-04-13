@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 export const colors = {
     black: '#1a1917',
@@ -6,6 +6,7 @@ export const colors = {
     background1: '#B721FF',
     background2: '#21D4FD'
 };
+const { width, height } = Dimensions.get("window");
 
 export default StyleSheet.create({
     safeArea: {
@@ -23,13 +24,12 @@ export default StyleSheet.create({
         flex: 1
     },
     exampleContainer: {
-        paddingVertical: 30
     },
     exampleContainerDark: {
         backgroundColor: colors.black
     },
     exampleContainerLight: {
-        backgroundColor: 'white'
+        backgroundColor: '#eeeeee'
     },
     title: {
         paddingHorizontal: 30,
@@ -66,5 +66,22 @@ export default StyleSheet.create({
         height: 8,
         borderRadius: 4,
         marginHorizontal: 8
-    }
+    },
+    profileContainer : {
+        flexDirection : 'row',
+    },
+    profileImageContainer : {
+        backgroundColor : 'yellow',
+        paddingVertical : 10,
+        paddingHorizontal :10,
+    },
+    commentContainer : {
+        backgroundColor : 'white',
+        flex: 1,
+    },
+    avatar: {
+        width: 150,
+        height: 150,
+        borderRadius: 50
+      }, 
 });

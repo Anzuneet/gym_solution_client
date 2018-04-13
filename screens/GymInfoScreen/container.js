@@ -6,13 +6,17 @@ import { Image } from "react-native";
 import NavButton from "../../components/NavButton";
  
 class Container extends Component {
- static propTypes = {
-  
-  };
+
   state ={
     GymInfoIndex : 1,
+    trainers : null,
   }
- 
+  componentDidMount(){
+    const { gym } = this.props.navigation.state.params;
+    this.props.getTrainers(gym.uid, (json)=>{
+      this.setState({trainers:json.trainers});
+    });
+  }
   _clickIntroduction = () =>{
     this.setState({GymInfoIndex: 1});
     //this.props.navigation.navigate('showGroups',{ groups :this.props.navigation.state.params});
@@ -29,7 +33,7 @@ class Container extends Component {
   render() {
     const {navigate} = this.props.navigation;
     const { gym , groups} = this.props.navigation.state.params;
-    console.log(gym,groups);
+    console.log(gym);
    return (
      <GymInfoScreen {...this.props} {...this.state}
      navigate = {navigate}

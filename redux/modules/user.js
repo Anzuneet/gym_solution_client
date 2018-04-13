@@ -227,6 +227,26 @@ function getOwnProfile() {
   };
 }
 
+function getTrainers(uid, handler ) {
+  return (dispatch, getState) => {
+    const { user: { token} } = getState();
+    fetch(`${API_URL}/gyms/${uid}/trainers`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "x-gs-token" : token
+      }
+    })
+      .then(response => {
+        console.log(response);
+        if (response.status != 200) {
+          dispatch(logOut());
+        } else {
+          return response.json();
+        }})
+      .then(json =>handler(json));
+  };
+}
 
 function postBodyMeasurements(Img,Fat,Weight,Muscle) {
   const img = Img;
@@ -401,7 +421,8 @@ const actionCreators = {
   postBodyMeasurements,
   enrollGroup,
   getGyms,
-  getGroups
+  getGroups,
+  getTrainers
 
 };
   

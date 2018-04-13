@@ -19,6 +19,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     logout: () => {
       dispatch(userActions.logOut());
+    },
+    getTrainers:(uid, handler)=>{
+      dispatch(userActions.getTrainers(uid, handler));
     }
   };
 };
