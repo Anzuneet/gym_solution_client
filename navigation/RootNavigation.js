@@ -6,31 +6,7 @@ import HomeScreen from "../screens/HomeScreen";
 import NotificationsScreen from "../screens/NotificationsScreen";;
 import ProfileScreen from "../screens/ProfileScreen";
 import OwnGroupScreen from "../screens/OwnGroupScreen";
-
-//import OwnGroupRoute from "../routes/OwnGroupRoute"
-/*
-const RootNavigation = StackNavigator(
- {
-    Tabs:{
-        screen: TabsNavigation,
-        navigationOptions: {
-            header : null,
-        }
-    },
-    searchFilter:{
-        screen : SearchFilterScreen,
-        navigationOptions :{
-            title : "검색 조건을 설정해주세요!"
-        }
-    },
-    searchScreen:{
-        screen : SearchScreen,
-        navigationOptions: {
-            header : null
-        }
-    }
- },
-);*/
+import DrawerContainer from "./DrawerContainer";
 
 const DrawerStack = DrawerNavigator({
     HomeScreen: { screen: HomeScreen },
@@ -38,15 +14,19 @@ const DrawerStack = DrawerNavigator({
     FeedScreen: { screen: FeedScreen },
     NotificationsScreen: { screen: NotificationsScreen },
     ProfileScreen : { screen : ProfileScreen },
-    
-})
+    },
+    {
+        gesturesEnabled: false,
+        contentComponent: DrawerContainer
+    }
+    )
 
 const DrawerNavigation = StackNavigator({
     DrawerStack: { screen: DrawerStack }
 }, {
 headerMode: 'float',
 navigationOptions: ({navigation}) => ({
-    headerStyle: {backgroundColor: '#rgba(255,176,0,0.6)'},
+    headerStyle: {backgroundColor: "#rgba(253,139,27,1)"},//'#rgba(255,176,0,0.6)'
     title : 
     // <Text style = {{fontSize : 30, fontWeight : "800", color : "white"}}> GYM_SOLUTION </Text>
     <Image
@@ -56,7 +36,12 @@ navigationOptions: ({navigation}) => ({
     />
     ,
     headerLeft: 
-    <TouchableOpacity style ={styles.icon} onPressOut={() => navigation.navigate('DrawerOpen')}> 
+    <TouchableOpacity style ={styles.icon} onPress={() => {
+        if (navigation.state.index === 0) {
+          navigation.navigate('DrawerOpen')
+        } else {
+          navigation.navigate('DrawerClose')
+        }}}> 
          <Image
          source={require("../assets/images/icon-gym.png")}
          style ={styles.icon}
