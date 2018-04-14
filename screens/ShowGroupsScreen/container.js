@@ -11,15 +11,15 @@ class Container extends Component {
   
 };
  state = {
-  groups: [
-  ]
+
  };
 
  componentDidMount() {
   //이체육관에등록된 모든 group정보
-  const {groups} = this.props.navigation.state.params
+  // key에러 뜸
 
-  this.setState({ groups});
+  //const {groups} = this.props.navigation.state.params
+  //this.setState({groups});
 };
 
 makeRemoteRequest = () => {
@@ -61,8 +61,7 @@ makeRemoteRequest = () => {
    return (
     <List containerStyle={{borderTopWidth: 0, borderBottomWidth: 0  }}>
       <FlatList
-
-        data={this.state.groups}
+        data={this.props.navigation.state.params}
         renderItem={({ item }) => (
           <GroupsItem
             navigate = {navigate}

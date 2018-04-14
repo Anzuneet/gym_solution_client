@@ -15,22 +15,24 @@ import {
 import LoggedOutNavigation from "../../navigation/LoggedOutNavigation";
 import RootNavigation from "../../navigation/RootNavigation";
 import TrainerNavigation from "../../navigation/TrainerNavigation";
-import LoadingScreen from "../../screens/LoadingScreen"
-
+import LoadingScreen from "../../screens/LoadingScreen";
 
 class AppContainer extends Component {
   static propTypes = {
     isLoggedIn: PropTypes.bool.isRequired,
     initApp: PropTypes.func.isRequired,
   };
+
   componentDidMount () {
     const { isLoggedIn, initApp, isTrainer } = this.props;
-    
     if (isLoggedIn) {
       initApp();
     }
-    
-  }/*
+  }
+  
+
+  
+  /*
   ( isTrainer ?
     <TrainerNavigation
     />

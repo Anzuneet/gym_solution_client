@@ -52,7 +52,8 @@ class App extends React.Component
       ]),
       Font.loadAsync({
         ...Ionicons.font,
-        ...MaterialIcons.font
+        ...MaterialIcons.font,
+        'font-DoHyeon' : require('./assets/fonts/DoHyeon-Regular.ttf'),
       })
     ]);
   };

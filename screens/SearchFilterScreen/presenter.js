@@ -210,11 +210,10 @@ const styles = StyleSheet.create({
     backgroundColor : "#f2f2f2",
   },
   weightContainer :{
-      
       flexDirection : 'row',
-      justifyContent : 'space-between',
+      //justifyContent : 'space-between',
       backgroundColor : '#f2f2f2',
-
+      paddingHorizontal : 7
     },
   checkBoxContainer :{
     //flex:2,
