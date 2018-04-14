@@ -21,13 +21,18 @@ import LoadingScreen from "../../screens/LoadingScreen"
 class AppContainer extends Component {
   static propTypes = {
     isLoggedIn: PropTypes.bool.isRequired,
-    initApp: PropTypes.func.isRequired,
+    isTrainer : PropTypes.bool.isRequired,
+    initAppForTrainee : PropTypes.func.isRequired,
+    initAppForTrainer : PropTypes.func.isRequired,
   };
   componentDidMount () {
-    const { isLoggedIn, initApp, isTrainer } = this.props;
+    const { isLoggedIn, initAppForTrainee, initAppForTrainer , isTrainer } = this.props;
     
     if (isLoggedIn) {
-      initApp();
+      if(!isTrainer)
+        initAppForTrainee();
+      else
+        initAppForTrainer();
     }
     
   }/*

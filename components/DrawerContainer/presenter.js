@@ -1,19 +1,8 @@
 import React from 'react'
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import { NavigationActions } from 'react-navigation'
-
 export default class DrawerContainer extends React.Component {
-/*
-  logout = () => {
-    // This will reset back to loginStack
-    // https://github.com/react-community/react-navigation/issues/1127
-    const actionToDispatch = NavigationActions.reset({
-      index: 0,
-      key: null,  // black magic
-      actions: [NavigationActions.navigate({ routeName: 'loginStack' })]
-    })
-    this.props.navigation.dispatch(actionToDispatch)
-  }*/
+
 
   render() {
     const { navigation } = this.props
@@ -51,9 +40,9 @@ export default class DrawerContainer extends React.Component {
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={this.logout}
+          onPress={() => this.props.logout()}
           style={styles.uglyDrawerItem}>
-          <Text>sceen1</Text>
+          <Text>Logout</Text>
         </TouchableOpacity>
       </View>
     )
@@ -68,14 +57,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20
   },
   uglyDrawerItem: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#E73536',
     padding: 15,
     margin: 5,
     borderRadius: 2,
     borderColor: '#E73536',
     borderWidth: 1,
-    textAlign: 'center'
   }
 })

@@ -55,26 +55,15 @@ const LogInScreen = props => (
             }
         </View>
         </TouchableOpacity>
-        <View style={styles.forgetPswd}>
-            <Text style = {styles.introSignup}>Do you forget your password?</Text>
-            <TouchableOpacity>
-                <Text style = {styles.signupText} > Click it! </Text>
-            </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.fbContainer}>
-        <View style={styles.fbView}>
-            <Ionicons name="logo-facebook" size={22} color="#ffbb00" />
-            <Text style={styles.fbText}>Log in with Facebook</Text>
-        </View>
-        </TouchableOpacity>
         <View style={styles.signupTextContent}>
-            <Text style = {styles.introSignup}>Don't have a an account yet?</Text>
+            <Text style = {styles.introSignup}>계정이 없으신가요?</Text>
             <TouchableOpacity onPressOut={ ()=> props.navigate('SignUp')}>
                 <Text style = {styles.signupText} > SignUP </Text>
             </TouchableOpacity>
         </View>
     </View>
-    </View>
+
 );
 
 LogInScreen.propTypes = {
@@ -93,7 +82,7 @@ const styles = StyleSheet.create({
     },
     header: {
     flex: 1,
-    backgroundColor: "#rgba(255,176,0,0.6)",
+    backgroundColor: "#rgba(253,139,27,0.6)",
     alignItems: "center",
     justifyContent: "center",
     width
@@ -109,25 +98,11 @@ const styles = StyleSheet.create({
     content: {
     flex: 4,
     backgroundColor: "white",
-    paddingTop: 20,
     alignItems: "center",
-    justifyContent: "flex-start"
-    },
-    fbContainer: {
-    marginTop: 50
-    },
-    fbView: {
-    flexDirection: "row",
-    alignItems: "center"
-    },
-    fbText: {
-    color: "#ffbb00",
-    marginLeft: 10,
-    fontWeight: "600",
-    fontSize: 14
+    justifyContent: "center"
     },
     textInput:{
-        width : width -80,
+        width : 250,
         height:50,
         borderColor: "#bbb",
         borderWidth: StyleSheet.hairlineWidth,
@@ -137,9 +112,9 @@ const styles = StyleSheet.create({
         backgroundColor: "#fafafa"
     },
     touchable:{
-        borderRadius:3,
+        borderRadius:20,
         backgroundColor: "#rgba(255,176,0,0.8)",
-        width: width-80
+        width: 250
     },
     button:{
         paddingHorizontal:7,
@@ -149,25 +124,28 @@ const styles = StyleSheet.create({
         color: "white",
         fontWeight : "600",
         textAlign: "center",
-        fontSize :14
+        fontSize :30
     },
     forgetPswd:{
       paddingVertical : 16,
       flexDirection : 'row'
     },
     signupTextContent:{
-        flex:1,
-        alignItems : 'flex-end',
+        flex:0.3,
+        alignItems : 'center',
         justifyContent : 'center',
         paddingVertical: 20,
         flexDirection : 'row'
         
     },
     introSignup :{
+        fontSize: 30,
+        paddingRight : 20,
+        fontWeight : "800",
         color: 'rgba(0,0,0,0.5)'
     },
     signupText :{
-        fontSize: 16,
+        fontSize: 30,
         color : "#ffbb00",
         fontWeight : "500"
     }

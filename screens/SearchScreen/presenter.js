@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
         paddingVertical : 10,
         fontSize : 20,
         paddingRight : 20,
-        fontWeight : "300",
+        fontWeight : "800",
         
     },
     mapContainer:{

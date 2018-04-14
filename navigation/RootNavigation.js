@@ -6,7 +6,7 @@ import HomeScreen from "../screens/HomeScreen";
 import NotificationsScreen from "../screens/NotificationsScreen";;
 import ProfileScreen from "../screens/ProfileScreen";
 import OwnGroupScreen from "../screens/OwnGroupScreen";
-import DrawerContainer from "./DrawerContainer";
+import DrawerContainer from "../components/DrawerContainer";
 
 const DrawerStack = DrawerNavigator({
     HomeScreen: { screen: HomeScreen },
