@@ -46,10 +46,6 @@ export default class example extends Component {
         return <SliderEntry data={item} even={true} />;
     }
 
-
-
-
-
     layoutExample (type) {
         const isTinder = type === 'tinder';
         return (
@@ -68,8 +64,6 @@ export default class example extends Component {
             </View>
         );
     }
-
-
 
     get gradient () {
         return (
