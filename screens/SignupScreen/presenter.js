@@ -19,8 +19,8 @@ import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-
 
     
 var radio_types = [
-  {label: 'trainee', value: "trainee" },
-  {label: 'trainer', value: "trainer" }
+  {label: '일반회원', value: "trainee" },
+  {label: '트레이너', value: "trainer" }
 ];
 
 var radio_genders = [
@@ -45,7 +45,7 @@ const SignupScreens = props => (
       >
       <View style={styles.loginForm}>
         <Text style={styles.subtitle}> 회원 정보 입력 </Text>
-        <Text>      이름</Text>
+        <Text style={styles.textContentFont}>이름</Text>
         <TextInput 
             style = {styles.textInputLoginInformation} 
             underlineColorAndroid = 'rgba(0,0,0,0)' 
@@ -54,7 +54,7 @@ const SignupScreens = props => (
             value = {props.username}
             onChangeText={props.changeUsername}
             />
-        <Text>      비밀번호</Text>
+        <Text style={styles.textContentFont}>비밀번호</Text>
         <TextInput 
             style = {styles.textInputLoginInformation} 
             underlineColorAndroid = 'rgba(0,0,0,0)' 
@@ -77,7 +77,7 @@ const SignupScreens = props => (
           :
           <Feather style = {styles.checkPswed} name = "x-circle" size = {30} color = 'red'/>}
         </View>
-        <Text>      전화번호</Text>
+        <Text style={styles.textContentFont}>전화번호</Text>
           <TextInput 
               style = {styles.textInputLoginInformation} 
               underlineColorAndroid = 'rgba(0,0,0,0)'
@@ -85,15 +85,14 @@ const SignupScreens = props => (
               value = {props.phonenumber}
               onChangeText={props.changePhonenumber}
           />
-        <Text>      성별</Text>
-
+        <Text style={styles.textContentFont}>성별</Text>
         <RadioForm
           style = {styles.radioGender}
           radio_props={radio_genders}
           initial={0}
           formHorizontal={true}
           labelHorizontal={true}
-          buttonColor={'#50c900'}
+          buttonColor={'orange'}
           buttonSize={10}
           animation={false}
           labelStyle = {styles.radioText}
@@ -101,43 +100,43 @@ const SignupScreens = props => (
           onPress={props.changeGender}
         />
 
-        <Text>      생년월일</Text>
+        <Text style={styles.textContentFont}>생년월일</Text>
         <View style = {styles.birthDayContent}>
           <TextInput 
-              style = {styles.textInputBirthday} 
+              style = {styles.textInputLoginInformation} 
               underlineColorAndroid = 'rgba(0,0,0,0)'
               placeholder="생년월일 8자를 입력해주세요" 
               value = {props.birthday}
               onChangeText={props.changeBirthday}
           />
         </View>
-      </View>
-      
-      <View style = {styles.trainerForm}>
-      <Text style={styles.subtitle}> 트레이너만 입력해주세요! </Text>
-        <View style = {styles.typeContent}>
-          <RadioForm
+
+        <Text style={styles.textContentFont}>분류</Text>
+        <RadioForm
+            style = {styles.radioGender}
             radio_props={radio_types}
             initial={0}
             formHorizontal={true}
             labelHorizontal={true}
-            buttonColor={'pink'}
-
+            buttonColor={'orange'}
             buttonSize={10}
             animation={true}
             labelStyle = {styles.radioText}
             
             onPress={props.changeType}
           />
-          <Text style= {styles.textType}> Your choice? </Text>
-        </View>
-        
+
+      </View>
+      
+      <View style = {styles.trainerForm}>
+      <Text style={styles.subtitle}> 트레이너만 입력해주세요! </Text>
+       
         <View style = {styles.GYMContent}>
           <TextInput 
               style = {styles.textInputGYM} 
               underlineColorAndroid = 'rgba(0,0,0,0)'
               value = {props.fitness_club_name}
-              placeholder="If your trainer input GYM" 
+              placeholder="GYM NUMBER" 
               onChangeText={props.changeFitness_club_name}
           />
           <TouchableOpacity style = {styles.touchSearch}>
@@ -147,7 +146,7 @@ const SignupScreens = props => (
       </View>
       
       <TouchableOpacity style = {styles.submit} onPressOut = {props.submit}>
-            <Text style = {styles.textSubmit}> submit</Text>
+            <Text style = {styles.textSubmit}> 완료</Text>
       </TouchableOpacity>
     </ScrollView>
     </View>
@@ -198,7 +197,7 @@ const styles = StyleSheet.create({
     },
     loginForm: {
       //height : height -300,
-      paddingTop: 20,
+      //paddingTop: 20,
     },
     trainerForm : {
     //  height : height-300,
@@ -212,11 +211,11 @@ const styles = StyleSheet.create({
       borderColor: "#bbb",
       borderWidth: StyleSheet.hairlineWidth,
       borderRadius: 5,
-      marginBottom: 15,
+      marginBottom: 8,
       paddingHorizontal: 15,
       backgroundColor: "#fafafa",
       marginLeft : 20,
-
+      fontFamily: 'font-DoHyeon',
     },
     paswConfirm :{
       flexDirection : "row",
@@ -254,13 +253,17 @@ const styles = StyleSheet.create({
       paddingHorizontal: 15,
       backgroundColor: "#fafafa",
       marginLeft : 20,
+      fontFamily: 'font-DoHyeon',
     },
 
     subtitle:{
-      height : 70,
+      //height : 70,
       fontSize : 34,
       textAlign : 'left',
-      fontWeight : 'bold',
+      //fontWeight : 'bold',
+      marginBottom : 5,
+      marginTop : 15,
+      fontFamily: 'font-DoHyeon',
     },
 
     touchPhone:{
@@ -303,13 +306,16 @@ const styles = StyleSheet.create({
     GYMContent : {
       height: 60,
       flexDirection : 'row',
+      marginTop : 5,
     },
     radioGender : {
       marginLeft: 20,
+      marginBottom: 8,
     },
     radioText:{
       fontSize: 20,
       paddingHorizontal : 20,
+      fontFamily: 'font-DoHyeon',
     },
     fitnessClubName :{
       flex:0.3,
@@ -349,7 +355,7 @@ const styles = StyleSheet.create({
     },
     submit : {
       width,
-      height : 50,
+      height : 60,
       backgroundColor :'#FFBB00',
       alignItems : 'center',
       justifyContent : 'center'
@@ -357,7 +363,8 @@ const styles = StyleSheet.create({
     },
     textSubmit : {
       fontSize : 40,
-      color : 'rgba(255,255,255,0.7)'
+      color : 'rgba(255,255,255,1)',
+      fontFamily: 'font-DoHyeon',
     },
     textSearch :{
       fontSize : 10,
@@ -369,6 +376,13 @@ const styles = StyleSheet.create({
       color : "rgba(0,0,0,1)",
       marginTop : 25,
       textAlign: "center",
+    },
+    textContentFont : {
+      fontFamily: 'font-DoHyeon',
+      fontSize : 20,
+      marginLeft : 20,
+      marginBottom : 5,
+      marginTop : 10,
     }
 });
     
