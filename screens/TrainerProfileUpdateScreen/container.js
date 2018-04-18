@@ -6,6 +6,13 @@ import { ImagePicker } from 'expo';
 class Container extends Component {
 
   dialog = null;
+  state = {
+    bodyText : "POST BODYPRO"
+  }
+
+  componentDidMount(){
+    
+  }
 
   _changeComment = (text) =>{
     this.setState({comment: text});
@@ -44,7 +51,7 @@ class Container extends Component {
   }
 
   render() {
-    return <TrainerProfileUpdateScreen {...this.state} {...this.state}
+    return <TrainerProfileUpdateScreen {...this.props} {...this.state}
         changeComment  = {this._changeComment}   
         pickImage = {this._pickImage}
         takeImage = {this._takeImage}

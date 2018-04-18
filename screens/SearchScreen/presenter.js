@@ -18,6 +18,7 @@ import PopupDialog , { SlideAnimation, DialogTitle} from 'react-native-popup-dia
 import SearchFilterScreen from "../SearchFilterScreen";
 import ShowGymNavigation from "../../navigation/ShowGymNavigation";
 import MapView, { Marker, AnimatedRegion } from 'react-native-maps';
+import {Font} from 'expo'; 
 const { width, height } = Dimensions.get("window");
 
 const slideAnimation = new SlideAnimation({
@@ -49,16 +50,17 @@ const SearchScreen = props => (
         />
 
         </PopupDialog>
+
         <View style = {styles.titleContainer}>
-            {props.profile ? <Text style = {styles.nameText}> {props.profile.name}님 </Text> :
+            {props.profile ? <Text style = {styles.titleText}> {props.profile.name}님 </Text> :
         <Text></Text>}
-            
             <Text style = {styles.titleText}>Training 그룹을 찾아보세요!!</Text>
         </View>
+
         <View style = {styles.mapContainer}>
         <MapView
             ref={props.setMapView}
-            style={{ alignSelf: 'stretch', height: 500 }}
+            style={{ alignSelf: 'stretch', height: 400 }}
             //region={props.mapRegion}
             //initialRegion = {props.mapRegion}
             onRegionChangeComplete={props.handleMapRegionChange}   
@@ -88,19 +90,23 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
     },
     titleContainer : {
-        backgroundColor : "transparent",
+        backgroundColor : "#ffbb00",
         flexDirection : 'row',
-        justifyContent : "flex-end"
+        justifyContent : "flex-end",
+        borderBottomWidth : StyleSheet.hairlineWidth,
+        borderColor : "#ffffff",
     },
     nameText : {
-        fontSize : 25,
+        fontFamily: 'font-DoHyeon',
+        fontSize : 30,
         paddingRight : 10,
         paddingVertical : 10,
         fontWeight : "500",
-        color : "rgba(0,0,0,0.5)"
+        //color : "rgba(0,0,0,0.5)"
         
     },
     titleText : {
+        fontFamily: 'font-DoHyeon',
         paddingVertical : 10,
         fontSize : 20,
         paddingRight : 20,
@@ -111,16 +117,18 @@ const styles = StyleSheet.create({
         backgroundColor : "#ebebeb",
         borderWidth : 5,
         borderColor : "#ffbb00",
-        borderRadius :5,
+        //borderRadius :5,
     },
     filterContainer: {
         flex : 1,
-        backgroundColor : "#fefefe",
+        backgroundColor : "#ffbb00",
         justifyContent: "center",
         alignItems: "center",
-
+        borderTopWidth : StyleSheet.hairlineWidth,
+        borderColor : "#ffffff",
     },
     filterText : {
+        fontFamily: 'font-DoHyeon',
         fontSize : 40,
         color : "rgba(0,0,0,1)"
         },

@@ -13,7 +13,7 @@ const { width, height } = Dimensions.get("window");
 
 
 
- const GroupsItem = props => (
+ const OneGroupForTrainee = props => (
   <TouchableOpacity onPress = {props.onPress}>
     <View style = {styles.Container}>
       <View style = {styles.profileContainer}>
@@ -125,4 +125,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default GroupsItem;
+export default OneGroupForTrainee;

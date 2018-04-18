@@ -20,7 +20,6 @@ const SET_GYM = "SET_GYM";
   
 function setLogIn(token) {
   // 토큰 값을 tokenKey 변수에 저장한다.
-  initialState.tokenKey = token
    return {
      type: LOG_IN,
      token
@@ -337,6 +336,8 @@ function getOwnGroups(handler) {
   };
 }
 
+
+
 function getOwnTrainerGroups(handler) {
   return (dispatch, getState) => {
      const { user: { token } } = getState();
@@ -346,6 +347,7 @@ function getOwnTrainerGroups(handler) {
        }
      })
        .then(response => {
+         console.log(response);
         if (response.status != 200) {
           dispatch(logOut());
         } else {
@@ -408,6 +410,8 @@ function applyLogOut(state, action) {
     isTrainer:null,
     token: "",
     profile: null,
+    gyms: null,
+    groups: null,
   };
 }
  
@@ -463,7 +467,7 @@ const actionCreators = {
   getGroups,
   getTrainers,
   getOwnGroups,
-  getOwnTrainerGroups
+  getOwnTrainerGroups,
 
 };
   

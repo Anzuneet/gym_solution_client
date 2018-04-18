@@ -2,6 +2,7 @@ import React from "react";
 import {View, Text, StyleSheet, Image, TouchableOpacity, TextInput ,Dimensions}from "react-native";
 import PopupDialog , { SlideAnimation, DialogTitle} from 'react-native-popup-dialog';
 import {Feather,MaterialIcons} from "@expo/vector-icons"
+import SnapShot from "../../components/SnapShot";
 
 const slideAnimation = new SlideAnimation({
     slideFrom: 'bottom',
@@ -75,21 +76,16 @@ const TrainerProfileUpdateScreen = props =>
                 </TouchableOpacity>
             </View>
         </View>
-
-        <View style = {styles.upperContainer}>
-            <TouchableOpacity style = {styles.imageContainer} onPressOut ={ () => {
+        <View style = {styles.bodyProfileContainer}>
+            <SnapShot/>
+            <TouchableOpacity onPressOut ={ () => {
                 props.parent.dialog.show()
-            }} >
-            {props.flag ?  
-                    (<Image source={{uri:props.image.uri} } style = {{width: width, height: height*0.63}}/>)
-                    :( 
-                    <Image
-                    source={require("../../assets/images/photoPlaceholder.png")}
-                    style = {{width: width, height: height *0.63}}
-                    />
-                    )}  
+            }} style={{flexDirection: 'column', alignItems : 'center', justifyContent : 'center', backgroundColor : "#rgba(253,139,27,1)", marginVertical : 15,}}>
+                {props.bodyText.split('').map((char,index) => <Text key = {index} style = {{paddingHorizontal : 10, fontSize : 15, color : "white", fontWeight : "800",}}>{char}</Text>)}
             </TouchableOpacity>
         </View>
+
+        
     
     </View>
     )
@@ -135,41 +131,31 @@ const styles = StyleSheet.create({
         width : width,
         backgroundColor : "yellow"
     },
-    upperContainer : {
-        flex:4,
-        backgroundColor : "#ffbb00",
-      },
-      imageContainer : {
-        flex : 4,
-      },
-      imagePickContainer  : {
-        width : width,
-        height : height,
-        backgroundColor : "white",
-        flexDirection :'row',
-      },
-      cameraTab : {
-        paddingTop : 10,
-        flex : 1,
-        backgroundColor : 'rgba(255,187,0,0.5)',
-        alignItems : 'center'
-      },
-      cameraTabText : {
-        paddingTop : 10,
-        fontSize : 20,
-        fontWeight : "500",
-      },
-      gallaryTab : {
-        paddingTop : 10,
-        flex : 1,
-        backgroundColor : 'rgba(255,230,0,0.5)',
-        alignItems : 'center'
-      },
-      gallaryTabText : {
-        paddingTop : 10,
-        fontSize : 20,
-        fontWeight : "500",
-      },
+    bodyProfileContainer : {
+        flexDirection : 'row'
+    },
+    cameraTab : {
+    paddingTop : 10,
+    flex : 1,
+    backgroundColor : 'rgba(255,187,0,0.5)',
+    alignItems : 'center'
+    },
+    cameraTabText : {
+    paddingTop : 10,
+    fontSize : 20,
+    fontWeight : "500",
+    },
+    gallaryTab : {
+    paddingTop : 10,
+    flex : 1,
+    backgroundColor : 'rgba(255,230,0,0.5)',
+    alignItems : 'center'
+    },
+    gallaryTabText : {
+    paddingTop : 10,
+    fontSize : 20,
+    fontWeight : "500",
+    },
 
 })
 

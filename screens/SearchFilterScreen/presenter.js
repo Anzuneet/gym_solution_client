@@ -13,7 +13,6 @@ import { ScrollView ,
   TextInput,
  } from "react-native";
 import { List, SearchBar, Divider,} from "react-native-elements";
-import GroupsItem from "../../components/GroupsItem";
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { CheckBox } from 'react-native-elements';
@@ -213,11 +212,10 @@ const styles = StyleSheet.create({
     backgroundColor : "#f2f2f2",
   },
   weightContainer :{
-      
       flexDirection : 'row',
-      justifyContent : 'space-between',
+      //justifyContent : 'space-between',
       backgroundColor : '#f2f2f2',
-
+      paddingHorizontal : 7
     },
   checkBoxContainer :{
     //flex:2,

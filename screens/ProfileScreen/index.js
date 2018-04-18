@@ -11,9 +11,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    logout: () => {
-      dispatch(userActions.logOut());
-    },
     postBodyMeasurements : (img,fat,weight,muscle) => {
       dispatch(userActions.postBodyMeasurements(img,fat,weight,muscle));
     }

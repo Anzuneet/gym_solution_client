@@ -65,6 +65,7 @@ const { width, height } = Dimensions.get("window");
               리뷰 </Text>
             </TouchableOpacity>
           </View>
+  
           {props.GymInfoIndex == 2 ?
           (<View style = {styles.trainerListContainer}>
             <TrainerList

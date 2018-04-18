@@ -3,12 +3,9 @@ import React, { Component } from 'react';
 import { Platform, View, ScrollView, Text, StatusBar, SafeAreaView, Image, TouchableOpacity } from 'react-native';
 import {LinearGradient} from 'expo';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
-import { sliderWidth, itemWidth } from './styles/SliderEntry.style';
-import SliderEntry from './components/SliderEntry';
 import styles, { colors } from './styles/index.style';
-import { ENTRIES1, ENTRIES2 } from './static/entries';
-import { scrollInterpolators, animatedStyles } from './utils/animations';
 import PopupDialog , { SlideAnimation, DialogTitle} from 'react-native-popup-dialog';
+import SnapShot from "../../components/SnapShot";
 
 const SLIDER_1_FIRST_ITEM = 1;
 
@@ -25,64 +22,8 @@ export default class example extends Component {
     }
 
 
-    _renderItem ({item, index}) {
-        return <SliderEntry data={item} even={(index + 1) % 2 === 0} />;
-    }
-
-    _renderItemWithParallax ({item, index}, parallaxProps) {
-        return (
-            <SliderEntry
-              data={item}
-              even={(index + 1) % 2 === 0}
-              parallax={true}
-              parallaxProps={parallaxProps}
-            />
-        );
-    }
-
-    _renderLightItem ({item, index}) {
-        return <SliderEntry data={item} even={false} />;
-    }
-
-    _renderDarkItem ({item, index}) {
-        return <SliderEntry data={item} even={true} />;
-    }
 
 
-
-
-
-    layoutExample (type) {
-        const isTinder = type === 'tinder';
-        return (
-            <View style={[styles.exampleContainer, isTinder ? styles.exampleContainerDark : styles.exampleContainerLight]}>
-
-                <Carousel
-                  data={isTinder ? ENTRIES2 : ENTRIES1}
-                  renderItem={isTinder ? this._renderLightItem : this._renderItem}
-                  sliderWidth={sliderWidth}
-                  itemWidth={itemWidth}
-                  containerCustomStyle={styles.slider}
-                  contentContainerCustomStyle={styles.sliderContentContainer}
-                  layout={type}
-                  loop={true}
-                />
-            </View>
-        );
-    }
-
-
-
-    get gradient () {
-        return (
-            <LinearGradient
-              colors={["#rgba(230,230,230,0)", "#rgba(0,0,0,0.4)"]}//253,139,27
-              startPoint={{ x: 1, y: 0 }}
-              endPoint={{ x: 0, y: 1 }}
-              style={styles.gradient}
-            />
-        );
-    } 
     _onClickShowDialog = ()=>{
       if(this.dialog != null){
         this.dialog.show();
@@ -91,7 +32,6 @@ export default class example extends Component {
     }
     _setDialog = (dialog)=>this.dialog = dialog;
     render () {
-        const example3 = this.layoutExample('stack');
 
         return (
             <SafeAreaView style={styles.safeArea}>
@@ -110,34 +50,10 @@ export default class example extends Component {
                       barStyle={'light-content'}
                     />
                     { this.gradient }
-                    <View style = {styles.profileContainer}>
-                      <View style = {styles.profileImageContainer}>
-                      {this.props.profileImage ?
-                        <Text>ProfileImage</Text>
-                        :
-                        <Image
-                            source={
-                              require("../../assets/images/noPhoto.jpg")
-                            }
-                            style={styles.avatar}
-                        />
-                        }
-                      </View>
-                      <TouchableOpacity style = {styles.commentContainer} onPress={() => {
-                        this.popupDialog.show();
-                      }}>
-                        <Text style={styles.TextStyle} numberOfLines = { 8 } > 
- 
-                            {this.state.comment}
-
-                        </Text>
-                      </TouchableOpacity>
-
-                    </View>
                     <View style = {{flexDirection : "row"}}>
-                    { example3 }
-                    <View style={{ flex: 1, flexDirection: 'column', alignItems : 'center', justifyContent : 'center', backgroundColor : "#rgba(253,139,27,1)", marginVertical : 15,}}>
-                        {this.state.bodyText.split('').map(char => <Text style = {{paddingRight : 15, fontSize : 15, color : "white", fontWeight : "800",}}>{char}</Text>)}
+                    <SnapShot/>
+                    <View style={{flexDirection: 'column', alignItems : 'center', justifyContent : 'center', backgroundColor : "#rgba(253,139,27,1)", marginVertical : 15,}}>
+                        {this.state.bodyText.split('').map(char => <Text key = {char} style = {{paddingHorizontal : 15, fontSize : 15, color : "white", fontWeight : "800",}}>{char}</Text>)}
                     </View>
                     </View>
 

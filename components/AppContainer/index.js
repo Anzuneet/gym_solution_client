@@ -8,7 +8,7 @@ const mapStateProps = (state, ownProps) => {
     return {
         isLoggedIn: user.isLoggedIn,
         isTrainer: user.isTrainer,
-        profile:user.user,
+        profile:state
     };
 }
 
@@ -18,13 +18,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch(photoActions.getFeed());
             dispatch(userActions.getGroups());
             dispatch(userActions.getGyms());
-            //getSearch
-            //getNotifications
             dispatch(userActions.getOwnProfile());
         },
-        initAppForTrainer: () => {
-            dispatch(userActions.getOwnProfile());
-        }
     }
 }
 

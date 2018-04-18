@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {View, Text, StyleSheet} from 'react-native';
 import SearchScreen from "./presenter";
-import {Constants, Location, MapView, Permissions} from 'expo';
+import {Constants, Location, MapView, Permissions, Font} from 'expo';
 import { actionCreators as userActions } from "../../redux/modules/user";
 import SearchFilterScreen from "../SearchFilterScreen/container";
 
@@ -29,7 +29,7 @@ class Container extends Component {
       THU: false,
       FRI: false,
       SAT: false,
-      SUN: false
+      SUN: false,
     },
     time:{// 시간 조건
       start:null,
@@ -38,15 +38,16 @@ class Container extends Component {
     charge:{// 가격 조건
       min: null,
       max: null
-    }
+    },
+    fontLoaded: false,
   };
   
   componentDidMount(){
     this._loadLocationAsync();
-    this.setState({gyms: this.props.gyms.result});
-    this.setState({groups : this.props.groups.groups});
-    
-    
+    if(this.props.gyms.result)
+      this.setState({gyms: this.props.gyms.result});
+    if(this.props.groups.groups)
+      this.setState({groups : this.props.groups.groups});
   };
 
   _loadLocationAsync = async () => {
@@ -143,12 +144,23 @@ class Container extends Component {
   _setDialog = (dialog)=>this.dialog = dialog;
   _setMapView=(mapview)=>this.map = mapview;
   
+
+// 일단 기능 테스트를 위해 가격조건이 설정 안되있다면 필터링을 사용 안하는걸로 간주함
+
   _onPressMarker = (marker)=>{
     const {getGroups} = this.props;
-
     const {navigate} = this.props.navigation;
-    let groups = this.state.filteredGroups.filter(it=>it.gym.uid == marker.uid);
-    navigate("gymInfo", {gym : marker, groups:groups});
+    if (this.state.charge.min == null && this.state.charge.max == null)
+    {
+      let markerGroups = this.state.groups.filter(it=>it.gym.uid == marker.uid);
+      navigate("gymInfo", {gym : marker, groups : markerGroups});
+    }
+    else
+    {
+      
+      let markerGroups = this.state.filteredGroups.filter(it=>it.gym.uid == marker.uid);
+      navigate("gymInfo", {gym : marker, groups : markerGroups});
+    }
   }
   render() {
     const {navigate} = this.props.navigation;

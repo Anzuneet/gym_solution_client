@@ -1,25 +1,24 @@
 
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import ShowGroupsScreen from "./presenter";
 import { Image ,FlatList,View,} from "react-native";
 import { List } from "react-native-elements";
-import GroupsItem from "../../components/GroupsItem";
+import OneGroupForTrainee from "../../components/OneGroupForTrainee";
  
 class Container extends Component {
  static propTypes = {
   
 };
  state = {
-  groups: [
-  ]
+
  };
 
  componentDidMount() {
   //이체육관에등록된 모든 group정보
-  const {groups} = this.props.navigation.state.params
+  // key에러 뜸
 
-  this.setState({ groups});
+  //const {groups} = this.props.navigation.state.params
+  //this.setState({groups});
 };
 
 makeRemoteRequest = () => {
@@ -61,10 +60,9 @@ makeRemoteRequest = () => {
    return (
     <List containerStyle={{borderTopWidth: 0, borderBottomWidth: 0  }}>
       <FlatList
-
-        data={this.state.groups}
+        data={this.props.navigation.state.params}
         renderItem={({ item }) => (
-          <GroupsItem
+          <OneGroupForTrainee
             navigate = {navigate}
             data = {item}
             containerStyle={{ borderBottomWidth: 0 }}

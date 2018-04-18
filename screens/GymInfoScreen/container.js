@@ -33,7 +33,9 @@ class Container extends Component {
   render() {
     const {navigate} = this.props.navigation;
     const { gym , groups} = this.props.navigation.state.params;
-    console.log(gym);
+    console.log("Gym Info Screen");
+    console.log(groups);
+    //console.log(gym);
    return (
      <GymInfoScreen {...this.props} {...this.state}
      navigate = {navigate}

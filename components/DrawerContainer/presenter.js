@@ -11,32 +11,27 @@ export default class DrawerContainer extends React.Component {
         <TouchableOpacity
           onPress={() => navigation.navigate('HomeScreen')}
           style={styles.uglyDrawerItem}>
-        <Text>sceen1</Text>
+        <Text style = {{fontSize:20,}}>Search your Training</Text>
         </TouchableOpacity>
         
 
         <TouchableOpacity
           onPress={() => navigation.navigate('OwnGroupScreen')}
           style={styles.uglyDrawerItem}>
-          <Text>sceen1</Text>
+          <Text style = {{fontSize:20,}}>confirm my Training</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           onPress={() => navigation.navigate('FeedScreen')}
           style={styles.uglyDrawerItem}>
-        <Text>sceen1</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => navigation.navigate('NotificationsScreen')}
-          style={styles.uglyDrawerItem}>
-          <Text>sceen1</Text>
+          <Text style = {{ fontSize : 30}}>FEED!!</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           onPress={() => navigation.navigate('ProfileScreen')}
           style={styles.uglyDrawerItem}>
-          <Text>sceen1</Text>
+          <Text> Profile Update</Text>
+
         </TouchableOpacity>
 
         <TouchableOpacity

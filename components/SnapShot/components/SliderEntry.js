@@ -13,6 +13,7 @@ export default class SliderEntry extends Component {
         parallaxProps: PropTypes.object
     };
 
+
     get image () {
         const { data: { illustration }, parallax, parallaxProps, even } = this.props;
 
@@ -35,8 +36,7 @@ export default class SliderEntry extends Component {
     }
 
     render () {
-        const { data: { title, subtitle }, even } = this.props;
-
+        const { data: { title, subtitle }, even, isTrainer } = this.props;
         const uppercaseTitle = title ? (
             <Text
               style={[styles.title, even ? styles.titleEven : {}]}
@@ -47,10 +47,13 @@ export default class SliderEntry extends Component {
         ) : false;
 
         return (
+            
+
             <TouchableOpacity
               activeOpacity={1}
               style={styles.slideInnerContainer}
-              onPress={() => { alert(`You've clicked '${title}'`); }}
+              onPress={() => { isTrainer ? alert(`You've clicked '${title}' in trainer`) :
+              alert(`You've clicked '${title}' in traineeee`) }}
               >
                 <View style={styles.shadow} />
                 <View style={[styles.imageContainer, even ? styles.imageContainerEven : {}]}>

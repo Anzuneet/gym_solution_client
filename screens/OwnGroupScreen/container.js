@@ -11,17 +11,21 @@ import { ScrollView ,
   Image,
  } from "react-native";
 import { List, SearchBar } from "react-native-elements";
-import GroupsItem from "../../components/GroupsItem";
+import OneGroupForProfile from "../../components/OneGroupForProfile";
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons'
 
 class Container extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      loading: false,
-    }
+  state = {
+    loading: false,
+    groups :[
+      {
+        uid : 1,
+      },
+      {
+        uid : 2,
+      }
+    ],
   }
 
   componentDidMount(){
@@ -97,7 +101,7 @@ class Container extends Component {
 
           data={this.state.groups}
           renderItem={({ item }) => (
-            <GroupsItem
+            <OneGroupForProfile
               data = {item}
               containerStyle={{ borderBottomWidth: 0 }}
               //onPressItem={Alert.alert(item.email)}
