@@ -19,6 +19,8 @@ export default class example extends Component {
         super(props);
         this.state = {
             slider1ActiveSlide: SLIDER_1_FIRST_ITEM,
+            comment : "안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요", //가로 20자 세로로 8자
+            bodyText : "BODY PROFILE",
         };
     }
 
@@ -68,7 +70,7 @@ export default class example extends Component {
     get gradient () {
         return (
             <LinearGradient
-              colors={[colors.background1, colors.background2]}
+              colors={["#rgba(230,230,230,0)", "#rgba(0,0,0,0.4)"]}//253,139,27
               startPoint={{ x: 1, y: 0 }}
               endPoint={{ x: 0, y: 1 }}
               style={styles.gradient}
@@ -89,12 +91,12 @@ export default class example extends Component {
             <SafeAreaView style={styles.safeArea}>
                 <View style={styles.container}>
                 <PopupDialog
-                  dialogTitle={<DialogTitle title="찾고자하는 training의 조건을 입력해주세요" />}
+                  dialogTitle={<DialogTitle title="Trainer 경력" />}
                   ref={(popupDialog) => { this.popupDialog = popupDialog; }}
                   dismissOnTouchOutside = {true}
                   height = {300}
                 >
-                <Text>Hello</Text>
+                <Text>{this.state.comment}</Text>
                 </PopupDialog>
                     <StatusBar
                       translucent={true}
@@ -118,11 +120,20 @@ export default class example extends Component {
                       <TouchableOpacity style = {styles.commentContainer} onPress={() => {
                         this.popupDialog.show();
                       }}>
+                        <Text style={styles.TextStyle} numberOfLines = { 8 } > 
+ 
+                            {this.state.comment}
 
+                        </Text>
                       </TouchableOpacity>
 
                     </View>
+                    <View style = {{flexDirection : "row"}}>
                     { example3 }
+                    <View style={{ flex: 1, flexDirection: 'column', alignItems : 'center', justifyContent : 'center', backgroundColor : "#rgba(253,139,27,1)", marginVertical : 15,}}>
+                        {this.state.bodyText.split('').map(char => <Text style = {{paddingRight : 15, fontSize : 15, color : "white", fontWeight : "800",}}>{char}</Text>)}
+                    </View>
+                    </View>
 
 
                 </View>

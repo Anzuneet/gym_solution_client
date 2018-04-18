@@ -12,7 +12,7 @@ import {
       ActivityIndicator,
       ScrollView,
     } from "react-native";
-import {LinearGradient} from 'expo';
+import {LinearGradient, Font} from 'expo';
 import { Ionicons,Feather } from "@expo/vector-icons";
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 
@@ -24,39 +24,41 @@ var radio_types = [
 ];
 
 var radio_genders = [
-  {label: 'Male', value: "M" },
-  {label: 'Female', value: "F" }
+  {label: '남성', value: "M" },
+  {label: '여성', value: "F" }
 ]
 
 const { width, height } = Dimensions.get("window");
 
 const SignupScreens = props => (
-    <ScrollView
-      style = {styles.container}
-      >
-      <StatusBar hidden = {true}/>
+
+    <View style = {styles.container}>
+  
+      <StatusBar barStyle={"light-content"} />
+
       <View style={styles.header}>  
-        <Image
-        source={require("../../assets/images/logo-gym.png")}
-        resizeMode="stretch"
-        style={styles.logo}
-        />
+          <Text style = {styles.titleText}>GYMSOLUSION</Text>
       </View>
 
+      <ScrollView
+      style = {styles.scrollContainer}
+      >
       <View style={styles.loginForm}>
-        <Text style={styles.subtitle}> login Information </Text>
+        <Text style={styles.subtitle}> 회원 정보 입력 </Text>
+        <Text>      이름</Text>
         <TextInput 
             style = {styles.textInputLoginInformation} 
             underlineColorAndroid = 'rgba(0,0,0,0)' 
-            placeholder="Username" 
+            placeholder="성명을 입력해주세요" 
             autoCorrecto = {false}
             value = {props.username}
             onChangeText={props.changeUsername}
             />
+        <Text>      비밀번호</Text>
         <TextInput 
             style = {styles.textInputLoginInformation} 
             underlineColorAndroid = 'rgba(0,0,0,0)' 
-            placeholder="Password"
+            placeholder="비밀번호를 입력해주세요"
             secureTextEntry = {true} 
             value = {props.password}
             onChangeText={props.changePassword}
@@ -65,7 +67,7 @@ const SignupScreens = props => (
           <TextInput 
               style = {styles.textInputLoginInformation} 
               underlineColorAndroid = 'rgba(0,0,0,0)' 
-              placeholder="Confirm Password"
+              placeholder="비밀번호를 한번 더 입력해주세요"
               secureTextEntry = {true} 
               value = {props.password2}
               onChangeText={props.changePassword2}
@@ -75,57 +77,44 @@ const SignupScreens = props => (
           :
           <Feather style = {styles.checkPswed} name = "x-circle" size = {30} color = 'red'/>}
         </View>
-        
-      </View>
-
-      <Text style={styles.subtitle}> Persnal Information </Text>
-
-      <View style={styles.persnalForm}>
-
-        <View style = {styles.phoneContent}>
+        <Text>      전화번호</Text>
           <TextInput 
-              style = {styles.textInputPhone} 
+              style = {styles.textInputLoginInformation} 
               underlineColorAndroid = 'rgba(0,0,0,0)'
-              placeholder="Input your phone number and v" 
+              placeholder="전화번호를 입력해주세요" 
               value = {props.phonenumber}
               onChangeText={props.changePhonenumber}
           />
-          <TouchableOpacity style = {styles.touchPhone}>
-            <Text style = {styles.textPhone}> Valifycation!!</Text>
-          </TouchableOpacity>
-        </View>
+        <Text>      성별</Text>
 
-        <View style = {styles.genderContent}>
-          <RadioForm
-            style = {styles.radioGender}
-            radio_props={radio_genders}
-            initial={0}
-            formHorizontal={true}
-            labelHorizontal={true}
-            buttonColor={'#50c900'}
-            buttonSize={10}
-            animation={false}
-            labelStyle = {styles.radioText}
-            
-            onPress={props.changeGender}
-          />
-          <Text style= {styles.textGender}> Your gender? </Text>
-        </View>
+        <RadioForm
+          style = {styles.radioGender}
+          radio_props={radio_genders}
+          initial={0}
+          formHorizontal={true}
+          labelHorizontal={true}
+          buttonColor={'#50c900'}
+          buttonSize={10}
+          animation={false}
+          labelStyle = {styles.radioText}
+          
+          onPress={props.changeGender}
+        />
 
+        <Text>      생년월일</Text>
         <View style = {styles.birthDayContent}>
           <TextInput 
               style = {styles.textInputBirthday} 
               underlineColorAndroid = 'rgba(0,0,0,0)'
-              placeholder="Input your birthday" 
+              placeholder="생년월일 8자를 입력해주세요" 
               value = {props.birthday}
               onChangeText={props.changeBirthday}
           />
         </View>
       </View>
-
-      <Text style={styles.subtitle}> only Trainer! </Text>
       
-      <View style = {styles.tainerForm}>
+      <View style = {styles.trainerForm}>
+      <Text style={styles.subtitle}> 트레이너만 입력해주세요! </Text>
         <View style = {styles.typeContent}>
           <RadioForm
             radio_props={radio_types}
@@ -161,6 +150,7 @@ const SignupScreens = props => (
             <Text style = {styles.textSubmit}> submit</Text>
       </TouchableOpacity>
     </ScrollView>
+    </View>
 );
 
 SignupScreens.propTypes = {
@@ -191,12 +181,15 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     },
+    scrollContainer :{
+      flex : 4,
+      backgroundColor : "white",
+    },
     header: {
-      flex: 1,
+      flex : 0.2,
       backgroundColor: "#FFBB00",
       alignItems: "center",
       justifyContent: "center",
-      height:100
     },
     logo: {
       width: 180,
@@ -204,13 +197,13 @@ const styles = StyleSheet.create({
       marginTop: 20
     },
     loginForm: {
-      height : height -300,
+      //height : height -300,
       paddingTop: 20,
     },
     trainerForm : {
-      height : height - 300,
+    //  height : height-300,
     },
-  persnalForm : {
+    persnalForm : {
       height : height-300,
     },
     textInputLoginInformation:{
@@ -227,7 +220,10 @@ const styles = StyleSheet.create({
     },
     paswConfirm :{
       flexDirection : "row",
-      height: 100,
+      //height: 100,
+    },
+    phoneConfirm: {
+      flexDirection : "row",  
     },
     textInputPhone : {
       width : width-150,
@@ -366,8 +362,14 @@ const styles = StyleSheet.create({
     textSearch :{
       fontSize : 10,
       color : 'rgba(255,255,255,0.7)'
+    }, 
+    titleText : {
+      fontFamily: 'font-DoHyeon',
+      fontSize : 55,
+      color : "rgba(0,0,0,1)",
+      marginTop : 25,
+      textAlign: "center",
     }
-
 });
     
 export default SignupScreens;

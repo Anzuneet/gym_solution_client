@@ -10,26 +10,24 @@ import { ScrollView ,
   StatusBar,
   Image,
  } from "react-native";
-import { List, SearchBar } from "react-native-elements";
+import { List } from "react-native-elements";
 import GroupsItem from "../../components/GroupsItem";
-import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons'
-
+import ActionButton from 'react-native-action-button';
 class Container extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       loading: false,
-    }
+      groups : [
+      ]
+    };
   }
 
-  componentDidMount(){
-    this.props.getOwnGroups((json)=>{
-      this.setState({groups:json.groups});
-    });
+  componentDidMount() {
+    //this.makeRemoteRequest();
   }
-
 
 
 
@@ -50,7 +48,7 @@ class Container extends Component {
   renderHeader = () => { // 헤더
     return (
       <View style = {{
-        backgroundColor : "#ffbb00",
+        backgroundColor: "#rgba(253,139,27,0.8)",
         height : 70,
         justifyContent : 'center',
         alignItems : 'center',
@@ -58,9 +56,9 @@ class Container extends Component {
       }}>
 
         <Image
-        source={require("../../assets/images/logo-gym.png")}
+        source={require("../../assets/images/logo-gym2.png")}
         resizeMode="stretch"
-        style={styles.logo}
+        style ={{width : 400,height : 100}}
         />
       </View>
     );
@@ -91,8 +89,11 @@ class Container extends Component {
 
   render() {
     return (
+      <View style ={{flex:1}}>
+      
       <List containerStyle={{borderTopWidth: 0, borderBottomWidth: 0  }}>
       <StatusBar barStyle={"light-content"} />
+
         <FlatList
 
           data={this.state.groups}
@@ -100,7 +101,6 @@ class Container extends Component {
             <GroupsItem
               data = {item}
               containerStyle={{ borderBottomWidth: 0 }}
-              //onPressItem={Alert.alert(item.email)}
             />
           )}
           
@@ -114,8 +114,20 @@ class Container extends Component {
           //onEndReached={this.handleLoadMore} // 끝에 도달했을때 
           //onEndReachedThreshold={50}
         />
+
       </List>
-      
+      <ActionButton buttonColor="rgba(231,76,60,1)">
+          <ActionButton.Item buttonColor='#9b59b6' title="New Training" onPress={() => this.props.navigation.navigate('create')}>
+             <Icon name="md-create" style={styles.actionButtonIcon} />
+           </ActionButton.Item>
+          <ActionButton.Item buttonColor='#3498db' title="logout" onPress={() => this.props.logout()}>
+             <Icon name="md-notifications-off" style={styles.actionButtonIcon} />
+           </ActionButton.Item>
+           <ActionButton.Item buttonColor='#1abc9c' title="All Tasks" onPress={() => {}}>
+             <Icon name="md-done-all" style={styles.actionButtonIcon} />
+           </ActionButton.Item>
+       </ActionButton>
+      </View>
     
     );
   }

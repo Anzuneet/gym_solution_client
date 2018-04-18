@@ -175,15 +175,18 @@ const SearchFilterScreen = props => (
       </View>
     
       <View style = {styles.ButtonContainer}>
-      <Button 
-      color = "#ffbb00"
-      title="설정 완료"
-      onPress={() => {props.searchScreen()}}/>
-      
-      <Button 
-      color = "#ffbb00"
-      title="조건 초기화"
-      onPress={() => {props.stateInitialization()}}/>
+      <TouchableOpacity
+      style = {{backgroundColor : "#rgba(253,139,27,1)", marginHorizontal :90, paddingVertical :10, borderRadius : 20}}
+      onPress={() => {props.stateInitialization()}}>
+      <Text style = {{paddingHorizontal : 20}}>설정초기화</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+      style = {{backgroundColor : "#rgba(253,139,27,1)", marginHorizontal :90, paddingVertical :10, borderRadius : 20}}
+      onPress={() => {props.searchScreen()}}>
+      <Text style = {{paddingHorizontal : 20}}>설정완료</Text>
+      </TouchableOpacity>
+
       </View>
     </View>
 )

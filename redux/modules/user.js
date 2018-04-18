@@ -238,7 +238,6 @@ function getTrainers(uid, handler ) {
       }
     })
       .then(response => {
-        console.log(response);
         if (response.status != 200) {
           dispatch(logOut());
         } else {
@@ -288,7 +287,7 @@ function getGyms() {
      })
        .then(response => {
         if (response.status === 401) {
-          dispatch(userActions.logOut());
+          dispatch(logOut());
         } else {
           return response.json();
         }
@@ -307,7 +306,7 @@ function getGroups() {
      })
        .then(response => {
         if (response.status === 401) {
-          dispatch(userActions.logOut());
+          dispatch(logOut());
         } else {
           return response.json();
         }
@@ -317,6 +316,47 @@ function getGroups() {
   };
 }
 
+function getOwnGroups(handler) {
+  return (dispatch, getState) => {
+     const { user: { token } } = getState();
+     fetch(`${API_URL}/user/groups`, {
+       headers: {
+            "x-gs-token" : token
+       }
+     })
+       .then(response => {
+        if (response.status != 200) {
+          dispatch(logOut());
+        } else {
+          return response.json();
+        }
+      })
+      .then(json =>{
+        handler(json)});
+      
+  };
+}
+
+function getOwnTrainerGroups(handler) {
+  return (dispatch, getState) => {
+     const { user: { token } } = getState();
+     fetch(`${API_URL}/trainer/groups`, {
+       headers: {
+            "x-gs-token" : token
+       }
+     })
+       .then(response => {
+        if (response.status != 200) {
+          dispatch(logOut());
+        } else {
+          return response.json();
+        }
+      })
+      .then(json =>{
+        handler(json)});
+      
+  };
+}
 
 
 // 특정 반경 안 헬스장의 모든 그룹목록을 가져오는 함수
@@ -417,24 +457,16 @@ const actionCreators = {
   getNotifications,
   getOwnProfile,
   signup,
-  getToken,
   postBodyMeasurements,
   enrollGroup,
   getGyms,
   getGroups,
-  getTrainers
+  getTrainers,
+  getOwnGroups,
+  getOwnTrainerGroups
 
 };
   
-
-function getToken() {
-  return initialState.tokenKey;
-}
-
-
-const getModulesState ={
-  getToken
-};
 
 export { actionCreators };
  // Default Reducer Export

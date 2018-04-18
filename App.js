@@ -54,6 +54,9 @@ class App extends React.Component
         ...Ionicons.font,
         ...MaterialIcons.font,
         'font-DoHyeon' : require('./assets/fonts/DoHyeon-Regular.ttf'),
+        'font-Exo2-Regular' : require('./assets/fonts/Exo2-Regular.ttf'),
+        'font-Exo2-Light' : require('./assets/fonts/Exo2-Light.ttf'),
+        'font-Aldrich' : require('./assets/fonts/Aldrich-Regular.ttf'),
       })
     ]);
   };

@@ -65,25 +65,6 @@ const { width, height } = Dimensions.get("window");
               리뷰 </Text>
             </TouchableOpacity>
           </View>
-  
-          {props.GymInfoIndex == 2 ?
-          (<View style = {styles.trainerListContainer}>
-            <TrainerList
-            trainers = {props.trainers}
-            navigate = {props.navigate}/>
-          </View>)
-          :
-            (props.GymInfoIndex == 1 ?
-            <View>
-              <Text>{props.gymInfo.address}</Text>
-            </View>
-          :
-          <View>
-            <Text>리뷰 </Text>
-          </View>
-        
-          )
-          }
   </View>
 );
 const styles = StyleSheet.create({

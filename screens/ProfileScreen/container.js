@@ -63,7 +63,6 @@ class Container extends Component {
       this.setState({ image:{uri:result.uri, base64:result.base64 },flag : true   });
       this.dialog.dismiss();
     }
-    //navigate("upLoadImage", {image:this.state.image});
   }
   _submit = async () =>{
     const { image, weight, muscle, fat ,isSubmitting,flag } = this.state;

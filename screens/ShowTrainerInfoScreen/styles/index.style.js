@@ -11,11 +11,11 @@ const { width, height } = Dimensions.get("window");
 export default StyleSheet.create({
     safeArea: {
         flex: 1,
-        backgroundColor: colors.black
+        backgroundColor: "white",
     },
     container: {
         flex: 1,
-        backgroundColor: colors.background1
+        backgroundColor: "white"
     },
     gradient: {
         ...StyleSheet.absoluteFillObject
@@ -29,7 +29,7 @@ export default StyleSheet.create({
         backgroundColor: colors.black
     },
     exampleContainerLight: {
-        backgroundColor: '#eeeeee'
+        backgroundColor: 'transparent'
     },
     title: {
         paddingHorizontal: 30,
@@ -69,19 +69,33 @@ export default StyleSheet.create({
     },
     profileContainer : {
         flexDirection : 'row',
+        backgroundColor : 'transparent'
     },
     profileImageContainer : {
-        backgroundColor : 'yellow',
-        paddingVertical : 10,
+        paddingTop : 20,
         paddingHorizontal :10,
     },
     commentContainer : {
-        backgroundColor : 'white',
-        flex: 1,
+        borderRadius : 20,
+        marginHorizontal :10,
+        marginTop : 20,
+        backgroundColor : "white",
+        height : 150,
+        width : 250,
+        paddingHorizontal :5,
     },
     avatar: {
-        width: 150,
-        height: 150,
-        borderRadius: 50
+        width: 130,
+        height: 130,
+        borderRadius: 70,
+        borderWidth:3,
+        borderColor: "rgba(253,139,27,0.5)"
+
       }, 
+    TextStyle:
+    {
+        textAlign: 'center',
+        color: '#000'
+    
+    },
 });

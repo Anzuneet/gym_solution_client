@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Container from "./container";
+import presenter from "./presenter";
 import { actionCreators as userActions} from "../../redux/modules/user";
  
 const mapStateToProps = (state, ownProps) => {
@@ -9,13 +9,10 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    getOwnGroups: (handler) => {
-      dispatch(userActions.getOwnGroups(handler));
-    },
     logout: () => {
       dispatch(userActions.logOut());
     }
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Container);
+export default connect(mapStateToProps, mapDispatchToProps)(presenter);

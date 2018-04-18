@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Alert, StyleSheet} from 'react-native';
-import TrainerGroupManage from "../../navigation/TrainerGroupManage";
+import TrainerProfileNavigation from "../../navigation/TrainerProfileNavigation";
 
 
 class Container extends Component {
@@ -8,7 +8,7 @@ class Container extends Component {
  
   render() {
     return (
-      <TrainerGroupManage/>
+      <TrainerProfileNavigation/>
     );
   }
 

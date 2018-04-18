@@ -12,25 +12,31 @@ import {
       ActivityIndicator
     } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import {Font} from 'expo'; 
     
-
 const { width, height } = Dimensions.get("window");
 
 const LogInScreen = props => (
     <View style={styles.container}>
     <StatusBar barStyle={"light-content"} />
     <View style={styles.header}>
-        <Image
-        source={require("../../assets/images/logo-gym2.png")}
-        resizeMode="stretch"
-        style={styles.logo}
-        />
+         <Text style = {styles.titleText}>GYMSOLUSION</Text>
     </View>
+    
     <View style={styles.content}>
+
+        <View style={styles.image}>
+        <Image
+        source={require("../../assets/images/icon-gym.png")}
+        resizeMode="contain"
+        style={styles.logo}
+         />
+         </View>
+
         <TextInput 
             style = {styles.textInput} 
             underlineColorAndroid = 'rgba(0,0,0,0)' 
-            placeholder="PhoneNumber" 
+            placeholder="전화번호" 
             autoCorrecto = {false}
             value = {props.username}
             keyboardType='numeric'
@@ -39,7 +45,7 @@ const LogInScreen = props => (
         <TextInput 
             style = {styles.textInput} 
             underlineColorAndroid = 'rgba(0,0,0,0)' 
-            placeholder="Password"
+            placeholder="비밀번호"
             secureTextEntry = {true} 
             value = {props.password}
             onChangeText={props.changePassword}
@@ -51,30 +57,19 @@ const LogInScreen = props => (
             {props.isSubmitting ? 
             (<ActivityIndicator size = "small" color="white"/>)
             :
-            (<Text style ={styles.btnText}>Log In</Text>)
+            (<Text style ={styles.btnText}>로그인</Text>)
             }
         </View>
         </TouchableOpacity>
-        <View style={styles.forgetPswd}>
-            <Text style = {styles.introSignup}>Do you forget your password?</Text>
-            <TouchableOpacity>
-                <Text style = {styles.signupText} > Click it! </Text>
-            </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.fbContainer}>
-        <View style={styles.fbView}>
-            <Ionicons name="logo-facebook" size={22} color="#ffbb00" />
-            <Text style={styles.fbText}>Log in with Facebook</Text>
-        </View>
-        </TouchableOpacity>
         <View style={styles.signupTextContent}>
-            <Text style = {styles.introSignup}>Don't have a an account yet?</Text>
-            <TouchableOpacity onPressOut={ ()=> props.navigate('SignUp')}>
-                <Text style = {styles.signupText} > SignUP </Text>
+            <Text style = {styles.introSignup}>계정이 없으신가요?</Text>
+            <TouchableOpacity style = {styles.touchableSignUP} onPressOut={ ()=> props.navigate('SignUp')}>
+                <Text style = {styles.signupText} > 회원가입 </Text>
             </TouchableOpacity>
         </View>
     </View>
-    </View>
+
 );
 
 LogInScreen.propTypes = {
@@ -93,7 +88,7 @@ const styles = StyleSheet.create({
     },
     header: {
     flex: 1,
-    backgroundColor: "#rgba(255,176,0,0.6)",
+    backgroundColor: "#FFBB00",
     alignItems: "center",
     justifyContent: "center",
     width
@@ -109,37 +104,25 @@ const styles = StyleSheet.create({
     content: {
     flex: 4,
     backgroundColor: "white",
-    paddingTop: 20,
     alignItems: "center",
-    justifyContent: "flex-start"
-    },
-    fbContainer: {
-    marginTop: 50
-    },
-    fbView: {
-    flexDirection: "row",
-    alignItems: "center"
-    },
-    fbText: {
-    color: "#ffbb00",
-    marginLeft: 10,
-    fontWeight: "600",
-    fontSize: 14
+    justifyContent: "center"
     },
     textInput:{
-        width : width -80,
+        width : 250,
         height:50,
         borderColor: "#bbb",
         borderWidth: StyleSheet.hairlineWidth,
         borderRadius: 5,
         marginBottom: 15,
         paddingHorizontal: 15,
-        backgroundColor: "#fafafa"
+        backgroundColor: "#fafafa",
+        fontFamily: 'font-DoHyeon',
     },
     touchable:{
-        borderRadius:3,
-        backgroundColor: "#rgba(255,176,0,0.8)",
-        width: width-80
+        borderRadius:20,
+        backgroundColor: "#FFBB00",
+        width: 250, 
+        marginBottom : 25,
     },
     button:{
         paddingHorizontal:7,
@@ -147,30 +130,60 @@ const styles = StyleSheet.create({
     },
     btnText:{
         color: "white",
-        fontWeight : "600",
+        //fontWeight : "600",
         textAlign: "center",
-        fontSize :14
+        fontSize :30,
+        fontFamily: 'font-DoHyeon',
+        color: '#FFFFFF'
     },
     forgetPswd:{
       paddingVertical : 16,
       flexDirection : 'row'
     },
     signupTextContent:{
-        flex:1,
-        alignItems : 'flex-end',
+        flex:0.3,
+        alignItems : 'center',
         justifyContent : 'center',
         paddingVertical: 20,
         flexDirection : 'row'
         
     },
     introSignup :{
+        fontSize: 31,
+        paddingRight : 15,
+        borderRightWidth : 3,
+        borderColor : "#ffffff",
+        //fontWeight : "800",
+        fontFamily: 'font-DoHyeon',
         color: 'rgba(0,0,0,0.5)'
     },
     signupText :{
-        fontSize: 16,
+        fontSize: 31,
         color : "#ffbb00",
-        fontWeight : "500"
-    }
+        fontFamily: 'font-DoHyeon',
+        //fontWeight : "500"
+    },
+    titleText : {
+        fontFamily: 'font-DoHyeon',
+        fontSize : 55,
+        color : "rgba(0,0,0,1)",
+        marginTop : 25,
+        textAlign: "center",
+    },
+    touchableSignUP : {
+        //backgroundColor : "#ffbb00",
+        //flexDirection : 'row',
+        justifyContent : "center",
+        marginLeft : 5,
+        //marginTop : 5,
+        //paddingVertical: 5,
+        //paddingHorizontal: 5,
+    },
+    image : {
+        //marginTop : 25,
+        marginBottom : 25,
+        flex : 1,
+    },
 });
     
 export default LogInScreen;

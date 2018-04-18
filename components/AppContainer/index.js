@@ -14,12 +14,15 @@ const mapStateProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        initApp: () => {
+        initAppForTrainee: () => {
             dispatch(photoActions.getFeed());
             dispatch(userActions.getGroups());
             dispatch(userActions.getGyms());
             //getSearch
             //getNotifications
+            dispatch(userActions.getOwnProfile());
+        },
+        initAppForTrainer: () => {
             dispatch(userActions.getOwnProfile());
         }
     }

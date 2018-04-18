@@ -140,7 +140,7 @@ class Container extends Component {
   }
 
   _setDialog = (dialog)=>this.dialog = dialog;
-  _setMapView=(mapview)=>this.map = mapview;
+  _setMapView = (mapview)=>this.map = mapview;
   
 
 // 일단 기능 테스트를 위해 가격조건이 설정 안되있다면 필터링을 사용 안하는걸로 간주함
