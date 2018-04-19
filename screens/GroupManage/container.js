@@ -72,7 +72,7 @@ class Container extends Component {
   }
 /*
   componentDidMount(){
-    this.props.getOwnTrainerGroups((json)=>{
+    await this.props.getOwnTrainerGroups((json)=>{
       this.setState({groups:json.groups});
     });
   }*/
@@ -97,8 +97,8 @@ class Container extends Component {
 
   render() {
     return (
+      <View style = {{flex : 1}}>
       <List containerStyle={{borderTopWidth: 0, borderBottomWidth: 0  }}>
-      <StatusBar barStyle={"light-content"} />
         <FlatList
 
           data={this.state.groups}
@@ -106,21 +106,23 @@ class Container extends Component {
             <OneGroupForTrainer
               data = {item}
               containerStyle={{ borderBottomWidth: 0 }}
-              //onPressItem={Alert.alert(item.email)}
+              navigation = {this.props.navigation}
             />
           )}
-          
-          //ListHeaderComponent={this.renderHeader}
           keyExtractor={item => item.uid}
           ItemSeparatorComponent={this.renderSeparator}
-          
-          //ListFooterComponent={this.renderFooter}
-          //onRefresh={this.handleRefresh}
-          //refreshing={this.state.refreshing} // refreshingrlsmd
-          //onEndReached={this.handleLoadMore} // 끝에 도달했을때 
-          //onEndReachedThreshold={50}
         />
       </List>
+      <ActionButton buttonColor="rgba(231,76,60,1)">
+          <ActionButton.Item buttonColor='#9b59b6' title="Create New Training" onPress={() => this.props.navigation.navigate('create')}>
+             <Icon name="md-create" style={styles.actionButtonIcon} />
+           </ActionButton.Item>
+          <ActionButton.Item buttonColor='#3498db' title="logout" onPress={() => this.props.logout()}>
+             <Icon name="md-notifications-off" style={styles.actionButtonIcon} />
+           </ActionButton.Item>
+       </ActionButton>
+      </View>
+      
       
     
     );

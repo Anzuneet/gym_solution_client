@@ -44,9 +44,9 @@ class Container extends Component {
   
   componentDidMount(){
     this._loadLocationAsync();
-    if(this.props.gyms.result)
+    if(this.props.gyms != null)
       this.setState({gyms: this.props.gyms.result});
-    if(this.props.groups.groups)
+    if(this.props.groups != null)
       this.setState({groups : this.props.groups.groups});
   };
 

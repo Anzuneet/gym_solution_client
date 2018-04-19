@@ -19,23 +19,33 @@ const { width, height } = Dimensions.get("window");
       <View style = {styles.upperContainer}>
 
         <Text style = {{paddingLeft: 10}}>[</Text>
-            {props.data.daysOfWeek.map((st,index) => <Text key = {index} style = {{paddingHorizontal : 15, fontSize : 15, color : "Black", fontWeight : "800",}}>{st}</Text>)}
+            {props.data.daysOfWeek.map((st,index) => <Text key = {index} style = {{paddingHorizontal : 10, fontSize : 15, color : "black", fontWeight : "800",}}>{st}</Text>)}
         <Text style = {{paddingRight: 10}}>]</Text>
-        <Text style = {{ position: 'absolute', right : 10}}> {props.data.time} </Text>
+        <Text style = {{ position: 'absolute', right : 10, fontSize : 17,}}> {props.data.time} 시작 </Text>
       </View>
       <View style ={styles.downContainer}>
         <View style = {styles.titleContainer}>
-          <Text style = {styles.commentText}>
-              {props.data.comment}
+          <View style = {{flex : 0.7, alignItems : 'center', justifyContent :'center'}}>
+          <Text style = {styles.titleText} numberOfLines = {3}>
+              {props.data.title}
           </Text>
+          </View>
+          <View style = {{flex : 1, marginHorizontal : 10,marginVertical : 5,backgroundColor : "white", borderRadius : 10,}}>
+            <Text style = {styles.commentText} numberOfLines = {4}>
+              {props.data.comment}
+            </Text>
+          </View>
         </View>
-        <View style = {styles.detailContainer}>
-            <Text style ={styles.capacityText}>
-            정원 : {props.data.capacity}
-            </Text>
-            <Text style ={styles.costText}>
-            비용 : {props.data.charge}
-            </Text>
+        <View>
+          <View style = {styles.detailContainer}>
+              <Text style ={styles.capacityText}>
+              정원 : {props.data.capacity}
+              </Text>        
+              <Text style ={styles.costText}>
+              비용 : {props.data.charge}
+              </Text>
+          </View>
+          <Text style = {{textAlign : 'center', paddingTop : 7, fontSize : 20,}}> GYM : <Text style = {{fontSize: 22, fontWeight : "500"}}> {props.data.gym.name}</Text></Text>
         </View>
       </View>
       
@@ -46,11 +56,17 @@ const { width, height } = Dimensions.get("window");
                       flexDirection : 'row',
                       justifyContent : "space-between"}}>
     <Text style = {{color : "black", paddingLeft : 5,}}> {props.startDate} </Text>
-    <Text style = {{color: "black"}}> {props.percent}%</Text>
+    {props.percent <= 0 ?
+    <Text style = {{color: "black"}}> NOT OPENED </Text> :
+      (props.percent >= 100 ? 
+        <Text style = {{color: "black"}}> 종료됨 </Text> :
+        <Text style = {{color: "black"}}> {props.percent}%</Text>
+      )
+    }
     <Text style = {{color: "black", paddingRight : 5,}}> {props.endDate}</Text>
     <View style = {{
       width : props.percent/100*width,
-      backgroundColor: "#rgba(255,167,0,0.5)",
+      backgroundColor: "#rgba(255,167,0,0.7)",
       height : 20,
       alignItems : "center",
       position : 'absolute',
@@ -74,25 +90,25 @@ const styles = StyleSheet.create({
   },
   upperContainer :{
     flexDirection : 'row',
-    //position: 'absolute',
-    backgroundColor : "red",
+    height : 25,
+    alignItems : 'center',
+    backgroundColor : "#rgba(255,167,0,0.7)",
   },
   downContainer : {
     flexDirection : 'row',
     backgroundColor : 'pink',
   },
   titleContainer : {
-    flex:1,
+    flex : 1,
+    flexDirection : 'row',
     borderWidth : 1,
     borderBottomWidth: 0,
     borderTopWidth: 0,
     backgroundColor : "#eeeeee"
   },
   detailContainer : {
-    flex:0.8,
-    paddingTop : 3,
-    alignItems : 'flex-end',
-    backgroundColor : "#eeeeee"
+    backgroundColor : "#eeeeee",
+    flexDirection : 'row',
   },
   trainernameContainer :{
     justifyContent: 'center',
@@ -109,12 +125,8 @@ const styles = StyleSheet.create({
     fontWeight:'500',
   },
   titleText :{
-    paddingTop :20,
-    paddingBottom : 10,
-    paddingLeft : 8,
-
     fontSize :20,
-    fontWeight : "500",
+    fontWeight : "800",
   },
   commentText : {
     paddingLeft : 13,
@@ -126,14 +138,13 @@ const styles = StyleSheet.create({
     paddingBottom : 10,
   },
   capacityText : {
+    paddingTop : 10,
     fontSize : 20,
-    paddingRight: 20,
-    paddingVertical : 10,
   },
   costText : {
-    fontSize : 15,
-    paddingTop : 7,
-    paddingRight : 10,
+    paddingTop : 10,
+    paddingLeft : 10,
+    fontSize : 20,
   },
 
 });

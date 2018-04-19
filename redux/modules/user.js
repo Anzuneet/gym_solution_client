@@ -155,37 +155,7 @@ function signup(personInfo) {
  };
 }
 
-function facebookLogin() {
-  return async dispatch => {
-    const { type, token } = await Facebook.logInWithReadPermissionsAsync(
-      FB_APP_ID,
-      {
-        permissions: ["public_profile", "email"]
-      }
-    );
-    if (type === "success") {
-      return fetch(`${API_URL}/users/login/facebook/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          access_token: token
-        })
-      })
-        .then(response => response.json())
-        .then(json => {
-          if (json.user && json.token) {
-            dispatch(setLogIn(json.token));
-            dispatch(setUser(json.user));
-            return true;
-          } else {
-            return false;
-          }
-        });
-    }
-   };
- }
+
 
 function getNotifications() {
   return (dispatch, getState) => {
@@ -347,7 +317,6 @@ function getOwnTrainerGroups(handler) {
        }
      })
        .then(response => {
-         console.log(response);
         if (response.status != 200) {
           dispatch(logOut());
         } else {
@@ -361,13 +330,11 @@ function getOwnTrainerGroups(handler) {
 }
 
 
-// 특정 반경 안 헬스장의 모든 그룹목록을 가져오는 함수
 
 // Initial State
 const initialState = {
  isLoggedIn: false,
  isTrainer : null,
- profile : null,
 };
 
  

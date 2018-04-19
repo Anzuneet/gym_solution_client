@@ -6,7 +6,7 @@ import OneGroupForTrainer from "./presenter";
 class Container extends Component {
 
   _onPress = () => {
-    this.props.navigate('showOneGroup');
+    this.props.navigation.navigate('showMembers', {group : this.props.data});
   };
 
   render() {
@@ -23,7 +23,6 @@ class Container extends Component {
     return (
       <OneGroupForTrainer
       {...this.props}
-      capacity = {this.props.data.capacity}
       startDate = {oStartDate}
       endDate = {oEndDate}
       onPress = {this._onPress}

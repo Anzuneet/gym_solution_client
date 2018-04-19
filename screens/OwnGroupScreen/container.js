@@ -18,20 +18,60 @@ import Icon from 'react-native-vector-icons/Ionicons'
 class Container extends Component {
   state = {
     loading: false,
-    groups :[
+    groups:
+    [
       {
-        uid : 1,
+        capacity :5,
+        charge: 10000,
+        comment: "",
+        daysOfWeek :["WED","SUN"],
+        gym : {
+          address : "사랑시 고백구 행복동",
+          name : "행복-FIT",
+          uid :1,
+        },
+        opened: true,
+        trainer : {
+          name : "박종휘",
+          uid : 30,
+        },
+        period : 60,
+        start_date : "2018-04-28",
+        time : "8:30",
+        title : "박종휘의바벨생각",
+        uid : 2,
+        user_count : 2,
       },
       {
-        uid : 2,
-      }
-    ],
+        capacity :5,
+        charge: 10000,
+        comment: "",
+        daysOfWeek :["WED","SUN"],
+        gym : {
+          address : "사랑시 고백구 행복동",
+          name : "행복-FIT",
+          uid :1,
+        },
+        opened: true,
+        trainer : {
+          name : "박종휘",
+          uid : 30,
+        },
+        period : 1,
+        start_date : "2018-03-28",
+        time : "8:30",
+        title : "불끈",
+        uid : 3,
+        user_count : 2,
+      },
+    ]
   }
 
   componentDidMount(){
+    /*
     this.props.getOwnGroups((json)=>{
       this.setState({groups:json.groups});
-    });
+    });*/
   }
 
 
