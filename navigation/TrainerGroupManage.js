@@ -2,7 +2,7 @@ import { StackNavigator } from "react-navigation";
 import GroupManage from "../screens/GroupManage";
 import CreateTrainingScreen from "../screens/CreateTrainingScreen";
 import ShowMembersScreen from "../screens/ShowMembersScreen";
-import recordMemberScreen from "../screens/recordMemberScreen";
+import RecordMemberScreen from "../screens/RecordMemberScreen";
 
 
 const TrainerGroupManage = StackNavigator({
@@ -26,7 +26,7 @@ const TrainerGroupManage = StackNavigator({
     },
   },
   record: {
-    screen: recordMemberScreen,
+    screen: RecordMemberScreen,
     navigationOptions: {
       header : null,
     },

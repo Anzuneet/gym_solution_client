@@ -12,12 +12,15 @@ import {
 } from "react-native";
 import ProfileChart from "../../components/ProfileChart";
 import DateTimePicker from 'react-native-modal-datetime-picker';
+import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 
 const { width, height } = Dimensions.get("window");
-
+const vacation = {key:'vacation', color: 'red', selectedDotColor: 'blue'};
+const massage = {key:'massage', color: 'blue', selectedDotColor: 'blue'};
+const workout = {key:'workout', color: 'green'};
 
  const RecordMemberScreen = props => (
-  <View style = {styles.container}>
+  <ScrollView style = {styles.container}>
    <View style = {styles.graphContainer}>
       <View style = {styles.grapheTitleContainer}>
         <TouchableOpacity style = {props.chartIndex == 1 ? styles.clickedTextContainer : styles.unClickedTextContainer} 
@@ -58,15 +61,17 @@ const { width, height } = Dimensions.get("window");
       />
     </View>
     <View>
-    <DateTimePicker
-          isVisible={true}
-          onConfirm={props.changeStartDate}
-          onCancel={props.hideStartTimePicker}
-          mode = {'date'}
-          
-        />
+    <Calendar
+      style = {{marginBottom : 50}}
+      markedDates={{
+        '2018-05-16': {selected: true, marked: true, selectedColor: 'blue'},
+        '2018-05-17': {marked: true},
+        '2018-05-18': {marked: true, dotColor: 'red', activeOpacity: 0},
+        '2018-05-19': {disabled: true, disableTouchEvent: true}
+      }}
+    />
     </View>
-  </View>
+  </ScrollView>
 );
  
 const styles = StyleSheet.create({

@@ -60,6 +60,11 @@ const TrainerProfileUpdateScreen = props =>
                 style={styles.avatar}
             />
             }
+            <TouchableOpacity style = {styles.tUpdateBContainer} onPress={() => {
+                    this.popupDialog.show();
+                }}>
+                <Text style = {styles.tUpdateBText}>Update!! </Text>
+                </TouchableOpacity>
             </View>
             <View>
                 <View style = {styles.commentContainer}>
@@ -69,11 +74,7 @@ const TrainerProfileUpdateScreen = props =>
 
                     </Text>
                 </View>
-                <TouchableOpacity style = {styles.tUpdateBContainer} onPress={() => {
-                    this.popupDialog.show();
-                }}>
-                <Text style = {styles.tUpdateBText}>소개문 업데이트하기!! </Text>
-                </TouchableOpacity>
+                
             </View>
         </View>
         <View style = {styles.bodyProfileContainer}>
@@ -96,24 +97,30 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
     },
     profileContainer : {
+        flex :1,
         flexDirection : 'row',
-        backgroundColor : "red",
+        backgroundColor : "white",
     },
     profileImageContainer : {
         paddingTop : 20,
         paddingHorizontal :10,
+        alignItems : 'center',
     },
     commentContainer : {
         marginHorizontal :10,
         marginTop : 20,
         backgroundColor : "yellow",
-        height : 120,
-        width : 250,
+        height : 300,
+        width : 230,
         paddingHorizontal :5,
     },
     tUpdateBContainer : {
-        marginHorizontal :10,
+        marginTop : 20,
+        width: 130,
+        height : 150,
         backgroundColor: "rgba(253,139,27,0.5)",
+        alignItems: 'center',
+        justifyContent : 'center',
     },
     avatar: {
         width: 130,
@@ -132,7 +139,8 @@ const styles = StyleSheet.create({
         backgroundColor : "yellow"
     },
     bodyProfileContainer : {
-        flexDirection : 'row'
+        flexDirection : 'row',
+        flex :1,
     },
     cameraTab : {
     paddingTop : 10,
