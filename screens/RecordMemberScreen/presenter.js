@@ -21,26 +21,11 @@ const workout = {key:'workout', color: 'green'};
 
  const RecordMemberScreen = props => (
   <ScrollView style = {styles.container}>
+   <View style = {styles.headerContainer}>
+    <Text style = {styles.nameText}>김선태 Profile</Text>
+   </View>
    <View style = {styles.graphContainer}>
-      <View style = {styles.grapheTitleContainer}>
-        <TouchableOpacity style = {props.chartIndex == 1 ? styles.clickedTextContainer : styles.unClickedTextContainer} 
-        onPressOut ={props.clickWeight}>
-          <Text  style = {props.chartIndex == 1 ? styles.clickedText : styles.unClickedText}> 
-          Weight </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style = {props.chartIndex == 2 ? styles.clickedTextContainer : styles.unClickedTextContainer} 
-        onPressOut ={props.clickMuscle}>
-        <Text  style = {props.chartIndex == 2 ? styles.clickedText : styles.unClickedText}>  
-          Muscle </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style = {props.chartIndex == 3 ? styles.clickedTextContainer : styles.unClickedTextContainer}
-        onPressOut ={props.clickFat}>
-          <Text  style = {props.chartIndex == 3 ? styles.clickedText : styles.unClickedText}> 
-          Fat </Text>
-        </TouchableOpacity>
-      </View>
+      
       <ProfileChart
         data = {props.chartIndex == 1 ?
           (
@@ -60,15 +45,30 @@ const workout = {key:'workout', color: 'green'};
         }
       />
     </View>
+    <View style = {styles.grapheTitleContainer}>
+        <TouchableOpacity style = {props.chartIndex == 1 ? styles.clickedTextContainer : styles.unClickedTextContainer} 
+        onPressOut ={props.clickWeight}>
+          <Text  style = {props.chartIndex == 1 ? styles.clickedText : styles.unClickedText}> 
+          Weight </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style = {props.chartIndex == 2 ? styles.clickedTextContainer : styles.unClickedTextContainer} 
+        onPressOut ={props.clickMuscle}>
+        <Text  style = {props.chartIndex == 2 ? styles.clickedText : styles.unClickedText}>  
+          Muscle </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style = {props.chartIndex == 3 ? styles.clickedTextContainer : styles.unClickedTextContainer}
+        onPressOut ={props.clickFat}>
+          <Text  style = {props.chartIndex == 3 ? styles.clickedText : styles.unClickedText}> 
+          Fat </Text>
+        </TouchableOpacity>
+      </View>
     <View>
     <Calendar
-      style = {{marginBottom : 50}}
-      markedDates={{
-        '2018-05-16': {selected: true, marked: true, selectedColor: 'blue'},
-        '2018-05-17': {marked: true},
-        '2018-05-18': {marked: true, dotColor: 'red', activeOpacity: 0},
-        '2018-05-19': {disabled: true, disableTouchEvent: true}
-      }}
+      style = {{marginVertical : 50}}
+      markedDates={props.dates2}
+      onDayPress={props.pullDayInfo}
     />
     </View>
   </ScrollView>
@@ -77,6 +77,11 @@ const workout = {key:'workout', color: 'green'};
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  headerContainer : {
+    flexDirection : 'row',
+    backgroundColor : "white",
+    justifyContent : 'center',
   },
   graphContainer : {
     alignItems : "center",
@@ -98,6 +103,10 @@ const styles = StyleSheet.create({
     backgroundColor : "#ffffff",
     justifyContent : 'center',
     alignItems : 'center',
+  },
+  nameText : {
+    fontSize : 20,
+    paddingVertical : 10,
   },
   clickedText : {
     color : "#ffffff",

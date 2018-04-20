@@ -28,7 +28,7 @@ const { width, height } = Dimensions.get("window");
       <View style = {styles.chartTitleContainer}>
         <Text style = {styles.title}> {props.name} </Text>
       </View>
-      <VictoryChart height={200} width={width}
+      <VictoryChart height={255} width={width}
             theme = {VictoryTheme.material}
             containerComponent={
               <VictoryVoronoiContainer

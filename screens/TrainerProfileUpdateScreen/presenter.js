@@ -16,15 +16,17 @@ const TrainerProfileUpdateScreen = props =>
             dialogTitle={<DialogTitle title="Trainer 경력 입력" />}
             ref={(popupDialog) => { this.popupDialog = popupDialog; }}
             dismissOnTouchOutside = {true}
-            height = {500}
+            height = {250}
+            containerStyle = {{ zIndex: 10, elevation: 100 }}
         >
         <TextInput 
             style = {styles.textInput} 
-            underlineColorAndroid = 'rgba(0,0,0,0)'  
-            autoCorrecto = {false}
+            multiline = {true}
+            numberOfLines = {10}
             value = {props.comment}
             onChangeText={props.changeComment}
-            multiline = {true}
+            editable = {true}
+            maxLength = {40}
         />
 
         </PopupDialog>
@@ -48,40 +50,46 @@ const TrainerProfileUpdateScreen = props =>
                 </TouchableOpacity>
             </View>
         </PopupDialog>
-        <View style = {styles.profileContainer}>
-            <View style = {styles.profileImageContainer}>
-            {props.profileImage ?
-            <Text>ProfileImage</Text>
-            :
-            <Image
-                source={
-                    require("../../assets/images/noPhoto.jpg")
+        <View style = {{flexDirection:'row'}}>
+            <View style = {styles.profileContainer}>
+                <View style = {styles.profileImageContainer}>
+                {props.profileImage ?
+                <Text>ProfileImage</Text>
+                :
+                <Image
+                    source={
+                        require("../../assets/images/noPhoto.jpg")
+                    }
+                    style={styles.avatar}
+                    
+                />
                 }
-                style={styles.avatar}
-            />
-            }
-            <TouchableOpacity style = {styles.tUpdateBContainer} onPress={() => {
-                    this.popupDialog.show();
-                }}>
-                <Text style = {styles.tUpdateBText}>Update!! </Text>
-                </TouchableOpacity>
-            </View>
-            <View>
-                <View style = {styles.commentContainer}>
-                    <Text style={styles.TextStyle} numberOfLines = { 6 } > 
-
-                    {props.comment}
-
-                    </Text>
                 </View>
-                
+                    <View style = {styles.gymNameContainer}>
+                        <Text style = {styles.tUpdateBText}>{props.gym}</Text>
+                    </View>
+                    <TouchableOpacity style = {styles.tUpdateBContainer} onPress={() => {
+                            this.popupDialog.show();
+                        }}>
+                        <Text style = {styles.tUpdateBText}>Update!! </Text>
+                    </TouchableOpacity>
+                </View>
+                <View>
+                    <View style = {styles.commentContainer}>
+                        <Text style={styles.TextStyle} numberOfLines = { 6 } > 
+
+                        {props.comment}
+
+                        </Text>
+                    </View>
+                    
+                </View>
             </View>
-        </View>
         <View style = {styles.bodyProfileContainer}>
             <SnapShot/>
             <TouchableOpacity onPressOut ={ () => {
                 props.parent.dialog.show()
-            }} style={{flexDirection: 'column', alignItems : 'center', justifyContent : 'center', backgroundColor : "#rgba(253,139,27,1)", marginVertical : 15,}}>
+            }} style={{flexDirection: 'column', alignItems : 'center', justifyContent : 'center', backgroundColor : "#rgba(253,139,27,1)", marginVertical : 0,}}>
                 {props.bodyText.split('').map((char,index) => <Text key = {index} style = {{paddingHorizontal : 10, fontSize : 15, color : "white", fontWeight : "800",}}>{char}</Text>)}
             </TouchableOpacity>
         </View>
@@ -98,8 +106,8 @@ const styles = StyleSheet.create({
     },
     profileContainer : {
         flex :1,
-        flexDirection : 'row',
         backgroundColor : "white",
+        alignItems : 'center',
     },
     profileImageContainer : {
         paddingTop : 20,
@@ -109,15 +117,25 @@ const styles = StyleSheet.create({
     commentContainer : {
         marginHorizontal :10,
         marginTop : 20,
-        backgroundColor : "yellow",
+        backgroundColor : "#eeeeee",
         height : 300,
         width : 230,
-        paddingHorizontal :5,
+        paddingHorizontal :10,
+        paddingVertical :10,
+        borderRadius : 20,
+    },
+    gymNameContainer : {
+        marginTop : 20,
+        width: 130,
+        height : 50,
+        backgroundColor: "rgba(253,139,27,0.5)",
+        alignItems: 'center',
+        justifyContent : 'center',
     },
     tUpdateBContainer : {
         marginTop : 20,
         width: 130,
-        height : 150,
+        height : 50,
         backgroundColor: "rgba(253,139,27,0.5)",
         alignItems: 'center',
         justifyContent : 'center',
@@ -132,9 +150,9 @@ const styles = StyleSheet.create({
     }, 
     tUpdateBText : {
         fontSize :30,
+        color: "white",
     },
     textInput : {
-        height : 400,
         width : width,
         backgroundColor : "yellow"
     },

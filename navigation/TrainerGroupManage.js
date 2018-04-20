@@ -3,7 +3,7 @@ import GroupManage from "../screens/GroupManage";
 import CreateTrainingScreen from "../screens/CreateTrainingScreen";
 import ShowMembersScreen from "../screens/ShowMembersScreen";
 import RecordMemberScreen from "../screens/RecordMemberScreen";
-
+import RecordDayScreen from "../screens/RecordDayScreen";
 
 const TrainerGroupManage = StackNavigator({
   
@@ -30,6 +30,13 @@ const TrainerGroupManage = StackNavigator({
     navigationOptions: {
       header : null,
     },
+    
+  recordDay: {
+    screen: RecordDayScreen,
+    navigationOptions: {
+      header : null,
+    },
+  }
   },
 });
 

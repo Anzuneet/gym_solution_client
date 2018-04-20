@@ -11,7 +11,14 @@ class Container extends Component {
 };
  state = {
   chartIndex : 1,
-  startTimePickerVisible :false,
+  lists : [
+    {
+      date:"2018-04-21",
+    },
+    {
+      date:"2018-04-22",
+    },
+  ]
  };
 
  _clickWeight = () =>{
@@ -24,24 +31,26 @@ _clickFat = () =>{
   this.setState({chartIndex: 3});
 };
 
-_showStartTimePicker = () => this.setState({ startTimePickerVisible: true });
-_hideStartTimePicker = () => this.setState({ startTimePickerVisible: false });
-_handleStartClockPicked = (date) => {
-  var startTime = new Date(date)
-  oStartTime = (`${startTime.getHours()}:${startTime.getMinutes()}`);
-  this.setState({start_time: oStartTime, startClockPickerVisible: false});
-};
+_pullDayInfo = (day) =>{
+  this.props.navigation.navigate("recordDay");
+}
   render() {
     const {navigate} = this.props.navigation;
+    //...
+    
+    
    return (
      <RecordMemberScreen {...this.props} {...this.state}
+     dates2 = {this.state.lists.reduce((obj, it)=>{
+      obj[it.date] = {marked:true, selected:true, selectedColor:"blue"};
+      return obj;
+   }
+   ,{})}
      navigate = {navigate}
      clickWeight = {this._clickWeight}
      clickMuscle = {this._clickMuscle}
      clickFat = {this._clickFat}
-     changeStartTime = {this._handleStartClockPicked}
-      showStartTimePicker = {this._showStartTimePicker}
-      hideStartTimePicker= {this._hideStartTimePicker}
+     pullDayInfo = {this._pullDayInfo}
      />
    );
  }
