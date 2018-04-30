@@ -81,7 +81,7 @@ class Container extends Component {
     this.state.monday ? this.setState({monday : false}) : this.setState({monday : true});
   };
   _changeTuesday = () =>{
-    this.state.tuesday ? this.setState({monday : false}) : this.setState({tuesday : true});
+    this.state.tuesday ? this.setState({tuesday : false}) : this.setState({tuesday : true});
   };
   _changeWednesday = () =>{
     this.state.wednesday ? this.setState({wednesday : false}) : this.setState({wednesday : true});

@@ -47,9 +47,13 @@ const CreateTrainingScreen = props => (
           mode = {'time'}
           is24Hour = {false}
           
-        />                
+        />          
         <View style = {styles.titleContainer}>
-        <Text style ={styles.titleText}> Training Title </Text>
+        <Text style = {styles.titleText}> 트레이닝 만들기 </Text>
+        </View>
+
+        <View style = {styles.titleContainer}>
+        <Text style ={styles.textContentFont}> 트레이닝 제목 </Text>
         <TextInput 
               style = {styles.textInputTitle} 
               underlineColorAndroid = 'rgba(0,0,0,0)'
@@ -58,7 +62,7 @@ const CreateTrainingScreen = props => (
               onChangeText={props.changeGroupsTitle}
           />
         </View>
-        <Text style ={styles.titleText}> Training Comment </Text>
+        <Text style ={styles.textContentFont}> 트레이닝 코멘트 </Text>
         <View style = {styles.commentContainer}>
             <TextInput 
               style = {styles.textInputComment} 
@@ -68,52 +72,38 @@ const CreateTrainingScreen = props => (
               onChangeText={props.changeGroupsComment}
           />    
         </View>
+        <Text style ={styles.textContentFont}> 트레이닝 날짜 </Text>
         <View style = {styles.dateContainer}>
             <View style = {styles.startDateContainer}>
-                <Text style = {props.start_date ? styles.dateText : styles.titleText}>
-                    {props.start_date ? "시작 일 : " +  props.start_date : "traing의 시작일을 정해주세요!"}
+                <Text style = {props.start_date ? styles.dateText : styles.dateText}>
+                    {props.start_date ? "시작 날짜 : " +  props.start_date : "트레이닝의 시작 날짜를 정해주세요!"}
                 </Text>
                 <TouchableOpacity style = {styles.callCalenderContainer} onPressOut={props.showStartTimePicker}>
-                    <Text style = {styles.callCalender}> click!</Text>
+                    <Text style = {styles.callCalender}> 설정하기!</Text>
                 </TouchableOpacity>
             </View>
 
             <View style ={styles.endDateContainer}>
-                <Text style = {props.end_date ? styles.dateText : styles.titleText}>
-                    {props.end_date ? "종료 일 : " + props.end_date : "traing의 종료일을 정해주세요!"}
+                <Text style = {props.end_date ? styles.dateText : styles.dateText}>
+                    {props.end_date ? "종료 날짜 : " + props.end_date : "트레이닝의 종료 날짜를 정해주세요!"}
                 </Text>
 
                 <TouchableOpacity style = {styles.callCalenderContainer} onPressOut={props.showEndTimePicker}>
-                    <Text style = {styles.callCalender}> click!</Text>
+                    <Text style = {styles.callCalender}> 설정하기!</Text>
                 </TouchableOpacity>
             </View>
 
-             <View style ={styles.startTimeContainer}>
-                <Text style = {props.start_time ? styles.dateText : styles.titleText}>
-                    {props.start_time ? "시작 시간 : " + props.start_time : "trainig의 시작 clock을 정해주세요!!"}
+            <Text style ={styles.textContentTime}> 트레이닝 시간 </Text>
+            <View style ={styles.startTimeContainer}>
+                <Text style = {props.start_time ? styles.dateText : styles.dateText}>
+                    {props.start_time ? "시작 시간 : " + props.start_time : "트레이닝의 시작 시간을 정해주세요!!"}
                 </Text>
-                {props.start_time ? (
-                    <View style = {styles.durationContainer}>
-                    <Text style = {styles.chargeText}> 운동시간 : </Text>
-                    <TextInput 
-                      style = {styles.capacityInputComment} 
-                      underlineColorAndroid = 'rgba(0,0,0,0)'
-                      placeholder="운동시간입력" 
-                      value = {props.duration}
-                      keyboardType='numeric'
-                      onChangeText={props.changeDuration}
-                  />    
-                  </View>
-                )
-                :
-                ( <TouchableOpacity style = {styles.callCalenderContainer} onPressOut={props.showStartClockPicker}>
-                    <Text style = {styles.callCalender}> click!</Text>
-                </TouchableOpacity>)
-                }
-               
+                <TouchableOpacity style = {styles.callCalenderContainer} onPressOut={props.showStartClockPicker}>
+                    <Text style = {styles.callCalender}> 설정하기!</Text>
+                </TouchableOpacity>        
             </View>
 
-            <Text style ={styles.titleText}>어느 요일에 진행하실 건가요?</Text>
+            <Text style ={styles.textContentFont}>트레이닝 요일</Text>
                 <DaysCheckBox 
                  monday = {props.monday}
                  tuesday = {props.tuesday}
@@ -132,7 +122,7 @@ const CreateTrainingScreen = props => (
                 />
 
         </View>
-        <Text style ={styles.titleText}> 비용을 정해주세요 ! </Text>
+        <Text style ={styles.textContentFont}> 트레이닝 비용 </Text>
         <View style = {styles.rowContainer}>
             <View style = {styles.chargeContainer}>
                 <Text style = {styles.chargeText}> 비용 : </Text>
@@ -159,7 +149,7 @@ const CreateTrainingScreen = props => (
                     {props.isSubmitting ? 
                     (<ActivityIndicator size = "large" color="white"/>)
                     :
-                    (<Text style ={styles.btnText}>Make it!</Text>)
+                    (<Text style ={styles.btnText}>트레이닝 만들기!</Text>)
                     }
                 </View>
             </TouchableOpacity>
@@ -172,8 +162,6 @@ const styles = StyleSheet.create({
         flex: 1,
         },
     titleContainer: {
-        height: 100,
-        justifyContent : 'center',
         },
     rowContainer : {
         flexDirection : 'row',
@@ -184,14 +172,15 @@ const styles = StyleSheet.create({
         borderColor: "#bbb",
         borderWidth: StyleSheet.hairlineWidth,
         borderRadius: 5,
-        marginTop :15,
+        marginBottom: 8,
         paddingHorizontal: 15,
         backgroundColor: "#fafafa",
-        marginLeft : 20,
+        marginLeft : 25,
+        fontFamily: 'font-DoHyeon',
         },
     commentContainer: {
         justifyContent : 'center',
-        paddingVertical : 20,
+        //paddingVertical : 20,
         },
     chargeContainer : {
         justifyContent : 'flex-start',
@@ -200,14 +189,16 @@ const styles = StyleSheet.create({
         marginBottom : 30,
         },
     textInputComment: {
-        width : width-30,
+        width : width-150,
         height: 30,
         borderColor: "#bbb",
         borderWidth: StyleSheet.hairlineWidth,
         borderRadius: 5,
+        marginBottom: 8,
         paddingHorizontal: 15,
         backgroundColor: "#fafafa",
-        marginLeft : 20,
+        marginLeft : 25,
+        fontFamily: 'font-DoHyeon'
         },
     chargeInputComment : {
         width : 150,
@@ -218,6 +209,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
         backgroundColor: "#fafafa",
         marginLeft : 20,
+        fontFamily: 'font-DoHyeon'
     },
     capacityInputComment : {
         width : 100,
@@ -228,6 +220,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
         backgroundColor: "#fafafa",
         marginLeft : 20,
+        fontFamily: 'font-DoHyeon'
     },
 
     dateContainer: {
@@ -235,15 +228,16 @@ const styles = StyleSheet.create({
         },
     startDateContainer : {
         flexDirection : 'row',
-        paddingBottom : 10,
+        //paddingBottom : 10,
     },
     endDateContainer : {
         flexDirection : 'row',
-        paddingBottom : 10,
+        //paddingBottom : 10,
     },
     startTimeContainer : {
+        //flexDirection : 'row',
+        //paddingBottom : 20,
         flexDirection : 'row',
-        paddingBottom : 20,
     },
     durationContainer : {
         justifyContent : 'flex-start',
@@ -251,20 +245,34 @@ const styles = StyleSheet.create({
         marginLeft : 30,
     },
     dateText: {
-        fontSize : 20,
-        fontWeight : "500",
-        marginLeft : 30,
+        width : width-150,
+        height: 30,
+        borderColor: "#bbb",
+        borderWidth: StyleSheet.hairlineWidth,
+        borderRadius: 5,
+        paddingHorizontal: 15,
+        paddingTop: 9,
+        backgroundColor: "#dadada",     
+        marginLeft : 25,
+        marginBottom : 5,
+        //marginTop : 5,
+        fontFamily: 'font-DoHyeon',
         },
+        
     defaultText: {
         fontSize : 20,
         fontWeight : "500",
         marginLeft : 30,
         },
     titleText: {
-        fontSize : 20,
-        marginLeft : 5,
-        fontWeight : "500",
-        color : "#ffbb00"
+        //height : 70,
+        fontSize : 34,
+        textAlign : 'left',
+        //fontWeight : 'bold',
+        marginBottom : 5,
+        marginTop : 15,
+        fontFamily: 'font-DoHyeon',
+        
         },
     calenderButtontitleTextContainer :{
         width : 100,
@@ -273,17 +281,23 @@ const styles = StyleSheet.create({
     },
     callCalenderContainer : {
         width : 80,
-        height : 30,
+        //height : 30,
         backgroundColor :'transparent',
         alignItems : 'center',
         justifyContent : 'center',
         marginLeft : 20,
-        marginBottom : 20,
+        //marginBottom : 20,
   
       },
       callCalender : {
         fontSize : 20,
-        color : '#ffbb00'
+        color : '#ffbb00',
+        //height : 70,
+        //textAlign : 'left',
+        //fontWeight : 'bold',
+        //marginBottom : 5,
+        //marginTop : 15,
+        fontFamily: 'font-DoHyeon',
 
       },
       touchable:{
@@ -301,6 +315,29 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontSize :50,
     },
+    textContentFont : {
+        fontFamily: 'font-DoHyeon',
+        fontSize : 20,
+        marginLeft : 20,
+        marginBottom : 5,
+        marginTop : 10,
+      },
+      textContentTime : {
+        fontFamily: 'font-DoHyeon',
+        fontSize : 20,
+        marginLeft : 20,
+        marginBottom : 5,
+        marginTop : 15,
+      },
+      subtitle:{
+        //height : 70,
+        fontSize : 34,
+        textAlign : 'left',
+        //fontWeight : 'bold',
+        marginBottom : 5,
+        marginTop : 15,
+        fontFamily: 'font-DoHyeon',
+      },
 });
     
 export default CreateTrainingScreen;
