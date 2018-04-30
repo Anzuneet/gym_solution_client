@@ -17,43 +17,43 @@ const { width, height } = Dimensions.get("window");
   <View style = {styles.Container}>
       <TouchableOpacity onPress={props.changeMonday}>
         <Text style = {props.monday ? styles.checkedText : styles.uncheckText}>
-        MON
+        월
         </Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPressOut={props.changeTuesday}>
         <Text style = {props.tuesday ? styles.checkedText : styles.uncheckText}>
-        Tue
+        화
         </Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPressOut={props.changeWednesday}>
         <Text style = {props.wednesday ? styles.checkedText : styles.uncheckText}>
-        WED
+        수
         </Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPressOut={props.changeThursday}>
         <Text style = {props.thursday ? styles.checkedText : styles.uncheckText}>
-        THU
+        목
         </Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPressOut={props.changeFriday}>
         <Text style = {props.friday ? styles.checkedText : styles.uncheckText}>
-        FRI
+        금
         </Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPressOut={props.changeSaturday}>
         <Text style = {props.saturday ? styles.checkedText : styles.uncheckText}>
-        SAT
+        토
         </Text>
         </TouchableOpacity>
 
       <TouchableOpacity onPressOut={props.changeSunday}>
         <Text style = {props.sunday ? styles.checkedText : styles.uncheckText}>
-        SUN
+        일
         </Text>
         </TouchableOpacity>
 
@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
     color : "#ffbb00",
     paddingHorizontal : 10,
     paddingTop : 10,
+    fontFamily: 'font-DoHyeon',
   },
   uncheckText : {
     flex : 1,
@@ -84,6 +85,7 @@ const styles = StyleSheet.create({
     color : "#bbbbbb",
     paddingHorizontal : 10,
     paddingTop : 10,
+    fontFamily: 'font-DoHyeon',
   },
 
   
