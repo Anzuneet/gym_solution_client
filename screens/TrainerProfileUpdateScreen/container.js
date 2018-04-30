@@ -5,7 +5,7 @@ import { ImagePicker } from 'expo';
 
 class Container extends Component {
 
-  dialog = null;
+  dialoggit = null;
   state = {
     bodyText : "POST BODYPRO"
   }

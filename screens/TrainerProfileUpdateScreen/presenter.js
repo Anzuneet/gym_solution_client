@@ -50,9 +50,33 @@ const TrainerProfileUpdateScreen = props =>
                 </TouchableOpacity>
             </View>
         </PopupDialog>
+
+        <PopupDialog
+        dialogTitle={<DialogTitle title="이미지를 넣을 방식을 골라주세요!" />}
+        ref={(popupDialog) => { props.parent.dialog = popupDialog; }}
+        dialogAnimation={slideAnimation}
+        dismissOnTouchOutside = {true}
+        height = {150}
+        >
+            <View style = {styles.imagePickContainer}>
+                <TouchableOpacity style ={styles.cameraTab} onPressOut = {props.takeImage}>
+                <Feather name="camera" size={50} color="white" style = {styles.iconContainer}/>
+                <Text style = {styles.cameraTabText}> CAMERA </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style ={styles.gallaryTab} onPressOut = {props.pickImage}> 
+                <MaterialIcons name="photo-album" size={50} color="white" style = {styles.iconContainer}/> 
+                <Text style = {styles.gallaryTabText}> GALLARY </Text>
+                </TouchableOpacity>
+            </View>
+        </PopupDialog>
         <View style = {{flexDirection:'row'}}>
             <View style = {styles.profileContainer}>
-                <View style = {styles.profileImageContainer}>
+                <TouchableOpacity style = {styles.profileImageContainer}
+                onPressOut ={ () => {
+                    props.parent.dialog.show()
+                }}
+                >
                 {props.profileImage ?
                 <Text>ProfileImage</Text>
                 :
@@ -64,7 +88,7 @@ const TrainerProfileUpdateScreen = props =>
                     
                 />
                 }
-                </View>
+                </TouchableOpacity>
                     <View style = {styles.gymNameContainer}>
                         <Text style = {styles.tUpdateBText}>{props.gym}</Text>
                     </View>
@@ -160,28 +184,36 @@ const styles = StyleSheet.create({
         flexDirection : 'row',
         flex :1,
     },
-    cameraTab : {
-    paddingTop : 10,
-    flex : 1,
-    backgroundColor : 'rgba(255,187,0,0.5)',
-    alignItems : 'center'
-    },
-    cameraTabText : {
-    paddingTop : 10,
-    fontSize : 20,
-    fontWeight : "500",
-    },
-    gallaryTab : {
-    paddingTop : 10,
-    flex : 1,
-    backgroundColor : 'rgba(255,230,0,0.5)',
-    alignItems : 'center'
-    },
-    gallaryTabText : {
-    paddingTop : 10,
-    fontSize : 20,
-    fontWeight : "500",
-    },
+    imagePickContainer  : {
+        width : width,
+        height : height,
+        backgroundColor : "white",
+        flexDirection :'row',
+      },
+    
+      cameraTab : {
+        paddingTop : 10,
+        flex : 1,
+        backgroundColor : 'rgba(255,187,0,0.5)',
+        alignItems : 'center'
+      },
+      cameraTabText : {
+        paddingTop : 10,
+        fontSize : 20,
+        fontWeight : "500",
+      },
+      gallaryTab : {
+        paddingTop : 10,
+        flex : 1,
+        backgroundColor : 'rgba(255,230,0,0.5)',
+        alignItems : 'center'
+      },
+      gallaryTabText : {
+        paddingTop : 10,
+        fontSize : 20,
+        fontWeight : "500",
+      },
+    
 
 })
 

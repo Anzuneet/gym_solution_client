@@ -60,7 +60,7 @@ const SearchScreen = props => (
         <View style = {styles.mapContainer}>
         <MapView
             ref={props.setMapView}
-            style={{ alignSelf: 'stretch', height: 400 }}
+            style={{ alignSelf: 'stretch', height: height * 0.65 }}
             //region={props.mapRegion}
             //initialRegion = {props.mapRegion}
             onRegionChangeComplete={props.handleMapRegionChange}   
@@ -90,37 +90,32 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
     },
     titleContainer : {
+        height: height * 0.1,
         backgroundColor : "#ffbb00",
         flexDirection : 'row',
         justifyContent : "flex-end",
+        alignItems: "center",
         borderBottomWidth : StyleSheet.hairlineWidth,
         borderColor : "#ffffff",
-    },
-    nameText : {
-        fontFamily: 'font-DoHyeon',
-        fontSize : 30,
-        paddingRight : 10,
-        paddingVertical : 10,
-        fontWeight : "500",
-        //color : "rgba(0,0,0,0.5)"
-        
     },
     titleText : {
         fontFamily: 'font-DoHyeon',
         paddingVertical : 10,
-        fontSize : 20,
+        fontSize : 21,
         paddingRight : 20,
         fontWeight : "800",
         
     },
     mapContainer:{
-        backgroundColor : "#ebebeb",
+        flex:1,
+        backgroundColor : "white",
         borderWidth : 5,
         borderColor : "#ffbb00",
+        justifyContent: "center",
         //borderRadius :5,
     },
     filterContainer: {
-        flex : 1,
+        height:height*0.1,
         backgroundColor : "#ffbb00",
         justifyContent: "center",
         alignItems: "center",

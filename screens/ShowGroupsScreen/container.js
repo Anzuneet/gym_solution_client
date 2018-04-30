@@ -21,25 +21,6 @@ class Container extends Component {
   //this.setState({groups});
 };
 
-makeRemoteRequest = () => {
-  const { page, seed } = this.state;
-  const url = `https://randomuser.me/api/?seed=${seed}&page=${page}&results=20`;
-  this.setState({ loading: true });
-
-  fetch(url)
-    .then(res => res.json())
-    .then(res => {
-      this.setState({
-        data: page === 1 ? res.results : [...this.state.data, ...res.results],
-        error: res.error || null,
-        loading: false,
-        refreshing: false
-      });
-    })
-    .catch(error => {
-      this.setState({ error, loading: false });
-    });
-};
 
   renderSeparator = () => { // 리스트 아이템을 구분짓는것.
   return (
@@ -56,11 +37,12 @@ makeRemoteRequest = () => {
   };
 
   render() {
+    console.log(this.props.navigation.state.params);
     const {navigate} = this.props.navigation;
    return (
     <List containerStyle={{borderTopWidth: 0, borderBottomWidth: 0  }}>
       <FlatList
-        data={this.props.navigation.state.params}
+        data={this.props.navigation.state.params.groups}
         renderItem={({ item }) => (
           <OneGroupForTrainee
             navigate = {navigate}
@@ -69,7 +51,7 @@ makeRemoteRequest = () => {
           />
         )}
         
-        keyExtractor={item => item.guid}
+        keyExtractor={item => item.uid}
         ItemSeparatorComponent={this.renderSeparator}
         
         //ListFooterComponent={this.renderFooter}

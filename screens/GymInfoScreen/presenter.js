@@ -26,11 +26,9 @@ const { width, height } = Dimensions.get("window");
   <View
     style = {styles.container}>
     <View style = {styles.headerContainer}>
-      <View style = {styles.titleContainer}>
         <Text style = {styles.titleText}>
           {props.gymInfo.name}
         </Text>
-      </View>
       <TouchableOpacity style = {styles.button} onPressOut = {()=> props.navigate('showGroups' ,{ groups : props.groups})}>
         <Text style = {styles.font}> Groups </Text>
       </TouchableOpacity>
@@ -65,8 +63,8 @@ const { width, height } = Dimensions.get("window");
               리뷰 </Text>
             </TouchableOpacity>
           </View>
-  
-          {props.GymInfoIndex == 2 ?
+
+           {props.GymInfoIndex == 2 ?
           (<View style = {styles.trainerListContainer}>
             <TrainerList
             trainers = {props.trainers}
@@ -100,7 +98,10 @@ const styles = StyleSheet.create({
   headerContainer : {
     width: width,
     flexDirection : 'row',
-    marginBottom : 5,
+    alignItems: 'center',
+    justifyContent : 'center',
+    backgroundColor: "skyblue",
+    paddingVertical : 10,
   
   },
   imageContainer : {
@@ -117,19 +118,18 @@ const styles = StyleSheet.create({
   },
   titleText : {
     fontSize : 21,
+    fontWeight: "800"
   },
   commentText : {
     fontSize : 10,
   },
   button : {
-    flex: 1,
-    paddingVertical : 20,
-    justifyContent : 'center',
-    alignItems : 'center',
-    backgroundColor : 'pink',
+    position: 'absolute',
+    right : 5,
   },
   font : {
-    fontSize : 10,
+    fontSize : 20,
+    color : "white",
   },
 
 

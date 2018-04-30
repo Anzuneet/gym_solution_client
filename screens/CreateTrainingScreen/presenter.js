@@ -92,24 +92,9 @@ const CreateTrainingScreen = props => (
                 <Text style = {props.start_time ? styles.dateText : styles.titleText}>
                     {props.start_time ? "시작 시간 : " + props.start_time : "trainig의 시작 clock을 정해주세요!!"}
                 </Text>
-                {props.start_time ? (
-                    <View style = {styles.durationContainer}>
-                    <Text style = {styles.chargeText}> 운동시간 : </Text>
-                    <TextInput 
-                      style = {styles.capacityInputComment} 
-                      underlineColorAndroid = 'rgba(0,0,0,0)'
-                      placeholder="운동시간입력" 
-                      value = {props.duration}
-                      keyboardType='numeric'
-                      onChangeText={props.changeDuration}
-                  />    
-                  </View>
-                )
-                :
-                ( <TouchableOpacity style = {styles.callCalenderContainer} onPressOut={props.showStartClockPicker}>
+                <TouchableOpacity style = {styles.callCalenderContainer} onPressOut={props.showStartClockPicker}>
                     <Text style = {styles.callCalender}> click!</Text>
-                </TouchableOpacity>)
-                }
+                </TouchableOpacity>
                
             </View>
 
