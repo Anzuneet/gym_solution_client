@@ -65,26 +65,28 @@ const { width, height } = Dimensions.get("window");
 const styles = StyleSheet.create({
   Container:{
     flex:1,
-    height: 100,
+    //height: 100,
     flexDirection : 'row',
-    
+    marginLeft : 10,
   },
   checkedText : {
     flex : 1,
-    fontSize : 20,
-    fontWeight : "500",
+    fontSize : 22,
+    //fontWeight : "500",
     color : "#ffbb00",
-    paddingHorizontal : 10,
-    paddingTop : 10,
+    paddingHorizontal : 15,
+    marginBottom : 5,
+    marginTop : 3,
     fontFamily: 'font-DoHyeon',
   },
   uncheckText : {
     flex : 1,
-    fontSize : 20,
-    fontWeight : "100",
+    fontSize : 22,
+    //fontWeight : "100",
     color : "#bbbbbb",
-    paddingHorizontal : 10,
-    paddingTop : 10,
+    paddingHorizontal : 15,
+    marginBottom : 5,
+    marginTop : 3,
     fontFamily: 'font-DoHyeon',
   },
 

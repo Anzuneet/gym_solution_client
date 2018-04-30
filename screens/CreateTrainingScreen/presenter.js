@@ -57,7 +57,7 @@ const CreateTrainingScreen = props => (
         <TextInput 
               style = {styles.textInputTitle} 
               underlineColorAndroid = 'rgba(0,0,0,0)'
-              placeholder="당신의 traing 이름을 설정해주세요!" 
+              placeholder="트레이닝 제목을 입력해주세요" 
               value = {props.groupsTitle}
               onChangeText={props.changeGroupsTitle}
           />
@@ -67,7 +67,7 @@ const CreateTrainingScreen = props => (
             <TextInput 
               style = {styles.textInputComment} 
               underlineColorAndroid = 'rgba(0,0,0,0)'
-              placeholder="당신의 training에대해서 더 설명할것이 있나요?" 
+              placeholder="트레이닝 설명을 입력해주세요" 
               value = {props.groupsComment}
               onChangeText={props.changeGroupsComment}
           />    
@@ -99,11 +99,11 @@ const CreateTrainingScreen = props => (
                     {props.start_time ? "시작 시간 : " + props.start_time : "트레이닝의 시작 시간을 정해주세요!!"}
                 </Text>
                 <TouchableOpacity style = {styles.callCalenderContainer} onPressOut={props.showStartClockPicker}>
-                    <Text style = {styles.callCalender}> click!</Text>
+                    <Text style = {styles.callCalender}> 설정하기!</Text>
                 </TouchableOpacity>
             </View>
 
-            <Text style ={styles.textContentFont}>트레이닝 요일</Text>
+            <Text style ={styles.textContentFont}> 트레이닝 요일</Text>
                 <DaysCheckBox 
                  monday = {props.monday}
                  tuesday = {props.tuesday}
@@ -121,27 +121,30 @@ const CreateTrainingScreen = props => (
                  changeSunday = {props.changeSunday}
                 />
 
-        </View>
-        <Text style ={styles.textContentFont}> 트레이닝 비용 </Text>
+        
+
+        <Text style ={styles.textContentFont}> 트레이닝 조건 </Text>
         <View style = {styles.rowContainer}>
             <View style = {styles.chargeContainer}>
-                <Text style = {styles.chargeText}> 비용 : </Text>
+                <Text style = {styles.textContentCharge}> 비용 :</Text>
                 <TextInput 
                 style = {styles.chargeInputComment} 
                 underlineColorAndroid = 'rgba(0,0,0,0)'
-                placeholder="비용입력하기" 
+                placeholder=" 비용입력하기" 
                 value = {props.charge}
                 onChangeText={props.changeCharge}
                 keyboardType='numeric'
             />    
-            </View>
-            <TextInput 
+                <Text style = {styles.textContentCapacity}> 인원 :</Text>
+                <TextInput 
                 style = {styles.capacityInputComment} 
                 underlineColorAndroid = 'rgba(0,0,0,0)'
-                placeholder="인원수" 
+                placeholder="      인원수" 
                 value = {props.capacity}
                 keyboardType='numeric'
                 onChangeText={props.changeCapacity}/>
+                </View>
+        </View>
         </View>
         
         <TouchableOpacity style = {styles.touchable} onPressOut={props.submit}>
@@ -185,8 +188,8 @@ const styles = StyleSheet.create({
     chargeContainer : {
         justifyContent : 'flex-start',
         flexDirection : "row",
-        marginLeft : 30,
-        marginBottom : 30,
+        //marginLeft : 30,
+        marginBottom : 10,
         },
     textInputComment: {
         width : width-150,
@@ -201,14 +204,15 @@ const styles = StyleSheet.create({
         fontFamily: 'font-DoHyeon'
         },
     chargeInputComment : {
-        width : 150,
+        width : 100,
         height: 30,
         borderColor: "#bbb",
         borderWidth: StyleSheet.hairlineWidth,
         borderRadius: 5,
+        marginBottom: 8,
         paddingHorizontal: 15,
         backgroundColor: "#fafafa",
-        marginLeft : 20,
+        marginLeft : 10,
         fontFamily: 'font-DoHyeon'
     },
     capacityInputComment : {
@@ -217,9 +221,10 @@ const styles = StyleSheet.create({
         borderColor: "#bbb",
         borderWidth: StyleSheet.hairlineWidth,
         borderRadius: 5,
+        marginBottom: 8,
         paddingHorizontal: 15,
         backgroundColor: "#fafafa",
-        marginLeft : 20,
+        marginLeft : 10,
         fontFamily: 'font-DoHyeon'
     },
 
@@ -254,7 +259,7 @@ const styles = StyleSheet.create({
         paddingTop: 9,
         backgroundColor: "#dadada",     
         marginLeft : 25,
-        marginBottom : 5,
+        marginBottom : 8,
         //marginTop : 5,
         fontFamily: 'font-DoHyeon',
         },
@@ -306,28 +311,46 @@ const styles = StyleSheet.create({
         width: width
     },
     button:{
-        paddingHorizontal:7,
-        paddingVertical: 20
+        width,
+        height : 60,
+        backgroundColor :'#FFBB00',
+        alignItems : 'center',
+        justifyContent : 'center'
     },
     btnText:{
-        color: "white",
-        fontWeight : "600",
-        textAlign: "center",
-        fontSize :50,
+        fontSize : 40,
+        color : 'rgba(255,255,255,1)',
+        fontFamily: 'font-DoHyeon',
     },
+
     textContentFont : {
         fontFamily: 'font-DoHyeon',
         fontSize : 20,
         marginLeft : 20,
         marginBottom : 5,
-        marginTop : 10,
+        marginTop : 15,
       },
+
       textContentTime : {
         fontFamily: 'font-DoHyeon',
         fontSize : 20,
         marginLeft : 20,
         marginBottom : 5,
         marginTop : 15,
+      },
+      textContentCharge : {
+        fontFamily: 'font-DoHyeon',
+        fontSize : 20,
+        marginLeft : 19,
+        marginBottom : 5,
+        marginTop : 5,
+      },
+      textContentCapacity : {
+        fontFamily: 'font-DoHyeon',
+        fontSize : 20,
+        marginLeft : 10,
+        marginBottom : 5,
+        marginTop : 5,
       },
       subtitle:{
         //height : 70,
