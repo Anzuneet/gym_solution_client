@@ -99,19 +99,8 @@ const CreateTrainingScreen = props => (
                     {props.start_time ? "시작 시간 : " + props.start_time : "트레이닝의 시작 시간을 정해주세요!!"}
                 </Text>
                 <TouchableOpacity style = {styles.callCalenderContainer} onPressOut={props.showStartClockPicker}>
-<<<<<<< HEAD
-<<<<<<< HEAD
                     <Text style = {styles.callCalender}> click!</Text>
                 </TouchableOpacity>
-               
-=======
-                    <Text style = {styles.callCalender}> 설정하기!</Text>
-                </TouchableOpacity>        
->>>>>>> Kojunsu_branch_CSS
-=======
-                    <Text style = {styles.callCalender}> 설정하기!</Text>
-                </TouchableOpacity>        
->>>>>>> Kojunsu_branch_CSS
             </View>
 
             <Text style ={styles.textContentFont}>트레이닝 요일</Text>
