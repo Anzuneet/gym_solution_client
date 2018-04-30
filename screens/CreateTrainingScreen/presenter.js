@@ -100,9 +100,14 @@ const CreateTrainingScreen = props => (
                 </Text>
                 <TouchableOpacity style = {styles.callCalenderContainer} onPressOut={props.showStartClockPicker}>
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <Text style = {styles.callCalender}> click!</Text>
                 </TouchableOpacity>
                
+=======
+                    <Text style = {styles.callCalender}> 설정하기!</Text>
+                </TouchableOpacity>        
+>>>>>>> Kojunsu_branch_CSS
 =======
                     <Text style = {styles.callCalender}> 설정하기!</Text>
                 </TouchableOpacity>        
