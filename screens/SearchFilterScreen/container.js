@@ -95,13 +95,13 @@ class Container extends Component {
 
   _handleStartClockPicked = (date) => {
     var startTime = new Date(date)
-    oStartTime = (`${startTime.getHours()}-${startTime.getMinutes()}`);
+    oStartTime = (`${startTime.getHours()}:${startTime.getMinutes()}`);
     this.setState({time:{...this.state.time, start: oStartTime}, startClockPickerVisible: false});
   };
 
   _handleEndClockPicked = (date) => {
     var endTime = new Date(date)
-    oEndTime = (`${endTime.getHours()}-${endTime.getMinutes()}`);
+    oEndTime = (`${endTime.getHours()}:${endTime.getMinutes()}`);
     //{...props.daysOfWeek,SAT:!props.daysOfWeek.SAT}
     this.setState({time:{...this.state.time, end: oEndTime}, endClockPickerVisible: false});
   };

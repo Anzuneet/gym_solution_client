@@ -100,35 +100,63 @@ class Container extends Component {
     }
     
   }
+
   _onSubmitFilterCondition = (condition)=>{
     //console.log(this.state);
-
+    
     let filteredGroups = this.state.groups.filter(it=>{
-
       let daysOfWeek = condition.daysOfWeek;
-      let charge = condition.charge;
-      let time = condition.time;
-
       // 요일 필터링
       for(var key in daysOfWeek){
-        if(daysOfWeek[key] == false)continue;
+        if(daysOfWeek[key] == undefined || daysOfWeek[key] == false)continue;
         if(it.daysOfWeek.includes(key) == false){
           return false;
         }
       }
+      return true;
+    });
+    console.log(filteredGroups);
 
+    filteredGroups = filteredGroups.filter(it=>{
+      console.log(it);
+      console.log(condition.charge);
+      let charge = condition.charge;
       // 가격 필터링
-      if(charge.min == null) return false;
-      else if(charge.max == null) return false;
-      if (it.charge < charge.min || it.charge > charge.max){
-        return false;
+      if(charge.min != null){
+        if( it.charge < parseInt(charge.min)) return false;
       }
-
-      // 시간 필터링
-
+      if(charge.max != null){
+        if( it.charge > parseInt(charge.max)) return false;
+      }
       return true;
     });
 
+    console.log(filteredGroups);
+
+    filteredGroups = filteredGroups.filter(it=>{
+
+      let time = null;
+      {
+        let t = it.time.split(":").map(it=>parseInt(it));
+        let t2 = t[1] + it.period;
+        time = {
+          begin:t[0] * 100 + t[1],
+          end: (t[0] + t2 / 60) * 100 + t2 % 60
+        };
+        
+      }
+      console.log(condition.time);
+      if(condition.time.start != undefined){
+        let begin= parseInt(condition.time.start.split(":")[0]) * 100 + parseInt(condition.time.start.split(":")[1])
+        if(time.begin < begin) return false;
+      }
+      if(condition.time.end != undefined){
+        let end=  parseInt(condition.time.end.split(":")[0]) * 100 + parseInt(condition.time.end.split(":")[1])
+        if(time.end > end) return false;
+      }
+      return true;
+    });
+    console.log(filteredGroups);
     let filteredGyms = this.state.gyms.filter(gym=>filteredGroups.findIndex(group=>group.gym.uid == gym.uid) != -1)
     this.setState({filteredGroups:filteredGroups});
     this.setState({filteredGyms:filteredGyms},()=>this._updateMarkers());
