@@ -22,7 +22,7 @@ const { width, height } = Dimensions.get("window");
  const ShowOneGroup = props => (
   <ScrollView
     style = {styles.container}>
-    <TouchableOpacity style = {styles.button} onPressOut = {()=> props.navigate('showTrainerInfo')}>
+    <TouchableOpacity style = {styles.button} onPressOut = {()=> props.navigate('showTrainerInfo', {trainer : props.group.opener})}>
       <Text style = {styles.font}> go TrainerInfo </Text>
     </TouchableOpacity>
   </ScrollView>

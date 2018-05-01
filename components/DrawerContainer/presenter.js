@@ -11,33 +11,33 @@ export default class DrawerContainer extends React.Component {
         <TouchableOpacity
           onPress={() => navigation.navigate('HomeScreen')}
           style={styles.uglyDrawerItem}>
-        <Text style = {{fontSize:20,}}>Search your Training</Text>
+        <Text style = {{fontSize:20,}}>새로운 TRAINING</Text>
         </TouchableOpacity>
         
 
         <TouchableOpacity
           onPress={() => navigation.navigate('OwnGroupScreen')}
           style={styles.uglyDrawerItem}>
-          <Text style = {{fontSize:20,}}>confirm my Training</Text>
+          <Text style = {{fontSize:20,}}>지금까지의 TRAINING</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           onPress={() => navigation.navigate('FeedScreen')}
           style={styles.uglyDrawerItem}>
-          <Text style = {{ fontSize : 30}}>FEED!!</Text>
+          <Text style = {{ fontSize : 20}}>지금까지의 성과</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           onPress={() => navigation.navigate('ProfileScreen')}
           style={styles.uglyDrawerItem}>
-          <Text> Profile Update</Text>
+          <Text style = {{fontSize: 20}}>새로운 인바디 올리기</Text>
 
         </TouchableOpacity>
 
         <TouchableOpacity
           onPress={() => this.props.logout()}
-          style={styles.uglyDrawerItem}>
-          <Text>Logout</Text>
+          style={ styles.uglyDrawerItem}>
+          <Text style = {{fontSize : 20}} >Logout</Text>
         </TouchableOpacity>
       </View>
     )

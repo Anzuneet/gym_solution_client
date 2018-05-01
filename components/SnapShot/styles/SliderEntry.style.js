@@ -9,8 +9,8 @@ function wp (percentage) {
     return Math.round(value);
 }
 
-const slideHeight = (viewportHeight * 0.36);
-const slideWidth = wp(85);
+const slideHeight = (viewportHeight * 0.34);
+const slideWidth = wp(80);
 const itemHorizontalMargin = wp(2);
 
 export const sliderWidth = viewportWidth*0.93;

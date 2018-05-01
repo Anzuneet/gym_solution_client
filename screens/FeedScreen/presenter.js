@@ -36,25 +36,12 @@ const { width, height } = Dimensions.get("window");
     <View style={styles.profileContainer}>
       <View style = {styles.personContainer}>
           <View style = {styles.nameContainer}>
-            <Text style ={styles.nameText}> {props.profile.name} </Text>
-          </View>
-          <View style ={styles.recordContainer}>
-            <TouchableOpacity style = {styles.trainingRecordContainer}>
-            <Text style ={styles.weightNameText}>
-            현재 Training
-            </Text>
-            <Text style = {{paddingTop :10}}> 4 / 10
-            </Text>
-            </TouchableOpacity>
-            <TouchableOpacity style = {styles.newRecordContainer}>
-            <Text style ={styles.weightNameText}>
-            새로올라온 기록
-            </Text>
-            <Text style = {{paddingTop :10, fontSize : 20,}}> 3
-            </Text>
-            </TouchableOpacity>
+            <Text style ={styles.nameText}> {props.profile.name}님 환영합니다! </Text>
           </View>
       </View>
+    </View>
+    <View style = {{}}>
+    <Text style = {{paddingVertical: 10, fontSize: 20, fontWeight:"800"}}> 강사님의 최신 덧글! </Text>
     </View>
     <View style = {styles.commentsContainer}>
       {props.newComment ?
@@ -123,7 +110,7 @@ const styles = StyleSheet.create({
     backgroundColor : '#rgba(255,176,0,0.6)'
   },
   profileContainer : {
-    height : 150,
+    height : 60,
     flexDirection : 'row',
     backgroundColor : '#eeeeee',
     borderColor: "#bbb",

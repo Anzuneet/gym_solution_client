@@ -6,7 +6,7 @@ import OneGroupForTrainee from "./presenter";
 class Container extends Component {
 
   _onPress = () => {
-    this.props.navigate('showOneGroup');
+    this.props.navigate('showOneGroup',{group : this.props.data});
   };
 
   render() {

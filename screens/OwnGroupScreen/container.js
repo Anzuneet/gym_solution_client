@@ -91,24 +91,7 @@ class Container extends Component {
     );
   };
 
-  renderHeader = () => { // 헤더
-    return (
-      <View style = {{
-        backgroundColor : "#ffbb00",
-        height : 70,
-        justifyContent : 'center',
-        alignItems : 'center',
-        flex : 1
-      }}>
 
-        <Image
-        source={require("../../assets/images/logo-gym.png")}
-        resizeMode="stretch"
-        style={styles.logo}
-        />
-      </View>
-    );
-  };
 
   renderFooter = () => {
     if (!this.state.loading) return null;

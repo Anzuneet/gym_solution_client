@@ -45,10 +45,13 @@ class App extends React.Component
   _loadAssetAsync = async() =>{
     return Promise.all([
       Asset.loadAsync([
-        require("./assets/images/logo.png"),
-        require("./assets/images/logo-white.png"),
+        require("./assets/images/home.png"),
+        require("./assets/images/icon-gym.png"),
+        require("./assets/images/icon.png"),
+        require("./assets/images/logo-gym2.png"),
+        require("./assets/images/photoPlaceholder.png"),
+        require("./assets/images/splash.png"),
         require("./assets/images/noPhoto.jpg"),
-        require("./assets/images/photoPlaceholder.png")
       ]),
       Font.loadAsync({
         ...Ionicons.font,

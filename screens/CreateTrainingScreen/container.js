@@ -7,18 +7,18 @@ class Container extends Component {
 
   state={
     isSubmitting : false,
-    uid : 1,//자동오름차순설정 어케함?
-    capacity : 4,
-    opener : "",// 아마 token으로 판단할듯
-    gym : 1,// number
-    start_date : "2018-4-4", //"#Y-#M-#D"형태
-    end_date : "2018-04-25",
-    start_time : "18:00", //"%H-%M
-    charge : 10000, //비용
-    period : 30,
-    groupsTitle : "박종휘의 바벨생각",
-    groupsComment : "무조건 20킬로",
-    daysOfWeek : ["MON","TUE"],
+    uid : null,//자동오름차순설정 어케함?
+    capacity : null,
+    opener : null,// 아마 token으로 판단할듯
+    gym : null,// number
+    start_date : null, //"#Y-#M-#D"형태
+    end_date : null,
+    start_time : null, //"%H-%M
+    charge : null, //비용
+    period : null,
+    groupsTitle : null,
+    groupsComment : null,
+    daysOfWeek : null,
     monday : false,
     tuesday : false,
     wednesday : false,

@@ -9,15 +9,15 @@ class Container extends Component {
  static propTypes = {
   
 };
- state = {
- };
  
 
   render() {
     const {navigate} = this.props.navigation;
+    const group = this.props.navigation.state.params;
    return (
      <ShowOneGroupScreen {...this.props} {...this.state}
      navigate = {navigate}
+     group = {group}
      />
    );
  }

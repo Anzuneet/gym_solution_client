@@ -20,6 +20,8 @@ import {
 }from "victory-native";
 import ProfileChart from "../../components/ProfileChart";
 import TrainerList from "../../components/TrainerList";
+import ShowGroupsScreen from "../ShowGroupsScreen";
+
 const { width, height } = Dimensions.get("window");
 
  const GymInfoScreen = props => (
@@ -29,9 +31,6 @@ const { width, height } = Dimensions.get("window");
         <Text style = {styles.titleText}>
           {props.gymInfo.name}
         </Text>
-      <TouchableOpacity style = {styles.button} onPressOut = {()=> props.navigate('showGroups' ,{ groups : props.groups})}>
-        <Text style = {styles.font}> Groups </Text>
-      </TouchableOpacity>
     </View>
     <View style = {styles.imageContainer}>
       {props.image ?  
@@ -60,7 +59,7 @@ const { width, height } = Dimensions.get("window");
             <TouchableOpacity style = {props.GymInfoIndex == 3 ? styles.clickedTextContainer : styles.unClickedTextContainer}
             onPressOut ={props.clickReview}>
               <Text  style = {props.GymInfoIndex == 3 ? styles.clickedText : styles.unClickedText}> 
-              리뷰 </Text>
+              Groups </Text>
             </TouchableOpacity>
           </View>
 
@@ -76,8 +75,11 @@ const { width, height } = Dimensions.get("window");
               <Text>{props.gymInfo.address}</Text>
             </View>
           :
-          <View>
-            <Text>리뷰 </Text>
+          <View style = {styles.trainerListContainer}>
+            <ShowGroupsScreen
+            groups = {props.groups}
+            navigate = {props.navigate2}
+            />
           </View>
         
           )
@@ -114,11 +116,13 @@ const styles = StyleSheet.create({
     backgroundColor : "#eeeeee",
   },
   trainerListContainer : {
-    height : 250,
+    flex:1,
+    backgroundColor: "skyblue",
   },
   titleText : {
     fontSize : 21,
-    fontWeight: "800"
+    fontWeight: "800",
+    color: "white",
   },
   commentText : {
     fontSize : 10,

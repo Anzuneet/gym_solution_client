@@ -31,12 +31,12 @@ class Container extends Component {
   };
 
   render() {
-    const {navigate} = this.props.navigation;
+    
     const { gym , groups} = this.props.navigation.state.params;
-    //console.log(gym);
    return (
      <GymInfoScreen {...this.props} {...this.state}
-     navigate = {navigate}
+     navigate = {this.props.navigation.navigate}
+     navigate2 = {this.props.navigation.navigate}
      gymInfo = {gym}
      groups = {groups}
      clickIntroduction = {this._clickIntroduction}

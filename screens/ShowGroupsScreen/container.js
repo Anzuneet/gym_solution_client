@@ -13,14 +13,6 @@ class Container extends Component {
 
  };
 
- componentDidMount() {
-  //이체육관에등록된 모든 group정보
-  // key에러 뜸
-
-  //const {groups} = this.props.navigation.state.params
-  //this.setState({groups});
-};
-
 
   renderSeparator = () => { // 리스트 아이템을 구분짓는것.
   return (
@@ -37,15 +29,14 @@ class Container extends Component {
   };
 
   render() {
-    console.log(this.props.navigation.state.params);
-    const {navigate} = this.props.navigation;
    return (
+     
     <List containerStyle={{borderTopWidth: 0, borderBottomWidth: 0  }}>
       <FlatList
-        data={this.props.navigation.state.params.groups}
+        data={this.props.groups}
         renderItem={({ item }) => (
           <OneGroupForTrainee
-            navigate = {navigate}
+            navigate = {this.props.navigate}
             data = {item}
             containerStyle={{ borderBottomWidth: 0 }}
           />
@@ -54,11 +45,6 @@ class Container extends Component {
         keyExtractor={item => item.uid}
         ItemSeparatorComponent={this.renderSeparator}
         
-        //ListFooterComponent={this.renderFooter}
-        //onRefresh={this.handleRefresh}
-        //refreshing={this.state.refreshing} // refreshingrlsmd
-        //onEndReached={this.handleLoadMore} // 끝에 도달했을때 
-        //onEndReachedThreshold={50}
       />
     </List>
    );

@@ -71,18 +71,47 @@ export default StyleSheet.create({
         flexDirection : 'row',
         backgroundColor : 'transparent'
     },
+    TextStyle:
+    {
+        textAlign: 'center',
+        color: '#000'
+    
+    },
+    profileContainer : {
+        flex :1,
+        backgroundColor : "white",
+        alignItems : 'center',
+    },
     profileImageContainer : {
         paddingTop : 20,
         paddingHorizontal :10,
+        alignItems : 'center',
     },
     commentContainer : {
-        borderRadius : 20,
         marginHorizontal :10,
         marginTop : 20,
-        backgroundColor : "white",
-        height : 150,
-        width : 250,
-        paddingHorizontal :5,
+        backgroundColor : "#eeeeee",
+        height : 210,
+        width : 230,
+        paddingHorizontal :10,
+        paddingVertical :10,
+        borderRadius : 20,
+    },
+    gymNameContainer : {
+        marginTop : 20,
+        width: 130,
+        height : 50,
+        backgroundColor: "rgba(253,139,27,0.5)",
+        alignItems: 'center',
+        justifyContent : 'center',
+    },
+    tUpdateBContainer : {
+        marginTop : 20,
+        width: 130,
+        height : 50,
+        backgroundColor: "rgba(253,139,27,0.5)",
+        alignItems: 'center',
+        justifyContent : 'center',
     },
     avatar: {
         width: 130,
@@ -91,11 +120,17 @@ export default StyleSheet.create({
         borderWidth:3,
         borderColor: "rgba(253,139,27,0.5)"
 
-      }, 
-    TextStyle:
-    {
-        textAlign: 'center',
-        color: '#000'
-    
+    }, 
+    tUpdateBText : {
+        fontSize :30,
+        color: "white",
+    },
+    textInput : {
+        width : width,
+        backgroundColor : "yellow"
+    },
+    bodyProfileContainer : {
+        flexDirection : 'row',
+        flex :1,
     },
 });
