@@ -5,6 +5,9 @@ import OneGroupForProfile from "./presenter";
  
 class Container extends Component {
 
+  _onPress = () => {
+    this.props.navigate('groupInfo',{group : this.props.data});
+  };
 
   render() {
     var startDate = new Date(this.props.data.start_date)

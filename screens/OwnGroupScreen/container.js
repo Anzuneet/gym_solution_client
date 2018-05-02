@@ -98,9 +98,11 @@ class Container extends Component {
         <FlatList
 
           data={this.state.groups}
+          
           renderItem={({ item }) => (
             <OneGroupForProfile
               data = {item}
+              navigate = {this.props.navigation.navigate}
               containerStyle={{ borderBottomWidth: 0 }}
             />
           )}
