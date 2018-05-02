@@ -11,6 +11,7 @@ import { ScrollView ,
   Image,
   Button,
   TextInput,
+  Dimensions
  } from "react-native";
 import { List, SearchBar, Divider,} from "react-native-elements";
 import ActionButton from 'react-native-action-button';
@@ -18,6 +19,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { CheckBox } from 'react-native-elements';
 import PopupDialog , { SlideAnimation, DialogTitle} from 'react-native-popup-dialog';
 import DateTimePicker from 'react-native-modal-datetime-picker';
+
+const { width, height } = Dimensions.get("window");
 
 const SearchFilterScreen = props => (
   
@@ -213,18 +216,18 @@ const styles = StyleSheet.create({
   },
   weightContainer :{
       flexDirection : 'row',
+      backgroundColor: 'red',
       //justifyContent : 'space-between',
       backgroundColor : '#f2f2f2',
-      paddingHorizontal : 7
+      //paddingHorizontal : 7
     },
   checkBoxContainer :{
     //flex:2,
     //flexDirection : 'column',
     height:30,
-    width:47,
+    width: width/10,
     paddingVertical: 5,
     marginBottom : 10,
-    paddingHorizontal: 5,
   },
   textStyle:{
     fontSize:12,

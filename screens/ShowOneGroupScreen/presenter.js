@@ -17,15 +17,16 @@ import {
   VictoryLine, 
 }from "victory-native";
 import ProfileChart from "../../components/ProfileChart";
+import ReviewsList from "../../components/ReviewsList"
 const { width, height } = Dimensions.get("window");
 
  const ShowOneGroup = props => (
-  <ScrollView
-    style = {styles.container}>
+  <View style = {styles.container}>
     <TouchableOpacity style = {styles.button} onPressOut = {()=> props.navigate('showTrainerInfo', {trainer : props.group.opener})}>
       <Text style = {styles.font}> go TrainerInfo </Text>
     </TouchableOpacity>
-  </ScrollView>
+    <ReviewsList/>
+  </View>
 );
  
 const styles = StyleSheet.create({
