@@ -16,8 +16,8 @@ const TrainerProfileUpdateScreen = props =>
             dialogTitle={<DialogTitle title="Trainer 경력 입력" />}
             ref={(popupDialog) => { this.popupDialog = popupDialog; }}
             dismissOnTouchOutside = {true}
-            height = {250}
-            containerStyle = {{ zIndex: 10, elevation: 100 }}
+            height = {450}
+            //containerStyle = {{ zIndex: 10, elevation: 100 }}
         >
         <TextInput 
             style = {styles.textInput} 
@@ -32,19 +32,19 @@ const TrainerProfileUpdateScreen = props =>
         </PopupDialog>
 
         <PopupDialog
-        dialogTitle={<DialogTitle title="이미지를 넣을 방식을 골라주세요!" />}
-        ref={(popupDialog) => { props.parent.dialog = popupDialog; }}
+        dialogTitle={<DialogTitle title="프로필 이미지를 넣을 방식을 골라주세요!" />}
+        ref={(popupDialog) => { props.parent.dialogProfile = popupDialog; }}
         dialogAnimation={slideAnimation}
         dismissOnTouchOutside = {true}
         height = {150}
         >
             <View style = {styles.imagePickContainer}>
-                <TouchableOpacity style ={styles.cameraTab} onPressOut = {props.takeImage}>
+                <TouchableOpacity style ={styles.cameraTab} onPressOut = {props.takeImageProfile}>
                 <Feather name="camera" size={50} color="white" style = {styles.iconContainer}/>
                 <Text style = {styles.cameraTabText}> CAMERA </Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style ={styles.gallaryTab} onPressOut = {props.pickImage}> 
+                <TouchableOpacity style ={styles.gallaryTab} onPressOut = {props.pickImageProfile}> 
                 <MaterialIcons name="photo-album" size={50} color="white" style = {styles.iconContainer}/> 
                 <Text style = {styles.gallaryTabText}> GALLARY </Text>
                 </TouchableOpacity>
@@ -74,11 +74,11 @@ const TrainerProfileUpdateScreen = props =>
             <View style = {styles.profileContainer}>
                 <TouchableOpacity style = {styles.profileImageContainer}
                 onPressOut ={ () => {
-                    props.parent.dialog.show()
+                    props.parent.dialogProfile.show()
                 }}
                 >
                 {props.profileImage ?
-                <Text>ProfileImage</Text>
+                (<Image source={{uri:props.profileImage.uri} } style = {styles.avatar}/>)
                 :
                 <Image
                     source={

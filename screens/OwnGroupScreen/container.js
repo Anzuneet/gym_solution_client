@@ -91,31 +91,6 @@ class Container extends Component {
     );
   };
 
-
-
-  renderFooter = () => {
-    if (!this.state.loading) return null;
-
-    return (
-      <View
-        style={{
-          height: 100,
-          borderTopWidth: 1,
-          borderColor: "#CED0CE",
-          justifyContent:'center',
-          alignItems : 'center',
-
-        }}
-      >
-        <Text style = {{
-          fontSize: 40,
-        }}>
-        Training 추가하기!
-        </Text>
-      </View>
-    );
-  };
-
   render() {
     return (
       <List containerStyle={{borderTopWidth: 0, borderBottomWidth: 0  }}>
@@ -123,23 +98,16 @@ class Container extends Component {
         <FlatList
 
           data={this.state.groups}
+          
           renderItem={({ item }) => (
             <OneGroupForProfile
               data = {item}
+              navigate = {this.props.navigation.navigate}
               containerStyle={{ borderBottomWidth: 0 }}
-              //onPressItem={Alert.alert(item.email)}
             />
           )}
-          
-          //ListHeaderComponent={this.renderHeader}
           keyExtractor={item => item.uid}
           ItemSeparatorComponent={this.renderSeparator}
-          
-          //ListFooterComponent={this.renderFooter}
-          //onRefresh={this.handleRefresh}
-          //refreshing={this.state.refreshing} // refreshingrlsmd
-          //onEndReached={this.handleLoadMore} // 끝에 도달했을때 
-          //onEndReachedThreshold={50}
         />
       </List>
       

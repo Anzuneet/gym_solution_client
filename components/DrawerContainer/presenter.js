@@ -16,7 +16,7 @@ export default class DrawerContainer extends React.Component {
         
 
         <TouchableOpacity
-          onPress={() => navigation.navigate('OwnGroupScreen')}
+          onPress={() => navigation.navigate('TraineeGroupsManageScreen')}
           style={styles.uglyDrawerItem}>
           <Text style = {{fontSize:20,}}>지금까지의 TRAINING</Text>
         </TouchableOpacity>

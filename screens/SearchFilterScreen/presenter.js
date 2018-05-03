@@ -11,7 +11,7 @@ import { ScrollView ,
   Image,
   Button,
   TextInput,
-  Dimensions,
+  Dimensions
  } from "react-native";
 import { List, SearchBar, Divider,} from "react-native-elements";
 import ActionButton from 'react-native-action-button';
@@ -204,18 +204,18 @@ const styles = StyleSheet.create({
   },
   weightContainer :{
       flexDirection : 'row',
+      backgroundColor: 'red',
       //justifyContent : 'space-between',
       backgroundColor : '#f2f2f2',
-      paddingHorizontal : 7,    
+      //paddingHorizontal : 7
     },
   checkBoxContainer :{
     //flex:2,
     //flexDirection : 'column',
     height:30,
-    width:width/7,
-    paddingVertical: 3,
+    width: width/10,
+    paddingVertical: 5,
     marginBottom : 10,
-    paddingHorizontal: 5,
   },
   textStyle:{
     fontSize:12,

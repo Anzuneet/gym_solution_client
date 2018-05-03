@@ -4,17 +4,15 @@ import {Text, Image, StyleSheet, TouchableOpacity,} from 'react-native';
 import {StackNavigator, DrawerNavigator} from "react-navigation";
 import FeedScreen from "../screens/FeedScreen";
 import HomeScreen from "../screens/HomeScreen";
-import NotificationsScreen from "../screens/NotificationsScreen";
 import ProfileScreen from "../screens/ProfileScreen";
-import OwnGroupScreen from "../screens/OwnGroupScreen";
+import TraineeGroupsManageScreen from "../screens/TraineeGroupsManageScreen";
 import DrawerContainer from "../components/DrawerContainer";
 import {Font} from 'expo'; 
 
 const DrawerStack = DrawerNavigator({
     HomeScreen: { screen: HomeScreen },
-    OwnGroupScreen: { screen : OwnGroupScreen},
+    TraineeGroupsManageScreen: { screen : TraineeGroupsManageScreen},
     FeedScreen: { screen: FeedScreen },
-    NotificationsScreen: { screen: NotificationsScreen },
     ProfileScreen : { screen : ProfileScreen },
     },
     {

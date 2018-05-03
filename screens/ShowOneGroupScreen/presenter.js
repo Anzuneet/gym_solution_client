@@ -18,6 +18,7 @@ import {
   VictoryLine, 
 }from "victory-native";
 import ProfileChart from "../../components/ProfileChart";
+import ReviewsList from "../../components/ReviewsList"
 const { width, height } = Dimensions.get("window");
 import { List } from "react-native-elements";
 import OneGroupForTrainee from "../../components/OneGroupForTrainee";
@@ -34,6 +35,7 @@ import OneGroupForTrainee from "../../components/OneGroupForTrainee";
               require("../../assets/images/noPhoto.jpg")
             }
             style={styles.avatar}
+            
             //defaultSource={require("../../assets/images/noPhoto.jpg")}
         />
         <View style ={styles.trainernameContainer}>
@@ -68,7 +70,7 @@ import OneGroupForTrainee from "../../components/OneGroupForTrainee";
       </View>
     </View>
 
-    <View>
+    <View style = {styles.comment}>
       {props.group.comment ?
       <Text style = {styles.commentText}>
           {props.group.comment}
@@ -88,6 +90,7 @@ import OneGroupForTrainee from "../../components/OneGroupForTrainee";
     </View>
   </TouchableOpacity>
 
+  <ReviewsList/>
   <View style = {styles.touchableContainer}>
     <TouchableOpacity style = {styles.touchable}>
       <View style={styles.button}>
@@ -108,6 +111,7 @@ import OneGroupForTrainee from "../../components/OneGroupForTrainee";
       </View>
     </TouchableOpacity>
   </View>
+  
   </ScrollView>
 );
  
@@ -212,6 +216,9 @@ const styles = StyleSheet.create({
     //width: width
     borderWidth : StyleSheet.hairlineWidth,
     borderColor : "black",
+  },
+  comment:{
+    height:height/4.95
   },
 });
 
