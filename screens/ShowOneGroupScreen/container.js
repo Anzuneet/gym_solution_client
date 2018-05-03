@@ -12,8 +12,10 @@ class Container extends Component {
  
 
   render() {
+    
     const {navigate} = this.props.navigation;
     const {group} = this.props.navigation.state.params;
+    console.log(group)
    return (
      <ShowOneGroupScreen {...this.props} {...this.state}
      navigate = {navigate}

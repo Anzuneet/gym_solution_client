@@ -11,6 +11,7 @@ import { ScrollView ,
   Image,
   Button,
   TextInput,
+  Dimensions,
  } from "react-native";
 import { List, SearchBar, Divider,} from "react-native-elements";
 import ActionButton from 'react-native-action-button';
@@ -18,6 +19,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { CheckBox } from 'react-native-elements';
 import PopupDialog , { SlideAnimation, DialogTitle} from 'react-native-popup-dialog';
 import DateTimePicker from 'react-native-modal-datetime-picker';
+const { width, height } = Dimensions.get("window");
 
 const SearchFilterScreen = props => (
   
@@ -37,6 +39,9 @@ const SearchFilterScreen = props => (
           mode = {'time'}
           is24Hour = {false} 
         />  
+      <View style = {styles.subTitleContainer}>
+        <Text  style = {styles.subTitleText}>요일</Text>
+      </View>
       <View style = {styles.weightContainer}>
       <CheckBox
         title='월'
@@ -173,20 +178,6 @@ const SearchFilterScreen = props => (
       </TouchableOpacity>    
       </View>
     
-      <View style = {styles.ButtonContainer}>
-      <TouchableOpacity
-      style = {{backgroundColor : "#rgba(253,139,27,1)", marginHorizontal :90, paddingVertical :10, borderRadius : 20}}
-      onPress={() => {props.stateInitialization()}}>
-      <Text style = {{paddingHorizontal : 20}}>설정초기화</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-      style = {{backgroundColor : "#rgba(253,139,27,1)", marginHorizontal :90, paddingVertical :10, borderRadius : 20}}
-      onPress={() => {props.searchScreen()}}>
-      <Text style = {{paddingHorizontal : 20}}>설정완료</Text>
-      </TouchableOpacity>
-
-      </View>
     </View>
 )
 
@@ -215,14 +206,14 @@ const styles = StyleSheet.create({
       flexDirection : 'row',
       //justifyContent : 'space-between',
       backgroundColor : '#f2f2f2',
-      paddingHorizontal : 7
+      paddingHorizontal : 7,    
     },
   checkBoxContainer :{
     //flex:2,
     //flexDirection : 'column',
     height:30,
-    width:47,
-    paddingVertical: 5,
+    width:width/7,
+    paddingVertical: 3,
     marginBottom : 10,
     paddingHorizontal: 5,
   },
@@ -302,3 +293,4 @@ btnText:{
 });
 
 export default SearchFilterScreen;
+

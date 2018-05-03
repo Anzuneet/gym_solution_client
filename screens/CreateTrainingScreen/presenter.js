@@ -62,14 +62,18 @@ const CreateTrainingScreen = props => (
               onChangeText={props.changeGroupsTitle}
           />
         </View>
-        <Text style ={styles.textContentFont}> 트레이닝 코멘트 </Text>
+        <Text style ={styles.textContentFont}> 트레이닝 설명 </Text>
         <View style = {styles.commentContainer}>
             <TextInput 
               style = {styles.textInputComment} 
               underlineColorAndroid = 'rgba(0,0,0,0)'
               placeholder="트레이닝 설명을 입력해주세요" 
               value = {props.groupsComment}
-              onChangeText={props.changeGroupsComment}
+              onChangeText={props.changeGroupsComment}           
+              multiline = {true}    
+              numberOfLines = {6}        
+              maxLength = {150}
+              
           />    
         </View>
         <Text style ={styles.textContentFont}> 트레이닝 날짜 </Text>
@@ -170,7 +174,7 @@ const styles = StyleSheet.create({
         flexDirection : 'row',
     },
     textInputTitle: {
-        width : width-150,
+        width : width-60,
         height: 30,
         borderColor: "#bbb",
         borderWidth: StyleSheet.hairlineWidth,
@@ -192,8 +196,9 @@ const styles = StyleSheet.create({
         marginBottom : 10,
         },
     textInputComment: {
-        width : width-150,
-        height: 30,
+        width : width-60,
+        //paddingBottom : 90,
+        //height: 90,
         borderColor: "#bbb",
         borderWidth: StyleSheet.hairlineWidth,
         borderRadius: 5,
@@ -201,8 +206,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
         backgroundColor: "#fafafa",
         marginLeft : 25,
-        fontFamily: 'font-DoHyeon'
+        fontFamily: 'font-DoHyeon',
         },
+
+
+
     chargeInputComment : {
         width : 100,
         height: 30,
@@ -306,21 +314,23 @@ const styles = StyleSheet.create({
 
       },
       touchable:{
-        borderRadius:3,
+        //borderRadius:3,
         backgroundColor:"#FFBB00",
-        width: width
+        //width: width
     },
     button:{
         width,
-        height : 60,
+        //height : 60,
         backgroundColor :'#FFBB00',
         alignItems : 'center',
-        justifyContent : 'center'
+        justifyContent : 'center',
+        marginTop : 14,
     },
     btnText:{
         fontSize : 40,
         color : 'rgba(255,255,255,1)',
         fontFamily: 'font-DoHyeon',
+        marginBottom : 7,
     },
 
     textContentFont : {

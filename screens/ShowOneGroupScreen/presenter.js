@@ -25,11 +25,8 @@ import OneGroupForTrainee from "../../components/OneGroupForTrainee";
  const ShowOneGroup = props => (
   <ScrollView
     style = {styles.containerr}>
-    <TouchableOpacity style = {styles.button} onPressOut = {()=> props.navigate('showTrainerInfo', {trainer : props.group.opener})}>
-      <Text style = {styles.font}> go TrainerInfo </Text>
-    </TouchableOpacity>
  
-    <TouchableOpacity onPress = {props.onPress}>
+    <TouchableOpacity onPressOut = {()=> props.navigate('showTrainerInfo', {trainer : props.group.opener})}>
     <View style = {styles.Container}>
       <View style = {styles.profileContainer}>
         <Image
@@ -49,13 +46,7 @@ import OneGroupForTrainee from "../../components/OneGroupForTrainee";
         <Text style = {styles.titleText}>
             {props.group.title}
         </Text>
-        {props.group.comment ?
-        <Text style = {styles.commentText}>
-            {props.group.comment}
-        </Text> :
-        <Text style = {styles.commentText} numberOfLines = {3}>
-            등록된 코멘트가 없네요.. ㅎㅎ
-        </Text> }
+        
       </View>
       <View style = {styles.detailContainer}>
         <View style = {{flexDirection : 'row', backgroundColor : "#rgba(255,150,2,0.5)", height : 20,justifyContent : 'center',alignItems : 'center'}}>
@@ -65,14 +56,28 @@ import OneGroupForTrainee from "../../components/OneGroupForTrainee";
         </View>  
       <View> 
           <Text style ={styles.capacityText}>
-          현재 : {props.group.user_count} / {props.group.capacity}
+          현재 : {props.group.user_count}/{props.group.capacity}명
           </Text>
           <Text style ={styles.costText}>
-          비용 : {props.group.charge}
+          가격 : {props.group.charge}원
+          </Text>
+          <Text style ={styles.costText}>
+          시작시간 : {props.group.time}
           </Text>
           </View>
       </View>
     </View>
+
+    <View>
+      {props.group.comment ?
+      <Text style = {styles.commentText}>
+          {props.group.comment}
+      </Text> :
+      <Text style = {styles.commentText} numberOfLines = {3}>
+          등록된 코멘트가 없네요.. ㅎㅎ
+      </Text> }
+    </View>
+
     <View style = {{  width : width,
                         height : 30,
                         backgroundColor : "#eeeeee",
@@ -83,10 +88,26 @@ import OneGroupForTrainee from "../../components/OneGroupForTrainee";
     </View>
   </TouchableOpacity>
 
-
-
-
-    
+  <View style = {styles.touchableContainer}>
+    <TouchableOpacity style = {styles.touchable}>
+      <View style={styles.button}>
+          {props.isSubmitting ? 
+          (<ActivityIndicator size = "large" color="white"/>)
+          :
+          (<Text style ={styles.btnText}>취소</Text>)
+          }
+      </View>
+    </TouchableOpacity>
+    <TouchableOpacity style = {styles.touchable}>
+      <View style={styles.button}>
+          {props.isSubmitting ? 
+          (<ActivityIndicator size = "large" color="white"/>)
+          :
+          (<Text style ={styles.btnText}>확인</Text>)
+          }
+      </View>
+    </TouchableOpacity>
+  </View>
   </ScrollView>
 );
  
@@ -108,10 +129,15 @@ const styles = StyleSheet.create({
     height: 100,
     flexDirection : 'row'
   },
+  touchableContainer:{
+    flexDirection : 'row',
+    
+  },
   profileContainer :{
     flex:0.45,
     alignItems : 'center',
     paddingVertical : 5,
+
   },
   titleContainer : {
     flex:0.95,
@@ -135,14 +161,15 @@ const styles = StyleSheet.create({
   trainernameText : {
     paddingTop : 6,
     fontSize : 15,
-    fontWeight:'500',
+    //fontWeight:'500',
+    fontFamily: 'font-DoHyeon',
   },
   titleText :{
     paddingVertical : 10,
     paddingLeft : 8,
-
+    fontFamily: 'font-DoHyeon',
     fontSize :20,
-    fontWeight : "500",
+    //fontWeight : "500",
   },
   commentText : {
     paddingHorizontal : 10,
@@ -154,13 +181,37 @@ const styles = StyleSheet.create({
     paddingBottom : 10,
   },
   capacityText : {
-    fontSize : 20,
+    fontSize : 17,
     paddingLeft: 10,
     paddingVertical : 10,
+    fontFamily: 'font-DoHyeon',
   },
   costText : {
-    fontSize : 15,
+    fontSize : 17,
     paddingLeft: 10,
+    fontFamily: 'font-DoHyeon',
+  },
+  button:{
+    flex : 1,
+    //height : 60,
+    backgroundColor :'#FFBB00',
+    alignItems : 'center',
+    justifyContent : 'center',
+    marginTop : 14,
+  },
+  btnText:{
+      fontSize : 40,
+      color : 'rgba(255,255,255,1)',
+      fontFamily: 'font-DoHyeon',
+      marginBottom : 7,
+  },
+  touchable:{
+    //borderRadius:3,
+    backgroundColor:"#FFBB00",
+    width:width/2,
+    //width: width
+    borderWidth : StyleSheet.hairlineWidth,
+    borderColor : "black",
   },
 });
 

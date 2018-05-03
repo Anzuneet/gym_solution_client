@@ -1,12 +1,14 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import {Text, Image, StyleSheet, TouchableOpacity,} from 'react-native';
 import {StackNavigator, DrawerNavigator} from "react-navigation";
 import FeedScreen from "../screens/FeedScreen";
 import HomeScreen from "../screens/HomeScreen";
-import NotificationsScreen from "../screens/NotificationsScreen";;
+import NotificationsScreen from "../screens/NotificationsScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import OwnGroupScreen from "../screens/OwnGroupScreen";
 import DrawerContainer from "../components/DrawerContainer";
+import {Font} from 'expo'; 
 
 const DrawerStack = DrawerNavigator({
     HomeScreen: { screen: HomeScreen },
@@ -26,14 +28,9 @@ const DrawerNavigation = StackNavigator({
 }, {
 headerMode: 'float',
 navigationOptions: ({navigation}) => ({
-    headerStyle: {backgroundColor: "#rgba(253,139,27,1)"},//'#rgba(255,176,0,0.6)'
+    headerStyle: {backgroundColor: "#ffbb00"},//'#rgba(255,176,0,0.6)'
     title : 
-    // <Text style = {{fontSize : 30, fontWeight : "800", color : "white"}}> GYM_SOLUTION </Text>
-    <Image
-    source={require("../assets/images/logo-gym2.png")}
-    resizeMode="stretch"
-    style ={{width : 700,height : 100}}
-    />
+    <Text style = {styles.title}> GYMSOLUTION </Text>
     ,
     headerLeft: 
     <TouchableOpacity style ={styles.icon} onPress={() => {
@@ -72,6 +69,14 @@ const styles = StyleSheet.create({
     width : 60,
     height : 60,
     paddingLeft : 20,
+    },
+    title: {
+    fontSize : 45,
+    //color : "rgba(0,0,0,1)",
+    marginTop : 25,
+    textAlign: "center",
+    paddingLeft: 20,
+    fontFamily: 'font-DoHyeon',
     },
 })
 

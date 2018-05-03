@@ -28,11 +28,11 @@ const slideAnimation = new SlideAnimation({
 const SearchScreen = props => (
     <View style = {styles.container}>
         <PopupDialog
-            dialogTitle={<DialogTitle title="찾고자하는 training의 조건을 입력해주세요" />}
+            dialogTitle={<DialogTitle title="찾고자하는 트레이닝의 조건을 입력해주세요" />}
             ref={props.setDialog}
             dialogAnimation={slideAnimation}
             dismissOnTouchOutside = {true}
-            height = {300}
+            height = {320}
         >
         <SearchFilterScreen
         MON = {props.MON}
@@ -87,7 +87,7 @@ const SearchScreen = props => (
 const styles = StyleSheet.create({
     container: {
         flex :1,
-        backgroundColor: "white",
+        backgroundColor: "#ffbb00",
     },
     titleContainer : {
         height: height * 0.1,
@@ -96,15 +96,13 @@ const styles = StyleSheet.create({
         justifyContent : "flex-end",
         alignItems: "center",
         borderBottomWidth : StyleSheet.hairlineWidth,
-        borderColor : "#ffffff",
+        borderColor : "white",
     },
     titleText : {
-        fontFamily: 'font-DoHyeon',
         paddingVertical : 10,
         fontSize : 21,
         paddingRight : 20,
-        fontWeight : "800",
-        
+        fontFamily: 'font-DoHyeon',
     },
     mapContainer:{
         flex:1,
@@ -112,7 +110,7 @@ const styles = StyleSheet.create({
         borderWidth : 5,
         borderColor : "#ffbb00",
         justifyContent: "center",
-        //borderRadius :5,
+        borderRadius :5,
     },
     filterContainer: {
         height:height*0.1,
