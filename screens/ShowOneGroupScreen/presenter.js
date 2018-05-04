@@ -24,10 +24,10 @@ import { List } from "react-native-elements";
 import OneGroupForTrainee from "../../components/OneGroupForTrainee";
 
  const ShowOneGroup = props => (
-  <ScrollView
-    style = {styles.containerr}>
+  <ScrollView 
+    style = {styles.ScrollViewContainer}>
  
-    <TouchableOpacity onPressOut = {()=> props.navigate('showTrainerInfo', {trainer : props.group.opener})}>
+    <TouchableOpacity style = {styles.touchableContainerr} onPressOut = {()=> props.navigate('showTrainerInfo', {trainer : props.group.opener})}>
     <View style = {styles.Container}>
       <View style = {styles.profileContainer}>
         <Image
@@ -69,8 +69,10 @@ import OneGroupForTrainee from "../../components/OneGroupForTrainee";
           </View>
       </View>
     </View>
+    
+  </TouchableOpacity>
 
-    <View style = {styles.comment}>
+  <View style = {styles.comment}>
       {props.group.comment ?
       <Text style = {styles.commentText}>
           {props.group.comment}
@@ -80,17 +82,14 @@ import OneGroupForTrainee from "../../components/OneGroupForTrainee";
       </Text> }
     </View>
 
-    <View style = {{  width : width,
-                        height : 30,
-                        backgroundColor : "#eeeeee",
-                        justifyContent : "center",
-                        alignItems : "flex-end"}}>
-      <Text style = {{color : "black", fontWeight: "500", fontSize: 20, paddingRight : 5, paddingVertical : 5,}}> 오픈 예정일 : {props.group.start_date} </Text>
-      
+    <View style = {styles.openContainer}>
+      <Text style = {{color : "black", fontSize: 20, fontFamily: 'font-DoHyeon', marginTop : 20,}}> 오픈 예정일 : {props.group.start_date} </Text>
     </View>
-  </TouchableOpacity>
+  
+  <View style = {styles.ReviewsListContainer}>
+    <ReviewsList/>
+  </View>
 
-  <ReviewsList/>
   <View style = {styles.touchableContainer}>
     <TouchableOpacity style = {styles.touchable}>
       <View style={styles.button}>
@@ -116,26 +115,25 @@ import OneGroupForTrainee from "../../components/OneGroupForTrainee";
 );
  
 const styles = StyleSheet.create({
-  containerr: {
-    flex: 1,
-  },
   button : {
     paddingVertical : 20,
     justifyContent : 'center',
     alignItems : 'center',
     backgroundColor : 'pink',
   },
+  touchableContainerr :{
+    height : height / 5.6
+  },
   font : {
     fontSize : 30,
   },
   Container:{
     flex:1,
-    height: 100,
     flexDirection : 'row'
   },
   touchableContainer:{
     flexDirection : 'row',
-    
+    height : height/10,
   },
   profileContainer :{
     flex:0.45,
@@ -156,6 +154,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical : 1,
+  },
+  openContainer :{
+      
+      height : height/70,
+      //backgroundColor : "#eeeeee",
+      justifyContent : "center",
+      alignItems : "flex-end",
+
+  },
+  ReviewsListContainer :{
+    height : height/2.85,
   },
   avatar: {
     width: 60,
@@ -196,7 +205,6 @@ const styles = StyleSheet.create({
     fontFamily: 'font-DoHyeon',
   },
   button:{
-    flex : 1,
     //height : 60,
     backgroundColor :'#FFBB00',
     alignItems : 'center',
@@ -218,7 +226,12 @@ const styles = StyleSheet.create({
     borderColor : "black",
   },
   comment:{
-    height:height/4.95
+    height : height / 4.5,
+    borderWidth : StyleSheet.hairlineWidth,
+    borderColor : "black",
+  },
+  ScrollViewContainer:{
+    flex : 1,
   },
 });
 
