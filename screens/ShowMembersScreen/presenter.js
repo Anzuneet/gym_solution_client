@@ -224,7 +224,6 @@ const slideAnimation = new SlideAnimation({
       />
       </View>
     </View> 
-
     <View style = {styles.ButtonContainer}>
       <TouchableOpacity
       style = {{backgroundColor : "#rgba(253,139,27,1)", marginHorizontal :90, paddingVertical :10, borderRadius : 20}}
@@ -258,8 +257,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  tableContainer  : {
-  },
+
   upperRow  : {
     height : 50,
     flexDirection : 'row',

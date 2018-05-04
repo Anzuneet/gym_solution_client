@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   Image,
   Dimensions,
+  TextInput
 } from "react-native";
 import {
   VictoryChart,
@@ -17,10 +18,91 @@ import {
   VictoryLine, 
 }from "victory-native";
 import ProfileChart from "../../components/ProfileChart";
+import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
+import PopupDialog , { SlideAnimation, DialogTitle} from 'react-native-popup-dialog';
+import StarRating from 'react-native-star-rating';
+
 const { width, height } = Dimensions.get("window");
+
+const slideAnimation = new SlideAnimation({
+  slideFrom: 'bottom',
+});
 
  const TraineeOneGroupsScreen = props => (
   <ScrollView style = {styles.container}>
+  <PopupDialog
+      dialogTitle={<DialogTitle title="운동 기록" />}
+      ref={props.setDialog}
+      dialogAnimation={slideAnimation}
+      dismissOnTouchOutside = {true}
+    >
+    
+    <View style = {styles.upperRow}>
+      <View style = {styles.column}>
+        <Text style = {styles.textInput}></Text>
+      </View>
+      <View style = {styles.column}>
+      <Text style = {styles.textInput}></Text>
+      </View>
+      <View style = {styles.column}>
+      <Text style = {styles.textInput}></Text>
+      </View>
+    </View>
+    <View style = {styles.lowerRow}>
+      <View style = {styles.column}>
+        <Text style = {styles.NOT}></Text>
+        <Text style ={styles.multiText}>*</Text>
+        <Text style = {styles.NOT}></Text>
+      </View>
+      <View style = {styles.column}>
+        <Text style = {styles.NOT}></Text>
+        <Text style ={styles.multiText}>*</Text>
+        <Text style = {styles.NOT}></Text>
+      </View>
+      <View style = {styles.column}>
+        <Text style = {styles.NOT}></Text>
+        <Text style ={styles.multiText}>*</Text>
+        <Text style = {styles.NOT}></Text>
+      </View>
+    </View> 
+    <View style = {styles.upperRow}>
+      <View style = {styles.column}>
+        <Text style = {styles.textInput}></Text>
+      </View>
+      <View style = {styles.column}>
+        <Text style = {styles.textInput}></Text>
+      </View>
+      <View style = {styles.column}>
+        <Text style = {styles.textInput}></Text>
+      </View>
+    </View> 
+    <View style = {styles.lowerRow}>
+      <View style = {styles.column}>
+        <Text style = {styles.NOT}></Text>
+        <Text style ={styles.multiText}>*</Text>
+        <Text style = {styles.NOT}></Text>
+    </View>
+      <View style = {styles.column}>
+        <Text style = {styles.NOT}></Text>
+        <Text style ={styles.multiText}>*</Text>
+        <Text style = {styles.NOT}></Text>
+    </View>
+      <View style = {styles.column}>
+        <Text style = {styles.NOT}></Text>
+        <Text style ={styles.multiText}>*</Text>
+        <Text style = {styles.NOT}></Text>
+      </View>
+    </View> 
+
+    <View style = {styles.ButtonContainer}>
+      <TouchableOpacity
+      style = {{backgroundColor : "#rgba(253,139,27,1)",marginVertical : 5, marginHorizontal :20, paddingVertical :10, borderRadius : 20, alignItems : 'center'}}
+      onPress={props.closeDialog}>
+      <Text style = {{paddingHorizontal : 20}}>닫기</Text>
+      </TouchableOpacity>
+
+      </View>
+    </PopupDialog>
     <View style = {styles.headerContainer}>
       <Text> {props.group.title}</Text>
     </View>
@@ -53,10 +135,49 @@ const { width, height } = Dimensions.get("window");
             </View>
         </View>
     </TouchableOpacity>
+    <View style = {styles.reviewContainer}>
+      <View style = {styles.reviewContainer2}>
+        {props.reviewFlag ?
+        (
+          <View style = {{flex: 1,justifyContent: "center", backgroundColor: "white", borderRadius: 10,marginRight: 10, paddingLeft: 5,}}>
+            <Text>{props.comment}</Text>
+          </View>
+        )
+        :
+          <TextInput 
+          style = {{flex: 1,justifyContent: "center", backgroundColor: "white", borderRadius: 10,marginRight: 10, paddingLeft: 5,}} 
+          underlineColorAndroid = 'rgba(0,0,0,0)' 
+          placeholder="코멘트를 달아주세요" 
+          autoCorrecto = {false}
+          value = {props.data5}
+          onChangeText={props.changeSets5}
+          />
+        }
+        {props.reviewFlag ?
+         <StarRating
+          disabled={false}
+          maxStars={5}
+          starSize = {25}
+          rating={props.starCount}
+          fullStarColor = "#fd8b1b" 
+          /> :
+        <StarRating
+          disabled={false}
+          maxStars={5}
+          starSize = {25}
+          rating={props.starCount}
+          selectedStar={props.onStarRatingPress}
+          fullStarColor = "#fd8b1b" 
+          />}
+        </View>
+        <TouchableOpacity style = {{alignItems : "flex-end"}}>
+          <Text style = {{paddingRight : 20,}}>등록 하기</Text>
+        </TouchableOpacity>
+      </View>
     <View style = {styles.beforeAfterContainer}>
       <View style = {{flexDirection : 'row'}}>
-        <View style = {{backgroundColor: 'red',flex:1,justifyContent:"center", alignItems : 'center'}}>
-          <Text>BEFORE</Text>
+        <View style = {{backgroundColor: 'white',flex:1,justifyContent:"center", alignItems : 'center'}}>
+          <Text style = {{paddingVertical: 4, color : "#fd8b1b"}}>BEFORE</Text>
           {props.group.trainer.profileImage ?  
         (<Image source={{uri:props.image.uri} } style = {{width: width/2, height: height*0.4}}/>)
         :( 
@@ -66,8 +187,8 @@ const { width, height } = Dimensions.get("window");
         />
       )}  
         </View>
-        <View style = {{backgroundColor: 'yellow',flex:1,justifyContent:"center", alignItems : 'center'}}>
-          <Text>AFTER</Text>
+        <View style = {{backgroundColor: '#fd8b1b',flex:1,justifyContent:"center", alignItems : 'center'}}>
+          <Text style = {{paddingVertical: 4, color : "white"}}>AFTER</Text>
           {props.group.trainer.profileImage ?  
         (<Image source={{uri:props.image.uri} } style = {{width: width/2, height: height*0.4}}/>)
         :( 
@@ -78,12 +199,23 @@ const { width, height } = Dimensions.get("window");
       )}  
         </View>
       </View>
-      
+      <View style = {{flex: 1,flexDirection: 'row', justifyContent: 'space-between',}}>
+        <View style = {styles.beforecellContainer}><Text style = {{paddingVertical: 4, color : "#fd8b1b"}}>{props.group.beforeFat}</Text></View>
+        <View style = {styles.beforecellContainer}><Text style = {{paddingVertical: 4, color : "#fd8b1b"}}>{props.group.beforeMuscle}</Text></View>
+        <View style = {styles.beforecellContainer}><Text style = {{paddingVertical: 4, color : "#fd8b1b"}}>{props.group.beforeWeight}</Text></View>
+        <View style = {styles.aftercellContainer}><Text style = {{paddingVertical: 4, color : "white"}}>{props.group.afterFat}</Text></View>
+        <View style = {styles.aftercellContainer}><Text style = {{paddingVertical: 4, color : "white"}}>{props.group.afterMuscle}</Text></View>
+        <View style = {styles.aftercellContainer}><Text style = {{paddingVertical: 4, color : "white"}}>{props.group.afterWeight}</Text></View>
+      </View>    
     </View>
     <View style = {styles.calenderContainer}>
+      <Calendar
+        style = {{}}
+        markedDates={props.dates2}
+        onDayPress={props.pullDayInfo}
+      />
     </View>
-    <View style = {styles.reviewContainer}>
-    </View>
+
     <TouchableOpacity style = {styles.button} onPressOut = {()=> props.navigate('showTrainerInfo', {trainer : props.group.opener})}>
       <Text style = {styles.font}>  </Text>
     </TouchableOpacity>
@@ -93,33 +225,100 @@ const { width, height } = Dimensions.get("window");
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "skyblue",
   },
   headerContainer: {
     flex: 1,
     justifyContent : 'center',
     alignItems: 'center',
     backgroundColor: 'red',
-    marginVertical: 3,
+    marginBottom: 4,
     
   },
   trainerContainer: {
     flex:1,
-    height: 100,
     backgroundColor : "white",
     flexDirection : 'row',
-    marginVertical: 3,
+    marginBottom: 4,
+    borderRadius: 5,
   },
   beforeAfterContainer: {
-    flex: 1,
-    height: 500,
-    backgroundColor: "skyblue",
     marginVertical: 3,
+  },
+  beforecellContainer : {
+    marginVertical: 4,
+    width :width/6 -5,
+    justifyContent: 'center',
+    alignItems : 'center',
+    height: height/30,
+    backgroundColor : "white",
+    borderRadius: 5,
+    
+
+  },
+  aftercellContainer : {
+    marginVertical: 4,
+    width :width/6 -5,
+    justifyContent: 'center',
+    alignItems : 'center',
+    height: height/30,
+    backgroundColor : "#fd8b1b",
+    borderRadius: 5,
+    
+
   },
   calenderContainer: {
     flex: 1,
   },
+  upperRow  : {
+    height : 50,
+    flexDirection : 'row',
+    backgroundColor : "#rgba(255,167,10,0.8)"
+  },
+  lowerRow  : {
+    height : 50,
+    flexDirection : 'row',
+    backgroundColor : '#rgba(0,0,0,0.2)',
+  },
+  column  : {
+    flex : 1,
+    backgroundColor : 'transparent',
+    justifyContent : 'center',
+    alignItems : 'center',
+    borderColor : "white",
+    borderWidth : StyleSheet.hairlineWidth,
+    flexDirection : 'row'
+  },
+  textInput : {
+    width : width/3 -10,
+    height: 30,
+    borderColor: "#bbb",
+    borderWidth: StyleSheet.hairlineWidth,
+    borderRadius: 5,
+    paddingHorizontal: 15,
+    backgroundColor: "#fafafa",
+    alignItems : 'center'
+  },
+  NOT :{
+    width : width/4 -50,
+    height: 30,
+    borderColor: "#bbb",
+    borderWidth: StyleSheet.hairlineWidth,
+    borderRadius: 5,
+    paddingLeft:5,
+    backgroundColor: "#fafafa",
+    alignItems : 'center'
+  },
+  multiText : {
+    paddingHorizontal : 4,
+  },
   reviewContainer: {
-    flex: 1,
+
+  },
+  reviewContainer2: {
+    flexDirection: 'row',
+    alignItems: "center",
+    justifyContent: 'center',
   },
   profileContainer :{
     flex:0.6,
@@ -157,7 +356,7 @@ const styles = StyleSheet.create({
     paddingLeft : 15,
   },
   textContainer : {
-    backgroundColor : "#fd8b1b",
+    backgroundColor : "#fd8b1b", //"#rgba(253,213,27)"
     width : 160,
     borderRadius :10,
   },

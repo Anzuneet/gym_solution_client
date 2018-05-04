@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     },
     textInput : {
         width : width,
-        backgroundColor : "yellow"
+        backgroundColor: "#dedede"
     },
     bodyProfileContainer : {
         flexDirection : 'row',

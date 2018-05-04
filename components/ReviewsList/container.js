@@ -18,11 +18,13 @@ class Container extends Component {
   state={
     trainers : [
       {
+        uid : 1,
         traineeName: "hello",
         comments: "hello",
         grade: 4.6
       },
       {
+        uid : 2,
         traineeName: "Kojunsu",
         comments: "gigigi",
         grade: 7.2
