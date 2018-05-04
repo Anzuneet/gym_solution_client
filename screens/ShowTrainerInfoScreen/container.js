@@ -6,7 +6,7 @@ import Carousel, { Pagination } from 'react-native-snap-carousel';
 import styles, { colors } from './styles/index.style';
 import PopupDialog , { SlideAnimation, DialogTitle} from 'react-native-popup-dialog';
 import SnapShot from "../../components/SnapShot";
-
+import BeforeAVGList from "../../components/BeforeAVGList";
 const SLIDER_1_FIRST_ITEM = 1;
 
 export default class example extends Component {
@@ -82,13 +82,11 @@ export default class example extends Component {
                     
                 </View>
             </View>
-                <View style = {{backgroundColor : "yellow", flex: 1, justifyContent:'center', alignItems : 'center'}}>
-                    <Text style = {{fontSize : 30,}}>
-                    여기에 리스트채울거임 트레이너 관리한 그룹들의 평균데이터
-                    </Text>
+                <View style = {{backgroundColor : "white", flex: 1, justifyContent:'center', alignItems : 'center'}}>
+                    <BeforeAVGList/>
                 </View>
 
-                <View style = {{flexDirection : "row",}}>
+                <View style = {{flexDirection : "row", flex: 2,}}>
                     <SnapShot/>
                     <View style={{flexDirection: 'column', alignItems : 'center', justifyContent : 'center', backgroundColor : "#rgba(253,139,27,1)",}}>
                         {this.state.bodyText.split('').map(char => <Text key = {char} style = {{paddingHorizontal : 15, fontSize : 15, color : "white", fontWeight : "800"}}>{char}</Text>)}

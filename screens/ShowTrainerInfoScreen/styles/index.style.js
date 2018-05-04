@@ -67,10 +67,6 @@ export default StyleSheet.create({
         borderRadius: 4,
         marginHorizontal: 8
     },
-    profileContainer : {
-        flexDirection : 'row',
-        backgroundColor : 'transparent'
-    },
     TextStyle:
     {
         textAlign: 'center',
@@ -78,7 +74,7 @@ export default StyleSheet.create({
     
     },
     profileContainer : {
-        flex :1,
+        flex :2,
         backgroundColor : "white",
         alignItems : 'center',
     },
@@ -89,21 +85,22 @@ export default StyleSheet.create({
     },
     commentContainer : {
         marginHorizontal :10,
-        marginTop : 20,
+        marginTop : 10,
         backgroundColor : "#eeeeee",
-        height : 210,
-        width : 230,
+        height : height*0.3,
+        width : width*0.6,
         paddingHorizontal :10,
         paddingVertical :10,
         borderRadius : 20,
     },
     gymNameContainer : {
         marginTop : 20,
-        width: 130,
-        height : 50,
+        width: width*0.3,
+        height : height*0.08,
         backgroundColor: "rgba(253,139,27,0.5)",
         alignItems: 'center',
         justifyContent : 'center',
+        borderRadius: 10,
     },
     tUpdateBContainer : {
         marginTop : 20,
