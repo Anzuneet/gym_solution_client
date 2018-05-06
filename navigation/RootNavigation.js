@@ -28,11 +28,15 @@ const DrawerNavigation = StackNavigator({
 headerMode: 'float',
 navigationOptions: ({navigation}) => ({
     headerStyle: {backgroundColor: "#ffbb00"},//'#rgba(255,176,0,0.6)'
-    title : 
+    title :
+    <Text style = {styles.title}> GYMSOLUTION
+    </Text> 
+    /*
     <Image
     source={require("../assets/images/GYMSOLUSION.png")}
     style ={styles.logo}   
     />
+    */
     ,
     headerLeft: 
     <TouchableOpacity style ={styles.icon} onPress={() => {

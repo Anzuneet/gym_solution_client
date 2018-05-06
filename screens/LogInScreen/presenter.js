@@ -20,18 +20,19 @@ const LogInScreen = props => (
     <View style={styles.container}>
     <StatusBar barStyle={"light-content"} />
     <View style={styles.header}>
-         <Text style = {styles.titleText}>GYMSOLUSION</Text>
+         <Text style = {styles.titleText}>GYMSOLUTION</Text>
     </View>
     
     <View style={styles.content}>
 
         <View style={styles.image}>
         <Image
-        source={require("../../assets/images/icon-gym.png")}
+        source={require("../../assets/images/icon-color.png")}
         resizeMode="contain"
         style={styles.logo}
          />
          </View>
+         
 
         <TextInput 
             style = {styles.textInput} 
@@ -163,6 +164,14 @@ const styles = StyleSheet.create({
         fontFamily: 'font-DoHyeon',
         //fontWeight : "500"
     },
+    logoText :{
+        fontSize: 31,
+        color : "#ffbb00",
+        fontFamily: 'font-DoHyeon',
+        textAlign: "center",
+        
+        //fontWeight : "500"
+    },
     titleText : {
         fontFamily: 'font-DoHyeon',
         fontSize : 55,
@@ -181,7 +190,7 @@ const styles = StyleSheet.create({
     },
     image : {
         //marginTop : 25,
-        marginBottom : 25,
+        //marginBottom : 25,
         flex : 1,
     },
 });

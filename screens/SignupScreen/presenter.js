@@ -37,7 +37,7 @@ const SignupScreens = props => (
       <StatusBar barStyle={"light-content"} />
 
       <View style={styles.header}>  
-          <Text style = {styles.titleText}>GYMSOLUSION</Text>
+          <Text style = {styles.titleText}>GYMSOLUTION</Text>
       </View>
 
       <ScrollView
