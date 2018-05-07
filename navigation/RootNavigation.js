@@ -38,7 +38,7 @@ navigationOptions: ({navigation}) => ({
           navigation.navigate('DrawerClose')
         }}}> 
          <Image
-         source={require("../assets/images/icon-gym.png")}
+         source={require("../assets/images/icon-line.png")}
          style ={styles.icon}
          />
     </TouchableOpacity>
