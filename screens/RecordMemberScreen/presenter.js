@@ -37,7 +37,7 @@ const slideAnimation = new SlideAnimation({
       height = {750}
     >
     
-    <View>
+    <View style = {styles.rowContainer}>
           <View style = {styles.upperRow}>
             <View style = {styles.column}>
             </View>
@@ -92,7 +92,7 @@ const slideAnimation = new SlideAnimation({
       </View>
     <View style = {{justifyContent : 'center', alignItems: 'center', backgroundColor :  "black"}}>
     <TextInput 
-              style = {{width :width -20, marginVertical : 5, marginHorizontal : 5, backgroundColor: "#eeeeee", borderRadius : 5, paddingLeft : 10,}} 
+              style = {{width :width -20, marginVertical : 5, marginHorizontal : 5, backgroundColor: "#eeeeee", borderRadius : 5, paddingLeft : 10, fontFamily: 'font-DoHyeon'}} 
               underlineColorAndroid = 'rgba(0,0,0,0)' 
               placeholder="코멘트를 입력해주세요" 
               autoCorrecto = {false}
@@ -107,7 +107,7 @@ const slideAnimation = new SlideAnimation({
             (<Image source={{uri:props.image.uri} } style = {{width: width * 0.8, height: height*0.63 * 0.8}}/>)
             :( 
             <Image
-              source={require("../../assets/images/photoPlaceholder.png")}
+              source={require("../../assets/images/gymMan.jpg")}
               style = {{width: width * 0.8, height: height *0.63 * 0.8}}
             />
             )}  
@@ -138,7 +138,7 @@ const slideAnimation = new SlideAnimation({
         </View>
     </PopupDialog>
    <View style = {styles.headerContainer}>
-    <Text style = {styles.nameText}>{props.navigation.state.params.member.name} Profile</Text>
+    <Text style = {styles.nameText}>{props.navigation.state.params.member.name} 회원님의 프로필</Text>
    </View>
    <View style = {styles.graphContainer}>
       
@@ -153,10 +153,10 @@ const slideAnimation = new SlideAnimation({
         }
         name = {props.chartIndex == 1 ?
           (
-            "Weight"
+            "몸무게"
           ):
           (
-            props.chartIndex == 2 ? "Muscle" : "Fat"
+            props.chartIndex == 2 ? "근육량" : "지방"
           )
         }
       />
@@ -165,19 +165,19 @@ const slideAnimation = new SlideAnimation({
         <TouchableOpacity style = {props.chartIndex == 1 ? styles.clickedTextContainer : styles.unClickedTextContainer} 
         onPressOut ={props.clickWeight}>
           <Text  style = {props.chartIndex == 1 ? styles.clickedText : styles.unClickedText}> 
-          Weight </Text>
+          몸무게 </Text>
         </TouchableOpacity>
 
         <TouchableOpacity style = {props.chartIndex == 2 ? styles.clickedTextContainer : styles.unClickedTextContainer} 
         onPressOut ={props.clickMuscle}>
         <Text  style = {props.chartIndex == 2 ? styles.clickedText : styles.unClickedText}>  
-          Muscle </Text>
+          근육량 </Text>
         </TouchableOpacity>
 
         <TouchableOpacity style = {props.chartIndex == 3 ? styles.clickedTextContainer : styles.unClickedTextContainer}
         onPressOut ={props.clickFat}>
           <Text  style = {props.chartIndex == 3 ? styles.clickedText : styles.unClickedText}> 
-          Fat </Text>
+          지방 </Text>
         </TouchableOpacity>
       </View>
     <View>
@@ -199,10 +199,14 @@ const styles = StyleSheet.create({
     flex: 1,
 
   },
+  rowContainer:{
+    marginTop : 40,
+  },
   headerContainer : {
     flexDirection : 'row',
     backgroundColor : "black",
     justifyContent : 'center',
+
   },
   graphContainer : {
     alignItems : "center",
@@ -228,16 +232,18 @@ const styles = StyleSheet.create({
   nameText : {
     fontSize : 20,
     paddingVertical : 10,
-    fontWeight : "800",
     color: "white",
+    fontFamily: 'font-DoHyeon'
   },
   clickedText : {
     color : "#ffffff",
     fontSize : 20,
+    fontFamily: 'font-DoHyeon'
   },
   unClickedText : {
     color : "#ffbb00",
     fontSize : 20,
+    fontFamily: 'font-DoHyeon'
   },
   tableContainer  : {
     flex :1,

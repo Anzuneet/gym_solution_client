@@ -20,14 +20,11 @@ const DrawerNavigation = StackNavigator({
 }, {
 headerMode: 'float',
 navigationOptions: ({navigation}) => ({
-    headerStyle: {backgroundColor: "#rgba(253,139,27,1)"},//'#rgba(255,176,0,0.6)'
-    title : 
+    headerStyle: {backgroundColor: "#ffbb00"},//'#rgba(255,176,0,0.6)'
+    headerTitle : 
     // <Text style = {{fontSize : 30, fontWeight : "800", color : "white"}}> GYM_SOLUTION </Text>
-    <Image
-    source={require("../assets/images/logo-gym2.png")}
-    resizeMode="stretch"
-    style ={{width : 700,height : 100}}
-    />
+    <Text style = {styles.title}> GYMSOLUTION
+    </Text> 
     ,
     headerLeft: 
     <TouchableOpacity style ={styles.icon} onPress={() => {
@@ -41,7 +38,7 @@ navigationOptions: ({navigation}) => ({
          style ={styles.icon}
          />
     </TouchableOpacity>
-    
+        ,
 })
 })
 
@@ -60,12 +57,19 @@ const TrainerNavigation = StackNavigator(
 
 const styles = StyleSheet.create({
     icon: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    width : 60,
-    height : 60,
-    paddingLeft : 20,
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
+      width : 60,
+      height : 60,
+      paddingLeft : 7,
+    },
+    title: {
+    fontSize : 40,
+    //marginTop : 25,
+    textAlign: "center",
+    paddingLeft: 15,
+    fontFamily: 'font-DoHyeon',
     },
 })
 

@@ -114,10 +114,10 @@ class Container extends Component {
         />
       </List>
       <ActionButton buttonColor="rgba(231,76,60,1)">
-          <ActionButton.Item buttonColor='#9b59b6' title="Create New Training" onPress={() => this.props.navigation.navigate('create')}>
+          <ActionButton.Item buttonColor='#9b59b6' title="새로운 트레이닝 만들기" onPress={() => this.props.navigation.navigate('create')}>
              <Icon name="md-create" style={styles.actionButtonIcon} />
            </ActionButton.Item>
-          <ActionButton.Item buttonColor='#3498db' title="logout" onPress={() => this.props.logout()}>
+          <ActionButton.Item buttonColor='#3498db' title="로그아웃" onPress={() => this.props.logout()}>
              <Icon name="md-notifications-off" style={styles.actionButtonIcon} />
            </ActionButton.Item>
        </ActionButton>

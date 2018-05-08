@@ -228,26 +228,26 @@ const slideAnimation = new SlideAnimation({
       <TouchableOpacity
       style = {{backgroundColor : "#rgba(253,139,27,1)", marginHorizontal :90, paddingVertical :10, borderRadius : 20}}
       onPress={() => {props.stateInitialization()}}>
-      <Text style = {{paddingHorizontal : 20}}>설정초기화</Text>
+      <Text style = {{paddingHorizontal : 20, fontFamily: 'font-DoHyeon'}}>설정초기화</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
       style = {{backgroundColor : "#rgba(253,139,27,1)", marginHorizontal :90, paddingVertical :10, borderRadius : 20}}
       onPress={() => {props.postExercise}}>
-      <Text style = {{paddingHorizontal : 20}}>설정완료</Text>
+      <Text style = {{paddingHorizontal : 20, fontFamily: 'font-DoHyeon'}}>설정완료</Text>
       </TouchableOpacity>
 
       </View>
     </PopupDialog>
     <View style = {styles.headerContainer}>
-    <Text style = {styles.nameText}>회원 LIST</Text>
+    <Text style = {styles.nameText}>회원 목록</Text>
    </View>
     <View style = {{flex: 1, backgroundColor : 'white'}}>
     <MemberList navigate = {props.navigation.navigate}/>
    </View>
    
-   <View style = {{backgroundColor: "skyblue"}}>
-   <Text style = {{textAlign : "center", fontSize: 30, color: "white"}}> 달력에 기록해주세요 </Text>
+   <View style = {{backgroundColor: "skyblue",}}>
+   <Text style = {{textAlign : "center", fontSize: 35, color: "white", fontFamily: 'font-DoHyeon',}}> 달력에 기록해주세요 </Text>
    <Calendar
       style = {{}}
       markedDates={props.dates2}
@@ -289,7 +289,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingHorizontal: 15,
     backgroundColor: "#fafafa",
-    alignItems : 'center'
+    alignItems : 'center',
+    fontFamily: 'font-DoHyeon'
   },
   NOT :{
     width : width/4 -50,
@@ -298,7 +299,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingLeft:5,
     backgroundColor: "#fafafa",
-    alignItems : 'center'
+    alignItems : 'center',
+    fontFamily: 'font-DoHyeon'
   },
   multiText : {
     paddingHorizontal : 4,
@@ -311,6 +313,7 @@ const styles = StyleSheet.create({
     borderBottomWidth : 1,
     borderColor : "#ffbb00",
     paddingVertical : 10,
+    
   },
   headerContainer : {
     flexDirection : 'row',
@@ -318,10 +321,10 @@ const styles = StyleSheet.create({
     justifyContent : 'center',
   },
   nameText : {
-    fontSize : 20,
+    fontSize : 30,
     paddingVertical : 10,
-    fontWeight : "800",
     color: "white",
+    fontFamily: 'font-DoHyeon'
   },
 });
 

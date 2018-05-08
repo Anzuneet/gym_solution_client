@@ -61,12 +61,12 @@ const TrainerProfileUpdateScreen = props =>
             <View style = {styles.imagePickContainer}>
                 <TouchableOpacity style ={styles.cameraTab} onPressOut = {props.takeImage}>
                 <Feather name="camera" size={50} color="white" style = {styles.iconContainer}/>
-                <Text style = {styles.cameraTabText}> CAMERA </Text>
+                <Text style = {styles.cameraTabText}> 카메라 </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style ={styles.gallaryTab} onPressOut = {props.pickImage}> 
                 <MaterialIcons name="photo-album" size={50} color="white" style = {styles.iconContainer}/> 
-                <Text style = {styles.gallaryTabText}> GALLARY </Text>
+                <Text style = {styles.gallaryTabText}> 갤러리 </Text>
                 </TouchableOpacity>
             </View>
         </PopupDialog>
@@ -90,12 +90,12 @@ const TrainerProfileUpdateScreen = props =>
                 }
                 </TouchableOpacity>
                     <View style = {styles.gymNameContainer}>
-                        <Text style = {{}}>{props.gym}</Text>
+                        <Text style = {{fontFamily: 'font-DoHyeon',}}>{props.gym}</Text>
                     </View>
                     <TouchableOpacity style = {styles.tUpdateBContainer} onPress={() => {
                             this.popupDialog.show();
                         }}>
-                        <Text style = {styles.tUpdateBText}>Update!! </Text>
+                        <Text style = {styles.tUpdateBText}>프로필 수정 </Text>
                     </TouchableOpacity>
                 </View>
                 <View>
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
         marginHorizontal :10,
         marginTop : 20,
         backgroundColor : "#eeeeee",
-        height : 300,
+        height : height*0.42,
         width : 230,
         paddingHorizontal :10,
         paddingVertical :10,
@@ -165,16 +165,17 @@ const styles = StyleSheet.create({
         justifyContent : 'center',
     },
     avatar: {
-        width: 130,
-        height: 130,
+        width: width*0.3,
+        height: width*0.3,
         borderRadius: 70,
         borderWidth:3,
         borderColor: "rgba(253,139,27,0.5)"
 
     }, 
     tUpdateBText : {
-        fontSize :30,
+        fontSize :20,
         color: "white",
+        fontFamily: 'font-DoHyeon',
     },
     textInput : {
         width : width,
@@ -200,7 +201,7 @@ const styles = StyleSheet.create({
       cameraTabText : {
         paddingTop : 10,
         fontSize : 20,
-        fontWeight : "500",
+        fontFamily: 'font-DoHyeon',
       },
       gallaryTab : {
         paddingTop : 10,
@@ -211,7 +212,7 @@ const styles = StyleSheet.create({
       gallaryTabText : {
         paddingTop : 10,
         fontSize : 20,
-        fontWeight : "500",
+        fontFamily: 'font-DoHyeon',
       },
     
 

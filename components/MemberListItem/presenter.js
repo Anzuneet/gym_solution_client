@@ -24,13 +24,13 @@ const { width, height } = Dimensions.get("window");
         <View style = {styles.tableContainer}>
           <View style = {styles.upperRow}>
             <View style = {styles.column}>
-              <Text style = {styles.tableAttribute}> Weight </Text>
+              <Text style = {styles.tableAttribute}> 몸무게 </Text>
             </View>
             <View style = {styles.column}>
-              <Text style = {styles.tableAttribute}> Muscle </Text>
+              <Text style = {styles.tableAttribute}> 근육량 </Text>
             </View>
             <View style = {styles.column}>
-              <Text style = {styles.tableAttribute}> Fat </Text>
+              <Text style = {styles.tableAttribute}> 지방 </Text>
             </View>
           </View>
           <View style = {styles.lowerRow}>
@@ -94,8 +94,8 @@ const styles = StyleSheet.create({
     borderRadius: 50
   }, 
   titleText :{
-    fontSize :20,
-    fontWeight : "500",
+    fontSize :25,
+    fontFamily: 'font-DoHyeon'
   },
   tableContainer  : {
     flex :1,
@@ -131,12 +131,13 @@ const styles = StyleSheet.create({
   },
   tableAttribute : {
     fontSize : 11,
-    fontWeight : "500",
+    fontFamily: 'font-DoHyeon'
   },
   commentText : {
     paddingVertical : 2,
     paddingHorizontal : 5,
     fontSize : 10,
+    fontFamily: 'font-DoHyeon'
   }
 
 

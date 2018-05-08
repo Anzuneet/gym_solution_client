@@ -87,7 +87,7 @@ export default class example extends Component {
                     <BeforeAVGList/>
                 </View>
 
-                <View style = {{flexDirection : "row", flex: 2,}}>
+                <View style = {{flexDirection : "row", flex: 1.7,}}>
                     <SnapShot/>
                     <View style={{flexDirection: 'column', alignItems : 'center', justifyContent : 'center', backgroundColor : "#rgba(253,139,27,1)",}}>
                         {this.state.bodyText.split('').map(char => <Text key = {char} style = {{paddingHorizontal : 15, fontSize : 15, color : "white", fontWeight : "800"}}>{char}</Text>)}

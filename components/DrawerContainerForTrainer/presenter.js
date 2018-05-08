@@ -40,7 +40,7 @@ export default class DrawerContainerForTrainer extends React.Component {
         <TouchableOpacity
           onPress={() => this.props.logout()}
           style={styles.LogoutContainer}>
-         <Text style={styles.DrawerText}>Logout</Text>
+         <Text style={styles.DrawerText}>로그아웃</Text>
         </TouchableOpacity>
       </View>
     )
@@ -91,8 +91,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
    },
    avatar: {
-    width: width/4,
-    height: width/4,
+    width: width*0.3,
+    height: width*0.3,
     borderRadius: 50
   }, 
   trainernameContainer :{
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     marginVertical : 1,
   },
   trainernameText: {
-    marginTop:50,
+    marginTop:5,
     paddingVertical : 10,
     fontSize : 30,
     //paddingRight : 20,

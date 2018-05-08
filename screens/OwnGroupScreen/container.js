@@ -60,7 +60,7 @@ class Container extends Component {
         period : 1,
         start_date : "2018-05-28",
         time : "15:30",
-        title : "여현동의 8주 속성BURN",
+        title : "여현동의 8주 속성 BURN",
         uid : 3,
         user_count : 1,
       },

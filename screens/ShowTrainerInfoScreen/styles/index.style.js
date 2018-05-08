@@ -94,7 +94,7 @@ export default StyleSheet.create({
         borderRadius : 20,
     },
     gymNameContainer : {
-        marginTop : 20,
+        marginTop : 10,
         width: width*0.3,
         height : height*0.08,
         backgroundColor: "rgba(253,139,27,0.5)",
@@ -111,8 +111,8 @@ export default StyleSheet.create({
         justifyContent : 'center',
     },
     avatar: {
-        width: 130,
-        height: 130,
+        width: width*0.3,
+        height: width*0.3,
         borderRadius: 70,
         borderWidth:3,
         borderColor: "rgba(253,139,27,0.5)"
@@ -121,6 +121,7 @@ export default StyleSheet.create({
     tUpdateBText : {
         fontSize :30,
         color: "white",
+        fontFamily: 'font-DoHyeon',
     },
     textInput : {
         width : width,

@@ -182,7 +182,7 @@ const slideAnimation = new SlideAnimation({
         (<Image source={{uri:props.image.uri} } style = {{width: width/2, height: height*0.4}}/>)
         :( 
         <Image
-          source={require("../../assets/images/photoPlaceholder.png")}
+          source={require("../../assets/images/before.png")}
           style = {{width: width/2, height: height *0.4}}
         />
       )}  
@@ -193,7 +193,7 @@ const slideAnimation = new SlideAnimation({
         (<Image source={{uri:props.image.uri} } style = {{width: width/2, height: height*0.4}}/>)
         :( 
         <Image
-          source={require("../../assets/images/photoPlaceholder.png")}
+          source={require("../../assets/images/after.png")}
           style = {{width: width/2, height: height *0.4}}
         />
       )}  
@@ -347,9 +347,10 @@ const styles = StyleSheet.create({
     paddingTop :10,
     paddingBottom : 3,
     paddingLeft : 8,
-
+    fontFamily: 'font-DoHyeon',
     fontSize :30,
-    fontWeight : "500",
+    justifyContent : 'center',
+    alignItems : 'center',
   },
   commentText : {
     fontSize : 10,
@@ -361,10 +362,10 @@ const styles = StyleSheet.create({
     borderRadius :10,
   },
   capacityText : {
-    fontSize : 30,
-    fontWeight : "500",
+    fontSize : 25,
     paddingLeft : 8,
     color : "white",
+    fontFamily: 'font-DoHyeon',
   },
   costText : {
     fontSize : 15,
@@ -379,8 +380,8 @@ const styles = StyleSheet.create({
   nameText : {
     fontSize : 20,
     paddingVertical : 10,
-    fontWeight : "800",
     color: "white",
+    fontFamily: 'font-DoHyeon'
   },
 });
 
