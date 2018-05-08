@@ -90,7 +90,6 @@ const { width, height } = Dimensions.get("window");
 const styles = StyleSheet.create({
   Container:{
     flex:1,
-    height: 100,
     flexDirection : 'row'
   },
   profileContainer :{

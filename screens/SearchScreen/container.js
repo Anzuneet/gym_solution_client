@@ -107,6 +107,7 @@ class Container extends Component {
     let filteredGroups = this.state.groups.filter(it=>{
       let daysOfWeek = condition.daysOfWeek;
       // 요일 필터링
+
       for(var key in daysOfWeek){
         if(daysOfWeek[key] == undefined || daysOfWeek[key] == false)continue;
         if(it.daysOfWeek.includes(key) == false){
@@ -115,11 +116,11 @@ class Container extends Component {
       }
       return true;
     });
-    console.log(filteredGroups);
+    //console.log(filteredGroups);
 
     filteredGroups = filteredGroups.filter(it=>{
-      console.log(it);
-      console.log(condition.charge);
+      //console.log(it);
+      //console.log(condition.charge);
       let charge = condition.charge;
       // 가격 필터링
       if(charge.min != null){
@@ -131,7 +132,7 @@ class Container extends Component {
       return true;
     });
 
-    console.log(filteredGroups);
+    //console.log(filteredGroups);
 
     filteredGroups = filteredGroups.filter(it=>{
 
@@ -145,7 +146,7 @@ class Container extends Component {
         };
         
       }
-      console.log(condition.time);
+      //console.log(condition.time);
       if(condition.time.start != undefined){
         let begin= parseInt(condition.time.start.split(":")[0]) * 100 + parseInt(condition.time.start.split(":")[1])
         if(time.begin < begin) return false;
@@ -156,6 +157,7 @@ class Container extends Component {
       }
       return true;
     });
+    console.log("on Filtering");
     console.log(filteredGroups);
     let filteredGyms = this.state.gyms.filter(gym=>filteredGroups.findIndex(group=>group.gym.uid == gym.uid) != -1)
     this.setState({filteredGroups:filteredGroups});
@@ -163,8 +165,8 @@ class Container extends Component {
     this.setState({daysOfWeek:condition.daysOfWeek});
     this.setState({charge:condition.charge});
     this.setState({time:condition.time});
-    console.log("on Filtering")
-    console.log(this.state.filteredGroups);
+   
+    //console.log(this.state.filteredGroups);
     //console.log(this.state.groups);
     this.dialog.dismiss();
   }

@@ -106,6 +106,7 @@ class Container extends Component {
     this.setState({time:{...this.state.time, end: oEndTime}, endClockPickerVisible: false});
   };
 
+
   render() {
     //console.log("SearchFilterScreen in");
     //console.log(this.state);

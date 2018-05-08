@@ -19,6 +19,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { CheckBox } from 'react-native-elements';
 import PopupDialog , { SlideAnimation, DialogTitle} from 'react-native-popup-dialog';
 import DateTimePicker from 'react-native-modal-datetime-picker';
+import DaysCheckBox from "../../components/DaysCheckBox";
+
 const { width, height } = Dimensions.get("window");
 
 const SearchFilterScreen = props => (
@@ -42,86 +44,22 @@ const SearchFilterScreen = props => (
       <View style = {styles.subTitleContainer}>
         <Text  style = {styles.subTitleText}>요일</Text>
       </View>
-      <View style = {styles.weightContainer}>
-      <CheckBox
-        title='월'
-        checked={props.daysOfWeek.MON} 
-        checkedIcon='dot-circle-o'
-        checkedColor = "#ffbb00"
-        uncheckedIcon='circle-o'
-        onPress={()=>props.container.setState({daysOfWeek:{...props.daysOfWeek, MON:!props.daysOfWeek.MON}})}
-        containerStyle={styles.checkBoxContainer}
-        textStyle={styles.textStyle}
-        size={15}
+        <DaysCheckBox 
+          monday = {props.daysOfWeek.MON}
+          tuesday = {props.daysOfWeek.TUE}
+          wednesday = {props.daysOfWeek.WED}
+          thursday = {props.daysOfWeek.THU}
+          friday = {props.daysOfWeek.FRI}
+          saturday = {props.daysOfWeek.SAT}
+          sunday = {props.daysOfWeek.SUN}
+          changeMonday = {()=>props.container.setState({daysOfWeek:{...props.daysOfWeek, MON:!props.daysOfWeek.MON}})}
+          changeTuesday = {()=>props.container.setState({daysOfWeek:{...props.daysOfWeek, TUE:!props.daysOfWeek.TUE}})}
+          changeWednesday = {()=>props.container.setState({daysOfWeek:{...props.daysOfWeek, WED:!props.daysOfWeek.WED}})}
+          changeThursday = {()=>props.container.setState({daysOfWeek:{...props.daysOfWeek, THU:!props.daysOfWeek.THU}})}
+          changeFriday = {()=>props.container.setState({daysOfWeek:{...props.daysOfWeek, FRI:!props.daysOfWeek.FRI}})}
+          changeSaturday = {()=>props.container.setState({daysOfWeek:{...props.daysOfWeek, SAT:!props.daysOfWeek.SAT}})}
+          changeSunday = {()=>props.container.setState({daysOfWeek:{...props.daysOfWeek, SUN:!props.daysOfWeek.SUN}})}
         />
-        <CheckBox
-        title='화'
-        checked={props.daysOfWeek.TUE} 
-        checkedIcon='dot-circle-o'
-        checkedColor = "#ffbb00"
-        uncheckedIcon='circle-o'
-        onPress={()=>props.container.setState({daysOfWeek:{...props.daysOfWeek,TUE:!props.daysOfWeek.TUE}})}
-        containerStyle={styles.checkBoxContainer}
-        textStyle={styles.textStyle}
-        size={15}
-        />
-        <CheckBox
-        title='수'
-        checked={props.daysOfWeek.WED} 
-        checkedIcon='dot-circle-o'
-        checkedColor = "#ffbb00"
-        uncheckedIcon='circle-o'
-        onPress={()=>props.container.setState({daysOfWeek:{...props.daysOfWeek,WED:!props.daysOfWeek.WED}})}
-        containerStyle={styles.checkBoxContainer}
-        textStyle={styles.textStyle}
-        size={15}
-        />
-        <CheckBox
-        title='목'
-        checked={props.daysOfWeek.THU} 
-        checkedIcon='dot-circle-o'
-        checkedColor = "#ffbb00"
-        uncheckedIcon='circle-o'
-        onPress={()=>props.container.setState({daysOfWeek:{...props.daysOfWeek,THU:!props.daysOfWeek.THU}})}
-        containerStyle={styles.checkBoxContainer}
-        textStyle={styles.textStyle}
-        size={15}
-        />
-        <CheckBox
-        title='금'
-        checked={props.daysOfWeek.FRI} 
-        checkedIcon='dot-circle-o'
-        checkedColor = "#ffbb00"
-        uncheckedIcon='circle-o'
-        onPress={()=>props.container.setState({daysOfWeek:{...props.daysOfWeek,FRI:!props.daysOfWeek.FRI}})}
-        containerStyle={styles.checkBoxContainer}
-        textStyle={styles.textStyle}
-        size={15}
-        />
-        <CheckBox
-        title='토'
-        checked={props.daysOfWeek.SAT} 
-        checkedIcon='dot-circle-o'
-        checkedColor = "#ffbb00"
-        uncheckedIcon='circle-o'
-        onPress={()=>props.container.setState({daysOfWeek:{...props.daysOfWeek,SAT:!props.daysOfWeek.SAT}})}
-        containerStyle={styles.checkBoxContainer}
-        textStyle={styles.textStyle}
-        size={15}
-        />
-
-        <CheckBox
-        title='일'
-        checked={props.daysOfWeek.SUN} 
-        checkedIcon='dot-circle-o'
-        checkedColor = "#ffbb00"
-        uncheckedIcon='circle-o'
-        onPress={()=>props.container.setState({daysOfWeek:{...props.daysOfWeek,SUN:!props.daysOfWeek.SUN}})}
-        containerStyle={styles.checkBoxContainer}
-        textStyle={styles.textStyle}
-        size={15}
-        />
-      </View>
       <View style = {styles.subTitleContainer}>
         <Text  style = {styles.subTitleText} >가격대 </Text>
       </View>

@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import PopupDialog , { SlideAnimation, DialogTitle} from 'react-native-popup-dialog';
 import {Feather,MaterialIcons} from "@expo/vector-icons"
-
+import DaysCheckBox from "../../components/DaysCheckBox";
 
 const { width, height } = Dimensions.get("window");
 

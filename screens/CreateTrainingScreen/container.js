@@ -120,7 +120,7 @@ class Container extends Component {
   };
 //t
   _submit = async () =>{
-    console.log("in submit");
+
     var trainingInfo = new Object();
     var daysOfWeek =new Array();
     const {navigate} = this.props.navigation;
