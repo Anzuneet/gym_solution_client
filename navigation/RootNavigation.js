@@ -7,7 +7,7 @@ import HomeScreen from "../screens/HomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import TraineeGroupsManageScreen from "../screens/TraineeGroupsManageScreen";
 import DrawerContainer from "../components/DrawerContainer";
-import {Font} from 'expo'; 
+import Font from 'expo'; 
 const { width, height } = Dimensions.get("window");
 
 const DrawerStack = DrawerNavigator({
@@ -28,14 +28,16 @@ const DrawerNavigation = StackNavigator({
 headerMode: 'float',
 navigationOptions: ({navigation}) => ({
     headerStyle: {backgroundColor: "#ffbb00"},//'#rgba(255,176,0,0.6)'
-    title :
+    headerTitle :
+    
     <Text style = {styles.title}> GYMSOLUTION
     </Text> 
+    
     /*
     <Image
-    source={require("../assets/images/GYMSOLUSION.png")}
+    source={require("../assets/images/GYMSOLUTION.png")}
     style ={styles.logo}   
-    />
+    />  
     */
     ,
     headerLeft: 
@@ -80,10 +82,10 @@ const styles = StyleSheet.create({
     flex : 1,
     },
     title: {
-    fontSize : 45,
-    marginTop : 25,
+    fontSize : 40,
+    //marginTop : 25,
     textAlign: "center",
-    paddingLeft: 20,
+    paddingLeft: 15,
     fontFamily: 'font-DoHyeon',
     },
 })

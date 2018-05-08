@@ -29,6 +29,7 @@ const { width, height } = Dimensions.get("window");
         }
       </View>
       <View style = {styles.titleContainer}>
+      
         <Text style = {styles.titleText}>
             {props.trainerInfo.name}
         </Text>
@@ -63,10 +64,12 @@ const styles = StyleSheet.create({
     paddingVertical : 5,
   },
   titleContainer : {
-    flex:1,
+    flex:0.8,
     borderRadius : 20,
     backgroundColor : "#rgba(255,167,0,0.5)",
     marginVertical : 7,
+    justifyContent : 'center',
+    alignItems : 'center',
   },
   detailContainer : {
     flex:1.2,
@@ -80,27 +83,32 @@ const styles = StyleSheet.create({
     borderRadius: 50
   }, 
   titleText :{
-    paddingTop :10,
-    paddingBottom : 3,
-    paddingLeft : 8,
-
+    //paddingTop :10,
+   // paddingBottom : 3,
+   // paddingLeft : 8,
+    fontFamily: 'font-DoHyeon',
     fontSize :30,
-    fontWeight : "500",
+    //fontWeight : "500",
   },
   commentText : {
-    fontSize : 10,
-    paddingLeft : 15,
+    fontSize : 15,
+    //paddingLeft : 15,
+    fontFamily: 'font-DoHyeon',
   },
   textContainer : {
     backgroundColor : "#fd8b1b",
-    width : 160,
+    width : width/2.5,
+    height:height/11,
     borderRadius :10,
+    justifyContent : 'center',
+    alignItems : 'center',
   },
   capacityText : {
     fontSize : 30,
-    fontWeight : "500",
-    paddingLeft : 8,
+    //fontWeight : "500",
+    //paddingLeft : 8,
     color : "white",
+    fontFamily: 'font-DoHyeon',
   },
   costText : {
     fontSize : 15,
