@@ -46,8 +46,7 @@ class Container extends Component {
 
   render() {
     return (
-      <List containerStyle={{borderTopWidth: 0, borderBottomWidth: 0  }}>
-      <StatusBar barStyle={"light-content"} />
+      <List containerStyle={{borderTopWidth: 0, borderBottomWidth: 0  }}>/>
         <FlatList
 
           data={this.state.members}

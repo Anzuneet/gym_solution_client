@@ -67,7 +67,8 @@ const styles = StyleSheet.create({
     flex:1,
     //height: 100,
     flexDirection : 'row',
-    marginLeft : 10,
+    marginHorizontal: 10,
+    justifyContent : 'space-between',
   },
   checkedText : {
     flex : 1,

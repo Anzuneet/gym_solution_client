@@ -33,6 +33,7 @@ const { width, height } = Dimensions.get("window");
         disabled={false}
         maxStars={5}
         rating={props.data.grade}
+        fullStarColor = "#fd8b1b" 
         //selectedStar={(rating) => this.onStarRatingPress(rating)}
       />
     </View>

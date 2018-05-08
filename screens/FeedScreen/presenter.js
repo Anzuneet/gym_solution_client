@@ -41,7 +41,7 @@ const { width, height } = Dimensions.get("window");
       </View>
     </View>
     <View style = {{}}>
-    <Text style = {{paddingVertical: 10, fontSize: 20, fontWeight:"800"}}> 트레이너의 최신 덧글! </Text>
+    <Text style = {{paddingVertical: 10, fontSize: 20, fontFamily: 'font-DoHyeon'}}> 트레이너의 최신 덧글! </Text>
     </View>
     <View style = {styles.commentsContainer}>
       {props.newComment ?
@@ -58,19 +58,19 @@ const { width, height } = Dimensions.get("window");
             <TouchableOpacity style = {props.chartIndex == 1 ? styles.clickedTextContainer : styles.unClickedTextContainer} 
             onPressOut ={props.clickWeight}>
               <Text  style = {props.chartIndex == 1 ? styles.clickedText : styles.unClickedText}> 
-              Weight </Text>
+              몸무게 </Text>
             </TouchableOpacity>
 
             <TouchableOpacity style = {props.chartIndex == 2 ? styles.clickedTextContainer : styles.unClickedTextContainer} 
             onPressOut ={props.clickMuscle}>
             <Text  style = {props.chartIndex == 2 ? styles.clickedText : styles.unClickedText}>  
-              Muscle </Text>
+              근육량 </Text>
             </TouchableOpacity>
 
             <TouchableOpacity style = {props.chartIndex == 3 ? styles.clickedTextContainer : styles.unClickedTextContainer}
             onPressOut ={props.clickFat}>
               <Text  style = {props.chartIndex == 3 ? styles.clickedText : styles.unClickedText}> 
-              Fat </Text>
+              지방 </Text>
             </TouchableOpacity>
           </View>
           <ProfileChart
@@ -84,10 +84,10 @@ const { width, height } = Dimensions.get("window");
             }
             name = {props.chartIndex == 1 ?
               (
-                "Weight"
+                "몸무게"
               ):
               (
-                props.chartIndex == 2 ? "Muscle" : "Fat"
+                props.chartIndex == 2 ? "근육량" : "지방"
               )
             }
           />
@@ -161,7 +161,8 @@ const styles = StyleSheet.create({
   commentText : {
     paddingLeft : 20,
     paddingVertical : 10,
-    fontSize :20
+    fontSize :20,
+    fontFamily: 'font-DoHyeon',
   },
   recordContainer :{
     flex:2,
@@ -196,10 +197,12 @@ const styles = StyleSheet.create({
   clickedText : {
     color : "#ffffff",
     fontSize : 20,
+    fontFamily: 'font-DoHyeon',
   },
   unClickedText : {
     color : "#ffbb00",
     fontSize : 20,
+    fontFamily: 'font-DoHyeon',
   },
   trainingRecordContainer : {
     alignItems : 'center',

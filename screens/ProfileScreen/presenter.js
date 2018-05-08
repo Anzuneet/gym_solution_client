@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import PopupDialog , { SlideAnimation, DialogTitle} from 'react-native-popup-dialog';
 import {Feather,MaterialIcons} from "@expo/vector-icons"
-
+import DaysCheckBox from "../../components/DaysCheckBox";
 
 const { width, height } = Dimensions.get("window");
 
@@ -64,7 +64,7 @@ const slideAnimation = new SlideAnimation({
               <Text style = {styles.tableAttribute}> 몸무게 </Text>
             </View>
             <View style = {styles.column}>
-              <Text style = {styles.tableAttribute}> 근력 </Text>
+              <Text style = {styles.tableAttribute}> 근육량 </Text>
             </View>
             <View style = {styles.column}>
               <Text style = {styles.tableAttribute}> 지방 </Text>
@@ -89,7 +89,7 @@ const slideAnimation = new SlideAnimation({
             <TextInput 
               style = {styles.textInput} 
               underlineColorAndroid = 'rgba(0,0,0,0)' 
-              placeholder="근력" 
+              placeholder="근육량" 
               autoCorrecto = {false}
               value = {props.muscle}
               keyboardType='numeric'

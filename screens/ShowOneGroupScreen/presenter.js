@@ -105,7 +105,7 @@ import OneGroupForTrainee from "../../components/OneGroupForTrainee";
           {props.isSubmitting ? 
           (<ActivityIndicator size = "large" color="white"/>)
           :
-          (<Text style ={styles.btnText}>확인</Text>)
+          (<Text style ={styles.btnText}>신청하기</Text>)
           }
       </View>
     </TouchableOpacity>
@@ -121,9 +121,6 @@ const styles = StyleSheet.create({
     alignItems : 'center',
     backgroundColor : 'white',
   },
-  touchableContainerr :{
-    height : height / 5.6
-  },
   font : {
     fontSize : 30,
   },
@@ -133,9 +130,13 @@ const styles = StyleSheet.create({
     backgroundColor : 'white',
 
   },
+  touchableContainerr : {
+    height: height * 0.15,
+  },
   touchableContainer:{
     flexDirection : 'row',
-    height : height/10,
+    //height : height/10,
+    flex: 10,
   },
   profileContainer :{
     flex:0.45,
@@ -157,8 +158,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical : 1,
   },
-  openContainer :{   
-      height : height/70,
+  openContainer :{
+      
+      flex: 1,
+      //height : height/70,
       //backgroundColor : "#eeeeee",
       justifyContent : "center",
       alignItems : "flex-end",
@@ -166,7 +169,8 @@ const styles = StyleSheet.create({
       paddingBottom : 25,
   },
   ReviewsListContainer :{
-    height : height/3.1,
+    //height : height/2.85,
+    flex: 1,
   },
   avatar: {
     width: 60,
@@ -231,8 +235,9 @@ const styles = StyleSheet.create({
     borderColor : "black",
   },
   comment:{
-    height : height / 2,
-    borderTopWidth : StyleSheet.hairlineWidth,
+
+    height : height * 0.4,
+    borderWidth : StyleSheet.hairlineWidth,
     borderColor : "black",
     backgroundColor : 'white',
   },
