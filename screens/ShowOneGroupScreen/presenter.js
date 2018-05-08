@@ -86,7 +86,7 @@ import OneGroupForTrainee from "../../components/OneGroupForTrainee";
       <Text style = {{color : "black", fontSize: 20, fontFamily: 'font-DoHyeon', marginTop : 20,}}> 오픈 예정일 : {props.group.start_date} </Text>
     </View>
   
-  <View style = {styles.ReviewsListContainer}>
+    <View style = {styles.ReviewsListContainer}>
     <ReviewsList/>
   </View>
 
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     paddingVertical : 20,
     justifyContent : 'center',
     alignItems : 'center',
-    backgroundColor : 'pink',
+    backgroundColor : 'white',
   },
   touchableContainerr :{
     height : height / 5.6
@@ -129,7 +129,9 @@ const styles = StyleSheet.create({
   },
   Container:{
     flex:1,
-    flexDirection : 'row'
+    flexDirection : 'row',
+    backgroundColor : 'white',
+
   },
   touchableContainer:{
     flexDirection : 'row',
@@ -155,16 +157,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical : 1,
   },
-  openContainer :{
-      
+  openContainer :{   
       height : height/70,
       //backgroundColor : "#eeeeee",
       justifyContent : "center",
       alignItems : "flex-end",
-
+      backgroundColor : 'white',
+      paddingBottom : 25,
   },
   ReviewsListContainer :{
-    height : height/2.85,
+    height : height/3.1,
   },
   avatar: {
     width: 60,
@@ -186,6 +188,9 @@ const styles = StyleSheet.create({
   },
   commentText : {
     paddingHorizontal : 10,
+    paddingTop :5,
+    fontSize : 17,
+    fontFamily: 'font-DoHyeon',
   },
   dateText : {
     fontSize : 9,
@@ -226,9 +231,10 @@ const styles = StyleSheet.create({
     borderColor : "black",
   },
   comment:{
-    height : height / 4.5,
-    borderWidth : StyleSheet.hairlineWidth,
+    height : height / 2,
+    borderTopWidth : StyleSheet.hairlineWidth,
     borderColor : "black",
+    backgroundColor : 'white',
   },
   ScrollViewContainer:{
     flex : 1,

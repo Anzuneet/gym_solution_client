@@ -53,7 +53,7 @@ class Container extends Component {
 
   render() {
     return (
-      <List containerStyle={{borderTopWidth: 0, borderBottomWidth: 0  }}>
+      <List containerStyle={{borderTopWidth: 0, borderBottomWidth: 0, backgroundColor : "white"  }}>
       <StatusBar barStyle={"light-content"} />
         <FlatList
 

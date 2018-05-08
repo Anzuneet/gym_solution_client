@@ -23,7 +23,7 @@ const { width, height } = Dimensions.get("window");
           style ={{width: width/10, height: height/17,}}
       />
       <Text style = {{fontSize:20,  fontFamily: 'font-DoHyeon' ,fontWeight : "800", paddingLeft: width/35,}}> {props.data.traineeName} </Text> 
-      <View>
+      <View style = {styles.comments}>
         <Text>{props.data.comments}</Text>
       </View>
     </View>
@@ -52,7 +52,10 @@ const styles = StyleSheet.create({
   },
   myEmptyStarStyle: {
     color: 'white',
-  }
+  },
+  comments:{
+
+  },
 });
 
 export default ReviewsListItem;
