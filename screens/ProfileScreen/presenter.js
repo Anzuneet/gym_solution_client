@@ -32,12 +32,12 @@ const slideAnimation = new SlideAnimation({
       <View style = {styles.imagePickContainer}>
         <TouchableOpacity style ={styles.cameraTab} onPressOut = {props.takeImage}>
           <Feather name="camera" size={50} color="white" style = {styles.iconContainer}/>
-          <Text style = {styles.cameraTabText}> CAMERA </Text>
+          <Text style = {styles.cameraTabText}> 카메라 </Text>
         </TouchableOpacity>
 
         <TouchableOpacity style ={styles.gallaryTab} onPressOut = {props.pickImage}> 
           <MaterialIcons name="photo-album" size={50} color="white" style = {styles.iconContainer}/> 
-          <Text style = {styles.gallaryTabText}> GALLARY </Text>
+          <Text style = {styles.gallaryTabText}> 갤러리 </Text>
         </TouchableOpacity>
       </View>
     </PopupDialog>
@@ -61,24 +61,24 @@ const slideAnimation = new SlideAnimation({
             <View style = {styles.column}>
             </View>
             <View style = {styles.column}>
-              <Text style = {styles.tableAttribute}> Weight </Text>
+              <Text style = {styles.tableAttribute}> 몸무게 </Text>
             </View>
             <View style = {styles.column}>
-              <Text style = {styles.tableAttribute}> Muscle </Text>
+              <Text style = {styles.tableAttribute}> 근력 </Text>
             </View>
             <View style = {styles.column}>
-              <Text style = {styles.tableAttribute}> Fat </Text>
+              <Text style = {styles.tableAttribute}> 지방 </Text>
             </View>
           </View>
           <View style = {styles.lowerRow}>
             <View style = {styles.column}>
-              <Text style = {styles.tableAttribute}> data </Text>
+              <Text style = {styles.tableAttribute}> 입력 </Text>
             </View>
             <View style = {styles.column}>
             <TextInput 
               style = {styles.textInput} 
               underlineColorAndroid = 'rgba(0,0,0,0)' 
-              placeholder="Weight" 
+              placeholder="몸무게" 
               autoCorrecto = {false}
               value = {props.weight}
               keyboardType='numeric'
@@ -89,7 +89,7 @@ const slideAnimation = new SlideAnimation({
             <TextInput 
               style = {styles.textInput} 
               underlineColorAndroid = 'rgba(0,0,0,0)' 
-              placeholder="Muscle" 
+              placeholder="근력" 
               autoCorrecto = {false}
               value = {props.muscle}
               keyboardType='numeric'
@@ -100,7 +100,7 @@ const slideAnimation = new SlideAnimation({
             <TextInput 
               style = {styles.textInput} 
               underlineColorAndroid = 'rgba(0,0,0,0)' 
-              placeholder="Fat" 
+              placeholder="지방" 
               autoCorrecto = {false}
               value = {props.fat}
               keyboardType='numeric'
@@ -115,7 +115,7 @@ const slideAnimation = new SlideAnimation({
             {props.isSubmitting ? 
             (<ActivityIndicator size = "large" color="white"/>)
             :
-            (<Text style = {styles.submitText}> SUBMIT </Text>)
+            (<Text style = {styles.submitText}> 전송! </Text>)
             }
         </View>
     </TouchableOpacity>
@@ -139,6 +139,8 @@ const styles = StyleSheet.create({
     backgroundColor:"#ffbb00",
     justifyContent : 'center',
     alignItems : 'center',
+    borderTopWidth : StyleSheet.hairlineWidth*2,
+    borderColor : "white",
   },
 
   imageContainer : {
@@ -149,8 +151,10 @@ const styles = StyleSheet.create({
   
   },
   submitText : {
-    fontSize : 30,
-    color : "white",
+    fontSize : 40,
+    color : 'rgba(255,255,255,1)',
+    fontFamily: 'font-DoHyeon',
+
   },
   tableContainer  : {
     flex :1,
@@ -158,12 +162,12 @@ const styles = StyleSheet.create({
   upperRow  : {
     height : 50,
     flexDirection : 'row',
-    backgroundColor : "#rgba(255,10,10,0.5)"
+    backgroundColor : '#FFBB55',
   },
   lowerRow  : {
     height : 50,
     flexDirection : 'row',
-    backgroundColor : '#rgba(0,0,0,0.2)',
+    backgroundColor : '#FFCC55',
   },
   column  : {
     flex : 1,
@@ -174,17 +178,21 @@ const styles = StyleSheet.create({
     borderWidth : StyleSheet.hairlineWidth,
   },
   textInput : {
-    width : width/4 -10,
+    width : width/4.6,
+    marginBottom : 5,
     borderColor: "#bbb",
     borderWidth: StyleSheet.hairlineWidth,
     borderRadius: 5,
-    paddingHorizontal: 15,
+    //paddingHorizontal: 30,
     backgroundColor: "#fafafa",
-    alignItems : 'center'
+    justifyContent : 'center',
+    alignItems : 'center',
+    textAlign: "center",
+    fontFamily: 'font-DoHyeon',
   },
   tableAttribute : {
     fontSize : 20,
-    fontWeight : "500",
+    fontFamily: 'font-DoHyeon',
   },
   imagePickContainer  : {
     width : width,
@@ -202,7 +210,7 @@ const styles = StyleSheet.create({
   cameraTabText : {
     paddingTop : 10,
     fontSize : 20,
-    fontWeight : "500",
+    fontFamily: 'font-DoHyeon',
   },
   gallaryTab : {
     paddingTop : 10,
@@ -213,7 +221,7 @@ const styles = StyleSheet.create({
   gallaryTabText : {
     paddingTop : 10,
     fontSize : 20,
-    fontWeight : "500",
+    fontFamily: 'font-DoHyeon',
   },
 
 });

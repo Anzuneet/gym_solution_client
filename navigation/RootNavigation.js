@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import {Text, Image, StyleSheet, TouchableOpacity,} from 'react-native';
+import {Text, Image, StyleSheet, TouchableOpacity, Dimensions,} from 'react-native';
 import {StackNavigator, DrawerNavigator} from "react-navigation";
 import FeedScreen from "../screens/FeedScreen";
 import HomeScreen from "../screens/HomeScreen";
@@ -8,6 +8,7 @@ import ProfileScreen from "../screens/ProfileScreen";
 import TraineeGroupsManageScreen from "../screens/TraineeGroupsManageScreen";
 import DrawerContainer from "../components/DrawerContainer";
 import {Font} from 'expo'; 
+const { width, height } = Dimensions.get("window");
 
 const DrawerStack = DrawerNavigator({
     HomeScreen: { screen: HomeScreen },
@@ -27,8 +28,15 @@ const DrawerNavigation = StackNavigator({
 headerMode: 'float',
 navigationOptions: ({navigation}) => ({
     headerStyle: {backgroundColor: "#ffbb00"},//'#rgba(255,176,0,0.6)'
-    title : 
-    <Text style = {styles.title}> GYMSOLUTION </Text>
+    title :
+    <Text style = {styles.title}> GYMSOLUTION
+    </Text> 
+    /*
+    <Image
+    source={require("../assets/images/GYMSOLUSION.png")}
+    style ={styles.logo}   
+    />
+    */
     ,
     headerLeft: 
     <TouchableOpacity style ={styles.icon} onPress={() => {
@@ -38,7 +46,7 @@ navigationOptions: ({navigation}) => ({
           navigation.navigate('DrawerClose')
         }}}> 
          <Image
-         source={require("../assets/images/icon-line.png")}
+         source={require("../assets/images/icon-color.png")}
          style ={styles.icon}
          />
     </TouchableOpacity>
@@ -66,11 +74,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width : 60,
     height : 60,
-    paddingLeft : 20,
+    paddingLeft : 7,
+    },
+    logo: {
+    flex : 1,
     },
     title: {
     fontSize : 45,
-    //color : "rgba(0,0,0,1)",
     marginTop : 25,
     textAlign: "center",
     paddingLeft: 20,

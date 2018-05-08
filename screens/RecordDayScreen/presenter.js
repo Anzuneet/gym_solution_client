@@ -61,24 +61,24 @@ const slideAnimation = new SlideAnimation({
             <View style = {styles.column}>
             </View>
             <View style = {styles.column}>
-              <Text style = {styles.tableAttribute}> Weight </Text>
+              <Text style = {styles.tableAttribute}> 몸무게 </Text>
             </View>
             <View style = {styles.column}>
-              <Text style = {styles.tableAttribute}> Muscle </Text>
+              <Text style = {styles.tableAttribute}> 근력 </Text>
             </View>
             <View style = {styles.column}>
-              <Text style = {styles.tableAttribute}> Fat </Text>
+              <Text style = {styles.tableAttribute}> 지방 </Text>
             </View>
           </View>
           <View style = {styles.lowerRow}>
             <View style = {styles.column}>
-              <Text style = {styles.tableAttribute}> data </Text>
+              <Text style = {styles.tableAttribute}> 입력 </Text>
             </View>
             <View style = {styles.column}>
             <TextInput 
               style = {styles.textInput} 
               underlineColorAndroid = 'rgba(0,0,0,0)' 
-              placeholder="Weight" 
+              placeholder="몸무게" 
               autoCorrecto = {false}
               value = {props.weight}
               keyboardType='numeric'
@@ -89,7 +89,7 @@ const slideAnimation = new SlideAnimation({
             <TextInput 
               style = {styles.textInput} 
               underlineColorAndroid = 'rgba(0,0,0,0)' 
-              placeholder="Muscle" 
+              placeholder="근력" 
               autoCorrecto = {false}
               value = {props.muscle}
               keyboardType='numeric'
@@ -100,7 +100,7 @@ const slideAnimation = new SlideAnimation({
             <TextInput 
               style = {styles.textInput} 
               underlineColorAndroid = 'rgba(0,0,0,0)' 
-              placeholder="Fat" 
+              placeholder="지방" 
               autoCorrecto = {false}
               value = {props.fat}
               keyboardType='numeric'
@@ -115,7 +115,7 @@ const slideAnimation = new SlideAnimation({
             {props.isSubmitting ? 
             (<ActivityIndicator size = "large" color="white"/>)
             :
-            (<Text style = {styles.submitText}> SUBMIT </Text>)
+            (<Text style = {styles.submitText}> 업로드 하기 </Text>)
             }
         </View>
     </TouchableOpacity>

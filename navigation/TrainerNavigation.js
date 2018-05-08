@@ -37,7 +37,7 @@ navigationOptions: ({navigation}) => ({
           navigation.navigate('DrawerClose')
         }}}> 
          <Image
-         source={require("../assets/images/icon-line.png")}
+         source={require("../assets/images/icon-color.png")}
          style ={styles.icon}
          />
     </TouchableOpacity>

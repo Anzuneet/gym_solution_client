@@ -48,13 +48,12 @@ const SearchScreen = props => (
         MAX = {props.max}
         onSubmitFilterCondition={props.onSubmitFilterCondition}
         />
-
         </PopupDialog>
 
         <View style = {styles.titleContainer}>
-            {props.profile ? <Text style = {styles.titleText}> {props.profile.name}님 </Text> :
+            {props.profile ? <Text style = {styles.titleText}> {props.profile.name}님  </Text> :
         <Text></Text>}
-            <Text style = {styles.titleText}>Training 그룹을 찾아보세요!!</Text>
+            <Text style = {styles.titleText}>원하는 트레이닝을 찾아보세요!!</Text>
         </View>
 
         <View style = {styles.mapContainer}>
@@ -93,15 +92,15 @@ const styles = StyleSheet.create({
         height: height * 0.1,
         backgroundColor : "#ffbb00",
         flexDirection : 'row',
-        justifyContent : "flex-end",
+        justifyContent : "center",
         alignItems: "center",
         borderBottomWidth : StyleSheet.hairlineWidth,
         borderColor : "white",
     },
     titleText : {
-        paddingVertical : 10,
+        //paddingVertical : 10,
         fontSize : 21,
-        paddingRight : 20,
+        //paddingRight : 20,
         fontFamily: 'font-DoHyeon',
     },
     mapContainer:{

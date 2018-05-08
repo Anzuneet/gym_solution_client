@@ -1,18 +1,18 @@
 export const ENTRIES1 = [
     {
-        title: 'Beautiful and dramatic Antelope Canyon',
-        subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-        illustration: 'https://i.imgur.com/UYiroysl.jpg'
+        title: 'Before After',
+        subtitle: '8주간의 프로그램',
+        illustration: 'http://3g1o5q2sqh3w32ohtj4dwggw.wpengine.netdna-cdn.com/wp-content/uploads/2011/07/beforeafterfront.jpg'
     },
     {
-        title: 'Earlier this morning, NYC',
-        subtitle: 'Lorem ipsum dolor sit amet',
-        illustration: 'https://i.imgur.com/UPrs1EWl.jpg'
+        title: '',
+        subtitle: '',
+        illustration: 'http://www.kakaneo.com/img/gx_mus.jpg'
     },
     {
-        title: 'White Pocket Sunset',
-        subtitle: 'Lorem ipsum dolor sit amet et nuncat ',
-        illustration: 'https://i.imgur.com/MABUbpDl.jpg'
+        title: '체육관 내부',
+        subtitle: '',
+        illustration: 'http://us1000.co.kr/coding/sub3/images/fitness05.jpg'
     },
     {
         title: 'Acrocorinth, Greece',
