@@ -11,17 +11,9 @@ export default class DrawerContainer extends React.Component {
     const { navigation } = this.props
     return (
       <View style={styles.container}>
-      <View style= {styles.profileContainer}>
-          <Image
-            source={
-              require("../../assets/images/noPhoto.jpg")
-            }
-            style={styles.avatar}
-          />
-          </View>
         <View style ={styles.trainernameContainer}>
           <Text style = {styles.trainernameText}>
-              {this.props.profile.name}
+              {this.props.profile.name} 회원님
           </Text>
         </View>
 
@@ -73,7 +65,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f6f6f6',
-    paddingTop: 15,
+    //paddingTop: 15,
     paddingHorizontal: 20
   },
   DrawerContainer: {
@@ -123,7 +115,7 @@ const styles = StyleSheet.create({
     marginVertical : 1,
   },
   trainernameText: {
-    marginTop:50,
+    marginTop:10,
     paddingVertical : 10,
     fontSize : 30,
     //paddingRight : 20,

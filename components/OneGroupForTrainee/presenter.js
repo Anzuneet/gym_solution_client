@@ -35,19 +35,12 @@ const { width, height } = Dimensions.get("window");
         <Text style = {styles.titleText}>
             {props.data.title}
         </Text>
-        {props.data.comment ?
-        <Text style = {styles.commentText}>
-            {props.data.comment}
-        </Text> :
-        <Text style = {styles.commentText} numberOfLines = {3}>
-            등록된 코멘트가 없네요.. ㅎㅎ
-        </Text> }
       </View>
       <View style = {styles.detailContainer}>
         <View style = {{flexDirection : 'row', backgroundColor : "#rgba(255,150,2,0.5)", height : 20,justifyContent : 'center',alignItems : 'center'}}>
-          <Text style = {{paddingLeft: 1, fontSize : 8,}}>[</Text>
-          {props.data.daysOfWeek.map((st,index) => <Text key = {index} style = {{paddingHorizontal : 5, fontSize : 8, color : "black", fontWeight : "800",}}>{st}</Text>)}
-          <Text style = {{paddingLeft: 1, fontSize : 8,}}>]</Text>
+          <Text style = {{paddingLeft: 1, fontSize : 12,}}>[</Text>
+          {props.data.daysOfWeek.map((st,index) => <Text key = {index} style = {{paddingHorizontal : 5, fontSize : 12, color : "black", fontWeight : "800",}}>{st}</Text>)}
+          <Text style = {{paddingLeft: 1, fontSize : 12,}}>]</Text>
         </View>  
       <View> 
           <Text style ={styles.capacityText}>
@@ -64,7 +57,7 @@ const { width, height } = Dimensions.get("window");
                         backgroundColor : "#eeeeee",
                         justifyContent : "center",
                         alignItems : "flex-end"}}>
-      <Text style = {{color : "black", fontWeight: "500", fontSize: 20, paddingRight : 5, paddingVertical : 5,}}> 오픈 예정일 : {props.data.start_date} </Text>
+      <Text style = {{color : "black", fontFamily: 'font-DoHyeon', fontSize: 20, paddingRight : 5, paddingVertical : 5,}}> 오픈 예정일 : {props.data.start_date} </Text>
       
     </View>
   </TouchableOpacity>
@@ -88,6 +81,8 @@ const styles = StyleSheet.create({
     borderWidth : 1,
     borderBottomWidth: 0,
     borderTopWidth: 0,
+    //justifyContent: 'center',
+    alignItems: 'center',
   },
   detailContainer : {
     flex:0.8,
@@ -105,14 +100,14 @@ const styles = StyleSheet.create({
   trainernameText : {
     paddingTop : 6,
     fontSize : 15,
-    fontWeight:'500',
+    fontFamily: 'font-DoHyeon',
   },
   titleText :{
     paddingVertical : 10,
     paddingLeft : 8,
-
-    fontSize :20,
-    fontWeight : "500",
+    fontFamily: 'font-DoHyeon',
+    fontSize :22,
+    //fontWeight : "500",
   },
   commentText : {
     paddingHorizontal : 10,
@@ -127,10 +122,12 @@ const styles = StyleSheet.create({
     fontSize : 20,
     paddingLeft: 10,
     paddingVertical : 10,
+    fontFamily: 'font-DoHyeon',
   },
   costText : {
-    fontSize : 15,
+    fontSize : 20,
     paddingLeft: 10,
+    fontFamily: 'font-DoHyeon',
   },
 
 });

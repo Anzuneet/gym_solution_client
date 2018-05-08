@@ -24,8 +24,7 @@ const { width, height } = Dimensions.get("window");
       />
       <Text style = {{fontSize:20,  fontFamily: 'font-DoHyeon' ,fontWeight : "800", paddingLeft: width/35,}}> {props.data.traineeName} </Text> 
       <View>
-        <View style = {{marginLeft: width/30, backgroundColor : "skyblue", width : width * 0.65,height:height/35, marginBottom :3}}></View>
-        <View style = {{marginLeft: width/30, backgroundColor : "skyblue", width : width * 0.65,height:height/35}}></View>
+        <Text>{props.data.comments}</Text>
       </View>
     </View>
     <View style = {{ alignItems: 'flex-end', paddingRight : width/20}}>
@@ -33,7 +32,7 @@ const { width, height } = Dimensions.get("window");
     <StarRating
         disabled={false}
         maxStars={5}
-        rating={2.5}
+        rating={props.data.grade}
         //selectedStar={(rating) => this.onStarRatingPress(rating)}
       />
     </View>

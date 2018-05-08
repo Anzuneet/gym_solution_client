@@ -37,7 +37,7 @@ const { width, height } = Dimensions.get("window");
         (<Image source={{uri:props.image.uri} } style = {{width: width, height: height*0.3}}/>)
         :( 
         <Image
-          source={require("../../assets/images/photoPlaceholder.png")}
+          source={require("../../assets/images/gym.jpg")}
           style = {{width: width, height: height *0.3}}
         />
       )}  
@@ -59,7 +59,7 @@ const { width, height } = Dimensions.get("window");
             <TouchableOpacity style = {props.GymInfoIndex == 3 ? styles.clickedTextContainer : styles.unClickedTextContainer}
             onPressOut ={props.clickReview}>
               <Text  style = {props.GymInfoIndex == 3 ? styles.clickedText : styles.unClickedText}> 
-              Groups </Text>
+              트레이닝 </Text>
             </TouchableOpacity>
           </View>
 
@@ -72,7 +72,7 @@ const { width, height } = Dimensions.get("window");
           :
             (props.GymInfoIndex == 1 ?
             <View>
-              <Text>{props.gymInfo.address}</Text>
+              <Text style = {styles.addressText}>{props.gymInfo.address}</Text>
             </View>
           :
           <View style = {styles.trainerListContainer}>
@@ -102,9 +102,9 @@ const styles = StyleSheet.create({
     flexDirection : 'row',
     alignItems: 'center',
     justifyContent : 'center',
-    backgroundColor: "skyblue",
+    backgroundColor: "black",
     paddingVertical : 10,
-  
+    height:height/10,
   },
   imageContainer : {
   },
@@ -120,8 +120,8 @@ const styles = StyleSheet.create({
     backgroundColor: "skyblue",
   },
   titleText : {
-    fontSize : 21,
-    fontWeight: "800",
+    fontSize : 30,
+    fontFamily: 'font-DoHyeon',
     color: "white",
   },
   commentText : {
@@ -158,11 +158,18 @@ const styles = StyleSheet.create({
   clickedText : {
     color : "#ffffff",
     fontSize : 20,
+    fontFamily: 'font-DoHyeon',
   },
   unClickedText : {
     color : "#ffbb00",
     fontSize : 20,
-  }
+    fontFamily: 'font-DoHyeon',
+  },
+  addressText :{
+    marginTop:3,
+    fontSize : 18,
+    fontFamily: 'font-DoHyeon',
+  },
 });
 
 GymInfoScreen.propTypes = {

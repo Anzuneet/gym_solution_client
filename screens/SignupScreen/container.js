@@ -117,7 +117,7 @@ componentWillUnmount() {
           } = this.state;
     if(!isSubmitting){
       if(username  && password && password2 && phonenumber 
-         && type && fitness_club_name && gender
+         && type && gender
          && birthday)
          {
             if(!isChecked){
