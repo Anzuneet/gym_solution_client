@@ -8,6 +8,7 @@ import {
   Dimensions,
   Image,
 } from "react-native";
+import StarRating from 'react-native-star-rating';
 
 const { width, height } = Dimensions.get("window");
 
@@ -17,7 +18,7 @@ const { width, height } = Dimensions.get("window");
   <TouchableOpacity onPress = {props.onPress}>
     <View style = {styles.Container}>
       <View style = {styles.profileContainer}>
-        {props.profileImage ?
+        {props.trainerInfo.profileImage ?
         <Text>ProfileImage</Text>
         :
         <Image
@@ -34,7 +35,7 @@ const { width, height } = Dimensions.get("window");
             {props.trainerInfo.name}
         </Text>
         <Text style = {styles.commentText}>
-            "안녕하세요"
+            {props.trainerInfo.self_Introduction_text}
         </Text>
       </View>
       <View style = {styles.detailContainer}>
@@ -42,7 +43,14 @@ const { width, height } = Dimensions.get("window");
           <Text style ={styles.capacityText}>
           자세히 보기
           </Text>
-          </View>
+        </View>
+        <StarRating
+          disabled={false}
+          maxStars={5}
+          starSize = {25}
+          rating={props.trainerInfo.averageStarCount}
+          fullStarColor = "#fd8b1b" 
+          />
       </View>
     </View>
   </TouchableOpacity>
