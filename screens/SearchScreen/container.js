@@ -45,9 +45,9 @@ class Container extends Component {
   componentDidMount(){
     this._loadLocationAsync();
     if(this.props.gyms != null)
-      this.setState({gyms: this.props.gyms.result});
+      this.setState({gyms: this.props.gyms.result, filteredGyms: this.props.gyms.result});
     if(this.props.groups != null)
-      this.setState({groups : this.props.groups.groups});
+      this.setState({groups : this.props.groups.groups, filteredGroups: this.props.groups.groups});
   };
 
   _loadLocationAsync = async () => {
@@ -103,14 +103,19 @@ class Container extends Component {
 
   _onSubmitFilterCondition = (condition)=>{
     //console.log(this.state);
-    
+    //console.log(condition);
     let filteredGroups = this.state.groups.filter(it=>{
       let daysOfWeek = condition.daysOfWeek;
       // 요일 필터링
-
+      //console.log(condition.daysOfWeek);
       for(var key in daysOfWeek){
         if(daysOfWeek[key] == undefined || daysOfWeek[key] == false)continue;
+        //console.log(key);
+        //console.log(it.daysOfWeek.includes(key));
         if(it.daysOfWeek.includes(key) == false){
+          //console.log(
+          //  "return false;"
+          //);
           return false;
         }
       }
@@ -157,16 +162,17 @@ class Container extends Component {
       }
       return true;
     });
-    console.log("on Filtering");
-    console.log(filteredGroups);
+    //console.log(filteredGroups);
     let filteredGyms = this.state.gyms.filter(gym=>filteredGroups.findIndex(group=>group.gym.uid == gym.uid) != -1)
-    this.setState({filteredGroups:filteredGroups});
+    this.setState({filteredGroups:filteredGroups},()=>{
+      //console.log(this.state.filteredGroups)
+    });
     this.setState({filteredGyms:filteredGyms},()=>this._updateMarkers());
     this.setState({daysOfWeek:condition.daysOfWeek});
     this.setState({charge:condition.charge});
     this.setState({time:condition.time});
-   
-    //console.log(this.state.filteredGroups);
+    //console.log("on Filtering")
+    
     //console.log(this.state.groups);
     this.dialog.dismiss();
   }

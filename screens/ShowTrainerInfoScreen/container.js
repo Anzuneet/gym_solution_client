@@ -18,7 +18,7 @@ export default class example extends Component {
         this.state = {
             slider1ActiveSlide: SLIDER_1_FIRST_ITEM,
             comment : "안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요", //가로 20자 세로로 8자
-            bodyText : "BEFOR / AFTER",
+            bodyText : "VARIETY PICTURES",
         };
     }
 
@@ -30,6 +30,7 @@ export default class example extends Component {
     render () {
 
         const trainer = this.props.navigation.state.params;
+        console.log(trainer);
         return (
             <SafeAreaView style={styles.safeArea}>
                 <View style={styles.container}>
@@ -40,12 +41,12 @@ export default class example extends Component {
                   height = {500}
                 >
                 <View style = {{height: 400}}>
-                    <Text>{trainer.comment}</Text>
+                    <Text>{trainer.trainer.self_introduction_text}</Text>
                 </View>
-                <TouchableOpacity style = {{justifyContent:'center', alignItems : 'center', backgroundColor : 'yellow'}} onPressOut = { () => {
+                <TouchableOpacity style = {{justifyContent:'center', alignItems : 'center', backgroundColor : 'black'}} onPressOut = { () => {
                     this.popupDialog.dismiss();
                 }}>
-                    <Text style = {{paddingVertical : 18}}> 닫기 </Text>
+                    <Text style = {{paddingVertical : 18, color : 'white'}}> 닫기 </Text>
                 </TouchableOpacity>
                 </PopupDialog>
                 <View style = {{flexDirection:'row'}}>
@@ -65,7 +66,7 @@ export default class example extends Component {
                 }
                 </View>
                     <View style = {styles.gymNameContainer}>
-                        <Text style = {styles.tUpdateBText}>{trainer.name}</Text>
+                        <Text style = {styles.tUpdateBText}>{trainer.trainer.name}</Text>
                     </View>
                 </View>
                 <View>
@@ -75,7 +76,7 @@ export default class example extends Component {
                     }}>
                         <Text style={styles.TextStyle} numberOfLines = { 6 } > 
 
-                        {trainer.comment}
+                        {trainer.trainer.self_introduction_text}
 
                         </Text>
                     </TouchableOpacity>

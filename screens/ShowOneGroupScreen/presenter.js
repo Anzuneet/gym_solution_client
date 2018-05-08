@@ -121,9 +121,6 @@ const styles = StyleSheet.create({
     alignItems : 'center',
     backgroundColor : 'pink',
   },
-  touchableContainerr :{
-    height : height / 5.6
-  },
   font : {
     fontSize : 30,
   },
@@ -131,9 +128,13 @@ const styles = StyleSheet.create({
     flex:1,
     flexDirection : 'row'
   },
+  touchableContainerr : {
+    height: height * 0.15,
+  },
   touchableContainer:{
     flexDirection : 'row',
-    height : height/10,
+    //height : height/10,
+    flex: 10,
   },
   profileContainer :{
     flex:0.45,
@@ -157,14 +158,16 @@ const styles = StyleSheet.create({
   },
   openContainer :{
       
-      height : height/70,
+      flex: 1,
+      //height : height/70,
       //backgroundColor : "#eeeeee",
       justifyContent : "center",
       alignItems : "flex-end",
 
   },
   ReviewsListContainer :{
-    height : height/2.85,
+    //height : height/2.85,
+    flex: 1,
   },
   avatar: {
     width: 60,
@@ -226,7 +229,8 @@ const styles = StyleSheet.create({
     borderColor : "black",
   },
   comment:{
-    height : height / 4.5,
+
+    height : height * 0.4,
     borderWidth : StyleSheet.hairlineWidth,
     borderColor : "black",
   },

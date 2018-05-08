@@ -15,19 +15,19 @@ export const ENTRIES1 = [
         illustration: 'http://us1000.co.kr/coding/sub3/images/fitness05.jpg'
     },
     {
-        title: 'Acrocorinth, Greece',
-        subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
-        illustration: 'https://i.imgur.com/KZsmUi2l.jpg'
+        title: '',
+        subtitle: '',
+        illustration: 'https://cdn.pixabay.com/photo/2015/09/29/12/15/bordeaux-963810_1280.jpg'
     },
     {
-        title: 'The lone tree, majestic landscape of New Zealand',
-        subtitle: 'Lorem ipsum dolor sit amet',
-        illustration: 'https://i.imgur.com/2nCt3Sbl.jpg'
+        title: '',
+        subtitle: '',
+        illustration: 'https://cdn.pixabay.com/photo/2016/03/09/13/47/running-watch-1246430_1280.png'
     },
     {
-        title: 'Middle Earth, Germany',
-        subtitle: 'Lorem ipsum dolor sit amet',
-        illustration: 'https://i.imgur.com/lceHsT6l.jpg'
+        title: 'Dumbels',
+        subtitle: '',
+        illustration: 'https://cdn.pixabay.com/photo/2016/03/27/23/00/weight-lifting-1284616_1280.jpg'
     }
 ];
 

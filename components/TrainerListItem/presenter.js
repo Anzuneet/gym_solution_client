@@ -35,7 +35,7 @@ const { width, height } = Dimensions.get("window");
             {props.trainerInfo.name}
         </Text>
         <Text style = {styles.commentText}>
-            {props.trainerInfo.self_Introduction_text}
+            {props.trainerInfo.self_introduction_text}
         </Text>
       </View>
       <View style = {styles.detailContainer}>
@@ -48,7 +48,8 @@ const { width, height } = Dimensions.get("window");
           disabled={false}
           maxStars={5}
           starSize = {25}
-          rating={props.trainerInfo.averageStarCount}
+          //rating={props.trainerInfo.averageStarCount}
+          raiting = {3}
           fullStarColor = "#fd8b1b" 
           />
       </View>
