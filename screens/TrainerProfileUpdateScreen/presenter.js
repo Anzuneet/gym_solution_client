@@ -90,7 +90,7 @@ const TrainerProfileUpdateScreen = props =>
                 }
                 </TouchableOpacity>
                     <View style = {styles.gymNameContainer}>
-                        <Text style = {styles.tUpdateBText}>{props.gym}</Text>
+                        <Text style = {{}}>{props.gym}</Text>
                     </View>
                     <TouchableOpacity style = {styles.tUpdateBContainer} onPress={() => {
                             this.popupDialog.show();

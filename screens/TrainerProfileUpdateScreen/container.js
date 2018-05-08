@@ -8,7 +8,9 @@ class Container extends Component {
   dialog = null;
   dialogProfile = null;
   state = {
-    bodyText : "POST BODYPRO"
+    bodyText : "POST BODYPRO",
+    comment: "안녕하세요 여현동입니다. 아마잘지냅니다.",
+    gym : "김선태 피트니스 클럽",
 
   }
 

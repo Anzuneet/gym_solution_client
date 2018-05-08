@@ -17,7 +17,7 @@ const { width, height } = Dimensions.get("window");
   <TouchableOpacity style = {styles.Container} onPress = {props.onPress}>
       <View style = {styles.titleContainer}>
         <Text style = {styles.titleText}>
-            {props.data.uid}회원님
+            {props.data.name} 회원님
         </Text>
       </View>
       <View style = {styles.detailContainer}>
@@ -35,13 +35,13 @@ const { width, height } = Dimensions.get("window");
           </View>
           <View style = {styles.lowerRow}>
             <View style = {styles.column}>
-              <Text style = {styles.tableAttribute}> {props.data.weight} </Text>
+              <Text style = {styles.tableAttribute}> {props.data.recentData.Weight} </Text>
             </View>
             <View style = {styles.column}>
-              <Text style = {styles.tableAttribute}> {props.data.muscle} </Text>
+              <Text style = {styles.tableAttribute}> {props.data.recentData.Muscle} </Text>
             </View>
             <View style = {styles.column}>
-              <Text style = {styles.tableAttribute}> {props.data.fat} </Text>
+              <Text style = {styles.tableAttribute}> {props.data.recentData.Fat} </Text>
             </View>
           </View>
         </View>
@@ -54,9 +54,6 @@ const { width, height } = Dimensions.get("window");
         최근에 등록된 comment가 없어요... 새로운 코멘트를 등록해주세요!
         </Text>
         }
-        <Text style = {styles.commentText} numberOfLines = {3}>
-          {props.data.comment}
-        </Text>
         </View>
       </View>
   </TouchableOpacity>
@@ -97,7 +94,7 @@ const styles = StyleSheet.create({
     borderRadius: 50
   }, 
   titleText :{
-    fontSize :30,
+    fontSize :20,
     fontWeight : "500",
   },
   tableContainer  : {
