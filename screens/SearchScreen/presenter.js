@@ -65,7 +65,7 @@ const SearchScreen = props => (
             //initialRegion = {props.mapRegion}
             onRegionChangeComplete={props.handleMapRegionChange}   
           >
-            {props.gyms.map((marker, index) => (
+            {props.filteredGyms.map((marker, index) => (
                 <Marker
                 key = {index}
                 coordinate={{latitude:marker.latitude,longitude:marker.longitude}}
