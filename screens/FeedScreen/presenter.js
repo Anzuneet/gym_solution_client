@@ -41,7 +41,7 @@ const { width, height } = Dimensions.get("window");
       </View>
     </View>
     <View style = {{}}>
-    <Text style = {{paddingVertical: 10, fontSize: 20, fontWeight:"800"}}> 강사님의 최신 덧글! </Text>
+    <Text style = {{paddingVertical: 10, fontSize: 20, fontWeight:"800"}}> 트레이너의 최신 덧글! </Text>
     </View>
     <View style = {styles.commentsContainer}>
       {props.newComment ?
@@ -49,7 +49,7 @@ const { width, height } = Dimensions.get("window");
       {props.newCommnet}</Text>
       ):
       <Text style = {styles.commentText}>
-      현재 등록된 comment가 없네요....
+      처음보다 많이 좋아지셨어요!
       
       </Text>}
     </View>
@@ -155,9 +155,8 @@ const styles = StyleSheet.create({
     alignItems:'center',
   },
   nameText :{
-    fontSize: 30,
-    fontWeight:'bold',
-    paddingBottom : 10,
+    fontSize: 35,
+    fontFamily: 'font-DoHyeon',
   },
   commentText : {
     paddingLeft : 20,
