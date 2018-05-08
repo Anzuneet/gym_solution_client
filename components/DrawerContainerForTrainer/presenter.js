@@ -21,7 +21,7 @@ export default class DrawerContainerForTrainer extends React.Component {
           </View>
         <View style ={styles.trainernameContainer}>
           <Text style = {styles.trainernameText}>
-              박종휘
+              여현동
           </Text>
         </View>
         <TouchableOpacity

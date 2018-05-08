@@ -104,7 +104,7 @@ const slideAnimation = new SlideAnimation({
       </View>
     </PopupDialog>
     <View style = {styles.headerContainer}>
-      <Text> {props.group.title}</Text>
+      <Text style = {styles.nameText}> {props.group.title}</Text>
     </View>
     <TouchableOpacity onPress = {props.onPress} style = {styles.trainerContainer}>
         <View style = {styles.profileContainer}>
@@ -124,7 +124,7 @@ const slideAnimation = new SlideAnimation({
               {props.group.trainer.name}
           </Text>
           <Text style = {styles.commentText}>
-              "안녕하세요"
+          {props.group.trainer.self_introduction_text}
           </Text>
         </View>
         <View style = {styles.detailContainer}>
@@ -200,12 +200,12 @@ const slideAnimation = new SlideAnimation({
         </View>
       </View>
       <View style = {{flex: 1,flexDirection: 'row', justifyContent: 'space-between',}}>
-        <View style = {styles.beforecellContainer}><Text style = {{paddingVertical: 4, color : "#fd8b1b"}}>{props.group.beforeFat}</Text></View>
-        <View style = {styles.beforecellContainer}><Text style = {{paddingVertical: 4, color : "#fd8b1b"}}>{props.group.beforeMuscle}</Text></View>
-        <View style = {styles.beforecellContainer}><Text style = {{paddingVertical: 4, color : "#fd8b1b"}}>{props.group.beforeWeight}</Text></View>
-        <View style = {styles.aftercellContainer}><Text style = {{paddingVertical: 4, color : "white"}}>{props.group.afterFat}</Text></View>
-        <View style = {styles.aftercellContainer}><Text style = {{paddingVertical: 4, color : "white"}}>{props.group.afterMuscle}</Text></View>
-        <View style = {styles.aftercellContainer}><Text style = {{paddingVertical: 4, color : "white"}}>{props.group.afterWeight}</Text></View>
+        <View style = {styles.beforecellContainer}><Text style = {{paddingVertical: 4, color : "#fd8b1b"}}>{props.before.Fat}</Text></View>
+        <View style = {styles.beforecellContainer}><Text style = {{paddingVertical: 4, color : "#fd8b1b"}}>{props.before.Muscle}</Text></View>
+        <View style = {styles.beforecellContainer}><Text style = {{paddingVertical: 4, color : "#fd8b1b"}}>{props.before.Weight}</Text></View>
+        <View style = {styles.aftercellContainer}><Text style = {{paddingVertical: 4, color : "white"}}>{props.after.Fat}</Text></View>
+        <View style = {styles.aftercellContainer}><Text style = {{paddingVertical: 4, color : "white"}}>{props.after.Muscle}</Text></View>
+        <View style = {styles.aftercellContainer}><Text style = {{paddingVertical: 4, color : "white"}}>{props.after.Weight}</Text></View>
       </View>    
     </View>
     <View style = {styles.calenderContainer}>
@@ -370,6 +370,17 @@ const styles = StyleSheet.create({
     fontSize : 15,
     paddingTop : 7,
     paddingRight : 10,
+  },
+  headerContainer : {
+    flexDirection : 'row',
+    backgroundColor : "black",
+    justifyContent : 'center',
+  },
+  nameText : {
+    fontSize : 20,
+    paddingVertical : 10,
+    fontWeight : "800",
+    color: "white",
   },
 });
 

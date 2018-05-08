@@ -6,7 +6,7 @@ import OneGroupForTrainer from "./presenter";
 class Container extends Component {
 
   _onPress = () => {
-    this.props.navigation.navigate('showMembers', {group : this.props.data});
+    this.props.navigation.navigate('showMembers')
   };
 
   render() {

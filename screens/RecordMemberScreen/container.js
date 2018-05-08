@@ -18,12 +18,101 @@ class Container extends Component {
   },
   lists : [
     {
-      date:"2018-04-21",
+      date:"2018-05-02",
+    },
+  ],
+  Weight: [
+    {
+      x:"04-06",
+      y: 85
     },
     {
-      date:"2018-04-22",
+      x:"04-14",
+      y: 83
+    },
+    {
+      x:"04-15",
+      y: 83
+    },
+    {
+      x:"04-17",
+      y: 81
+    },
+    {
+      x:"04-18",
+      y: 80
+    },
+    {
+      x:"04-28",
+      y: 80
+    },
+    {
+      x:"05-02",
+      y: 79
+    },
+  ],
+  Muscle: [
+    {
+      x:"04-06",
+      y: 20
+    },
+    {
+      x:"04-14",
+      y: 23
+    },
+    {
+      x:"04-15",
+      y: 24
+    },
+    {
+      x:"04-17",
+      y: 24
+    },
+    {
+      x:"04-18",
+      y: 24
+    },
+    {
+      x:"04-28",
+      y: 27
+    },
+    {
+      x:"05-02",
+      y: 28
     },
   ]
+  ,
+  Fat: [
+    {
+      x:"04-06",
+      y: 30
+    },
+    {
+      x:"04-14",
+      y: 29
+    },
+    {
+      x:"04-15",
+      y: 27
+    },
+    {
+      x:"04-17",
+      y: 26
+    },
+    {
+      x:"04-18",
+      y: 25
+    },
+    {
+      x:"04-28",
+      y: 22
+    },
+    {
+      x:"05-02",
+      y: 23
+    },
+  ]
+  
  };
 
  _clickWeight = () =>{
@@ -77,12 +166,12 @@ _setDialog = (dialog)=>this.dialog = dialog;
   render() {
     const {navigate} = this.props.navigation;
     //...
-    
+    console.log(this.props);
     
    return (
      <RecordMemberScreen {...this.props} {...this.state}
      dates2 = {this.state.lists.reduce((obj, it)=>{
-      obj[it.date] = {marked:true, selected:true, selectedColor:"blue"};
+      obj[it.date] = {marked:true, selected:true, selectedColor:"#rgba(253,139,27,1)"};
       return obj;
    }
    ,{})}

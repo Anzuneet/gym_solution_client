@@ -90,9 +90,9 @@ const slideAnimation = new SlideAnimation({
             </View>
           </View> 
       </View>
-    <View style = {{justifyContent : 'center', alignItems: 'center'}}>
+    <View style = {{justifyContent : 'center', alignItems: 'center', backgroundColor :  "black"}}>
     <TextInput 
-              style = {{width :width -20}} 
+              style = {{width :width -20, marginVertical : 5, marginHorizontal : 5, backgroundColor: "#eeeeee", borderRadius : 5, paddingLeft : 10,}} 
               underlineColorAndroid = 'rgba(0,0,0,0)' 
               placeholder="코멘트를 입력해주세요" 
               autoCorrecto = {false}
@@ -112,27 +112,33 @@ const slideAnimation = new SlideAnimation({
             />
             )}  
       </View>
-      <View style = {{flex: 1}}>
+      <View style = {{flex: 1, backgroundColor : 'black'}}>
         <TouchableOpacity
-        style = {{backgroundColor : "#rgba(253,139,27,1)",flex: 1, borderColor : "skyblue", borderWidth : 4, alignItems: 'center', justifyContent: 'center' }}
+        style = {{backgroundColor : "#rgba(253,139,27,1)",flex: 1, borderColor : "black", borderRadius: 10, alignItems: 'center', justifyContent: 'center', marginVertical:10, marginHorizontal: 10, }}
         onPress={() => {props.stateInitialization()}}>
         <Feather name="camera" size={50} color="white" style = {styles.iconContainer}/>
         <Text style = {styles.cameraTabText}> 카메라 </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-        style = {{backgroundColor : "#rgba(253,139,27,1)",flex: 1, borderColor : "skyblue", borderWidth : 4, alignItems: 'center', justifyContent: 'center'}}
+        style = {{backgroundColor : "#rgba(253,139,27,1)",flex: 1, borderColor : "black", borderRadius: 10, alignItems: 'center', justifyContent: 'center', marginVertical:10, marginHorizontal: 10,}}
         onPress={() => {props.postExercise}}>
         <MaterialIcons name="photo-album" size={50} color="white" style = {styles.iconContainer}/> 
           <Text style = {styles.gallaryTabText}> 갤러리 </Text>
         </TouchableOpacity>
       </View>
-      
-
       </View>
+      <View style = {{flexDirection: 'row'}}>
+          <TouchableOpacity style = {{flex: 1, justifyContent : 'center', alignItems : 'center',backgroundColor : "#eeeeee", borderWidth : 2,}}>
+          <Text style= {{paddingVertical : 10, fontSize : 20,}}>취소</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style = {{flex: 1, justifyContent : 'center', alignItems : 'center',backgroundColor : "#eeeeee", borderWidth : 2,}}>
+          <Text style= {{paddingVertical : 10, fontSize : 20,}}>확인</Text>
+          </TouchableOpacity>
+        </View>
     </PopupDialog>
    <View style = {styles.headerContainer}>
-    <Text style = {styles.nameText}>김선태 Profile</Text>
+    <Text style = {styles.nameText}>{props.navigation.state.params.member.name} Profile</Text>
    </View>
    <View style = {styles.graphContainer}>
       
@@ -175,22 +181,27 @@ const slideAnimation = new SlideAnimation({
         </TouchableOpacity>
       </View>
     <View>
+    <View style = {styles.headerContainer}>
+    <Text style = {styles.nameText}>회원들의 인바디를 등록해주세요!</Text>
+   </View>
     <Calendar
-      style = {{marginVertical : 50}}
+      style = {{}}
       markedDates={props.dates2}
       onDayPress={props.pullDayInfo}
     />
     </View>
+  
   </ScrollView>
 );
  
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+
   },
   headerContainer : {
     flexDirection : 'row',
-    backgroundColor : "white",
+    backgroundColor : "black",
     justifyContent : 'center',
   },
   graphContainer : {
@@ -217,6 +228,8 @@ const styles = StyleSheet.create({
   nameText : {
     fontSize : 20,
     paddingVertical : 10,
+    fontWeight : "800",
+    color: "white",
   },
   clickedText : {
     color : "#ffffff",

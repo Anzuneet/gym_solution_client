@@ -25,7 +25,7 @@ const { width, height } = Dimensions.get("window");
       </View>
       <View style ={styles.downContainer}>
         <View style = {styles.titleContainer}>
-          <View style = {{flex : 0.7, alignItems : 'center', justifyContent :'center'}}>
+          <View style = {{flex : 0.7, alignItems : 'center', paddingTop : 5, paddingLeft: 4,}}>
           <Text style = {styles.titleText} numberOfLines = {3}>
               {props.data.title}
           </Text>
@@ -36,7 +36,7 @@ const { width, height } = Dimensions.get("window");
             </Text>
           </View>
         </View>
-        <View>
+        <View style = {{flex: 1}}>
           <View style = {styles.detailContainer}>
               <Text style ={styles.capacityText}>
               정원 : {props.data.capacity}
@@ -45,7 +45,7 @@ const { width, height } = Dimensions.get("window");
               비용 : {props.data.charge}
               </Text>
           </View>
-          <Text style = {{textAlign : 'center', paddingTop : 7, fontSize : 20,}}> GYM : <Text style = {{fontSize: 22, fontWeight : "500"}}> {props.data.gym.name}</Text></Text>
+          <Text style = {{textAlign : 'center', paddingTop : 7, fontSize : 20,}}> GYM : <Text style = {{fontSize: 14, fontWeight : "500"}}> {props.data.gym.name}</Text></Text>
         </View>
       </View>
       
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     fontWeight:'500',
   },
   titleText :{
-    fontSize :20,
+    fontSize :15,
     fontWeight : "800",
   },
   commentText : {
