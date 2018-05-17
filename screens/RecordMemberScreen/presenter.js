@@ -96,9 +96,8 @@ const slideAnimation = new SlideAnimation({
               underlineColorAndroid = 'rgba(0,0,0,0)' 
               placeholder="코멘트를 입력해주세요" 
               autoCorrecto = {false}
-              value = {props.fat}
-              keyboardType='numeric'
-              onChangeText={props.changeFat}
+              value = {props.comment}
+              onChangeText={props.changeComment}
             />
     </View>
     <View  style = {{flexDirection : 'row'}}>
@@ -115,25 +114,27 @@ const slideAnimation = new SlideAnimation({
       <View style = {{flex: 1, backgroundColor : 'black'}}>
         <TouchableOpacity
         style = {{backgroundColor : "#rgba(253,139,27,1)",flex: 1, borderColor : "black", borderRadius: 10, alignItems: 'center', justifyContent: 'center', marginVertical:10, marginHorizontal: 10, }}
-        onPress={() => {props.stateInitialization()}}>
+        onPressOut={props.takeImage}>>
         <Feather name="camera" size={50} color="white" style = {styles.iconContainer}/>
         <Text style = {styles.cameraTabText}> 카메라 </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
         style = {{backgroundColor : "#rgba(253,139,27,1)",flex: 1, borderColor : "black", borderRadius: 10, alignItems: 'center', justifyContent: 'center', marginVertical:10, marginHorizontal: 10,}}
-        onPress={() => {props.postExercise}}>
+        onPressOut={props.pickImage}>
         <MaterialIcons name="photo-album" size={50} color="white" style = {styles.iconContainer}/> 
           <Text style = {styles.gallaryTabText}> 갤러리 </Text>
         </TouchableOpacity>
       </View>
       </View>
       <View style = {{flexDirection: 'row'}}>
-          <TouchableOpacity style = {{flex: 1, justifyContent : 'center', alignItems : 'center',backgroundColor : "#eeeeee", borderWidth : 2,}}>
-          <Text style= {{paddingVertical : 10, fontSize : 20,}}>취소</Text>
+          <TouchableOpacity style = {{flex: 1, justifyContent : 'center', alignItems : 'center',backgroundColor : "#eeeeee", borderWidth : 2,}}
+          onPressOut = {props.cancel}>
+            <Text style= {{paddingVertical : 10, fontSize : 20,}}>취소</Text>
           </TouchableOpacity>
-          <TouchableOpacity style = {{flex: 1, justifyContent : 'center', alignItems : 'center',backgroundColor : "#eeeeee", borderWidth : 2,}}>
-          <Text style= {{paddingVertical : 10, fontSize : 20,}}>확인</Text>
+          <TouchableOpacity style = {{flex: 1, justifyContent : 'center', alignItems : 'center',backgroundColor : "#eeeeee", borderWidth : 2,}}
+          onPressOut = {props.submit}>
+            <Text style= {{paddingVertical : 10, fontSize : 20,}}>확인</Text>
           </TouchableOpacity>
         </View>
     </PopupDialog>

@@ -10,8 +10,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    getOwnTrainerGroups: (handler) => {
-      dispatch(userActions.getOwnTrainerGroups(handler));
+    getOwnGroups: (handler) => {
+      dispatch(userActions.getOwnGroups(handler));
     },
   };
 };

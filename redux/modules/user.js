@@ -73,7 +73,7 @@ function login(username, password) {
          dispatch(setLogIn(json.token));
          return true;
        } else {
-        Alert.alert(json.msg);
+        c
          return false;
        }
      })
@@ -308,26 +308,152 @@ function getOwnGroups(handler) {
 
 
 
-function getOwnTrainerGroups(handler) {
-  return (dispatch, getState) => {
-     const { user: { token } } = getState();
-     fetch(`${API_URL}/trainer/groups`, {
-       headers: {
-            "x-gs-token" : token
-       }
-     })
-       .then(response => {
-        if (response.status != 200) {
-          dispatch(logOut());
-        } else {
-          return response.json();
-        }
+function joinTraining(guid) {
+
+  const guid = guid;
+  return (getState) => {
+    const {user: {token }} = getState();
+    fetch(`${API_URL}/user/groups/:${guid}`, {
+      headers: {
+        "x-gs-token" : token
+      }
+    })
+    .then(response => {
+      console.log("??");
+      console.log(response)
+      response.json()})
+    .then(json => {
+      if (json.msg) {
+       Alert.alert(json.msg);
+        return true;
+      } else {
+        return false;
+      }
+    })
+  }
+  
+}
+
+function postReview(trainer_uid,grade,comments) {
+
+  const trainer_uid = trainer_uid;
+  const grade = grade;
+  const comments = comments;
+
+  return (getState) => {
+    const {user: {token }} = getState();
+    fetch(`${API_URL}/trainers/:${trainer_uid}/reviews`, {
+      method: "POST",
+      headers: {
+        "x-gs-token" : token
+      },
+      body: JSON.stringify({
+        grade : grade,
+        comments : comments,
       })
-      .then(json =>{
-        handler(json)});
-      
+    })
+    .then(response => {
+      console.log(response);
+      response.json()})
+    .then(json => {
+      if (json.msg) {
+       Alert.alert(json.msg);
+        return true;
+      } else {
+        return false;
+      }
+    })
+  } 
+}
+
+
+function updateProfileImage(value){
+  const value = value
+  return (getState) => {
+    const {user:{token}} = getState();
+    fetch(`${API_URL}/trainer/:profileImage`, {
+      method: "PUT",
+      headers: {
+        "x-gs-token" : token
+      },
+      body: JSON.stringify({
+        profileImage: value
+      })
+    })
+    .then(response => {
+      console.log(response);
+      response.json()})
+    .then(json =>{
+      if(json.msg){
+        Alert.alert(json.msg);
+        return true;
+      }else
+        return false;
+    })
+  }
+}
+
+function updateProfileComment(value){
+  const value = value;
+  return (getState) => {
+    const {user:{token}} = getState();
+
+    fetch(`${API_URL}/trainer/:self_introduction_text`, {
+      method: "PUT",
+      headers: {
+        "x-gs-token" : token
+      },
+      body: JSON.stringify({
+        self_introduction_text: value
+      })
+    })
+    .then(response => {
+      console.log(response);
+      response.json()})
+    .then(json =>{
+      if(json.msg){
+        Alert.alert(json.msg);
+        return true;
+      }else
+        return false;
+    })
+  }
+}
+
+function trainerPostBodymeasurements(guid,tuid,date,Img,Fat,Weight,Muscle) {
+  const guid = guid;
+  const tuid = tuid;
+  const date = date
+  const img = Img;
+  const fat = Fat;
+  const weight = Weight;
+  const muscle = Muscle;
+
+  return (dispatch,getState) => {
+    const { user: { token} } = getState();
+    fetch(`${API_URL}/groups/${guid}/users/${tuid}/bodymeasurements`, { 
+    method: "POST",
+    headers: {
+      "x-gs-token": token,
+    },
+    body: JSON.stringify({
+      img : img,
+      fat : fat,
+      weight : weight,
+      muscle : muscle,
+      date: date,
+    })
+    })
+    .then(response => response.json())
+    .then(json => {
+      if (json.msg) {
+       Alert.alert(json.msg);
+       return true;
+      }
+    })
   };
 }
+
 
 
 
@@ -434,7 +560,11 @@ const actionCreators = {
   getGroups,
   getTrainers,
   getOwnGroups,
-  getOwnTrainerGroups,
+  joinTraining,
+  postReview,
+  updateProfileImage,
+  updateProfileComment,
+  trainerPostBodymeasurements,
 
 };
   

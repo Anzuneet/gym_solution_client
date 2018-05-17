@@ -6,7 +6,6 @@ import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { sliderWidth, itemWidth } from './styles/SliderEntry.style';
 import SliderEntry from './components';
 import styles, { colors } from './styles/index.style';
-import { ENTRIES1, ENTRIES2 } from './static/entries';
 import { scrollInterpolators, animatedStyles } from './utils/animations';
 import PopupDialog , { SlideAnimation, DialogTitle} from 'react-native-popup-dialog';
 
@@ -36,7 +35,7 @@ export default class example extends Component {
             <View style={[styles.exampleContainer,styles.exampleContainerLight]}>
 
                 <Carousel
-                  data={ENTRIES1}/////////////////////////////////////////////////data
+                  data={this.props.images}/////////////////////////////////////////////////data
                   //data = {this.props.bodyImages}
                   renderItem={this._renderItem}
                   sliderWidth={sliderWidth}

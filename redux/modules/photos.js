@@ -15,9 +15,6 @@ function setFeed(feed) {
   };
 }
 
-function setSearch(search) {
-  return { type: SET_SEARCH, search };
-}
 
 // API Actions
 
@@ -41,24 +38,79 @@ function getFeed() {
   };
 }
 
-function getSearch() {
-  return (dispatch, getState) => {
-     const { user: { token } } = getState();
-     fetch(`${API_URL}/images/search/`, {
-       headers: {
-            Authorization: `JWT ${token}`
-       }
-     })/*
-       .then(response => {
-        if (response.status === 401) {
-          dispatch(userActions.logOut());
-        } else {
-          return response.json();
-        }
+function postTrainerImage(trainer_uid,img) {
+  return (getState) => {
+    const {user: {token }} = getState();
+    fetch(`${API_URL}/trainers/:${trainer_uid}/images`, {
+      method: "POST",
+      headers: {
+        "x-gs-token" : token
+      },
+      body: JSON.stringify({
+        img: img
       })
-      .then(json => dispatch(setSearch(json)));*/
-      
-  };
+    })
+    .then(response => {
+      console.log(response);
+      response.json()})
+    .then(json => {
+      if (json.msg) {
+       Alert.alert(json.msg);
+        return true;
+      } else {
+        return false;
+      }
+    })
+  } 
+}
+
+
+function getTrainerImages(tuid, handler) {
+  return (dispatch, getState) => {
+    const { user: { token } } = getState();
+    fetch(`${API_URL}/trainers/:${tuid}/imgaes`, {
+      method: "GET",
+      headers: {
+           'x-gs-token':token
+      }
+    })
+      .then(response => {
+       if (response.status === 401) {
+         dispatch(userActions.logOut());
+       } else {
+         return response.json();
+       }
+     })
+     .then(json =>{
+      handler(json)});
+ };
+}
+
+function deleteTrainerImages(tuid,name) {
+  return (dispatch, getState) => {
+    const { user: { token } } = getState();
+    fetch(`${API_URL}/trainers/:${tuid}/imgaes/:${name}`, {
+      method: "DELETE",
+      headers: {
+           'x-gs-token':token
+      }
+    })
+      .then(response => {
+       if (response.status === 401) {
+         dispatch(userActions.logOut());
+       } else {
+         return response.json();
+       }
+     })
+     .then(json => {
+      if (json.msg) {
+       Alert.alert(json.msg);
+        return true;
+      } else {
+        return false;
+      }
+    })
+ };
 }
 
 // Initial State
@@ -71,8 +123,6 @@ function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_FEED:
       return applySetFeed(state, action);
-    case SET_SEARCH:
-      return applySetSearch(state, action);
     default:
       return state;
   }
@@ -88,19 +138,13 @@ function applySetFeed(state, action) {
   };
 }
 
-function applySetSearch(state, action) {
-  const { search } = action;
-  return {
-    ...state,
-    search
-  };
-}
-
 // Exports
 
 const actionCreators = {
   getFeed,
-  getSearch
+  postTrainerImage,
+  getTrainerImages,
+  deleteTrainerImages
 };
 
 export { actionCreators };

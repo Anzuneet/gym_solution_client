@@ -1,6 +1,7 @@
 import { StackNavigator } from "react-navigation";
 import OwnGroupScreen from "../screens/OwnGroupScreen";
 import TraineeOneGroupsScreen from "../screens/TraineeOneGroupsScreen";
+import showTrainerInfoScreen from "../screens/ShowTrainerInfoScreen"
 
 
 const OwnGroupsNavigation = StackNavigator({
@@ -15,6 +16,12 @@ const OwnGroupsNavigation = StackNavigator({
     screen: TraineeOneGroupsScreen,
     navigationOptions: {
       header : null,
+    }
+  },
+  showTrainerInfo:{
+    screen: showTrainerInfoScreen,
+    navigationOptions: {
+      header:null,
     }
   },
 

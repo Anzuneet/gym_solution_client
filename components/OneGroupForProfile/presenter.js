@@ -17,30 +17,57 @@ const { width, height } = Dimensions.get("window");
   <TouchableOpacity onPress = {props.onPress}>
     <View style = {styles.Container}>
       <View style = {styles.profileContainer}>
-        <Image
-            source={
-              require("../../assets/images/noPhoto.jpg")
-            }
-            style={styles.avatar}
-            //defaultSource={require("../../assets/images/noPhoto.jpg")}
+        {props.data?
+        (props.data.opener.profileImage ? 
+          (<Image source={{uri:props.data.opener.profileImage}} style = {styles.avatar}/>)
+          :
+          <Image
+          source={
+            require("../../assets/images/noPhoto.jpg")
+          }
+          style={styles.avatar}
+          //defaultSource={require("../../assets/images/noPhoto.jpg")}
         />
+        )
+        :
+        <Image
+        source={
+          require("../../assets/images/noPhoto.jpg")
+        }
+        style={styles.avatar}
+        //defaultSource={require("../../assets/images/noPhoto.jpg")}
+        />}
+        
         <View style ={styles.trainernameContainer}>
           <Text style = {styles.trainernameText}>
-              {props.data.trainer.name}
+          {props.data ?
+              (props.data.opener.name) :
+              (props.loadingMessage)
+          }
           </Text>
         </View>
       </View>
       <View style = {styles.titleContainer}>
         <Text style = {styles.titleText}>
-            {props.data.title}
+          {props.data ?
+              (props.data.title) :
+              (props.loadingMessage)
+          }
         </Text>
-        {props.data.comment ?
-        <Text style = {styles.commentText}>
-            {props.data.comment}
-        </Text> :
-        <Text style = {styles.commentText} numberOfLines = {3}>
-            등록된 코멘트가 없네요.. ㅎㅎ
-        </Text> }
+        {props.data ?
+          props.data.comment ?
+          <Text style = {styles.commentText} numberOfLines = {6}>
+              {props.data.comment}
+          </Text> :
+          <Text style = {styles.commentText} numberOfLines = {3}>
+              등록된 코멘트가 없네요.. ㅎㅎ
+          </Text>
+          :
+          <Text style = {styles.commentText} numberOfLines = {3}>
+              {props.loadingMessage}
+          </Text>
+        }
+
       </View>
       <View style = {styles.detailContainer}>
         <View style = {{flexDirection : 'row', backgroundColor : "#rgba(255,150,2,0.5)", height : 20,justifyContent : 'center',alignItems : 'center'}}>
@@ -49,12 +76,24 @@ const { width, height } = Dimensions.get("window");
           <Text style = {{paddingLeft: 1, fontSize : 8,}}>]</Text>
         </View>  
       <View> 
+        {props.data ? 
           <Text style ={styles.capacityText}>
           현재 : {props.data.user_count} / {props.data.capacity}
+          </Text> :
+          <Text>
+          {props.loadingMessage}
           </Text>
+        }
+        {props.data ? 
           <Text style ={styles.costText}>
           비용 : {props.data.charge}
+         </Text> 
+          :
+          <Text>
+          {props.loadingMessage}
           </Text>
+
+        }
           </View>
       </View>
     </View>

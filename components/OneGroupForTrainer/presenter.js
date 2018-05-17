@@ -17,9 +17,8 @@ const { width, height } = Dimensions.get("window");
   <TouchableOpacity onPress = {props.onPress}>
     <View style = {styles.Container}>
       <View style = {styles.upperContainer}>
-
         <Text style = {{paddingLeft: 10}}>[</Text>
-            {props.data.daysOfWeek.map((st,index) => <Text key = {index} style = {{paddingHorizontal : 10, fontSize : 15, color : "black", fontWeight : "800",}}>{st}</Text>)}
+            {props.daysOfWeek.map((st,index) => <Text key = {index} style = {{paddingHorizontal : 10, fontSize : 15, color : "black", fontWeight : "800",}}>{st}</Text>)}
         <Text style = {{paddingRight: 10}}>]</Text>
         <Text style = {{ position: 'absolute', right : 10, fontSize : 17,}}> {props.data.time} 시작 </Text>
       </View>
@@ -27,22 +26,22 @@ const { width, height } = Dimensions.get("window");
         <View style = {styles.titleContainer}>
           <View style = {{flex : 0.7, alignItems : 'center', paddingTop : 5, paddingLeft: 4,}}>
           <Text style = {styles.titleText} numberOfLines = {3}>
-              {props.data.title}
+              {props.title}
           </Text>
           </View>
           <View style = {{flex : 1, marginHorizontal : 10,marginVertical : 5,backgroundColor : "white", borderRadius : 10,}}>
             <Text style = {styles.commentText} numberOfLines = {4}>
-              {props.data.comment}
+              {props.comment}
             </Text>
           </View>
         </View>
         <View style = {{flex: 1}}>
           <View style = {styles.detailContainer}>
               <Text style ={styles.capacityText}>
-              정원 : {props.data.capacity}
+              정원 : {props.capacity}
               </Text>        
               <Text style ={styles.costText}>
-              비용 : {props.data.charge}
+              비용 : {props.charge}
               </Text>
           </View>
           <Text style = {{textAlign : 'center', paddingTop : 7, fontSize : 20,}}> GYM : <Text style = {{fontSize: 14, fontWeight : "500"}}> {props.data.gym.name}</Text></Text>

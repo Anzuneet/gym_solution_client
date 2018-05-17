@@ -14,12 +14,9 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    getFeed: () => {
-      dispatch(photoActions.getFeed());
+    joinTraining: (guid) => {
+      dispatch(userActions.joinTraining(guid));
     },
-    logout: () => {
-      dispatch(userActions.logOut());
-    }
   };
 };
 

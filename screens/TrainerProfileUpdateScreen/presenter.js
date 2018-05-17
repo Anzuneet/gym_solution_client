@@ -110,7 +110,11 @@ const TrainerProfileUpdateScreen = props =>
                 </View>
             </View>
         <View style = {styles.bodyProfileContainer}>
-            <SnapShot/>
+            {props.trainerImage ?
+            <SnapShot images = {props.trainerImage} delete = {props.deleteTrainerImages}/>
+            :
+            <Text> 이미지가 없음 </Text>
+            }
             <TouchableOpacity onPressOut ={ () => {
                 props.parent.dialog.show()
             }} style={{flexDirection: 'column', alignItems : 'center', justifyContent : 'center', backgroundColor : "#rgba(253,139,27,1)", marginVertical : 0,}}>

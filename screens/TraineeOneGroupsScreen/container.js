@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import TraineeOneGroupsScreen from "./presenter";
-import { Image } from "react-native";
+import { Image, Alert } from "react-native";
 import NavButton from "../../components/NavButton";
  
 class Container extends Component {
@@ -11,6 +11,8 @@ class Container extends Component {
   state = {
     reviewFlag: false,
     starCount: 3,
+    comment : "",
+    isSubmitting: false,
     data0 :
     {
       name: "팔굽혀 펴기",
@@ -108,6 +110,31 @@ class Container extends Component {
   _onStarRatingPress = (rating) =>{
     this.setState({starCount: rating});
   }
+  _changeComment = (comment) => {
+    this.setState({comment : comment})
+  }
+
+  _submit = async () =>{
+    const {uid} = this.props.navigation.state.params.group.opener;
+    const {comment, starCount, isSubmitting} = this.state;
+    const {postReview} = this.props;
+  
+    if(!isSubmitting){
+      if(uid && comment && starCount){
+        this.setState({
+          isSubmitting : true
+        })
+        const submitResult = await postReview(uid,starCount,comment);
+        if(submitResult == true){
+          this.setState({isSubmitting: false})
+        }else if(submitResult == false)
+          this.setState({isSubmitting: false})
+      }else{
+        Alert.alert('평점과 리뷰를 작성해주세요!');
+      }
+      
+    }
+  }
 
   render() {
     const {navigate} = this.props.navigation;
@@ -125,6 +152,8 @@ class Container extends Component {
     group = {group}
     closeDialog={this._closeDialog}
     onStarRatingPress = {this._onStarRatingPress}
+    changeComment = {this._changeComment}
+    reviewSubmit = {this._submit}
     />
    );
  }

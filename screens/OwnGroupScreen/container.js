@@ -19,59 +19,14 @@ class Container extends Component {
   state = {
     loading: false,
     groups:
-    [
-      {
-        capacity :3,
-        charge: 20000,
-        comment: "건강한 프로그래머가 되기 위한 필수 코스",
-        daysOfWeek :["MON","WED","FRI"],
-        gym : {
-          address : "30년 전통의 역사, 실력있는 트레이너, 체계적인 시스템",
-          name : "김선태 피트니스 클럽",
-          uid :1,
-        },
-        opened: true,
-        trainer : {
-          name : "여현동",
-          uid : 30,
-        },
-        period : 60,
-        start_date : "2018-05-13",
-        time : "18:00",
-        title : "고인돌 감량 프로젝트",
-        uid : 2,
-        user_count : 2,
-      },
-      {
-        capacity :10,
-        charge: 10000,
-        comment: "체지방을 태우실 목적이라면 확인해보세요!",
-        daysOfWeek :["WED","SUN"],
-        gym : {
-          address : "30년 전통의 역사, 실력있는 트레이너, 체계적인 시스템",
-          name : "김선태 피트니스 클럽",
-          uid :1,
-        },
-        opened: true,
-        trainer : {
-          name : "박종휘",
-          uid : 30,
-        },
-        period : 1,
-        start_date : "2018-05-28",
-        time : "15:30",
-        title : "여현동의 8주 속성 BURN",
-        uid : 3,
-        user_count : 1,
-      },
-    ]
+    []
+    
   }
 
   componentDidMount(){
-    /*
     this.props.getOwnGroups((json)=>{
       this.setState({groups:json.groups});
-    });*/
+    });
   }
 
 
@@ -92,11 +47,13 @@ class Container extends Component {
   };
 
   render() {
+
     return (
       <List containerStyle={{borderTopWidth: 0, borderBottomWidth: 0  }}>
       <StatusBar barStyle={"light-content"} />
         <FlatList
 
+          
           data={this.state.groups}
           
           renderItem={({ item }) => (

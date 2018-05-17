@@ -9,7 +9,8 @@ import {
   TouchableOpacity,
   Image,
   Dimensions,
-  FlatList
+  FlatList,
+  ActivityIndicator
 } from "react-native";
 import {
   VictoryChart,
@@ -91,7 +92,7 @@ import OneGroupForTrainee from "../../components/OneGroupForTrainee";
   </View>
 
   <View style = {styles.touchableContainer}>
-    <TouchableOpacity style = {styles.touchable}>
+    <TouchableOpacity style = {styles.touchable} onPressOut = {props.goBack}>
       <View style={styles.button}>
           {props.isSubmitting ? 
           (<ActivityIndicator size = "large" color="white"/>)
@@ -100,7 +101,7 @@ import OneGroupForTrainee from "../../components/OneGroupForTrainee";
           }
       </View>
     </TouchableOpacity>
-    <TouchableOpacity style = {styles.touchable}>
+    <TouchableOpacity style = {styles.touchable} onPressOut = {props.submit}>
       <View style={styles.button}>
           {props.isSubmitting ? 
           (<ActivityIndicator size = "large" color="white"/>)

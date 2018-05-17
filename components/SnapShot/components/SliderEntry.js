@@ -35,7 +35,9 @@ export default class SliderEntry extends Component {
         );
     }
 
+
     render () {
+        //삭제는 팦업창을 띄우고 trainerProfileUpdateScreen에서 삭제할것.
         const { data: { title, subtitle }, even, isTrainer } = this.props;
         const uppercaseTitle = title ? (
             <Text
@@ -52,7 +54,7 @@ export default class SliderEntry extends Component {
             <TouchableOpacity
               activeOpacity={1}
               style={styles.slideInnerContainer}
-              onPress={() => { isTrainer ? alert(`You've clicked '${title}' in trainer`) :
+              onPress={() => { isTrainer ? this.props.deleteDialog :
               alert(`You've clicked '${title}' in traineeee`) }}
               >
                 <View style={styles.shadow} />

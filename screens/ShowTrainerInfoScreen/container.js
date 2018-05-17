@@ -17,11 +17,18 @@ export default class example extends Component {
         super(props);
         this.state = {
             slider1ActiveSlide: SLIDER_1_FIRST_ITEM,
-            comment : "안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요", //가로 20자 세로로 8자
             bodyText : "VARIETY PICTURES",
+            trainerImages : null,
         };
     }
 
+    componentDidMount(){
+        const trainer = this.props.navigation.state.params;
+        console.log(trainer.uid);
+        this.props.getTrainerImages(trainer.uid,(json)=>{
+          this.setState({trainerImages:json.images});
+        });
+      }
 
 
 
@@ -88,13 +95,15 @@ export default class example extends Component {
                 </View>
 
                 <View style = {{flexDirection : "row", flex: 1.7,}}>
-                    <SnapShot/>
+                    {this.state.trainerImage ?
+                        <SnapShot images = {this.state.trainerImage}/>
+                        :
+                        <Text> 이미지가 없음 </Text>
+                    }
                     <View style={{flexDirection: 'column', alignItems : 'center', justifyContent : 'center', backgroundColor : "#rgba(253,139,27,1)",}}>
                         {this.state.bodyText.split('').map(char => <Text key = {char} style = {{paddingHorizontal : 15, fontSize : 15, color : "white", fontWeight : "800"}}>{char}</Text>)}
                     </View>
                 </View>
-                
-
             </View>
             </SafeAreaView>
         );

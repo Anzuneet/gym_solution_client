@@ -11,5 +11,12 @@ const mapStateProps = (state, ownProps) => {
 }
 
 
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        deleteTrainerImages : (tuid,name) => {
+        dispatch(photoActions.deleteTrainerImages(tuid,name));
+        },  
+    };
+  };
 
-export default connect(mapStateProps,null)(Container);
+export default connect(mapStateProps,mapDispatchToProps)(Container);

@@ -9,7 +9,8 @@ import {
   TouchableOpacity,
   Image,
   Dimensions,
-  TextInput
+  TextInput,
+  ActivityIndicator
 } from "react-native";
 import {
   VictoryChart,
@@ -106,9 +107,9 @@ const slideAnimation = new SlideAnimation({
     <View style = {styles.headerContainer}>
       <Text style = {styles.nameText}> {props.group.title}</Text>
     </View>
-    <TouchableOpacity onPress = {props.onPress} style = {styles.trainerContainer}>
+    <TouchableOpacity onPress = {props.onPress} style = {styles.trainerContainer} onPressOut = {()=> props.navigate('showTrainerInfo', {trainer : props.group.opener})}>
         <View style = {styles.profileContainer}>
-          {props.group.trainer.profileImage ?
+          {props.group.opener.profileImage ?
           <Text>ProfileImage</Text>
           :
           <Image
@@ -121,10 +122,10 @@ const slideAnimation = new SlideAnimation({
         </View>
         <View style = {styles.titleContainer}>
           <Text style = {styles.titleText}>
-              {props.group.trainer.name}
+              {props.group.opener.name}
           </Text>
           <Text style = {styles.commentText}>
-          {props.group.trainer.self_introduction_text}
+          {props.group.opener.self_introduction_text}
           </Text>
         </View>
         <View style = {styles.detailContainer}>
@@ -149,8 +150,8 @@ const slideAnimation = new SlideAnimation({
           underlineColorAndroid = 'rgba(0,0,0,0)' 
           placeholder="코멘트를 달아주세요" 
           autoCorrecto = {false}
-          value = {props.data5}
-          onChangeText={props.changeSets5}
+          value = {props.comment}
+          onChangeText={props.changeComment}
           />
         }
         {props.reviewFlag ?
@@ -170,26 +171,32 @@ const slideAnimation = new SlideAnimation({
           fullStarColor = "#fd8b1b" 
           />}
         </View>
-        <TouchableOpacity style = {{alignItems : "flex-end"}}>
-          <Text style = {{paddingRight : 20,}}>등록 하기</Text>
+        <TouchableOpacity style = {{alignItems : "flex-end"}} onPressOut = {props.reviewSubmit}>
+          <View>
+          {props.isSubmitting ?
+          (<ActivityIndicator size = "small" color="white"/>)
+          :
+          (<Text style = {{paddingRight : 20,}}>등록 하기</Text>)
+          }
+          </View>
         </TouchableOpacity>
       </View>
     <View style = {styles.beforeAfterContainer}>
       <View style = {{flexDirection : 'row'}}>
         <View style = {{backgroundColor: 'white',flex:1,justifyContent:"center", alignItems : 'center'}}>
           <Text style = {{paddingVertical: 4, color : "#fd8b1b"}}>BEFORE</Text>
-          {props.group.trainer.profileImage ?  
-        (<Image source={{uri:props.image.uri} } style = {{width: width/2, height: height*0.4}}/>)
-        :( 
-        <Image
-          source={require("../../assets/images/before.png")}
-          style = {{width: width/2, height: height *0.4}}
-        />
-      )}  
+          {props.group.opener.profileImage ?  
+            (<Image source={{uri:props.image.uri} } style = {{width: width/2, height: height*0.4}}/>)
+            :( 
+            <Image
+              source={require("../../assets/images/before.png")}
+              style = {{width: width/2, height: height *0.4}}
+            />
+          )}  
         </View>
         <View style = {{backgroundColor: '#fd8b1b',flex:1,justifyContent:"center", alignItems : 'center'}}>
           <Text style = {{paddingVertical: 4, color : "white"}}>AFTER</Text>
-          {props.group.trainer.profileImage ?  
+          {props.group.opener.profileImage ?  
         (<Image source={{uri:props.image.uri} } style = {{width: width/2, height: height*0.4}}/>)
         :( 
         <Image
@@ -216,9 +223,6 @@ const slideAnimation = new SlideAnimation({
       />
     </View>
 
-    <TouchableOpacity style = {styles.button} onPressOut = {()=> props.navigate('showTrainerInfo', {trainer : props.group.opener})}>
-      <Text style = {styles.font}>  </Text>
-    </TouchableOpacity>
   </ScrollView>
 );
  

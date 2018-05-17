@@ -11,11 +11,17 @@ class Container extends Component {
 };
  state = {
   flag : false,
+  isSubmitting : flag,
   chartIndex : 1,
   image: {
     uri:null,
     base64:null
   },
+  tempDate :null,
+  fat: null,
+  muscle: null,
+  weight: null,
+  comment : null,
   lists : [
     {
       date:"2018-05-02",
@@ -153,20 +159,80 @@ _takeImage = async ()=>{
     this.setState({ image:{uri:result.uri, base64:result.base64 },flag : true   });
   }
 }
+  _changeWeight = (value) =>{
+    this.setState({weight:value})
+  }
+  _changeMuscle = (value) =>{
+    this.setState({muscle:value})
+  }
+  _changeFat = (value) =>{
+    this.setState({fat:value})
+  }
+  _changeComment = (value) => {
+    this.setState({comment: value})
+  }
 _pullDayInfo = (day) =>{
     
+  this.setState({tempDate : day})
   if(this.dialog != null){
     this.dialog.show();
   }
 }
 
+_submit = async () =>{
+
+  const { image, weight, muscle, fat ,isSubmitting,flag , comment, tempDate } = this.state;
+  const { trainerPostBodymeasurements } = this.props;
+  //group id --> guid
+  //trainer id --> tuid
+  //필요
+
+  console.log(guid);
+  console.log(tuid);
+  console.log(tempDate);
+  console.log(image);
+  console.log(fat);
+  console.log(weight);
+  console.log(muscle);
+
+  if(this.dialog != null)//화면 끄기
+    this.dialog.dismiss();
+
+  let img_type;
+  let img;
+  if(!flag){
+    img = null;
+  }else{
+    img_type = image.uri.split(".");
+    img_type = img_type[img_type.length - 1];
+    img = {data : image.base64, type : img_type}
+  }
+
+  if(!isSubmitting){
+    if(weight  && muscle && fat && comment){
+      this.setState({
+        isSubmitting : true
+      });
+      await trainerPostBodymeasurements(guid,tuid,tempDate,img,fat,weight,muscle);
+      this.setState({
+        isSubmitting : false
+      });
+    }else{
+      Alert.alert('All fields are required!');
+    }
+  }
+}
+
+_cancel = () =>{
+  this.setState({tempDate:null,fat:null,muscle:null,comment:null,weight:null})
+  if(this.dialog != null)
+    this.dialog.dismiss();
+}
 _setDialog = (dialog)=>this.dialog = dialog;
 
 
   render() {
     const {navigate} = this.props.navigation;
-    //...
-    console.log(this.props);
     
    return (
      <RecordMemberScreen {...this.props} {...this.state}
@@ -181,6 +247,13 @@ _setDialog = (dialog)=>this.dialog = dialog;
      clickFat = {this._clickFat}
      pullDayInfo = {this._pullDayInfo}
      setDialog = {this._setDialog}
+     changeWeight = {this._changeWeight}
+     changeMuscle = {this._changeMuscle}
+     changeFat = {this._changeFat}
+     submit = {this._submit}
+     cancel = {this._cancel}
+     pickImage = {this._pickImage}
+     takeImage = {this._takeImage}
      />
    );
  }

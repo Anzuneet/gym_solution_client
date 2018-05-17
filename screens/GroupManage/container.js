@@ -70,12 +70,12 @@ class Container extends Component {
       ],
     }
   }
-/*
+
   componentDidMount(){
-    await this.props.getOwnTrainerGroups((json)=>{
+    this.props.getOwnGroups((json)=>{
       this.setState({groups:json.groups});
     });
-  }*/
+  }
 
 
 
