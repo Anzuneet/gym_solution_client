@@ -3,8 +3,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ProfileScreen from "./presenter";
 import { ImagePicker } from 'expo';
-import { Dimensions, Alert} from "react-native"
+import { Dimensions, Alert, PermissionsAndroid } from "react-native"
 import { actionCreators as userActions } from "../../redux/modules/user";
+
 
 class Container extends Component {
   dialog = null;
@@ -32,6 +33,8 @@ class Container extends Component {
     this.setState({fat : text});
   };
 
+  
+  
   _pickImage = async () => {
     const {navigate} = this.props.navigation;
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -92,7 +95,6 @@ class Container extends Component {
     }
   }
   render() {
-    console.log(this.state.isSubmitting);
    return (
      <ProfileScreen
       {...this.state}

@@ -16,20 +16,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 
 class Container extends Component {
   state={
-    trainers : [
-      {
-        uid : 1,
-        traineeName: "김대현",
-        comments: "여현동 트레이너님 진짜 친절하시고 좋아요!!!",
-        grade: 4.6
-      },
-      {
-        uid : 2,
-        traineeName: "유진호",
-        comments: "가격대비 시설좋음",
-        grade: 3.8
-      },
-
+    reviews : [
     ]
   }
 
@@ -57,7 +44,7 @@ class Container extends Component {
       <StatusBar barStyle={"light-content"} />
         <FlatList
 
-          data={this.state.trainers}
+          data={this.state.reviews}
           renderItem={({ item }) => (
             <ReviewsListItem
               navigate =  {this.props.navigate}

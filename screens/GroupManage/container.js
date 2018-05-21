@@ -23,50 +23,6 @@ class Container extends Component {
       loading: false,
       groups:
       [
-        {
-          capacity :10,
-          charge: 10000,
-          comment: "체지방을 태우실 목적이라면 확인해보세요!",
-          daysOfWeek :["WED","SUN"],
-          gym : {
-            address : "사랑시 고백구 행복동",
-            name : "김선태 피트니스 클럽",
-            uid :1,
-          },
-          opened: true,
-          trainer : {
-            name : "박종휘",
-            uid : 30,
-          },
-          period : 30,
-          start_date : "2018-05-28",
-          time : "15:30",
-          title : "여현동의 8주 속성BURN",
-          uid : 2,
-          user_count : 2,
-        },
-        {
-          capacity :3,
-          charge: 20000,
-          comment: "건강한 프로그래머가 되기 위한 필수 코스",
-          daysOfWeek :["MON","WED","FRI"],
-          gym : {
-            address : "사랑시 고백구 행복동",
-            name : "김선태 피트니스 클럽",
-            uid :1,
-          },
-          opened: true,
-          trainer : {
-            name : "박종휘",
-            uid : 30,
-          },
-          period : 40,
-          start_date : "2018-05-13",
-          time : "18:00",
-          title : "고인돌 감량 프로젝트",
-          uid : 3,
-          user_count : 2,
-        },
       ],
     }
   }

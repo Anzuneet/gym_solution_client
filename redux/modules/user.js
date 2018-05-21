@@ -308,20 +308,19 @@ function getOwnGroups(handler) {
 
 
 
-function joinTraining(guid) {
 
-  const guid = guid;
-  return (getState) => {
+function joinTraining(guid) {
+  return (dispatch,getState) => {
     const {user: {token }} = getState();
-    fetch(`${API_URL}/user/groups/:${guid}`, {
+    fetch(`${API_URL}/user/groups/${guid}`, {
+      method: "PUT",
       headers: {
         "x-gs-token" : token
       }
     })
     .then(response => {
-      console.log("??");
       console.log(response)
-      response.json()})
+      return response.json()})
     .then(json => {
       if (json.msg) {
        Alert.alert(json.msg);
@@ -336,25 +335,21 @@ function joinTraining(guid) {
 
 function postReview(trainer_uid,grade,comments) {
 
-  const trainer_uid = trainer_uid;
-  const grade = grade;
-  const comments = comments;
 
-  return (getState) => {
+  return (dispatch,getState) => {
     const {user: {token }} = getState();
-    fetch(`${API_URL}/trainers/:${trainer_uid}/reviews`, {
+    fetch(`${API_URL}/trainers/${trainer_uid}/reviews`, {
       method: "POST",
       headers: {
         "x-gs-token" : token
       },
       body: JSON.stringify({
-        grade : grade,
-        comments : comments,
+        comments: comments,
+        grade: grade,
       })
     })
     .then(response => {
-      console.log(response);
-      response.json()})
+      return response.json()})
     .then(json => {
       if (json.msg) {
        Alert.alert(json.msg);
@@ -366,18 +361,36 @@ function postReview(trainer_uid,grade,comments) {
   } 
 }
 
+function getReview(trainer_uid,handler) {
+  return (dispatch, getState) => {
+     const { user: { token } } = getState();
+     fetch(`${API_URL}/trainers/${trainer_uid}/reviews`, {
+       method: "GET",
+       headers: {
+            "x-gs-token" : token
+       }
+     })
+       .then(response => {
+        return response.json()
+      })
+      .then(json =>{
+        handler(json)});
+      
+  };
+}
+
 
 function updateProfileImage(value){
-  const value = value
-  return (getState) => {
+  return (dispatch,getState) => {
     const {user:{token}} = getState();
-    fetch(`${API_URL}/trainer/:profileImage`, {
+    fetch(`${API_URL}/trainer/profile_image`, {
       method: "PUT",
       headers: {
-        "x-gs-token" : token
+        "x-gs-token" : token,
+        "content-type" : "image/jpg"
       },
       body: JSON.stringify({
-        profileImage: value
+        value
       })
     })
     .then(response => {
@@ -394,21 +407,19 @@ function updateProfileImage(value){
 }
 
 function updateProfileComment(value){
-  const value = value;
-  return (getState) => {
+  return (dispatch,getState) => {
     const {user:{token}} = getState();
-
-    fetch(`${API_URL}/trainer/:self_introduction_text`, {
+    fetch(`${API_URL}/trainer/self_introduction_text`, {
       method: "PUT",
       headers: {
         "x-gs-token" : token
       },
       body: JSON.stringify({
-        self_introduction_text: value
+        value
       })
     })
     .then(response => {
-      console.log(response);
+      //console.log(response);
       response.json()})
     .then(json =>{
       if(json.msg){
@@ -420,15 +431,7 @@ function updateProfileComment(value){
   }
 }
 
-function trainerPostBodymeasurements(guid,tuid,date,Img,Fat,Weight,Muscle) {
-  const guid = guid;
-  const tuid = tuid;
-  const date = date
-  const img = Img;
-  const fat = Fat;
-  const weight = Weight;
-  const muscle = Muscle;
-
+function trainerPostBodymeasurements(guid,tuid,date,img,fat,weight,muscle) {
   return (dispatch,getState) => {
     const { user: { token} } = getState();
     fetch(`${API_URL}/groups/${guid}/users/${tuid}/bodymeasurements`, { 
@@ -562,6 +565,7 @@ const actionCreators = {
   getOwnGroups,
   joinTraining,
   postReview,
+  getReview,
   updateProfileImage,
   updateProfileComment,
   trainerPostBodymeasurements,

@@ -17,6 +17,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     joinTraining: (guid) => {
       dispatch(userActions.joinTraining(guid));
     },
+    getReview: (trainer_uid,handler) => {
+      dispatch(userActions.getReview(trainer_uid,handler));
+    },
+    
   };
 };
 

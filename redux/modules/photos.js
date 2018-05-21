@@ -39,15 +39,15 @@ function getFeed() {
 }
 
 function postTrainerImage(trainer_uid,img) {
-  return (getState) => {
+  return (dispatch, getState) => {
     const {user: {token }} = getState();
-    fetch(`${API_URL}/trainers/:${trainer_uid}/images`, {
+    fetch(`${API_URL}/trainers/${trainer_uid}/images`, {
       method: "POST",
       headers: {
         "x-gs-token" : token
       },
       body: JSON.stringify({
-        img: img
+        img
       })
     })
     .then(response => {
@@ -68,13 +68,14 @@ function postTrainerImage(trainer_uid,img) {
 function getTrainerImages(tuid, handler) {
   return (dispatch, getState) => {
     const { user: { token } } = getState();
-    fetch(`${API_URL}/trainers/:${tuid}/imgaes`, {
+    fetch(`${API_URL}/trainers/${tuid}/images`, {
       method: "GET",
       headers: {
            'x-gs-token':token
       }
     })
       .then(response => {
+        console.log(response);
        if (response.status === 401) {
          dispatch(userActions.logOut());
        } else {

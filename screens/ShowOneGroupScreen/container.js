@@ -10,7 +10,15 @@ class Container extends Component {
   
 };
 state = {
-  isSubmitting : false
+  isSubmitting : false,
+  reviews: null,
+}
+componentDidMount(){
+  const tuid = this.props.navigation.state.params.group.opener.uid;
+  this.props.getReview(tuid,(json)=>{
+    this.setState({reviews:json.reviews});
+  });
+ 
 }
  
 _goBack = () => {

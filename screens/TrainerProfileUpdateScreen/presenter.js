@@ -1,5 +1,5 @@
 import React from "react";
-import {View, Text, StyleSheet, Image, TouchableOpacity, TextInput ,Dimensions}from "react-native";
+import {View, Text, StyleSheet, Image, TouchableOpacity, TextInput ,Dimensions, ActivityIndicator}from "react-native";
 import PopupDialog , { SlideAnimation, DialogTitle} from 'react-native-popup-dialog';
 import {Feather,MaterialIcons} from "@expo/vector-icons"
 import SnapShot from "../../components/SnapShot";
@@ -14,7 +14,7 @@ const TrainerProfileUpdateScreen = props =>
     (<View style = {styles.container}>
         <PopupDialog
             dialogTitle={<DialogTitle title="Trainer 경력 입력" />}
-            ref={(popupDialog) => { this.popupDialog = popupDialog; }}
+            ref={(popupDialog) => { props.parent.commentDialog = popupDialog; }}
             dismissOnTouchOutside = {true}
             height = {450}
             //containerStyle = {{ zIndex: 10, elevation: 100 }}
@@ -28,6 +28,14 @@ const TrainerProfileUpdateScreen = props =>
             editable = {true}
             maxLength = {40}
         />
+        <TouchableOpacity style = {{flex: 0.15, justifyContent: 'center', alignItems : 'center', backgroundColor : 'skyblue'}}
+            onPressOut = {props.submitSelfComment}>
+                {props.profileImageSubmitting ? 
+                (<ActivityIndicator size = "small" color="white"/>)
+                :
+                (<Text style = {{fontSize: 20, fontWeight:"800",fontFamily: 'font-DoHyeon',}}>수정하기</Text>)
+                }
+            </TouchableOpacity>
 
         </PopupDialog>
 
@@ -36,8 +44,21 @@ const TrainerProfileUpdateScreen = props =>
         ref={(popupDialog) => { props.parent.dialogProfile = popupDialog; }}
         dialogAnimation={slideAnimation}
         dismissOnTouchOutside = {true}
-        height = {150}
+        height = {500}
         >
+            <View style = {{flex:1, justifyContent: 'center', alignItems : 'center',}}>
+            {props.profileImage ?
+                (<Image source={{uri:props.profileImage.uri} } style = {styles.avatar2}/>)
+                :
+                <Image
+                    source={
+                        require("../../assets/images/noPhoto.jpg")
+                    }
+                    style={styles.avatar2}
+                    
+                />
+            }
+            </View>
             <View style = {styles.imagePickContainer}>
                 <TouchableOpacity style ={styles.cameraTab} onPressOut = {props.takeImageProfile}>
                 <Feather name="camera" size={50} color="white" style = {styles.iconContainer}/>
@@ -49,6 +70,14 @@ const TrainerProfileUpdateScreen = props =>
                 <Text style = {styles.gallaryTabText}> GALLARY </Text>
                 </TouchableOpacity>
             </View>
+            <TouchableOpacity style = {{flex: 0.15, justifyContent: 'center', alignItems : 'center', backgroundColor : 'skyblue'}}
+            onPressOut = {props.submitProfileImage}>
+                {props.profileImageSubmitting ? 
+                (<ActivityIndicator size = "small" color="white"/>)
+                :
+                (<Text style = {{fontSize: 20, fontWeight:"800",fontFamily: 'font-DoHyeon',}}>수정하기</Text>)
+                }
+            </TouchableOpacity>
         </PopupDialog>
 
         <PopupDialog
@@ -56,19 +85,45 @@ const TrainerProfileUpdateScreen = props =>
         ref={(popupDialog) => { props.parent.dialog = popupDialog; }}
         dialogAnimation={slideAnimation}
         dismissOnTouchOutside = {true}
-        height = {150}
+        height = {500}
         >
-            <View style = {styles.imagePickContainer}>
-                <TouchableOpacity style ={styles.cameraTab} onPressOut = {props.takeImage}>
+        <View  style = {{flexDirection : 'row'}}>
+            <View>
+            {props.flag ?  
+                    (<Image source={{uri:props.tempImage.uri} } style = {{width: width * 0.8, height: height*0.63 * 0.8}}/>)
+                    :( 
+                    <Image
+                    source={require("../../assets/images/photoPlaceholder.png")}
+                    style = {{width: width * 0.8, height: height *0.63 * 0.8}}
+                    />
+                    )}  
+            </View>
+            <View style = {{flex: 1, backgroundColor : 'black'}}>
+                <TouchableOpacity
+                style = {{backgroundColor : "#rgba(253,139,27,1)",flex: 1, borderColor : "black", borderRadius: 10, alignItems: 'center', justifyContent: 'center', marginVertical:10, marginHorizontal: 10, }}
+                onPressOut={props.takeImage}>
                 <Feather name="camera" size={50} color="white" style = {styles.iconContainer}/>
                 <Text style = {styles.cameraTabText}> 카메라 </Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style ={styles.gallaryTab} onPressOut = {props.pickImage}> 
+                <TouchableOpacity
+                style = {{backgroundColor : "#rgba(253,139,27,1)",flex: 1, borderColor : "black", borderRadius: 10, alignItems: 'center', justifyContent: 'center', marginVertical:10, marginHorizontal: 10,}}
+                onPressOut={props.pickImage}>
                 <MaterialIcons name="photo-album" size={50} color="white" style = {styles.iconContainer}/> 
                 <Text style = {styles.gallaryTabText}> 갤러리 </Text>
                 </TouchableOpacity>
             </View>
+        </View>
+      <View style = {{flexDirection: 'row'}}>
+          <TouchableOpacity style = {{flex: 1, justifyContent : 'center', alignItems : 'center',backgroundColor : "#eeeeee", borderWidth : 2,}}
+          onPressOut = {props.cancel}>
+            <Text style= {{paddingVertical : 10, fontSize : 20,}}>취소</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style = {{flex: 1, justifyContent : 'center', alignItems : 'center',backgroundColor : "#eeeeee", borderWidth : 2,}}
+          onPressOut = {props.submitImage}>
+            <Text style= {{paddingVertical : 10, fontSize : 20,}}>확인</Text>
+          </TouchableOpacity>
+        </View>
         </PopupDialog>
         <View style = {{flexDirection:'row'}}>
             <View style = {styles.profileContainer}>
@@ -90,12 +145,12 @@ const TrainerProfileUpdateScreen = props =>
                 }
                 </TouchableOpacity>
                     <View style = {styles.gymNameContainer}>
-                        <Text style = {{fontFamily: 'font-DoHyeon',}}>{props.gym}</Text>
+                        <Text style = {{fontFamily: 'font-DoHyeon',fontSize: 20,}}>{props.profile.name}</Text>
                     </View>
                     <TouchableOpacity style = {styles.tUpdateBContainer} onPress={() => {
-                            this.popupDialog.show();
+                            props.parent.commentDialog.show();
                         }}>
-                        <Text style = {styles.tUpdateBText}>프로필 수정 </Text>
+                        <Text style = {styles.tUpdateBText}>자기소개 수정 </Text>
                     </TouchableOpacity>
                 </View>
                 <View>
@@ -113,7 +168,14 @@ const TrainerProfileUpdateScreen = props =>
             {props.trainerImage ?
             <SnapShot images = {props.trainerImage} delete = {props.deleteTrainerImages}/>
             :
-            <Text> 이미지가 없음 </Text>
+            <View style = {{}}>
+            <Text style = {{textAlign : 'center', fontSize: 20}}>현재 이미지가 없네요. </Text>
+            <Image
+              source={require("../../assets/images/photoPlaceholder.png")}
+              style = {{width: width * 0.9, height: height *0.34, marginTop :20,}}
+            
+            />
+            </View>
             }
             <TouchableOpacity onPressOut ={ () => {
                 props.parent.dialog.show()
@@ -175,7 +237,15 @@ const styles = StyleSheet.create({
         borderWidth:3,
         borderColor: "rgba(253,139,27,0.5)"
 
-    }, 
+    },
+    avatar2: {
+        width: width*0.55,
+        height: width*0.55,
+        borderRadius: 150,
+        borderWidth:3,
+        borderColor: "rgba(253,139,27,0.5)"
+
+    },  
     tUpdateBText : {
         fontSize :20,
         color: "white",
@@ -191,7 +261,7 @@ const styles = StyleSheet.create({
     },
     imagePickContainer  : {
         width : width,
-        height : height,
+        flex: 0.3,
         backgroundColor : "white",
         flexDirection :'row',
       },
