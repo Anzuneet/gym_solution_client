@@ -26,17 +26,13 @@ export default class example extends Component {
 
         return <SliderEntry data={item} even={(index + 1) % 2 === 0}/>;
     }
-
-   
-
-    layoutExample (type, isTrainer) {
+    layoutExample (type) {
         const isTinder = type === 'tinder';
         return (
             <View style={[styles.exampleContainer,styles.exampleContainerLight]}>
 
                 <Carousel
-                  data={this.props.images}/////////////////////////////////////////////////data
-                  //data = {this.props.bodyImages}
+                  data={this.props.images}
                   renderItem={this._renderItem}
                   sliderWidth={sliderWidth}
                   itemWidth={itemWidth}
@@ -67,8 +63,6 @@ export default class example extends Component {
     }
     _setDialog = (dialog)=>this.dialog = dialog;
     render () {
-        const isTrainer = this.props.isTrainer;
-
         return (
             <SafeAreaView style={styles.safeArea}>
                 <View style={styles.container}>
@@ -79,7 +73,7 @@ export default class example extends Component {
                     />
                     { this.gradient }
                     <View style = {{flexDirection : "row"}}>
-                    {this.layoutExample('stack',isTrainer)}
+                    {this.layoutExample('stack')}
                     </View>
                 </View>
             </SafeAreaView>

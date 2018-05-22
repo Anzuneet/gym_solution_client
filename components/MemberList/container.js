@@ -18,26 +18,6 @@ class Container extends Component {
 
   state = {
     members : [
-      {
-        uid : 1,
-        name : "고인돌",
-        recentData : {
-          Weight : 82,
-          Muscle: 27,
-          Fat: 20,
-        },
-        comment : "하체운동 위주로 하면 크게 늘것 같네요"
-      },
-      {
-        uid : 2,
-        name : "김선태",
-        recentData : {
-          Weight : 82,
-          Muscle: 20,
-          Fat: 23,
-        },
-        comment : "유산소 위주로 진행하시면 됩니다."
-      }
     ]
   }
 
@@ -59,11 +39,15 @@ class Container extends Component {
   };
 
   render() {
+    var data, recentData;
+    if(this.props.trainees){
+      data = this.props.trainees;
+    }
     return (
       <List containerStyle={{borderTopWidth: 0, borderBottomWidth: 0  }}>
         <FlatList
 
-          data={this.state.members}
+          data={data}
           renderItem={({ item }) => (
             <MemberListItem
               navigate =  {this.props.navigate}

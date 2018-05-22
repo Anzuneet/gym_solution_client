@@ -7,6 +7,7 @@ class Container extends Component {
 
   render() {
     const {data , name} = this.props;
+    
    return (
      <ProfileChart 
      data = {data}

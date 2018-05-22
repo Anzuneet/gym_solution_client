@@ -38,7 +38,7 @@ export default class SliderEntry extends Component {
 
     render () {
         //삭제는 팦업창을 띄우고 trainerProfileUpdateScreen에서 삭제할것.
-        const { data: { title, subtitle }, even, isTrainer } = this.props;
+        const { data: { title,illustration, subtitle }, even, tuid } = this.props;
         const uppercaseTitle = title ? (
             <Text
               style={[styles.title, even ? styles.titleEven : {}]}
@@ -54,8 +54,7 @@ export default class SliderEntry extends Component {
             <TouchableOpacity
               activeOpacity={1}
               style={styles.slideInnerContainer}
-              onPress={() => { isTrainer ? this.props.deleteDialog :
-              alert(`You've clicked '${title}' in traineeee`) }}
+              onPress={() => { alert(`You've clicked '${illustration}' in traineeee`) }}
               >
                 <View style={styles.shadow} />
                 <View style={[styles.imageContainer, even ? styles.imageContainerEven : {}]}>

@@ -9,11 +9,25 @@ class Container extends Component {
     this.props.navigate("record",{member : this.props.data});
   };
 
+  
   render() {
+    var RD = {
+      Weight : "X",
+      Muscle : "X",
+      Fat : "X",
+      comment:  null,
+    };
+
+   
+    if(this.props.data.recentData)
+    {
+      RD = this.props.data.recentData;
+    }
     return (
       <MemberListItem
       {...this.props}
       onPress = {this._onPress}
+      RD = {RD}
       />
     );
   }

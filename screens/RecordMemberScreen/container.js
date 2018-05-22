@@ -233,8 +233,9 @@ _setDialog = (dialog)=>this.dialog = dialog;
 
   render() {
     const {navigate} = this.props.navigation;
-    
+    console.log("hello iam RecordMemberScreen")
    return (
+    
      <RecordMemberScreen {...this.props} {...this.state}
      dates2 = {this.state.lists.reduce((obj, it)=>{
       obj[it.date] = {marked:true, selected:true, selectedColor:"#rgba(253,139,27,1)"};

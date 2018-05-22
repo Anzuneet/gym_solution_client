@@ -41,6 +41,7 @@ class Container extends Component {
   
 
   render() {
+    console.log(this.props.trainers);
     return (
       <List containerStyle={{borderTopWidth: 0, borderBottomWidth: 0  }}>
       <StatusBar barStyle={"light-content"} />

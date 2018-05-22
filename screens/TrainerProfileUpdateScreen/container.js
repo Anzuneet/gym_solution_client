@@ -19,14 +19,35 @@ class Container extends Component {
   }
 
   componentDidMount(){
+    
     const tuid = this.props.profile.uid;
     this.props.getTrainerImages(tuid,(json)=>{
-      this.setState({trainerImages:json.images});
+      let TI = json.images.map(it=>{
+        return {
+          illustration :it.image_name
+        };
+      })
+      this.setState({trainerImage:TI});
     });
+
   }
 
+  _refresh= () => {
+
+    const tuid = this.props.profile.uid;
+
+    this.props.getTrainerImages(tuid,(json)=>{
+      let TI = json.images.map(it=>{
+        return {
+          illustration :it.image_name
+        };
+      })
+      this.setState({trainerImage:TI});
+    });
+  };
+
   _changeComment = (text) =>{
-    this.setState({comment: text});
+    this.setState({self_introduction_text: text});
   };
 
   _pickImage = async () => {
@@ -121,14 +142,14 @@ class Container extends Component {
   }
 
   _submitSelfComment= async () =>{
-    const { comment} = this.state;
+    const { self_introduction_text} = this.state;
     const { updateProfileComment } = this.props;
 
-    console.log(comment);
-      if(comment != null){
+      if(self_introduction_text != null){
         this.commentDialog.dismiss();
-        const commentUpdateResult = await updateProfileComment(comment);
+        const commentUpdateResult = await updateProfileComment(self_introduction_text);
       
+
       }else{
         Alert.alert('현재 코멘트가 없어요');
       }
@@ -139,7 +160,6 @@ class Container extends Component {
     const { tempImage,flag} = this.state;
     const { postTrainerImage,profile :{uid} } = this.props;
     //type알아내기
-    console.log(uid);
     let img_type;
     let img;
     if(!flag){
@@ -170,6 +190,7 @@ class Container extends Component {
         submitProfileImage = {this._submitProfileImage}
         submitSelfComment = {this._submitSelfComment}
         submitImage = {this._submitImage}
+        refresh = {this._refresh}
     />;
   }
 }

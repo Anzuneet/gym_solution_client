@@ -15,8 +15,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         getTrainerImages : (tuid,handler) => {
         dispatch(photoActions.getTrainerImages(tuid,handler));
       },
-        deleteTrainerImages : () => {
-        dispatch(photoActions.deleteTrainerImages());
+        deleteTrainerImages : (tuid,name) => {
+        dispatch(photoActions.deleteTrainerImages(tuid,name));
       },  
       updateProfileImage : (value) => {
         dispatch(userActions.updateProfileImage(value));

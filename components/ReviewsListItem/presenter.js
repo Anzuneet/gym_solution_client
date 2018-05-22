@@ -22,7 +22,7 @@ const { width, height } = Dimensions.get("window");
           source={require("../../assets/images/icon-gym.png")}
           style ={{width: width/10, height: height/17,}}
       />
-      <Text style = {{fontSize:20,  fontFamily: 'font-DoHyeon' ,fontWeight : "800", paddingLeft: width/35,}}> {props.data.traineeName} </Text> 
+      <Text style = {{fontSize:20,  fontFamily: 'font-DoHyeon' ,fontWeight : "800", paddingLeft: width/35,}}> {props.data.trainee.name} </Text> 
       <View style = {styles.comments}>
         <Text>{props.data.comments}</Text>
       </View>

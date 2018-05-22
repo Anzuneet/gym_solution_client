@@ -23,7 +23,7 @@ const TrainerProfileUpdateScreen = props =>
             style = {styles.textInput} 
             multiline = {true}
             numberOfLines = {10}
-            value = {props.comment}
+            value = {props.self_introduction_text}
             onChangeText={props.changeComment}
             editable = {true}
             maxLength = {40}
@@ -132,8 +132,8 @@ const TrainerProfileUpdateScreen = props =>
                     props.parent.dialogProfile.show()
                 }}
                 >
-                {props.profileImage ?
-                (<Image source={{uri:props.profileImage.uri} } style = {styles.avatar}/>)
+                {props.profile.profile_image ?
+                (<Image source={{uri:props.profile.profile_image_url} } style = {styles.avatar}/>)
                 :
                 <Image
                     source={
@@ -152,12 +152,15 @@ const TrainerProfileUpdateScreen = props =>
                         }}>
                         <Text style = {styles.tUpdateBText}>자기소개 수정 </Text>
                     </TouchableOpacity>
+                    <TouchableOpacity style ={styles.tUpdateBContainer} onPress = {props.refresh}>
+                        <Text style = {styles.tUpdateBText} > 새로고침 </Text>
+                    </TouchableOpacity>
                 </View>
                 <View>
                     <View style = {styles.commentContainer}>
                         <Text style={styles.TextStyle} numberOfLines = { 6 } > 
 
-                        {props.comment}
+                        {props.profile.self_introduction_text}
 
                         </Text>
                     </View>
@@ -166,7 +169,7 @@ const TrainerProfileUpdateScreen = props =>
             </View>
         <View style = {styles.bodyProfileContainer}>
             {props.trainerImage ?
-            <SnapShot images = {props.trainerImage} delete = {props.deleteTrainerImages}/>
+            <SnapShot images = {props.trainerImage} Delete = {props.deleteTrainerImages} tuid = {props.profile.uid}/>
             :
             <View style = {{}}>
             <Text style = {{textAlign : 'center', fontSize: 20}}>현재 이미지가 없네요. </Text>

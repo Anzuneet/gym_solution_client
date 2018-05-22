@@ -1,4 +1,5 @@
 import { API_URL } from "../../constants";
+import { Alert} from 'react-native';
 import { actionCreators as userActions } from "./user";
 
 // Actions
@@ -44,22 +45,18 @@ function postTrainerImage(trainer_uid,img) {
     fetch(`${API_URL}/trainers/${trainer_uid}/images`, {
       method: "POST",
       headers: {
-        "x-gs-token" : token
+        "x-gs-token" : token,
+        "content-type" : "image/jpg"
       },
-      body: JSON.stringify({
-        img
-      })
+      body:img
     })
     .then(response => {
-      console.log(response);
-      response.json()})
+      return response.json()})
     .then(json => {
       if (json.msg) {
        Alert.alert(json.msg);
-        return true;
-      } else {
-        return false;
       }
+      
     })
   } 
 }
@@ -75,7 +72,6 @@ function getTrainerImages(tuid, handler) {
       }
     })
       .then(response => {
-        console.log(response);
        if (response.status === 401) {
          dispatch(userActions.logOut());
        } else {
@@ -83,7 +79,9 @@ function getTrainerImages(tuid, handler) {
        }
      })
      .then(json =>{
-      handler(json)});
+      handler(json)})
+      
+     
  };
 }
 

@@ -114,7 +114,7 @@ const slideAnimation = new SlideAnimation({
       <View style = {{flex: 1, backgroundColor : 'black'}}>
         <TouchableOpacity
         style = {{backgroundColor : "#rgba(253,139,27,1)",flex: 1, borderColor : "black", borderRadius: 10, alignItems: 'center', justifyContent: 'center', marginVertical:10, marginHorizontal: 10, }}
-        onPressOut={props.takeImage}>>
+        onPressOut={props.takeImage}>
         <Feather name="camera" size={50} color="white" style = {styles.iconContainer}/>
         <Text style = {styles.cameraTabText}> 카메라 </Text>
         </TouchableOpacity>
@@ -166,7 +166,8 @@ const slideAnimation = new SlideAnimation({
         <TouchableOpacity style = {props.chartIndex == 1 ? styles.clickedTextContainer : styles.unClickedTextContainer} 
         onPressOut ={props.clickWeight}>
           <Text  style = {props.chartIndex == 1 ? styles.clickedText : styles.unClickedText}> 
-          몸무게 </Text>
+          몸무게 
+          </Text>
         </TouchableOpacity>
 
         <TouchableOpacity style = {props.chartIndex == 2 ? styles.clickedTextContainer : styles.unClickedTextContainer} 
@@ -185,11 +186,11 @@ const slideAnimation = new SlideAnimation({
     <View style = {styles.headerContainer}>
     <Text style = {styles.nameText}>회원들의 인바디를 등록해주세요!</Text>
    </View>
-    <Calendar
-      style = {{}}
-      markedDates={props.dates2}
-      onDayPress={props.pullDayInfo}
-    />
+      <Calendar
+        style = {{}}
+        markedDates={props.dates2}
+        onDayPress={props.pullDayInfo}
+      />
     </View>
   
   </ScrollView>

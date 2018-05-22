@@ -3,51 +3,42 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ShowMembersScreen from "./presenter";
 import NavButton from "../../components/NavButton";
+import {Alert} from "react-native";
  
 class Container extends Component {
 
-  dialog
+  dialog = null;
   state = {
+    tempDate : null,
     data0 :
     {
-      name: "팔굽혀 펴기",
-      times: 15,
-      sets: 4,
+
+      flag:false
     }
   ,
   data1 :
     {
-      name: "턱걸이",
-      times: 7,
-      sets: 4,
+      flag:false
     }
   ,
   data2 :
     {
-      name: "스쿼트",
-      times: 20,
-      sets: 5,
+      flag:false
     }
   ,
   data3 :
     {
-      name: "데드리프트",
-      times: 10,
-      sets: 5,
+      flag:false
     }
   ,
   data4 :
     {
-      name: "벤치프레스",
-      times: 12,
-      sets: 4,
+      flag:false
     }
   ,
   data5 :
     {
-      name: "런지",
-      times: 15,
-      sets: 4,
+      flag:false
     },
   
 
@@ -82,63 +73,75 @@ class Container extends Component {
    };
 
 
+   componentDidMount(){
+
+    const guid = this.props.navigation.state.params.group.uid;
+    this.props.getUsersInGroup(guid,(json)=>{
+      this.setState({trainees:json});
+    });
+    this.props.getGroupTraining(guid,(json)=>{
+      this.setState({data:json});
+    });
+  }
 _changeNames0 = (text) => {
-  this.setState({data0:{...this.state.data0, name:text}})
+  this.setState({data0:{...this.state.data0, name:text,flag:true}})
 }
 _changeNames1 = (text) => {
-  this.setState({data1:{...this.state.data1, name:text}})
+  this.setState({data1:{...this.state.data1, name:text,flag:true}})
 }
 _changeNames2 = (text) => {
-  this.setState({data2:{...this.state.data2, name:text}})
+  this.setState({data2:{...this.state.data2, name:text,flag:true}})
 }
 _changeTimes0 = (text) => {
-  this.setState({data0:{...this.state.data0, times:text}})
+  this.setState({data0:{...this.state.data0, count:text,flag:true}})
 }
 _changeSets0 = (text) => {
-  this.setState({data0:{...this.state.data0, sets:text}})
+  this.setState({data0:{...this.state.data0, set:text,flag:true}})
 }
 _changeTimes1 = (text) => {
-  this.setState({data1:{...this.state.data1, times:text}})
+  this.setState({data1:{...this.state.data1, count:text,flag:true}})
 }
 _changeSets1 = (text) => {
-  this.setState({data1:{...this.state.data1, sets:text}})
+  this.setState({data1:{...this.state.data1, set:text,flag:true}})
 }
 _changeTimes2 = (text) => {
-  this.setState({data2:{...this.state.data2, times:text}})
+  this.setState({data2:{...this.state.data2, count:text,flag:true}})
 }
 _changeSets2 = (text) => {
-  this.setState({data2:{...this.state.data2, sets:text}})
+  this.setState({data2:{...this.state.data2, set:text,flag:true}})
 }
 _changeNames3 = (text) => {
-  this.setState({data3:{...this.state.data3, name:text}})
+  this.setState({data3:{...this.state.data3, name:text,flag:true}})
 }
 _changeNames4 = (text) => {
-  this.setState({data4:{...this.state.data4, name:text}})
+  this.setState({data4:{...this.state.data4, name:text,flag:true}})
 }
 _changeNames5 = (text) => {
-  this.setState({data5:{...this.state.data5, name:text}})
+  this.setState({data5:{...this.state.data5, name:text,flag:true}})
 }
 _changeTimes3 = (text) => {
-  this.setState({data3:{...this.state.data3, times:text}})
+  this.setState({data3:{...this.state.data3, count:text,flag:true}})
 }
 _changeSets3 = (text) => {
-  this.setState({data3:{...this.state.data3, sets:text}})
+  this.setState({data3:{...this.state.data3, set:text,flag:true}})
 }
 _changeTimes4 = (text) => {
-  this.setState({data4:{...this.state.data4, times:text}})
+  this.setState({data4:{...this.state.data4, count:text,flag:true}})
 }
 _changeSets4 = (text) => {
-  this.setState({data4:{...this.state.data4, sets:text}})
+  this.setState({data4:{...this.state.data4, set:text,flag:true}})
 }
 _changeTimes5 = (text) => {
-  this.setState({data5:{...this.state.data5, times:text}})
+  this.setState({data5:{...this.state.data5, count:text,flag:true}})
 }
 _changeSets5 = (text) => {
-  this.setState({data5:{...this.state.data5, sets:text}})
+  this.setState({data5:{...this.state.data5, set:text,flag:true}})
 }
 
    _pullDayInfo = (day) =>{
     
+    this.setState({tempDate : day});
+
     if(this.dialog != null){
       this.dialog.show();
     }
@@ -149,8 +152,43 @@ _changeSets5 = (text) => {
   _stateInitialization = () => {
    
  };
-  _postExercise = () => {
-    
+ 
+  _postExercise = async () =>{
+    //updateGroupTraining
+    const {updateGroupTraining} = this.props;
+    const {uid} = this.props.navigation.state.params.group;
+    const {tempDate, data0, data1, data2, data3,data4, data5} = this.state;
+    var TD = new Array(data0, data1,data2,data3,data4,data5);
+    var i,j;
+    var flag = false;
+
+    for(i= 0;i<6;i++){
+      if(TD[i].flag)
+      {
+        if(TD[i].name == null || TD[i].set == null || TD[i].count == null)
+          {
+            flag = true;
+            Alert.alert(i +"번째 운동 기록이 미완성 상태입니다.!");
+            break;
+          }
+      }
+    }
+    if(!flag){
+      this.dialog.dismiss();
+      var TD2 = new Array();
+      for(j= 0;j<6;j++){
+        if(TD[j].flag == false)
+        {
+          break;
+        }
+        TD2[j] = TD[j];
+         
+        
+      }
+      const postExerciseResult = await updateGroupTraining(uid,TD2,tempDate.dateString);
+    }
+   
+  
   }
 
   render() {

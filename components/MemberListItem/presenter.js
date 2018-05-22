@@ -35,20 +35,20 @@ const { width, height } = Dimensions.get("window");
           </View>
           <View style = {styles.lowerRow}>
             <View style = {styles.column}>
-              <Text style = {styles.tableAttribute}> {props.data.recentData.Weight} </Text>
+              <Text style = {styles.tableAttribute}> {props.RD.Weight} </Text>
             </View>
             <View style = {styles.column}>
-              <Text style = {styles.tableAttribute}> {props.data.recentData.Muscle} </Text>
+              <Text style = {styles.tableAttribute}> {props.RD.Muscle} </Text>
             </View>
             <View style = {styles.column}>
-              <Text style = {styles.tableAttribute}> {props.data.recentData.Fat} </Text>
+              <Text style = {styles.tableAttribute}> {props.RD.Fat} </Text>
             </View>
           </View>
         </View>
         <View style = {styles.commentContainer}>
-        {props.data.comment ?
+        {props.RD.comment ?
         <Text style = {styles.commentText} numberOfLines = {3}>
-        {props.data.comment}
+        {props.RD.comment}
         </Text> :
         <Text style = {styles.commentText} numberOfLines = {3}>
         최근에 등록된 comment가 없어요... 새로운 코멘트를 등록해주세요!

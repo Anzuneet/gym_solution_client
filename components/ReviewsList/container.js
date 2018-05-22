@@ -44,7 +44,7 @@ class Container extends Component {
       <StatusBar barStyle={"light-content"} />
         <FlatList
 
-          data={this.state.reviews}
+          data={this.props.reviews}
           renderItem={({ item }) => (
             <ReviewsListItem
               navigate =  {this.props.navigate}

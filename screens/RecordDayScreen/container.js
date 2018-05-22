@@ -92,7 +92,7 @@ class Container extends Component {
     }
   }
   render() {
-    console.log(this.state.isSubmitting);
+    console.log
    return (
      <ProfileScreen
       {...this.state}

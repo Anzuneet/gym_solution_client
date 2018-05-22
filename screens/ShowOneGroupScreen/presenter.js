@@ -88,7 +88,9 @@ import OneGroupForTrainee from "../../components/OneGroupForTrainee";
     </View>
   
     <View style = {styles.ReviewsListContainer}>
-    <ReviewsList/>
+    <ReviewsList 
+      reviews = {props.reviews}
+    />
   </View>
 
   <View style = {styles.touchableContainer}>
@@ -170,8 +172,7 @@ const styles = StyleSheet.create({
       paddingBottom : 25,
   },
   ReviewsListContainer :{
-    //height : height/2.85,
-    flex: 1,
+    height : height/2.85,
   },
   avatar: {
     width: 60,

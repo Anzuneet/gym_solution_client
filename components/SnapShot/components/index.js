@@ -6,7 +6,8 @@ const mapStateProps = (state, ownProps) => {
     const { user} =state;
     
     return {
-        isTrainer : user.isTrainer
+        isTrainer : user.isTrainer,
+        tuid : user.profile.uid,
     };
 }
 

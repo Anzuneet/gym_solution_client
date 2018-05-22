@@ -9,7 +9,7 @@ class Container extends Component {
     loadingMessage : "Loaidng...",
   }
   _onPress = () => {
-    this.props.navigation.navigate('showMembers')
+    this.props.navigation.navigate('showMembers', {group : this.props.data})
   };
 
   render() {

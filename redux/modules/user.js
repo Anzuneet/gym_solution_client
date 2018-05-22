@@ -73,7 +73,7 @@ function login(username, password) {
          dispatch(setLogIn(json.token));
          return true;
        } else {
-        c
+         Alert.alert(json.msg);
          return false;
        }
      })
@@ -236,7 +236,10 @@ function postBodyMeasurements(Img,Fat,Weight,Muscle) {
       muscle : muscle,
     })
     })
-    .then(response => response.json())
+    .then(response => 
+      {
+      console.log(response);
+      return response.json()})
     .then(json => {
       if (json.msg) {
        Alert.alert(json.msg);
@@ -246,6 +249,7 @@ function postBodyMeasurements(Img,Fat,Weight,Muscle) {
   };
 }
 function getGyms() {
+  
   return (dispatch, getState) => {
      const { user: { token } } = getState();
      fetch(`${API_URL}/gyms`, {
@@ -389,14 +393,13 @@ function updateProfileImage(value){
         "x-gs-token" : token,
         "content-type" : "image/jpg"
       },
-      body: JSON.stringify({
-        value
-      })
+      body: value
     })
     .then(response => {
       console.log(response);
-      response.json()})
+      return response.json()})
     .then(json =>{
+      console.log(json);
       if(json.msg){
         Alert.alert(json.msg);
         return true;
@@ -414,19 +417,61 @@ function updateProfileComment(value){
       headers: {
         "x-gs-token" : token
       },
-      body: JSON.stringify({
-        value
-      })
+      body: value
     })
     .then(response => {
-      //console.log(response);
-      response.json()})
+      console.log(response);
+      return response.json()})
     .then(json =>{
       if(json.msg){
         Alert.alert(json.msg);
         return true;
       }else
         return false;
+    })
+  }
+}
+
+function updateGroupTraining(guid,training,udate){
+  return (dispatch,getState) => {
+    const {user:{token}} = getState();
+    fetch(`${API_URL}/groups/${guid}/trainings/${udate}`, {
+      method: "PUT",
+      headers: {
+        "x-gs-token" : token
+      },
+      body: JSON.stringify(training)
+    })
+    .then(response => {
+      console.log(response);
+      return response.json()})
+    .then(json =>{
+      if(json.msg){
+        Alert.alert(json.msg);
+        return true;
+      }else
+        return false;
+    })
+  }
+}
+
+function getGroupTraining(guid,handler){
+  return (dispatch,getState) => {
+    const {user:{token}} = getState();
+    fetch(`${API_URL}/groups/${guid}/trainings`, {
+      method: "GET",
+      headers: {
+        "x-gs-token" : token
+      },
+    })
+    .then(response => {
+      console.log(response);
+      return response.json()})
+    .then(json =>{
+      if(json.msg){
+        Alert.alert(json.msg);
+      }
+      handler(json);
     })
   }
 }
@@ -458,6 +503,24 @@ function trainerPostBodymeasurements(guid,tuid,date,img,fat,weight,muscle) {
 }
 
 
+function getUsersInGroup(guid, handler){
+  return (dispatch,getState) =>{
+    const {user: {token}} = getState();
+    fetch(`${API_URL}/groups/${guid}/users`, {
+      headers: {
+        "x-gs-token": token,
+      },
+    })
+    .then(response => {
+      return response.json()})
+    .then(json => {
+      if (json.msg) {
+       Alert.alert(json.msg);
+      }
+      handler(json);
+    })
+  }
+}
 
 
 // Initial State
@@ -569,6 +632,9 @@ const actionCreators = {
   updateProfileImage,
   updateProfileComment,
   trainerPostBodymeasurements,
+  updateGroupTraining,
+  getGroupTraining,
+  getUsersInGroup
 
 };
   

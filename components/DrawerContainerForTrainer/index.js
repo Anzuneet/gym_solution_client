@@ -3,7 +3,9 @@ import presenter from "./presenter";
 import { actionCreators as userActions} from "../../redux/modules/user";
  
 const mapStateToProps = (state, ownProps) => {
+  const { user : {profile}} =state;
   return {
+    profile
   };
 };
 

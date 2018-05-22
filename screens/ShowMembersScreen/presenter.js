@@ -233,7 +233,7 @@ const slideAnimation = new SlideAnimation({
 
       <TouchableOpacity
       style = {{backgroundColor : "#rgba(253,139,27,1)", marginHorizontal :90, paddingVertical :10, borderRadius : 20}}
-      onPress={() => {props.postExercise}}>
+      onPressOut = {props.postExercise}>
       <Text style = {{paddingHorizontal : 20, fontFamily: 'font-DoHyeon'}}>설정완료</Text>
       </TouchableOpacity>
 
@@ -243,7 +243,8 @@ const slideAnimation = new SlideAnimation({
     <Text style = {styles.nameText}>회원 목록</Text>
    </View>
     <View style = {{flex: 1, backgroundColor : 'white'}}>
-    <MemberList navigate = {props.navigation.navigate}/>
+      <MemberList navigate = {props.navigation.navigate}
+      trainees = {props.trainees}/>
    </View>
    
    <View style = {{backgroundColor: "skyblue",}}>

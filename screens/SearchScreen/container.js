@@ -104,7 +104,7 @@ class Container extends Component {
   _onSubmitFilterCondition = (condition)=>{
     //console.log(this.state);
     //console.log(condition);
-    let filteredGroups = this.state.groups.filter(it=>{
+    let filteredGroups = this.props.groups.groups.filter(it=>{
       let daysOfWeek = condition.daysOfWeek;
       // 요일 필터링
       //console.log(condition.daysOfWeek);
@@ -185,9 +185,11 @@ class Container extends Component {
 
   _onPressMarker = (marker)=>{
     const {navigate} = this.props.navigation;
+    
+    
     if (this.state.charge.min == null && this.state.charge.max == null)
     {
-      let markerGroups = this.state.groups.filter(it=>it.gym.uid == marker.uid);
+      let markerGroups = this.props.groups.groups.filter(it=>it.gym.uid == marker.uid);
       navigate("gymInfo", {gym : marker, groups : markerGroups});
     }
     else

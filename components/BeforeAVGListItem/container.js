@@ -9,7 +9,6 @@ class Container extends Component {
   render() {
 
     const data = this.props.data;
-    console.log(data);
     return (
       <BeforeAVGListItem
       data = {data}

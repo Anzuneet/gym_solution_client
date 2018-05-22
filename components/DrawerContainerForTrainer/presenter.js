@@ -11,17 +11,9 @@ export default class DrawerContainerForTrainer extends React.Component {
     const { navigation } = this.props
     return (
       <View style={styles.container}>
-      <View style= {styles.profileContainer}>
-          <Image
-            source={
-              require("../../assets/images/noPhoto.jpg")
-            }
-            style={styles.avatar}
-          />
-          </View>
         <View style ={styles.trainernameContainer}>
           <Text style = {styles.trainernameText}>
-              여현동
+              {this.props.profile.name}
           </Text>
         </View>
         <TouchableOpacity
@@ -93,7 +85,7 @@ const styles = StyleSheet.create({
    avatar: {
     width: width*0.3,
     height: width*0.3,
-    borderRadius: 50
+    borderRadius: 70
   }, 
   trainernameContainer :{
     justifyContent: 'center',
