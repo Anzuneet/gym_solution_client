@@ -8,6 +8,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         trainerPostBodymeasurements : (guid,tuid,date,Img,Fat,Weight,Muscle) => {
         dispatch(userActions.trainerPostBodymeasurements(guid,tuid,date,Img,Fat,Weight,Muscle));
+      },
+        trainerGetBodyMeasurements : (guid,uid,handler) => {
+        dispatch(userActions.trainerGetBodyMeasurements(guid,uid,handler));
       }
       
     };

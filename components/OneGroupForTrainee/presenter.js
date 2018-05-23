@@ -17,14 +17,16 @@ const { width, height } = Dimensions.get("window");
   <TouchableOpacity onPress = {props.onPress}>
     <View style = {styles.Container}>
       <View style = {styles.profileContainer}>
-
-        <Image
-            source={
-              require("../../assets/images/noPhoto.jpg")
-            }
-            style={styles.avatar}
-            //defaultSource={require("../../assets/images/noPhoto.jpg")}
-        />
+        {props.data.opener.profile_image_url ?
+          (<Image source={{uri:props.data.opener.profile_image_url} } style = {styles.avatar}/>)
+          :
+          <Image
+              source={
+                require("../../assets/images/noPhoto.jpg")
+              }
+              style={styles.avatar}
+          />
+        }
         <View style ={styles.trainernameContainer}>
           <Text style = {styles.trainernameText}>
               {props.data.opener.name}

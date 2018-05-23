@@ -44,7 +44,7 @@ _submit = async () =>{
   }
 }
   render() {
-    
+    console.log(this.props);
     const {navigate} = this.props.navigation;
     const {group} = this.props.navigation.state.params;
    return (

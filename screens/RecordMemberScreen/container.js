@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import RecordMemberScreen from "./presenter";
 import NavButton from "../../components/NavButton";
+import { ImagePicker } from 'expo';
+import {Alert} from 'react-native';
 
  
 class Container extends Component {
@@ -11,12 +13,9 @@ class Container extends Component {
 };
  state = {
   flag : false,
-  isSubmitting : flag,
+  isSubmitting : false,
   chartIndex : 1,
-  image: {
-    uri:null,
-    base64:null
-  },
+  image: null,
   tempDate :null,
   fat: null,
   muscle: null,
@@ -28,99 +27,24 @@ class Container extends Component {
     },
   ],
   Weight: [
-    {
-      x:"04-06",
-      y: 85
-    },
-    {
-      x:"04-14",
-      y: 83
-    },
-    {
-      x:"04-15",
-      y: 83
-    },
-    {
-      x:"04-17",
-      y: 81
-    },
-    {
-      x:"04-18",
-      y: 80
-    },
-    {
-      x:"04-28",
-      y: 80
-    },
-    {
-      x:"05-02",
-      y: 79
-    },
   ],
   Muscle: [
-    {
-      x:"04-06",
-      y: 20
-    },
-    {
-      x:"04-14",
-      y: 23
-    },
-    {
-      x:"04-15",
-      y: 24
-    },
-    {
-      x:"04-17",
-      y: 24
-    },
-    {
-      x:"04-18",
-      y: 24
-    },
-    {
-      x:"04-28",
-      y: 27
-    },
-    {
-      x:"05-02",
-      y: 28
-    },
   ]
   ,
   Fat: [
-    {
-      x:"04-06",
-      y: 30
-    },
-    {
-      x:"04-14",
-      y: 29
-    },
-    {
-      x:"04-15",
-      y: 27
-    },
-    {
-      x:"04-17",
-      y: 26
-    },
-    {
-      x:"04-18",
-      y: 25
-    },
-    {
-      x:"04-28",
-      y: 22
-    },
-    {
-      x:"05-02",
-      y: 23
-    },
-  ]
-  
+  ],
  };
 
+ componentDidMount(){
+  const {guid} = this.props.navigation.state.params;
+  const {uid} = this.props.navigation.state.params.member;
+  const {trainerGetBodyMeasurements} = this.props
+  trainerGetBodyMeasurements(guid,uid,(json)=>{
+    this.setState({
+      bodyMeasurements: json
+    }, () => this._bodyMeasurementsParsing(this.state.bodyMeasurements))
+ })
+}
  _clickWeight = () =>{
   this.setState({chartIndex: 1});
 };
@@ -174,29 +98,76 @@ _takeImage = async ()=>{
 _pullDayInfo = (day) =>{
     
   this.setState({tempDate : day})
+   const {bodyMeasurements} = this.state;
+   
+   bodyMeasurements.map(it => {
+     if(it.upload_datetime.split(" ")[0] == day.dateString)
+        {
+          this.setState({
+            comment : it.comment,
+            weight : it.weight.toString(),
+            muscle : it.muscle.toString(),
+            fat : it.fat.toString(),
+            image : it.image})
+        }
+   }
+  )
   if(this.dialog != null){
     this.dialog.show();
   }
 }
 
+_dateCasting(dext){
+  if(dext){
+    var sText = dext.split(" ");
+    var ssText = sText[0].split("-");
+    var outText = (`${ssText[1]}/${ssText[2]}`);
+    return outText;
+  }else
+    return ;
+
+}
+
+_bodyMeasurementsParsing(bodyMeasurements){
+  let front_ten_items = bodyMeasurements.slice(0,10);
+  let fats = front_ten_items.map(it=>{
+    return {
+      x: this._dateCasting(it.upload_datetime),
+      y: it.fat
+    };
+  });
+  let muscle = front_ten_items.map(it=>{
+
+    return {
+      x: this._dateCasting(it.upload_datetime),
+      y: it.muscle
+    };
+  });
+  let weight = front_ten_items.map(it=>{
+
+
+    return {
+      x: this._dateCasting(it.upload_datetime),
+      y: it.weight
+    };
+  });
+  this.setState({
+    ...this.state, Muscle:muscle, Weight:weight, Fat:fats
+  });
+}
 _submit = async () =>{
 
-  const { image, weight, muscle, fat ,isSubmitting,flag , comment, tempDate } = this.state;
+  const { image, weight, muscle, fat ,isSubmitting, flag , comment, tempDate } = this.state;
   const { trainerPostBodymeasurements } = this.props;
+  const { guid} = this.props.navigation.state.params;
+  const tuid = this.props.navigation.state.params.member.uid;
+
+  
   //group id --> guid
-  //trainer id --> tuid
+  //trainee id --> tuid
   //필요
 
-  console.log(guid);
-  console.log(tuid);
-  console.log(tempDate);
-  console.log(image);
-  console.log(fat);
-  console.log(weight);
-  console.log(muscle);
-
-  if(this.dialog != null)//화면 끄기
-    this.dialog.dismiss();
+  
 
   let img_type;
   let img;
@@ -209,16 +180,18 @@ _submit = async () =>{
   }
 
   if(!isSubmitting){
-    if(weight  && muscle && fat && comment){
+    if(weight  && muscle && fat && comment && tempDate){
+      if(this.dialog != null)//화면 끄기
+        this.dialog.dismiss();
       this.setState({
         isSubmitting : true
       });
-      await trainerPostBodymeasurements(guid,tuid,tempDate,img,fat,weight,muscle);
+      await trainerPostBodymeasurements(guid,tuid,tempDate.dateString,img,fat,weight,muscle);
       this.setState({
         isSubmitting : false
       });
     }else{
-      Alert.alert('All fields are required!');
+      Alert.alert('인바디 값 코멘트값이 설정되어있어야 합니다!');
     }
   }
 }
@@ -232,16 +205,24 @@ _setDialog = (dialog)=>this.dialog = dialog;
 
 
   render() {
+
     const {navigate} = this.props.navigation;
-    console.log("hello iam RecordMemberScreen")
+
+    const {bodyMeasurements} = this.state;
+
+    var dates2 = new Array();
+
+    if(bodyMeasurements){
+      bodyMeasurements.map(it => {
+        dates2[it.upload_datetime.split(" ")[0]] = {marked:true, selected:true, selectedColor:"#rgba(253,139,27,1)"}
+      })
+    }
+
+
    return (
     
      <RecordMemberScreen {...this.props} {...this.state}
-     dates2 = {this.state.lists.reduce((obj, it)=>{
-      obj[it.date] = {marked:true, selected:true, selectedColor:"#rgba(253,139,27,1)"};
-      return obj;
-   }
-   ,{})}
+     dates2 = {dates2}
      navigate = {navigate}
      clickWeight = {this._clickWeight}
      clickMuscle = {this._clickMuscle}
@@ -251,6 +232,7 @@ _setDialog = (dialog)=>this.dialog = dialog;
      changeWeight = {this._changeWeight}
      changeMuscle = {this._changeMuscle}
      changeFat = {this._changeFat}
+     changeComment ={this._changeComment}
      submit = {this._submit}
      cancel = {this._cancel}
      pickImage = {this._pickImage}

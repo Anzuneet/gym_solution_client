@@ -24,25 +24,25 @@ export default class example extends Component {
     }
 
     componentDidMount(){
-        const {trainer} = this.props.navigation.state.params;
-        this.props.getTrainerImages(trainer.uid,(json)=>{
-          this.setState({trainerImages:json.images});
-        });
-      }
-      _refresh = () => {
-        const { getFeed } = this.props;
-        this.setState({
-          isFetching: true
-        });
-        getFeed();
-      }; 
+
+    const {trainer} = this.props.navigation.state.params;
+    this.props.getTrainerImages(trainer.uid,(json)=>{
+        let TI = json.images.map(it=>{
+            return {
+            illustration :it.image_name
+            };
+        })
+        this.setState({trainerImages:TI});
+        
+    });
+    }
 
 
 
 
     _setDialog = (dialog)=>this.dialog = dialog;
     render () {
-
+        
         const trainer = this.props.navigation.state.params;
         return (
             <SafeAreaView style={styles.safeArea}>
@@ -66,8 +66,8 @@ export default class example extends Component {
             <View style = {styles.profileContainer}>
                 <View style = {styles.profileImageContainer}
                 >
-                {trainer.trainer.profileImage ?
-                (<Image source={{uri:trainer.trainer.profileImage.uri} } style = {styles.avatar}/>)
+                {trainer.trainer.profile_image_url ?
+                (<Image source={{uri:trainer.trainer.profile_image_url} } style = {styles.avatar}/>)
                 :
                 <Image
                     source={
@@ -100,8 +100,8 @@ export default class example extends Component {
                     <BeforeAVGList/>
                 </View>
                 <View style = {{flexDirection : "row", flex: 1.7,}}>
-                    {this.state.trainerImage ?
-                        <SnapShot images = {this.state.trainerImage}/>
+                    {this.state.trainerImages ?
+                        <SnapShot images = {this.state.trainerImages}/>
                         :
                         <View style = {{}}>
                             <Text style = {{textAlign : 'center', fontSize: 20}}>현재 이미지가 없네요. </Text>

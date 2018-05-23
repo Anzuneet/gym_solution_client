@@ -18,8 +18,8 @@ const { width, height } = Dimensions.get("window");
     <View style = {styles.Container}>
       <View style = {styles.profileContainer}>
         {props.data?
-        (props.data.opener.profileImage ? 
-          (<Image source={{uri:props.data.opener.profileImage}} style = {styles.avatar}/>)
+        (props.data.opener.profile_image_url ? 
+          (<Image source={{uri:props.data.opener.profile_image_url}} style = {styles.avatar}/>)
           :
           <Image
           source={

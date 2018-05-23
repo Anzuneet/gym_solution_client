@@ -86,15 +86,18 @@ function getTrainerImages(tuid, handler) {
 }
 
 function deleteTrainerImages(tuid,name) {
+  console.log(name);
   return (dispatch, getState) => {
     const { user: { token } } = getState();
-    fetch(`${API_URL}/trainers/:${tuid}/imgaes/:${name}`, {
+    fetch(`${API_URL}/trainers/${tuid}/images/${name}`, {
       method: "DELETE",
       headers: {
            'x-gs-token':token
       }
     })
       .then(response => {
+        console.log("삭제중~");
+        console.log(response);
        if (response.status === 401) {
          dispatch(userActions.logOut());
        } else {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity , Alert } from 'react-native';
 import PropTypes from 'prop-types';
 import { ParallaxImage } from 'react-native-snap-carousel';
 import styles from '../styles/SliderEntry.style';
@@ -36,9 +36,25 @@ export default class SliderEntry extends Component {
     }
 
 
+    async _deleteConfirm(name){
+        console.log("in DeleteConfirm");
+        const {deleteTrainerImages} = this.props;
+        const tuid = this.props.tuid;
+        if(name){
+            const deleteResult = await deleteTrainerImages(tuid,name);
+            if(!deleteResult)
+                console.log("삭제 실패");
+            else
+                console.log("삭제 성공");
+        }
+        
+
+
+
+    }
     render () {
         //삭제는 팦업창을 띄우고 trainerProfileUpdateScreen에서 삭제할것.
-        const { data: { title,illustration, subtitle }, even, tuid } = this.props;
+        const { data: { title,illustration, subtitle }, even, tuid, isTrainer } = this.props;
         const uppercaseTitle = title ? (
             <Text
               style={[styles.title, even ? styles.titleEven : {}]}
@@ -54,7 +70,19 @@ export default class SliderEntry extends Component {
             <TouchableOpacity
               activeOpacity={1}
               style={styles.slideInnerContainer}
-              onPress={() => { alert(`You've clicked '${illustration}' in traineeee`) }}
+              onPress={() => { 
+                isTrainer ?
+                Alert.alert(
+                '삭제 확인',
+                '정말로 삭제 하실 건가요?',
+                [
+                {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                  {text: 'YES', onPress: () => this._deleteConfirm(illustration)},
+                  
+                ],
+                { cancelable: false }
+              ) :
+                (alert("가입하세요!"))   }}
               >
                 <View style={styles.shadow} />
                 <View style={[styles.imageContainer, even ? styles.imageContainerEven : {}]}>

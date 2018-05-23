@@ -22,7 +22,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     getTrainers:(uid, handler)=>{
       dispatch(userActions.getTrainers(uid, handler));
-    }
+    },
+
   };
 };
 

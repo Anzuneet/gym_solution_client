@@ -18,8 +18,8 @@ const { width, height } = Dimensions.get("window");
   <TouchableOpacity onPress = {props.onPress}>
     <View style = {styles.Container}>
       <View style = {styles.profileContainer}>
-        {props.trainerInfo.profileImage ?
-        <Text>ProfileImage</Text>
+        {props.trainerInfo.profile_image_url ?
+        (<Image source={{uri:props.trainerInfo.profile_image_url} } style = {styles.avatar}/>)
         :
         <Image
             source={
@@ -44,14 +44,18 @@ const { width, height } = Dimensions.get("window");
           자세히 보기
           </Text>
         </View>
+        {props.star === 0 ?
+        <Text>현재 등록된 리뷰가 없습니다. </Text> :
         <StarRating
           disabled={false}
           maxStars={5}
           starSize = {25}
           //rating={props.trainerInfo.averageStarCount}
-          rating = {4.5}
+          rating = {props.star}
           fullStarColor = "#fd8b1b" 
-          />
+        />
+        }
+        
       </View>
     </View>
   </TouchableOpacity>

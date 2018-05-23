@@ -102,8 +102,8 @@ const slideAnimation = new SlideAnimation({
     </View>
     <View  style = {{flexDirection : 'row'}}>
       <View>
-      {props.flag ?  
-            (<Image source={{uri:props.image.uri} } style = {{width: width * 0.8, height: height*0.63 * 0.8}}/>)
+      {props.image ?  
+            (<Image source={{uri:props.image} } style = {{width: width * 0.8, height: height*0.63 * 0.8}}/>)
             :( 
             <Image
               source={require("../../assets/images/gymMan.jpg")}
@@ -127,6 +127,11 @@ const slideAnimation = new SlideAnimation({
         </TouchableOpacity>
       </View>
       </View>
+      {props.image ?
+      <View style = {{flex: 1, justifyContent : 'center', alignItems : 'center',backgroundColor : "#eeeeee", borderWidth : 2,}}>
+        <Text style= {{paddingVertical : 10, fontSize : 30,}}> 이미 업로드가 되있습니다! </Text>
+      </View>
+      :
       <View style = {{flexDirection: 'row'}}>
           <TouchableOpacity style = {{flex: 1, justifyContent : 'center', alignItems : 'center',backgroundColor : "#eeeeee", borderWidth : 2,}}
           onPressOut = {props.cancel}>
@@ -137,7 +142,8 @@ const slideAnimation = new SlideAnimation({
             <Text style= {{paddingVertical : 10, fontSize : 20,}}>확인</Text>
           </TouchableOpacity>
         </View>
-    </PopupDialog>
+      }
+      </PopupDialog>
    <View style = {styles.headerContainer}>
     <Text style = {styles.nameText}>{props.navigation.state.params.member.name} 회원님의 프로필</Text>
    </View>

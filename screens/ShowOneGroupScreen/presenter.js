@@ -25,20 +25,22 @@ import { List } from "react-native-elements";
 import OneGroupForTrainee from "../../components/OneGroupForTrainee";
 
  const ShowOneGroup = props => (
-  <ScrollView 
+  <View 
     style = {styles.ScrollViewContainer}>
  
     <TouchableOpacity style = {styles.touchableContainerr} onPressOut = {()=> props.navigate('showTrainerInfo', {trainer : props.group.opener})}>
     <View style = {styles.Container}>
       <View style = {styles.profileContainer}>
+        {props.group.opener.profile_image_url ?
+        (<Image source={{uri:props.group.opener.profile_image_url} } style = {styles.avatar}/>)
+        :
         <Image
             source={
               require("../../assets/images/noPhoto.jpg")
             }
             style={styles.avatar}
-            
-            //defaultSource={require("../../assets/images/noPhoto.jpg")}
         />
+        }
         <View style ={styles.trainernameContainer}>
           <Text style = {styles.trainernameText}>
               {props.group.opener.name}
@@ -114,7 +116,7 @@ import OneGroupForTrainee from "../../components/OneGroupForTrainee";
     </TouchableOpacity>
   </View>
   
-  </ScrollView>
+  </View>
 );
  
 const styles = StyleSheet.create({
@@ -138,8 +140,7 @@ const styles = StyleSheet.create({
   },
   touchableContainer:{
     flexDirection : 'row',
-    //height : height/10,
-    flex: 10,
+    height : height*0.08,
   },
   profileContainer :{
     flex:0.45,
@@ -172,7 +173,7 @@ const styles = StyleSheet.create({
       paddingBottom : 25,
   },
   ReviewsListContainer :{
-    height : height/2.85,
+    height : height * 0.2
   },
   avatar: {
     width: 60,

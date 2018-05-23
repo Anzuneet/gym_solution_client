@@ -69,7 +69,7 @@ const slideAnimation = new SlideAnimation({
           underlineColorAndroid = 'rgba(0,0,0,0)' 
           placeholder="횟수" 
           autoCorrecto = {false}
-          value = {props.data0.times}
+          value = {props.data0.count}
           keyboardType='numeric'
           onChangeText={props.changeTimes0}
         />
@@ -79,7 +79,7 @@ const slideAnimation = new SlideAnimation({
           underlineColorAndroid = 'rgba(0,0,0,0)' 
           placeholder="세트" 
           autoCorrecto = {false}
-          value = {props.data0.sets}
+          value = {props.data0.set}
           keyboardType='numeric'
           onChangeText={props.changeSets0}
         />
@@ -90,7 +90,7 @@ const slideAnimation = new SlideAnimation({
           underlineColorAndroid = 'rgba(0,0,0,0)' 
           placeholder="횟수" 
           autoCorrecto = {false}
-          value = {props.data1.times}
+          value = {props.data1.count}
           keyboardType='numeric'
           onChangeText={props.changeTimes1}
         />
@@ -100,7 +100,7 @@ const slideAnimation = new SlideAnimation({
           underlineColorAndroid = 'rgba(0,0,0,0)' 
           placeholder="세트" 
           autoCorrecto = {false}
-          value = {props.data1.sets}
+          value = {props.data1.set}
           keyboardType='numeric'
           onChangeText={props.changeSets1}
         />
@@ -111,7 +111,7 @@ const slideAnimation = new SlideAnimation({
           underlineColorAndroid = 'rgba(0,0,0,0)' 
           placeholder="횟수" 
           autoCorrecto = {false}
-          value = {props.data2.times}
+          value = {props.data2.count}
           keyboardType='numeric'
           onChangeText={props.changeTimes2}
         />
@@ -121,7 +121,7 @@ const slideAnimation = new SlideAnimation({
           underlineColorAndroid = 'rgba(0,0,0,0)' 
           placeholder="세트" 
           autoCorrecto = {false}
-          value = {props.data2.sets}
+          value = {props.data2.set}
           keyboardType='numeric'
           onChangeText={props.changeSets2}
         />
@@ -166,7 +166,7 @@ const slideAnimation = new SlideAnimation({
           underlineColorAndroid = 'rgba(0,0,0,0)' 
           placeholder="횟수" 
           autoCorrecto = {false}
-          value = {props.data3.times}
+          value = {props.data3.count}
           keyboardType='numeric'
           onChangeText={props.changeTimes3}
         />
@@ -187,7 +187,7 @@ const slideAnimation = new SlideAnimation({
           underlineColorAndroid = 'rgba(0,0,0,0)' 
           placeholder="횟수" 
           autoCorrecto = {false}
-          value = {props.data4.times}
+          value = {props.data4.count}
           keyboardType='numeric'
           onChangeText={props.changeTimes4}
         />
@@ -208,7 +208,7 @@ const slideAnimation = new SlideAnimation({
           underlineColorAndroid = 'rgba(0,0,0,0)' 
           placeholder="횟수" 
           autoCorrecto = {false}
-          value = {props.data5.times}
+          value = {props.data5.count}
           keyboardType='numeric'
           onChangeText={props.changeTimes5}
         />
@@ -244,7 +244,8 @@ const slideAnimation = new SlideAnimation({
    </View>
     <View style = {{flex: 1, backgroundColor : 'white'}}>
       <MemberList navigate = {props.navigation.navigate}
-      trainees = {props.trainees}/>
+      trainees = {props.trainees}
+      guid = {props.navigation.state.params.group.uid}/>
    </View>
    
    <View style = {{backgroundColor: "skyblue",}}>

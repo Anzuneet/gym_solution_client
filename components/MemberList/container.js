@@ -53,6 +53,7 @@ class Container extends Component {
               navigate =  {this.props.navigate}
               data = {item}
               containerStyle={{ borderBottomWidth: 0 }}
+              guid = {this.props.guid}
             />
           )}
           keyExtractor={item => item.uid}

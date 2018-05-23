@@ -6,7 +6,7 @@ import MemberListItem from "./presenter";
 class Container extends Component {
 
   _onPress = () => {
-    this.props.navigate("record",{member : this.props.data});
+    this.props.navigate("record",{member : this.props.data, guid : this.props.guid});
   };
 
   

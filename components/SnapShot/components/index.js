@@ -1,6 +1,6 @@
 import { connect }from "react-redux";
 import Container from "./SliderEntry";
-import {actionCreators as userActions} from "../../../redux/modules/user";
+import {actionCreators as photoActions} from "../../../redux/modules/photos";
 
 const mapStateProps = (state, ownProps) => {
     const { user} =state;

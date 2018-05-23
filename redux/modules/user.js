@@ -465,7 +465,6 @@ function getGroupTraining(guid,handler){
       },
     })
     .then(response => {
-      console.log(response);
       return response.json()})
     .then(json =>{
       if(json.msg){
@@ -483,6 +482,7 @@ function trainerPostBodymeasurements(guid,tuid,date,img,fat,weight,muscle) {
     method: "POST",
     headers: {
       "x-gs-token": token,
+      
     },
     body: JSON.stringify({
       img : img,
@@ -492,7 +492,9 @@ function trainerPostBodymeasurements(guid,tuid,date,img,fat,weight,muscle) {
       date: date,
     })
     })
-    .then(response => response.json())
+    .then(response => {
+      console.log(response);
+      return response.json()})
     .then(json => {
       if (json.msg) {
        Alert.alert(json.msg);
@@ -519,6 +521,71 @@ function getUsersInGroup(guid, handler){
       }
       handler(json);
     })
+  }
+}
+
+
+function trainerGetBodyMeasurements(guid,uid,handler){
+  return (dispatch,getState) => {
+    const {user: {token}} =  getState();
+    fetch(`${API_URL}/groups/${guid}/users/${uid}/bodymeasurements`, {
+      headers:{
+        "x-gs-token": token,
+      }
+
+    })
+    .then(response => {
+      return response.json()})
+    .then(json => {
+      if(json.msg) {
+        Alert.alert(json.msg);
+      }
+      console.log(json);
+      handler(json);
+
+    })
+  }
+}
+
+function getBefore(guid,uid,handler){
+  return (dispatch,getState) => {
+    const {user: {token}} = getState();
+    fetch(`${API_URL}/groups/${guid}/users/${uid}/results/before`,{
+      headers :{
+        "x-gs-token": token,
+      }
+    })
+    .then(response => {
+      console.log(response);
+      return response.json()})
+      .then(json => {
+        if(json.msg) {
+          Alert.alert(json.msg);
+        }
+        //console.log(json);
+        handler(json);
+      })
+  }
+}
+
+function getAfter(guid,uid,handler){
+  return (dispatch,getState) => {
+    const {user: {token}} = getState();
+    fetch(`${API_URL}/groups/${guid}/users/${uid}/results/after`,{
+      headers :{
+        "x-gs-token": token,
+      }
+    })
+    .then(response => {
+      console.log(response);
+      return response.json()})
+      .then(json => {
+        if(json.msg) {
+          Alert.alert(json.msg);
+        }
+        //console.log(json);
+        handler(json);
+      })
   }
 }
 
@@ -632,9 +699,12 @@ const actionCreators = {
   updateProfileImage,
   updateProfileComment,
   trainerPostBodymeasurements,
+  trainerGetBodyMeasurements,
   updateGroupTraining,
   getGroupTraining,
-  getUsersInGroup
+  getUsersInGroup,
+  getBefore,
+  getAfter
 
 };
   

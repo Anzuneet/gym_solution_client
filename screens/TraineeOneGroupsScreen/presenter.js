@@ -40,58 +40,58 @@ const slideAnimation = new SlideAnimation({
     
     <View style = {styles.upperRow}>
       <View style = {styles.column}>
-        <Text style = {styles.textInput}></Text>
+        <Text style = {styles.textInput}>{props.data0.name}</Text>
       </View>
       <View style = {styles.column}>
-      <Text style = {styles.textInput}></Text>
+      <Text style = {styles.textInput}>{props.data1.name}</Text>
       </View>
       <View style = {styles.column}>
-      <Text style = {styles.textInput}></Text>
+      <Text style = {styles.textInput}>{props.data2.name}</Text>
       </View>
     </View>
     <View style = {styles.lowerRow}>
       <View style = {styles.column}>
-        <Text style = {styles.NOT}></Text>
+        <Text style = {styles.NOT}>{props.data0.count}</Text>
         <Text style ={styles.multiText}>*</Text>
-        <Text style = {styles.NOT}></Text>
+        <Text style = {styles.NOT}>{props.data0.set}</Text>
       </View>
       <View style = {styles.column}>
-        <Text style = {styles.NOT}></Text>
+        <Text style = {styles.NOT}>{props.data1.count}</Text>
         <Text style ={styles.multiText}>*</Text>
-        <Text style = {styles.NOT}></Text>
+        <Text style = {styles.NOT}>{props.data1.set}</Text>
       </View>
       <View style = {styles.column}>
-        <Text style = {styles.NOT}></Text>
+        <Text style = {styles.NOT}>{props.data2.count}</Text>
         <Text style ={styles.multiText}>*</Text>
-        <Text style = {styles.NOT}></Text>
+        <Text style = {styles.NOT}>{props.data2.set}</Text>
       </View>
     </View> 
     <View style = {styles.upperRow}>
       <View style = {styles.column}>
-        <Text style = {styles.textInput}></Text>
+        <Text style = {styles.textInput}>{props.data3.name}</Text>
       </View>
       <View style = {styles.column}>
-        <Text style = {styles.textInput}></Text>
+        <Text style = {styles.textInput}>{props.data4.name}</Text>
       </View>
       <View style = {styles.column}>
-        <Text style = {styles.textInput}></Text>
+        <Text style = {styles.textInput}>{props.data5.name}</Text>
       </View>
     </View> 
     <View style = {styles.lowerRow}>
       <View style = {styles.column}>
-        <Text style = {styles.NOT}></Text>
+        <Text style = {styles.NOT}>{props.data3.count}</Text>
         <Text style ={styles.multiText}>*</Text>
-        <Text style = {styles.NOT}></Text>
+        <Text style = {styles.NOT}>{props.data3.set}</Text>
     </View>
       <View style = {styles.column}>
-        <Text style = {styles.NOT}></Text>
+        <Text style = {styles.NOT}>{props.data4.count}</Text>
         <Text style ={styles.multiText}>*</Text>
-        <Text style = {styles.NOT}></Text>
+        <Text style = {styles.NOT}>{props.data4.set}</Text>
     </View>
       <View style = {styles.column}>
-        <Text style = {styles.NOT}></Text>
+        <Text style = {styles.NOT}>{props.data5.count}</Text>
         <Text style ={styles.multiText}>*</Text>
-        <Text style = {styles.NOT}></Text>
+        <Text style = {styles.NOT}>{props.data5.set}</Text>
       </View>
     </View> 
 
@@ -109,8 +109,8 @@ const slideAnimation = new SlideAnimation({
     </View>
     <TouchableOpacity onPress = {props.onPress} style = {styles.trainerContainer} onPressOut = {()=> props.navigate('showTrainerInfo', {trainer : props.group.opener})}>
         <View style = {styles.profileContainer}>
-          {props.group.opener.profileImage ?
-          <Text>ProfileImage</Text>
+          {props.group.opener.profile_image_url ?
+          (<Image source={{uri:props.group.opener.profile_image_url} } style = {styles.avatar}/>)
           :
           <Image
               source={

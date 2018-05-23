@@ -15,75 +15,34 @@ class Container extends Component {
     isSubmitting: false,
     data0 :
     {
-      name: "팔굽혀 펴기",
-      times: 15,
-      sets: 4,
+     
     }
   ,
   data1 :
     {
-      name: "턱걸이",
-      times: 7,
-      sets: 4,
+      
     }
   ,
   data2 :
     {
-      name: "스쿼트",
-      times: 20,
-      sets: 5,
+      
     }
   ,
   data3 :
     {
-      name: "데드리프트",
-      times: 10,
-      sets: 5,
+      
     }
   ,
   data4 :
     {
-      name: "벤치프레스",
-      times: 12,
-      sets: 4,
+      
     }
   ,
   data5 :
     {
-      name: "런지",
-      times: 15,
-      sets: 4,
+      
     },
-  
 
-    lists : [
-      {
-        date:"2018-04-23",
-      },
-      {
-        date:"2018-04-25",
-      },
-      {
-        date:"2018-04-27",
-      },
-      {
-        date:"2018-04-30",
-      },
-      {
-        date:"2018-05-06",
-      },
-      {
-        date:"2018-05-02",
-      },
-      {
-        date:"2018-05-04",
-      },
-      {
-        date:"2018-05-07",
-      },      {
-        date:"2018-05-09",
-      },
-    ],
     before : {
       Weight: 85,
       Muscle: 20,
@@ -95,12 +54,85 @@ class Container extends Component {
       Fat: 23,
     },
   }
+
+  
+  componentDidMount(){
+
+    const guid = this.props.navigation.state.params.group.uid;
+    const uid = this.props.profile.uid;
+
+    /*
+    this.props.getBefore(guid,uid,(json) => {
+      this.setState({
+        beforeData : json
+      })
+    })*/
+    
+    this.props.getAfter(guid,uid,(json) => {
+      this.setState({
+        afterData : json
+      })
+    })
+
+    this.props.getGroupTraining(guid,(json)=>{
+      this.setState({
+        dayList: json
+      })
+     });
+
+  }
+
+
+
+
   _pullDayInfo = (day) =>{
-      
+    const guid = this.props.navigation.state.params.group.uid;
+    this.setState({tempDate : day});
+    const DATA = this.state.dayList[day.dateString];
+
+    if(DATA){
+      if(DATA[0])
+        this.setState({data0 : {name : DATA[0].name, count : DATA[0].count.toString(), set: DATA[0].set.toString()}})
+      else
+        this.setState({data0 : {name : null, count : null, set: null}})
+      if(DATA[1])
+        this.setState({data1 : {name : DATA[1].name, count : DATA[1].count.toString(), set: DATA[1].set.toString()}})
+        else
+        this.setState({data1 : {name : null, count : null, set: null}})
+      if(DATA[2])
+        this.setState({data2 : {name : DATA[2].name, count : DATA[2].count.toString(), set: DATA[2].set.toString()}})
+        else
+        this.setState({data2 : {name : null, count : null, set: null}})
+      if(DATA[3])
+        this.setState({data3 : {name : DATA[3].name, count : DATA[3].count.toString(), set: DATA[3].set.toString()}})
+        else
+        this.setState({data3 : {name : null, count : null, set: null}})
+      if(DATA[4])
+        this.setState({data4 : {name : DATA[4].name, count : DATA[4].count.toString(), set: DATA[4].set.toString()}})
+        else
+        this.setState({data4 : {name : null, count : null, set: null}})
+      if(DATA[5])
+        this.setState({data5 : {name : DATA[5].name, count : DATA[5].count.toString(), set: DATA[5].set.toString()}})
+        else
+        this.setState({data5 : {name : null, count : null, set: null}})
+    }else{
+      this.setState({
+        data0 : {name : null, count : null, set: null},
+        data1 : {name : null, count : null, set: null},
+        data2 : {name : null, count : null, set: null},
+        data3 : {name : null, count : null, set: null},
+        data4 : {name : null, count : null, set: null},
+        data5 : {name : null, count : null, set: null},
+      })
+    }
+
+
+    
     if(this.dialog != null){
       this.dialog.show();
     }
   }
+
   _closeDialog = () =>
   {
     this.dialog.dismiss();
@@ -139,13 +171,19 @@ class Container extends Component {
   render() {
     const {navigate} = this.props.navigation;
     const group = this.props.navigation.state.params.group;
+    
+    const dayList = this.state.dayList;
+    var dates2 = new Array();
+    if(dayList){
+      for(udate in dayList){
+        dates2[udate] = {marked:true, selected:true, selectedColor:"#rgba(253,139,27,1)"}
+      }
+    }
+
+
    return (
     <TraineeOneGroupsScreen {...this.props} {...this.state}
-    dates2 = {this.state.lists.reduce((obj, it)=>{
-      obj[it.date] = {marked:true, selected:true, selectedColor:"#rgba(253,139,27,1)"};
-      return obj;
-   }
-   ,{})}
+    dates2 = {dates2}
     pullDayInfo = {this._pullDayInfo}
     setDialog = {this._setDialog}
     navigate = {navigate}
