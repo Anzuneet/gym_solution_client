@@ -41,7 +41,7 @@ export default class SliderEntry extends Component {
         const {deleteTrainerImages} = this.props;
         const tuid = this.props.tuid;
         if(name){
-            const deleteResult = await deleteTrainerImages(tuid,name);
+            const deleteResult = await deleteTrainerImages(tuid,name.split("/").pop());
             if(!deleteResult)
                 console.log("삭제 실패");
             else

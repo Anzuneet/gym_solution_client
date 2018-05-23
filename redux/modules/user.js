@@ -433,6 +433,7 @@ function updateProfileComment(value){
 }
 
 function updateGroupTraining(guid,training,udate){
+  console.log(training)
   return (dispatch,getState) => {
     const {user:{token}} = getState();
     fetch(`${API_URL}/groups/${guid}/trainings/${udate}`, {
@@ -465,6 +466,7 @@ function getGroupTraining(guid,handler){
       },
     })
     .then(response => {
+      //console.log(response);
       return response.json()})
     .then(json =>{
       if(json.msg){
@@ -475,7 +477,7 @@ function getGroupTraining(guid,handler){
   }
 }
 
-function trainerPostBodymeasurements(guid,tuid,date,img,fat,weight,muscle) {
+function trainerPostBodymeasurements(guid,tuid,tempDate,img,fat,weight,muscle,comment) {
   return (dispatch,getState) => {
     const { user: { token} } = getState();
     fetch(`${API_URL}/groups/${guid}/users/${tuid}/bodymeasurements`, { 
@@ -489,11 +491,11 @@ function trainerPostBodymeasurements(guid,tuid,date,img,fat,weight,muscle) {
       fat : fat,
       weight : weight,
       muscle : muscle,
-      date: date,
+      date: tempDate,
+      comment: comment,
     })
     })
     .then(response => {
-      console.log(response);
       return response.json()})
     .then(json => {
       if (json.msg) {
@@ -540,7 +542,6 @@ function trainerGetBodyMeasurements(guid,uid,handler){
       if(json.msg) {
         Alert.alert(json.msg);
       }
-      console.log(json);
       handler(json);
 
     })
@@ -556,7 +557,7 @@ function getBefore(guid,uid,handler){
       }
     })
     .then(response => {
-      console.log(response);
+      console.log(response)
       return response.json()})
       .then(json => {
         if(json.msg) {
@@ -577,7 +578,6 @@ function getAfter(guid,uid,handler){
       }
     })
     .then(response => {
-      console.log(response);
       return response.json()})
       .then(json => {
         if(json.msg) {

@@ -108,7 +108,7 @@ _pullDayInfo = (day) =>{
             weight : it.weight.toString(),
             muscle : it.muscle.toString(),
             fat : it.fat.toString(),
-            image : it.image})
+            image : {uri:it.image } })
         }
    }
   )
@@ -186,7 +186,7 @@ _submit = async () =>{
       this.setState({
         isSubmitting : true
       });
-      await trainerPostBodymeasurements(guid,tuid,tempDate.dateString,img,fat,weight,muscle);
+      await trainerPostBodymeasurements(guid,tuid,tempDate.dateString,img,fat,weight,muscle,comment);
       this.setState({
         isSubmitting : false
       });

@@ -180,6 +180,7 @@ class Container extends Component {
   }
 
   render() {
+    console.log(this.state)
     return <TrainerProfileUpdateScreen {...this.props} {...this.state}
         changeComment  = {this._changeComment}   
         pickImage = {this._pickImage}

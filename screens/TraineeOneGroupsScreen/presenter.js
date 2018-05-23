@@ -196,8 +196,8 @@ const slideAnimation = new SlideAnimation({
         </View>
         <View style = {{backgroundColor: '#fd8b1b',flex:1,justifyContent:"center", alignItems : 'center'}}>
           <Text style = {{paddingVertical: 4, color : "white"}}>AFTER</Text>
-          {props.group.opener.profileImage ?  
-        (<Image source={{uri:props.image.uri} } style = {{width: width/2, height: height*0.4}}/>)
+        {props.afterData ?  
+        (<Image source={{uri:props.afterData.image} } style = {{width: width/2, height: height*0.4}}/>)
         :( 
         <Image
           source={require("../../assets/images/after.png")}
@@ -210,9 +210,9 @@ const slideAnimation = new SlideAnimation({
         <View style = {styles.beforecellContainer}><Text style = {{paddingVertical: 4, color : "#fd8b1b"}}>{props.before.Fat}</Text></View>
         <View style = {styles.beforecellContainer}><Text style = {{paddingVertical: 4, color : "#fd8b1b"}}>{props.before.Muscle}</Text></View>
         <View style = {styles.beforecellContainer}><Text style = {{paddingVertical: 4, color : "#fd8b1b"}}>{props.before.Weight}</Text></View>
-        <View style = {styles.aftercellContainer}><Text style = {{paddingVertical: 4, color : "white"}}>{props.after.Fat}</Text></View>
-        <View style = {styles.aftercellContainer}><Text style = {{paddingVertical: 4, color : "white"}}>{props.after.Muscle}</Text></View>
-        <View style = {styles.aftercellContainer}><Text style = {{paddingVertical: 4, color : "white"}}>{props.after.Weight}</Text></View>
+        <View style = {styles.aftercellContainer}><Text style = {{paddingVertical: 4, color : "white"}}>{props.AD_fat}</Text></View>
+        <View style = {styles.aftercellContainer}><Text style = {{paddingVertical: 4, color : "white"}}>{props.AD_muscle}</Text></View>
+        <View style = {styles.aftercellContainer}><Text style = {{paddingVertical: 4, color : "white"}}>{props.AD_weight}</Text></View>
       </View>    
     </View>
     <View style = {styles.calenderContainer}>
