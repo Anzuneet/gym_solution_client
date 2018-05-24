@@ -35,10 +35,7 @@ const { width, height } = Dimensions.get("window");
       </View>
     </View>
 
-    <View style = {{marginLeft: width/90, backgroundColor : "skyblue", width : width * 0.27,height:'100%', justifyContent : 'center', alignItems : 'center'}}>
-    <Text style = {{fontSize : 23, fontFamily : 'font-DoHyeon', fontWeight: "800"}}>기간  :  60</Text>
-    
-    </View>
+
   </TouchableOpacity>
 
   
