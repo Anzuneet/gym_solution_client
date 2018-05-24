@@ -11,7 +11,7 @@
     "icon": "./assets/images/icon-gym.png",
     "splash": {
       "image": "./assets/images/splash.png",
-      "resizeMode": "stretch",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "ios": {

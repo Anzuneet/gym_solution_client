@@ -5,10 +5,14 @@ import {actionCreators as userActions} from "../../redux/modules/user";
 
 const mapStateProps = (state, ownProps) => {
     const { user} =state;
+    const { user: {groups, gyms, profile}} = state;
     return {
         isLoggedIn: user.isLoggedIn,
         isTrainer: user.isTrainer,
-        profile:state
+        profile:state,
+        groups,
+        gyms,
+        profile,
     };
 }
 

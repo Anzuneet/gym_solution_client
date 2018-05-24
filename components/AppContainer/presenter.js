@@ -32,13 +32,13 @@ class AppContainer extends Component {
   }
   
   render() {
-    const { isLoggedIn, isTrainer } = this.props;
+    const { isLoggedIn, isTrainer ,groups, gyms} = this.props;
     return (
       <View style={styles.container}>
         <StatusBar hidden = {false}/>
         
         {isLoggedIn ? 
-          (isTrainer === null ?
+          (isTrainer === null || groups === null || gyms === null ?
             <LoadingScreen/>
             :
             (isTrainer === true) ? 
