@@ -35,13 +35,13 @@ const { width, height } = Dimensions.get("window");
           </View>
           <View style = {styles.lowerRow}>
             <View style = {styles.column}>
-              <Text style = {styles.tableAttribute}> {props.RD.Weight} </Text>
+              <Text style = {styles.tableAttribute}> {props.RD.weight} </Text>
             </View>
             <View style = {styles.column}>
-              <Text style = {styles.tableAttribute}> {props.RD.Muscle} </Text>
+              <Text style = {styles.tableAttribute}> {props.RD.muscle} </Text>
             </View>
             <View style = {styles.column}>
-              <Text style = {styles.tableAttribute}> {props.RD.Fat} </Text>
+              <Text style = {styles.tableAttribute}> {props.RD.fat} </Text>
             </View>
           </View>
         </View>

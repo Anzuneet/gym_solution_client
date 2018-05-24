@@ -26,6 +26,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       },
       postTrainerImage : (trainer_uid,img) => {
         dispatch(photoActions.postTrainerImage(trainer_uid,img));
+      },
+      getOwnProfile : () => {
+        dispatch(userActions.getOwnProfile());
       }
 
     };

@@ -16,9 +16,6 @@ const { width, height } = Dimensions.get("window");
 
  const BeforeAVGListItem = props => (
    <TouchableOpacity style = {{width: width, height: height/14, backgroundColor: "white",flexDirection:'row'}}>
-    <Text style ={{ position:'absolute', left: width/40, top:3, zIndex: 999, fontWeight: "800"}}>
-    {props.data.trainingName}
-    </Text>
     <Text style ={{ position:'absolute', left: width/31, bottom: 3, zIndex: 999, fontWeight: "800"}}> 변화량 ⇒ </Text>
     
     <View style = {{backgroundColor : "skyblue", width : width * 0.2,height:'100%', marginBottom :3}}>
@@ -32,14 +29,14 @@ const { width, height } = Dimensions.get("window");
       </View>
 
       <View style = {{flexDirection:'row', height: "50%"}}>
-      <View style = {styles.lowerCellContainer}><Text style = {styles.dataText}>{props.data.dataDifference.fat}</Text></View>
-      <View style = {styles.lowerCellContainer}><Text style = {styles.dataText}>{props.data.dataDifference.muscle}</Text></View>
-      <View style = {styles.lowerCellContainer}><Text style = {styles.dataText}>{props.data.dataDifference.weight}</Text></View>
+      <View style = {styles.lowerCellContainer}><Text style = {styles.dataText}>{props.fat}</Text></View>
+      <View style = {styles.lowerCellContainer}><Text style = {styles.dataText}>{props.muscle}</Text></View>
+      <View style = {styles.lowerCellContainer}><Text style = {styles.dataText}>{props.weight}</Text></View>
       </View>
     </View>
 
     <View style = {{marginLeft: width/90, backgroundColor : "skyblue", width : width * 0.27,height:'100%', justifyContent : 'center', alignItems : 'center'}}>
-    <Text style = {{fontSize : 23, fontFamily : 'font-DoHyeon', fontWeight: "800"}}>기간  :  {props.data.trainingPeriod}</Text>
+    <Text style = {{fontSize : 23, fontFamily : 'font-DoHyeon', fontWeight: "800"}}>기간  :  60</Text>
     
     </View>
   </TouchableOpacity>

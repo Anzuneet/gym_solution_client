@@ -4,5 +4,5 @@ import { actionCreators as photoActions } from "../../redux/modules/photos";
 import { actionCreators as userActions} from "../../redux/modules/user";
  
 
-
-export default connect()(Container);
+  
+  export default connect()(Container);

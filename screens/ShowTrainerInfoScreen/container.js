@@ -20,6 +20,7 @@ export default class example extends Component {
             slider1ActiveSlide: SLIDER_1_FIRST_ITEM,
             bodyText : "PICTURES",
             trainerImages : null,
+            changeDatas : []
         };
     }
 
@@ -35,6 +36,9 @@ export default class example extends Component {
         this.setState({trainerImages:TI});
         
     });
+    this.props.getUsers(trainer.uid,(json)=> {
+        this.setState({changeDatas: this.state.changeDatas.concat(json)})
+    });
     }
 
 
@@ -42,7 +46,7 @@ export default class example extends Component {
 
     _setDialog = (dialog)=>this.dialog = dialog;
     render () {
-        
+
         const trainer = this.props.navigation.state.params;
         return (
             <SafeAreaView style={styles.safeArea}>
@@ -97,7 +101,7 @@ export default class example extends Component {
                 </View>
             </View>
                 <View style = {{backgroundColor : "white", flex: 1, justifyContent:'center', alignItems : 'center'}}>
-                    <BeforeAVGList/>
+                    <BeforeAVGList changeDatas = {this.state.changeDatas}/>
                 </View>
                 <View style = {{flexDirection : "row", flex: 1.7,}}>
                     {this.state.trainerImages ?

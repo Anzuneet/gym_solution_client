@@ -197,7 +197,7 @@ const slideAnimation = new SlideAnimation({
           underlineColorAndroid = 'rgba(0,0,0,0)' 
           placeholder="세트" 
           autoCorrecto = {false}
-          value = {props.data4.sets}
+          value = {props.data4.set}
           keyboardType='numeric'
           onChangeText={props.changeSets4}
         />
@@ -218,7 +218,7 @@ const slideAnimation = new SlideAnimation({
           underlineColorAndroid = 'rgba(0,0,0,0)' 
           placeholder="세트" 
           autoCorrecto = {false}
-          value = {props.data5.sets}
+          value = {props.data5.set}
           keyboardType='numeric'
           onChangeText={props.changeSets5}
         />

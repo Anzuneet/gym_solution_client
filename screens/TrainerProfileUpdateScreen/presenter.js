@@ -26,15 +26,13 @@ const TrainerProfileUpdateScreen = props =>
             value = {props.self_introduction_text}
             onChangeText={props.changeComment}
             editable = {true}
-            maxLength = {40}
+            maxLength = {400}
         />
         <TouchableOpacity style = {{flex: 0.15, justifyContent: 'center', alignItems : 'center', backgroundColor : 'skyblue'}}
             onPressOut = {props.submitSelfComment}>
-                {props.profileImageSubmitting ? 
-                (<ActivityIndicator size = "small" color="white"/>)
-                :
-                (<Text style = {{fontSize: 20, fontWeight:"800",fontFamily: 'font-DoHyeon',}}>수정하기</Text>)
-                }
+
+                <Text style = {{fontSize: 20, fontWeight:"800",fontFamily: 'font-DoHyeon',}}>수정하기</Text>
+                
             </TouchableOpacity>
 
         </PopupDialog>

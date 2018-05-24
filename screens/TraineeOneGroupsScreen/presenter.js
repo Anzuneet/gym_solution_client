@@ -185,31 +185,31 @@ const slideAnimation = new SlideAnimation({
       <View style = {{flexDirection : 'row'}}>
         <View style = {{backgroundColor: 'white',flex:1,justifyContent:"center", alignItems : 'center'}}>
           <Text style = {{paddingVertical: 4, color : "#fd8b1b"}}>BEFORE</Text>
-          {props.group.opener.profileImage ?  
-            (<Image source={{uri:props.image.uri} } style = {{width: width/2, height: height*0.4}}/>)
+          {props.beforeImage ?  
+            (<Image source={{uri:props.beforeImage} } style = {{width: width/2, height: height*0.4}}/>)
             :( 
             <Image
-              source={require("../../assets/images/before.png")}
+              source={require("../../assets/images/photoPlaceholder.png")}
               style = {{width: width/2, height: height *0.4}}
             />
           )}  
         </View>
         <View style = {{backgroundColor: '#fd8b1b',flex:1,justifyContent:"center", alignItems : 'center'}}>
           <Text style = {{paddingVertical: 4, color : "white"}}>AFTER</Text>
-        {props.afterData ?  
-        (<Image source={{uri:props.afterData.image} } style = {{width: width/2, height: height*0.4}}/>)
+        {props.afterImage ?  
+        (<Image source={{uri:props.afterImage} } style = {{width: width/2, height: height*0.4}}/>)
         :( 
         <Image
-          source={require("../../assets/images/after.png")}
+          source={require("../../assets/images/photoPlaceholder.png")}
           style = {{width: width/2, height: height *0.4}}
         />
       )}  
         </View>
       </View>
       <View style = {{flex: 1,flexDirection: 'row', justifyContent: 'space-between',}}>
-        <View style = {styles.beforecellContainer}><Text style = {{paddingVertical: 4, color : "#fd8b1b"}}>{props.before.Fat}</Text></View>
-        <View style = {styles.beforecellContainer}><Text style = {{paddingVertical: 4, color : "#fd8b1b"}}>{props.before.Muscle}</Text></View>
-        <View style = {styles.beforecellContainer}><Text style = {{paddingVertical: 4, color : "#fd8b1b"}}>{props.before.Weight}</Text></View>
+        <View style = {styles.beforecellContainer}><Text style = {{paddingVertical: 4, color : "#fd8b1b"}}>{props.BD_fat}</Text></View>
+        <View style = {styles.beforecellContainer}><Text style = {{paddingVertical: 4, color : "#fd8b1b"}}>{props.BD_muscle}</Text></View>
+        <View style = {styles.beforecellContainer}><Text style = {{paddingVertical: 4, color : "#fd8b1b"}}>{props.BD_weight}</Text></View>
         <View style = {styles.aftercellContainer}><Text style = {{paddingVertical: 4, color : "white"}}>{props.AD_fat}</Text></View>
         <View style = {styles.aftercellContainer}><Text style = {{paddingVertical: 4, color : "white"}}>{props.AD_muscle}</Text></View>
         <View style = {styles.aftercellContainer}><Text style = {{paddingVertical: 4, color : "white"}}>{props.AD_weight}</Text></View>

@@ -50,12 +50,32 @@ class Container extends Component {
     this.props.getUsersInGroup(guid,(json)=>{
       this.setState({trainees:json});
     });
+
     this.props.getGroupTraining(guid,(json)=>{
       this.setState({
         dayList: json
       })
      });
+  }
 
+  _parsingRD(trainees){
+    const guid = this.props.navigation.state.params.group.uid;
+
+    trainees.map((it,index) => {
+      this.props.getAfter(guid,it.uid,(json) => {
+        this.setState({
+          trainees: update(
+            this.state.trainees,
+            {
+              [index] : {
+                ...this.state.trainees[index],
+                recentData: {$set: json}
+              }
+            }
+          )
+        })
+      })
+    })
   }
 _changeNames0 = (text) => {
   this.setState({data0:{...this.state.data0, name:text,flag:true}})
@@ -171,6 +191,8 @@ _changeSets5 = (text) => {
     const {updateGroupTraining} = this.props;
     const {uid} = this.props.navigation.state.params.group;
     const {tempDate, data0, data1, data2, data3,data4, data5} = this.state;
+    const guid = this.props.navigation.state.params.group.uid;
+
     var TD = new Array(data0, data1,data2,data3,data4,data5);
     var i,j;
     var flag = false;
@@ -198,13 +220,20 @@ _changeSets5 = (text) => {
          
         
       }
-      const postExerciseResult = await updateGroupTraining(uid,TD2,tempDate.dateString);
+      const postExerciseResult = await updateGroupTraining(uid,TD2,tempDate.dateString,(json)=>{
+        this.setState({
+          dayList: json
+        })
+       });
+  
+          console.log("새로고침되라")
+          this.props.getGroupTraining(guid,);
+        
     }
    
   
   }
   render() {
-
     const dayList = this.state.dayList;
     var dates2 = new Array();
     if(dayList){
@@ -212,8 +241,6 @@ _changeSets5 = (text) => {
         dates2[udate] = {marked:true, selected:true, selectedColor:"#rgba(253,139,27,1)"}
       }
     }
-    console.log(dates2);
-
    return (
     <ShowMembersScreen {...this.props} {...this.state}
 

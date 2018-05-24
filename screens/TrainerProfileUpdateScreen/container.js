@@ -44,6 +44,8 @@ class Container extends Component {
       })
       this.setState({trainerImage:TI});
     });
+
+    this.props.getOwnProfile();
   };
 
   _changeComment = (text) =>{
@@ -54,7 +56,7 @@ class Container extends Component {
     const {navigate} = this.props.navigation;
     let result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
-      aspect: [3,4],
+      aspect: [3,2],
       base64 :true,
       mediaTypes : ImagePicker.MediaTypeOptions.Images
     });
@@ -70,7 +72,7 @@ class Container extends Component {
     const {navigate} = this.props.navigation;
     let result = await ImagePicker.launchCameraAsync({
       allowsEditing: true,
-      aspect: [3,4],
+      aspect: [3,2],
       base64 :true,
       mediaTypes : ImagePicker.MediaTypeOptions.Images
     });
@@ -180,7 +182,6 @@ class Container extends Component {
   }
 
   render() {
-    console.log(this.state)
     return <TrainerProfileUpdateScreen {...this.props} {...this.state}
         changeComment  = {this._changeComment}   
         pickImage = {this._pickImage}

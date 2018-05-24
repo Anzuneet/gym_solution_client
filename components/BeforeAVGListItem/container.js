@@ -8,10 +8,18 @@ class Container extends Component {
   
   render() {
 
+    var fat,muscle,weight
     const data = this.props.data;
+    if(data != null){
+      fat = data.fat
+      muscle = data.musle
+      weight = data.weight
+    }
     return (
       <BeforeAVGListItem
-      data = {data}
+      fat ={fat}
+      muscle = {muscle}
+      weight ={weight}
       />
     );
   }

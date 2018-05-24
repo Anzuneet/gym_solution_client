@@ -66,7 +66,7 @@ class Container extends Component {
       <StatusBar barStyle={"light-content"} />
         <FlatList
 
-          data={this.state.beforeGroups}
+          data={this.props.changeDatas}
           renderItem={({ item }) => (
             <BeforeAVGListItem
               data = {item}
@@ -74,7 +74,7 @@ class Container extends Component {
             />
           )}
           
-          keyExtractor={item => item.uid}
+          keyExtractor={item => item}
           ItemSeparatorComponent={this.renderSeparator}
           
         />

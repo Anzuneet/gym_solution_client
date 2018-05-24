@@ -238,7 +238,6 @@ function postBodyMeasurements(Img,Fat,Weight,Muscle) {
     })
     .then(response => 
       {
-      console.log(response);
       return response.json()})
     .then(json => {
       if (json.msg) {
@@ -323,7 +322,6 @@ function joinTraining(guid) {
       }
     })
     .then(response => {
-      console.log(response)
       return response.json()})
     .then(json => {
       if (json.msg) {
@@ -338,8 +336,6 @@ function joinTraining(guid) {
 }
 
 function postReview(trainer_uid,grade,comments) {
-
-
   return (dispatch,getState) => {
     const {user: {token }} = getState();
     fetch(`${API_URL}/trainers/${trainer_uid}/reviews`, {
@@ -396,10 +392,8 @@ function updateProfileImage(value){
       body: value
     })
     .then(response => {
-      console.log(response);
       return response.json()})
     .then(json =>{
-      console.log(json);
       if(json.msg){
         Alert.alert(json.msg);
         return true;
@@ -432,8 +426,7 @@ function updateProfileComment(value){
   }
 }
 
-function updateGroupTraining(guid,training,udate){
-  console.log(training)
+function updateGroupTraining(guid,training,udate,handler){
   return (dispatch,getState) => {
     const {user:{token}} = getState();
     fetch(`${API_URL}/groups/${guid}/trainings/${udate}`, {
@@ -444,11 +437,11 @@ function updateGroupTraining(guid,training,udate){
       body: JSON.stringify(training)
     })
     .then(response => {
-      console.log(response);
       return response.json()})
     .then(json =>{
       if(json.msg){
         Alert.alert(json.msg);
+        dispatch(getGroupTraining(guid,handler))
         return true;
       }else
         return false;
@@ -469,9 +462,6 @@ function getGroupTraining(guid,handler){
       //console.log(response);
       return response.json()})
     .then(json =>{
-      if(json.msg){
-        Alert.alert(json.msg);
-      }
       handler(json);
     })
   }
@@ -549,6 +539,7 @@ function trainerGetBodyMeasurements(guid,uid,handler){
 }
 
 function getBefore(guid,uid,handler){
+  
   return (dispatch,getState) => {
     const {user: {token}} = getState();
     fetch(`${API_URL}/groups/${guid}/users/${uid}/results/before`,{
@@ -557,13 +548,9 @@ function getBefore(guid,uid,handler){
       }
     })
     .then(response => {
-      console.log(response)
+      //console.log(response);
       return response.json()})
       .then(json => {
-        if(json.msg) {
-          Alert.alert(json.msg);
-        }
-        //console.log(json);
         handler(json);
       })
   }
@@ -578,14 +565,47 @@ function getAfter(guid,uid,handler){
       }
     })
     .then(response => {
+      //console.log(response);
       return response.json()})
-      .then(json => {
-        if(json.msg) {
-          Alert.alert(json.msg);
-        }
-        //console.log(json);
+      .then(json => {      
         handler(json);
       })
+  }
+}
+function getUsers(uid,handler){
+  return (dispatch,getState) => {
+    const {user: {token}} = getState();
+    fetch(`${API_URL}/trainers/${uid}/groups`,{
+      headers: {
+        "x-gs-token": token,
+      }
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then(json => {
+      json.map(it => {
+        dispatch(getChange(it.uid,handler))
+      })
+    })
+  }
+}
+
+
+function getChange(uid,handler){
+  return (dispatch,getState) => {
+    const {user: {token}} = getState();
+    fetch(`${API_URL}/groups/${uid}/result`,{
+      headers: {
+        "x-gs-token": token,
+      }
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then(json => {
+      handler(json);
+    })
   }
 }
 
@@ -704,7 +724,8 @@ const actionCreators = {
   getGroupTraining,
   getUsersInGroup,
   getBefore,
-  getAfter
+  getAfter,
+  getUsers
 
 };
   

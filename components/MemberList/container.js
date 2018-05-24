@@ -22,6 +22,8 @@ class Container extends Component {
   }
 
   componentDidMount() {
+  
+      
     //이그룹에 등록된 멤버 가져오기
   }
   renderSeparator = () => { // 리스트 아이템을 구분짓는것.
@@ -39,9 +41,9 @@ class Container extends Component {
   };
 
   render() {
-    var data, recentData;
+    var data, name, uid;
     if(this.props.trainees){
-      data = this.props.trainees;
+      data = this.props.trainees
     }
     return (
       <List containerStyle={{borderTopWidth: 0, borderBottomWidth: 0  }}>
@@ -54,6 +56,8 @@ class Container extends Component {
               data = {item}
               containerStyle={{ borderBottomWidth: 0 }}
               guid = {this.props.guid}
+              name = {name}
+              uid = {uid}
             />
           )}
           keyExtractor={item => item.uid}

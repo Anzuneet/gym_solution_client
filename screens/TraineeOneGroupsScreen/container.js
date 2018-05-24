@@ -63,16 +63,12 @@ class Container extends Component {
 
     
     this.props.getBefore(guid,uid,(json) => {
-      console.log("before");
-      console.log(json);
       this.setState({
         beforeData : json
       })
     })
     
     this.props.getAfter(guid,uid,(json) => {
-      console.log("after");
-      console.log(json);
       this.setState({
         afterData : json
       })
@@ -177,7 +173,9 @@ class Container extends Component {
     const group = this.props.navigation.state.params.group;
     
     const dayList = this.state.dayList;
-    var AD_fat,AD_muscle,AD_weight;
+    var AD_fat = "x" ,AD_muscle = "x" ,AD_weight = "x" , afterImage;
+    var BD_fat = "x" ,BD_muscle= "x" ,BD_weight = "x" , beforeImage;
+
     var dates2 = new Array();
     if(dayList){
       for(udate in dayList){
@@ -189,6 +187,13 @@ class Container extends Component {
       AD_fat = this.state.afterData.fat;
       AD_muscle = this.state.afterData.muscle;
       AD_weight = this.state.afterData.weight;
+      afterImage = this.state.afterData.image;
+    }
+    if(this.state.beforeData){
+      BD_fat = this.state.beforeData.fat;
+      BD_muscle = this.state.beforeData.muscle;
+      BD_weight = this.state.beforeData.weight;
+      beforeImage = this.state.beforeData.image;
     }
       
 
@@ -204,8 +209,14 @@ class Container extends Component {
     changeComment = {this._changeComment}
     reviewSubmit = {this._submit}
     AD_fat = {AD_fat}
-AD_muscle = {AD_muscle}
-AD_weight = {AD_weight}
+    AD_muscle = {AD_muscle}
+    AD_weight = {AD_weight}
+    afterImage = {afterImage}
+    BD_fat = {BD_fat}
+    BD_muscle = {BD_muscle}
+    BD_weight = {BD_weight}
+    beforeImage = {beforeImage}
+
     />
    );
  }

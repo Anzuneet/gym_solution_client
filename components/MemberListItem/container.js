@@ -5,6 +5,20 @@ import MemberListItem from "./presenter";
  
 class Container extends Component {
 
+  state = {
+    recentData: null,
+  }
+
+  componentDidMount(){
+
+    const uid = this.props.data.uid;
+    const {guid} = this.props;
+
+    this.props.getAfter(guid,uid,(json) => {
+      this.setState({recentData : json})
+    })
+  }
+
   _onPress = () => {
     this.props.navigate("record",{member : this.props.data, guid : this.props.guid});
   };
@@ -12,17 +26,15 @@ class Container extends Component {
   
   render() {
     var RD = {
-      Weight : "X",
-      Muscle : "X",
-      Fat : "X",
+      weight : "X",
+      muscle : "X",
+      fat : "X",
       comment:  null,
+      image: null,
     };
+    if(this.state.recentData != null)
+      RD = this.state.recentData
 
-   
-    if(this.props.data.recentData)
-    {
-      RD = this.props.data.recentData;
-    }
     return (
       <MemberListItem
       {...this.props}
