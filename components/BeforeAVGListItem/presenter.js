@@ -35,7 +35,10 @@ const { width, height } = Dimensions.get("window");
       </View>
     </View>
 
+    <View style = {{marginLeft: width/90, backgroundColor : "skyblue", width : width * 0.27,height:'100%', justifyContent : 'center', alignItems : 'center'}}>
 
+    
+    </View>
   </TouchableOpacity>
 
   
