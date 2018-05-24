@@ -8,14 +8,22 @@
     "platforms": ["ios", "android"],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/icon-gym.png",
     "splash": {
       "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "stretch",
       "backgroundColor": "#ffffff"
     },
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "org.dolman.gymsolution",
+      "config":{
+        "googleMaps":{
+          "apiKey":"AIzaSyDWgNg-v39oHkrCMWl9yHwfavnZYEtU5lk"
+        }
+      }
     }
   }
 }
