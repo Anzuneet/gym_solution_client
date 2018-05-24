@@ -39,58 +39,58 @@ const slideAnimation = new SlideAnimation({
     
     <View style = {styles.upperRow}>
       <View style = {styles.column}>
-        <Text style = {styles.textInput}></Text>
+        <Text style = {styles.textInput}>{props.data0.name}</Text>
       </View>
       <View style = {styles.column}>
-      <Text style = {styles.textInput}></Text>
+      <Text style = {styles.textInput}>{props.data1.name}</Text>
       </View>
       <View style = {styles.column}>
-      <Text style = {styles.textInput}></Text>
+      <Text style = {styles.textInput}>{props.data2.name}</Text>
       </View>
     </View>
     <View style = {styles.lowerRow}>
       <View style = {styles.column}>
-        <Text style = {styles.NOT}></Text>
+        <Text style = {styles.NOT}>{props.data0.times}</Text>
         <Text style ={styles.multiText}>*</Text>
-        <Text style = {styles.NOT}></Text>
+        <Text style = {styles.NOT}>{props.data0.sets}</Text>
       </View>
       <View style = {styles.column}>
-        <Text style = {styles.NOT}></Text>
+        <Text style = {styles.NOT}>{props.data1.times}</Text>
         <Text style ={styles.multiText}>*</Text>
-        <Text style = {styles.NOT}></Text>
+        <Text style = {styles.NOT}>{props.data1.sets}</Text>
       </View>
       <View style = {styles.column}>
-        <Text style = {styles.NOT}></Text>
+        <Text style = {styles.NOT}>{props.data2.times}</Text>
         <Text style ={styles.multiText}>*</Text>
-        <Text style = {styles.NOT}></Text>
+        <Text style = {styles.NOT}>{props.data2.sets}</Text>
       </View>
     </View> 
     <View style = {styles.upperRow}>
       <View style = {styles.column}>
-        <Text style = {styles.textInput}></Text>
+        <Text style = {styles.textInput}>{props.data3.name}</Text>
       </View>
       <View style = {styles.column}>
-        <Text style = {styles.textInput}></Text>
+        <Text style = {styles.textInput}>{props.data4.name}</Text>
       </View>
       <View style = {styles.column}>
-        <Text style = {styles.textInput}></Text>
+        <Text style = {styles.textInput}>{props.data5.name}</Text>
       </View>
     </View> 
     <View style = {styles.lowerRow}>
       <View style = {styles.column}>
-        <Text style = {styles.NOT}></Text>
+        <Text style = {styles.NOT}>{props.data3.times}</Text>
         <Text style ={styles.multiText}>*</Text>
-        <Text style = {styles.NOT}></Text>
+        <Text style = {styles.NOT}>{props.data3.sets}</Text>
     </View>
       <View style = {styles.column}>
-        <Text style = {styles.NOT}></Text>
+        <Text style = {styles.NOT}>{props.data4.times}</Text>
         <Text style ={styles.multiText}>*</Text>
-        <Text style = {styles.NOT}></Text>
+        <Text style = {styles.NOT}>{props.data4.sets}</Text>
     </View>
       <View style = {styles.column}>
-        <Text style = {styles.NOT}></Text>
+        <Text style = {styles.NOT}>{props.data5.times}</Text>
         <Text style ={styles.multiText}>*</Text>
-        <Text style = {styles.NOT}></Text>
+        <Text style = {styles.NOT}>{props.data5.sets}</Text>
       </View>
     </View> 
 
@@ -287,7 +287,7 @@ const styles = StyleSheet.create({
     alignItems : 'center',
     borderColor : "white",
     borderWidth : StyleSheet.hairlineWidth,
-    flexDirection : 'row'
+    flexDirection : 'row',
   },
   textInput : {
     width : width/3 -10,
@@ -295,9 +295,12 @@ const styles = StyleSheet.create({
     borderColor: "#bbb",
     borderWidth: StyleSheet.hairlineWidth,
     borderRadius: 5,
-    paddingHorizontal: 15,
+    paddingHorizontal: 25,
+    paddingTop:5,
     backgroundColor: "#fafafa",
-    alignItems : 'center'
+    alignItems : 'center',
+    fontFamily: 'font-DoHyeon',
+    justifyContent: 'center',
   },
   NOT :{
     width : width/4 -50,
@@ -307,7 +310,9 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingLeft:5,
     backgroundColor: "#fafafa",
-    alignItems : 'center'
+    alignItems : 'center',
+    justifyContent: 'center',
+    fontFamily: 'font-DoHyeon',
   },
   multiText : {
     paddingHorizontal : 4,
